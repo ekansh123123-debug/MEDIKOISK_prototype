@@ -10,25 +10,49 @@ export interface SpeechRecognitionResultPayload {
 
 export class VoiceService {
   /**
-   * Quick preset voice simulations for clinical evaluation
+   * Quick preset voice simulations for clinical evaluation across all 6 Indian languages
    */
-  static DEMO_VOICE_PRESETS: Record<string, { en: string; hi: string; mr: string }> = {
+  static DEMO_VOICE_PRESETS: Record<string, Record<IndianLanguage, string>> = {
     abdominal: {
       en: "I have had stomach pain for 3 days, especially after meals.",
       hi: "मुझे 3 दिन से पेट के ऊपरी हिस्से में तेज जलन और दर्द है।",
-      mr: "माझ्या पोटात ३ दिवसांपासून जेवणानंतर खूप जळजळ आणि दुखत आहे."
+      mr: "माझ्या पोटात ३ दिवसांपासून जेवणानंतर खूप जळजळ आणि दुखत आहे.",
+      ta: "எனக்கு 3 நாட்களாக குறிப்பாக உணவுக்குப் பின் கடுமையான வயிற்று வலி உள்ளது.",
+      bn: "আমার ৩ দিন ধরে পেটের উপরিভাগে তীব্র জ্বালা ও ব্যথা হচ্ছে, বিশেষ করে খাওয়ার পর।",
+      te: "నాకు 3 రోజుల నుండి ముఖ్యంగా భోజనం తర్వాత తీవ్రమైన కడుపు నొప్పి మరియు మంటగా ఉంది."
     },
     emergency: {
       en: "Severe crushing chest pain since 20 minutes spreading to my left arm with heavy sweating.",
       hi: "छाती में बहुत तेज दर्द हो रहा है जो बाएं हाथ तक जा रहा है और पसीना आ रहा है।",
-      mr: "छातीत असह्य वेदना होत आहेत, डाव्या हाताकडे जात आहेत आणि घाम फुटला आहे."
+      mr: "छातीत असह्य वेदना होत आहेत, डाव्या हाताकडे जात आहेत आणि घाम फुटला आहे.",
+      ta: "கடந்த 20 நிமிடங்களாக இடது கைக்கு பரவும் கடுமையான நெஞ்சுவலி மற்றும் அதிக வியர்வை உள்ளது.",
+      bn: "২০ মিনিট ধরে বুকে প্রচণ্ড চাপ ও ব্যথা হচ্ছে যা বাঁ হাতে ছড়াচ্ছে এবং প্রচুর ঘাম হচ্ছে।",
+      te: "20 నిమిషాల నుండి ఎడమ చేతికి వ్యాపించే తీవ్రమైన ఛాతీ నొప్పి మరియు అధిక చెమటలు పడుతున్నాయి."
     },
     ayush: {
       en: "I take Ayurvedic medicine for sugar and feel heaviness in digestion.",
       hi: "मैं शुगर के लिए आयुर्वेदिक दवा ले रहा हूँ और पेट में भारीपन रहता है।",
-      mr: "मी मधुमेहासाठी आयुर्वेदिक काढा घेतो आणि पचनात जडपणा जाणवतो."
+      mr: "मी मधुमेहासाठी आयुर्वेदिक काढा घेतो आणि पचनात जडपणा जाणवतो.",
+      ta: "நான் சர்க்கரை நோய்க்காக ஆயுர்வேத மருந்து எடுத்து வருகிறேன், செரிமானத்தில் பாரமாக உணர்கிறேன்.",
+      bn: "আমি সুগারের জন্য আয়ুর্বেদিক ওষুধ খাই এবং হজমে ভারী ভাব অনুভব করি।",
+      te: "నేను చక్కెర వ్యాధి కోసం ఆయుర్వేద మందు తీసుకుంటున్నాను మరియు జీర్ణక్రియలో బరువుగా అనిపిస్తుంది."
     }
   };
+
+  /**
+   * Returns BCP-47 locale tag for Indian languages
+   */
+  static getLocaleTag(lang: IndianLanguage): string {
+    switch (lang) {
+      case 'hi': return 'hi-IN';
+      case 'mr': return 'mr-IN';
+      case 'ta': return 'ta-IN';
+      case 'bn': return 'bn-IN';
+      case 'te': return 'te-IN';
+      case 'en':
+      default: return 'en-IN';
+    }
+  }
 
   /**
    * Starts speech recognition using browser Web Speech API or simulated fallback
@@ -45,7 +69,7 @@ export class VoiceService {
         const recognition = new SpeechRecognition();
         recognition.continuous = false;
         recognition.interimResults = false;
-        recognition.lang = language === 'hi' ? 'hi-IN' : language === 'mr' ? 'mr-IN' : 'en-IN';
+        recognition.lang = this.getLocaleTag(language);
 
         const startTime = Date.now();
 
@@ -63,8 +87,7 @@ export class VoiceService {
         };
 
         recognition.onerror = (event: any) => {
-          console.warn('Speech recognition fallback to simulated engine:', event.error);
-          // Auto fallback to demo preset
+          console.warn('Native speech recognition error, falling back to sovereign model:', event.error);
           this.simulateBhashiniSpeech(language, onResult);
         };
 
@@ -72,22 +95,22 @@ export class VoiceService {
 
         return {
           stop: () => {
-            try { recognition.stop(); } catch (e) {}
+            try {
+              recognition.stop();
+            } catch (e) {
+              // Ignore already stopped error
+            }
           }
         };
       } catch (e) {
-        console.warn('Recognition setup failed, using simulator:', e);
+        console.warn('SpeechRecognition initialization error, using simulated Bhashini speech:', e);
+        this.simulateBhashiniSpeech(language, onResult);
+        return { stop: () => {} };
       }
-    }
-
-    // Default fallback to Bhashini simulator
-    const timer = setTimeout(() => {
+    } else {
       this.simulateBhashiniSpeech(language, onResult);
-    }, 1800);
-
-    return {
-      stop: () => clearTimeout(timer)
-    };
+      return { stop: () => {} };
+    }
   }
 
   /**
@@ -97,11 +120,7 @@ export class VoiceService {
     language: IndianLanguage,
     onResult: (result: SpeechRecognitionResultPayload) => void
   ) {
-    const transcript = language === 'hi'
-      ? this.DEMO_VOICE_PRESETS.abdominal.hi
-      : language === 'mr'
-      ? this.DEMO_VOICE_PRESETS.abdominal.mr
-      : this.DEMO_VOICE_PRESETS.abdominal.en;
+    const transcript = this.DEMO_VOICE_PRESETS.abdominal[language] || this.DEMO_VOICE_PRESETS.abdominal.en;
 
     onResult({
       transcript,
@@ -120,7 +139,7 @@ export class VoiceService {
     try {
       window.speechSynthesis.cancel();
       const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = language === 'hi' ? 'hi-IN' : language === 'mr' ? 'mr-IN' : 'en-IN';
+      utterance.lang = this.getLocaleTag(language);
       utterance.rate = 1.0;
       window.speechSynthesis.speak(utterance);
     } catch (e) {

@@ -9,9 +9,10 @@ import {
   Languages, 
   Siren, 
   Activity,
-  RotateCcw
+  RotateCcw,
+  Sun,
+  Moon
 } from 'lucide-react';
-import { Badge } from './Badge';
 
 export const Navbar: React.FC = () => {
   const { 
@@ -19,16 +20,19 @@ export const Navbar: React.FC = () => {
     setRole, 
     language, 
     setLanguage, 
+    theme,
+    toggleTheme,
+    t,
     emergencyHistory,
     resetAll 
   } = useApp();
 
   const navItems: Array<{ id: AppRole; label: string; icon: React.ReactNode }> = [
-    { id: 'landing', label: 'Overview', icon: <Activity className="w-4 h-4" /> },
-    { id: 'patient', label: 'Patient Kiosk', icon: <User className="w-4 h-4" /> },
-    { id: 'doctor', label: 'Clinician Workstation', icon: <Stethoscope className="w-4 h-4" /> },
-    { id: 'admin', label: 'Triage & Queue Desk', icon: <LayoutDashboard className="w-4 h-4" /> },
-    { id: 'privacy', label: 'Privacy & Governance', icon: <ShieldCheck className="w-4 h-4" /> }
+    { id: 'landing', label: t.navOverview, icon: <Activity className="w-4 h-4" /> },
+    { id: 'patient', label: t.navPatientKiosk, icon: <User className="w-4 h-4" /> },
+    { id: 'doctor', label: t.navClinicianWorkstation, icon: <Stethoscope className="w-4 h-4" /> },
+    { id: 'admin', label: t.navTriageDesk, icon: <LayoutDashboard className="w-4 h-4" /> },
+    { id: 'privacy', label: t.navPrivacyGovernance, icon: <ShieldCheck className="w-4 h-4" /> }
   ];
 
   const languages: Array<{ code: IndianLanguage; label: string; native: string }> = [
@@ -41,12 +45,12 @@ export const Navbar: React.FC = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-40 bg-[#0a0f1d]/85 backdrop-blur-xl border-b border-teal-500/15 shadow-lg shadow-black/20 transition-all">
+    <header className="sticky top-0 z-40 bg-white/85 dark:bg-[#0a0f1d]/85 backdrop-blur-xl border-b border-slate-200/80 dark:border-teal-500/15 shadow-sm dark:shadow-lg dark:shadow-black/20 transition-colors duration-200">
       {/* Emergency Global Ticker if emergency triggered */}
       {emergencyHistory.length > 0 && (
-        <div className="bg-rose-600/90 text-white px-4 py-1 text-xs font-bold flex items-center justify-between border-b border-rose-500 animate-pulse">
+        <div className="bg-rose-600 text-white px-4 py-1.5 text-xs font-bold flex items-center justify-between border-b border-rose-700 animate-pulse">
           <div className="flex items-center gap-2 max-w-7xl mx-auto w-full">
-            <Siren className="w-4 h-4 text-amber-200" />
+            <Siren className="w-4 h-4 text-amber-200 animate-bounce" />
             <span>CRITICAL TRIAGE ALERT: Patient {emergencyHistory[0].patientName} flagged for immediate Casualty care (Token: {emergencyHistory[0].tokenNumber})</span>
             <button 
               onClick={() => setRole('admin')}
@@ -67,31 +71,31 @@ export const Navbar: React.FC = () => {
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="font-extrabold text-xl tracking-tight text-white font-display">
-                  MEDI<span className="text-teal-400">KOISK</span>
+                <span className="font-extrabold text-xl tracking-tight text-slate-900 dark:text-white font-display">
+                  MEDI<span className="text-teal-600 dark:text-teal-400">KOISK</span>
                 </span>
-                <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-teal-500/10 text-teal-300 border border-teal-500/20">
+                <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-teal-500/10 text-teal-700 dark:text-teal-300 border border-teal-500/20">
                   NRCeS FHIR R4
                 </span>
               </div>
-              <p className="text-[11px] text-slate-400 font-medium hidden sm:block">
-                AI-Powered Clinical Intake & Triage Infrastructure
+              <p className="text-[11px] text-slate-500 dark:text-slate-400 font-medium hidden sm:block">
+                {t.brandTagline}
               </p>
             </div>
           </div>
 
           {/* Navigation Links */}
-          <nav className="hidden md:flex items-center gap-1 bg-slate-900/60 p-1.5 rounded-xl border border-slate-800 backdrop-blur-md">
+          <nav className="hidden md:flex items-center gap-1 bg-slate-100/80 dark:bg-slate-900/60 p-1.5 rounded-xl border border-slate-200 dark:border-slate-800 backdrop-blur-md">
             {navItems.map((item) => {
               const active = role === item.id;
               return (
                 <button
                   key={item.id}
                   onClick={() => setRole(item.id)}
-                  className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
                     active 
-                      ? 'bg-gradient-to-r from-teal-500/20 to-cyan-500/20 text-teal-300 border border-teal-500/30 shadow-sm' 
-                      : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
+                      ? 'bg-white dark:bg-gradient-to-r dark:from-teal-500/20 dark:to-cyan-500/20 text-teal-700 dark:text-teal-300 border border-slate-200 dark:border-teal-500/30 shadow-sm' 
+                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-white/60 dark:hover:bg-slate-800/60'
                   }`}
                 >
                   {item.icon}
@@ -101,30 +105,44 @@ export const Navbar: React.FC = () => {
             })}
           </nav>
 
-          {/* Controls: Language Selector & Reset */}
-          <div className="flex items-center gap-2.5">
+          {/* Controls: Language Selector, Theme Switcher & Reset */}
+          <div className="flex items-center gap-2">
             {/* Language Selector */}
             <div className="relative flex items-center">
-              <Languages className="w-4 h-4 text-teal-400 absolute left-2.5 pointer-events-none" />
+              <Languages className="w-4 h-4 text-teal-600 dark:text-teal-400 absolute left-2.5 pointer-events-none" />
               <select
                 value={language}
                 onChange={(e) => setLanguage(e.target.value as IndianLanguage)}
-                className="pl-8 pr-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-900/80 border border-slate-700/80 text-slate-200 focus:outline-none focus:ring-2 focus:ring-teal-500 cursor-pointer"
-                title="Select Interface Language"
+                className="pl-8 pr-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-700/80 text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-teal-500 cursor-pointer shadow-sm"
+                title={t.selectLanguage}
               >
                 {languages.map((lang) => (
-                  <option key={lang.code} value={lang.code} className="bg-slate-900 text-white">
+                  <option key={lang.code} value={lang.code} className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">
                     {lang.native} ({lang.label})
                   </option>
                 ))}
               </select>
             </div>
 
+            {/* Theme Toggle (Light / Dark) */}
+            <button
+              onClick={toggleTheme}
+              title={theme === 'dark' ? t.lightMode : t.darkMode}
+              className="p-2 text-slate-600 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 bg-slate-100 dark:bg-slate-800/80 hover:bg-slate-200 dark:hover:bg-slate-700/80 rounded-lg transition-colors border border-slate-200 dark:border-slate-700 shadow-sm flex items-center justify-center"
+              aria-label="Toggle theme"
+            >
+              {theme === 'dark' ? (
+                <Sun className="w-4 h-4 text-amber-300" />
+              ) : (
+                <Moon className="w-4 h-4 text-slate-700" />
+              )}
+            </button>
+
             {/* Quick Reset */}
             <button
               onClick={resetAll}
               title="Reset system to default clinical state"
-              className="p-2 text-slate-400 hover:text-teal-400 hover:bg-slate-800 rounded-lg transition-colors border border-slate-800"
+              className="p-2 text-slate-500 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 bg-slate-100 dark:bg-slate-900/60 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg transition-colors border border-slate-200 dark:border-slate-800"
             >
               <RotateCcw className="w-4 h-4" />
             </button>
@@ -133,7 +151,7 @@ export const Navbar: React.FC = () => {
       </div>
 
       {/* Mobile Navigation bar */}
-      <div className="md:hidden flex overflow-x-auto gap-1 px-4 py-2 border-t border-slate-800 bg-slate-950/90">
+      <div className="md:hidden flex overflow-x-auto gap-1 px-4 py-2 border-t border-slate-200 dark:border-slate-800 bg-slate-50/95 dark:bg-slate-950/90">
         {navItems.map((item) => (
           <button
             key={item.id}
@@ -141,7 +159,7 @@ export const Navbar: React.FC = () => {
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs whitespace-nowrap font-medium ${
               role === item.id 
                 ? 'bg-teal-600 text-white font-bold' 
-                : 'text-slate-400 bg-slate-900 border border-slate-800'
+                : 'text-slate-700 dark:text-slate-400 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800'
             }`}
           >
             {item.icon}

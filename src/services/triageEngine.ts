@@ -1,5 +1,6 @@
 import { EMERGENCY_RED_FLAG_RULES } from '../data/emergencyRules';
 import { EmergencyAlert, IndianLanguage } from '../types';
+import { VoiceService } from './voiceService';
 
 export class TriageEngine {
   /**
@@ -63,7 +64,7 @@ export class TriageEngine {
       const utterance = new SpeechSynthesisUtterance(message);
       utterance.rate = 0.95;
       utterance.pitch = 1.0;
-      utterance.lang = language === 'hi' ? 'hi-IN' : language === 'mr' ? 'mr-IN' : 'en-IN';
+      utterance.lang = VoiceService.getLocaleTag(language);
       window.speechSynthesis.speak(utterance);
     } catch (e) {
       console.warn('Speech synthesis unavailable or blocked:', e);

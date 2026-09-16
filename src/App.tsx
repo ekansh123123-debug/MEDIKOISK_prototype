@@ -31,7 +31,7 @@ const MainContent: React.FC = () => {
   const { role, patientStep, toastMessage } = useApp();
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#080d1a] text-slate-100 font-sans selection:bg-teal-500 selection:text-white">
+    <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-[#080d1a] text-slate-900 dark:text-slate-100 font-sans selection:bg-teal-500 selection:text-white transition-colors duration-200">
       {/* Enterprise Hospital Navbar */}
       <Navbar />
 
@@ -40,8 +40,8 @@ const MainContent: React.FC = () => {
 
       {/* Floating Clinical Toast Notification */}
       {toastMessage && (
-        <div className="fixed bottom-6 right-6 z-50 p-4 bg-slate-900/90 backdrop-blur-xl text-white rounded-2xl shadow-2xl border border-teal-500/30 text-xs font-semibold flex items-center gap-2.5 animate-slide-up max-w-md">
-          <span className="w-2 h-2 rounded-full bg-teal-400 animate-ping" />
+        <div className="fixed bottom-6 right-6 z-50 p-4 bg-white/95 dark:bg-slate-900/90 backdrop-blur-xl text-slate-900 dark:text-white rounded-2xl shadow-2xl border border-slate-200 dark:border-teal-500/30 text-xs font-semibold flex items-center gap-2.5 animate-slide-up max-w-md">
+          <span className="w-2 h-2 rounded-full bg-teal-500 animate-ping" />
           <span>{toastMessage}</span>
         </div>
       )}

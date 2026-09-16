@@ -14,8 +14,10 @@ import { SAMPLE_DOCUMENTS } from '../data/samplePrescriptions';
 import { QueueService } from '../services/queueService';
 import { AuditService } from '../services/auditService';
 import { TriageEngine } from '../services/triageEngine';
+import { getTranslation, TranslationDictionary } from '../data/translations';
 
 export type AppRole = 'landing' | 'patient' | 'doctor' | 'admin' | 'privacy';
+export type AppTheme = 'light' | 'dark';
 
 export type PatientStep = 
   | 'hospital_qr'
@@ -37,6 +39,10 @@ interface AppContextType {
   setPatientStep: (step: PatientStep) => void;
   language: IndianLanguage;
   setLanguage: (lang: IndianLanguage) => void;
+  theme: AppTheme;
+  setTheme: (theme: AppTheme) => void;
+  toggleTheme: () => void;
+  t: TranslationDictionary;
   
   // Active Entities
   currentPatient: Patient;
@@ -77,7 +83,45 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [role, setRole] = useState<AppRole>('landing');
   const [patientStep, setPatientStep] = useState<PatientStep>('hospital_qr');
-  const [language, setLanguage] = useState<IndianLanguage>('en');
+  const [language, setLanguageState] = useState<IndianLanguage>(() => {
+    const saved = localStorage.getItem('medikoisk_lang') as IndianLanguage;
+    return saved && ['en', 'hi', 'mr', 'ta', 'bn', 'te'].includes(saved) ? saved : 'en';
+  });
+
+  const [theme, setThemeState] = useState<AppTheme>(() => {
+    const saved = localStorage.getItem('medikoisk_theme') as AppTheme;
+    return saved === 'dark' ? 'dark' : 'light'; // Light mode is default!
+  });
+
+  const setLanguage = (lang: IndianLanguage) => {
+    setLanguageState(lang);
+    localStorage.setItem('medikoisk_lang', lang);
+  };
+
+  const setTheme = (newTheme: AppTheme) => {
+    setThemeState(newTheme);
+    localStorage.setItem('medikoisk_theme', newTheme);
+    if (newTheme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  };
+
+  const toggleTheme = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark');
+  };
+
+  useEffect(() => {
+    // Apply current theme on mount
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [theme]);
+
+  const t = getTranslation(language);
 
   const [patients, setPatients] = useState<Patient[]>(DEMO_PATIENTS);
   const [currentPatient, setCurrentPatient] = useState<Patient>(DEMO_PATIENTS[0]);
@@ -284,6 +328,10 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       setPatientStep,
       language,
       setLanguage,
+      theme,
+      setTheme,
+      toggleTheme,
+      t,
       currentPatient,
       setCurrentPatient,
       patients,

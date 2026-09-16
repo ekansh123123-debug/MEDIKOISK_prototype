@@ -64,19 +64,19 @@ export const WhyDifferent: React.FC = () => {
   ];
 
   return (
-    <section className="py-24 bg-[#080d1a] relative overflow-hidden">
+    <section className="py-24 bg-slate-50 dark:bg-[#080d1a] border-b border-slate-200 dark:border-slate-800/80 relative overflow-hidden transition-colors">
       {/* Background ambient lighting */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-cyan-500/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-xs font-bold text-teal-400 tracking-wider uppercase px-3 py-1 rounded-full bg-teal-950/60 border border-teal-500/20">
+          <span className="text-xs font-bold text-teal-700 dark:text-teal-400 tracking-wider uppercase px-3 py-1 rounded-full bg-teal-50 dark:bg-teal-950/60 border border-teal-200 dark:border-teal-500/20">
             Architectural Differentiation
           </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white mt-4 font-['Outfit'] tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-4 font-['Outfit'] tracking-tight">
             Why MEDIKOISK is Not a Generic AI Chatbot
           </h2>
-          <p className="text-slate-400 text-sm sm:text-base mt-3 leading-relaxed">
+          <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base mt-3 leading-relaxed">
             Generic chatbots hallucinate diagnostic decisions and introduce unacceptable clinical liability. MEDIKOISK is a deterministic, clinically governed intake platform engineered specifically for high-volume hospital operations.
           </p>
         </div>
@@ -85,24 +85,24 @@ export const WhyDifferent: React.FC = () => {
           {differentiators.map((item, idx) => (
             <div 
               key={idx}
-              className="p-6 rounded-3xl bg-slate-900/40 backdrop-blur-xl border border-slate-800/80 shadow-lg hover:border-cyan-500/40 hover:shadow-cyan-500/5 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
+              className="p-6 rounded-3xl bg-white/90 dark:bg-slate-900/40 backdrop-blur-xl border border-slate-200 dark:border-slate-800/80 shadow-md hover:border-cyan-500/40 hover:shadow-cyan-500/5 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
             >
               <div>
                 <div className="flex items-center justify-between mb-5">
-                  <div className="p-3 bg-slate-800/80 rounded-2xl border border-slate-700/50 group-hover:scale-105 group-hover:border-cyan-500/30 transition-all">
+                  <div className="p-3 bg-slate-100 dark:bg-slate-800/80 rounded-2xl border border-slate-200 dark:border-slate-700/50 group-hover:scale-105 group-hover:border-cyan-500/30 transition-all">
                     {item.icon}
                   </div>
-                  <span className="px-3 py-1 rounded-full text-[11px] font-semibold bg-slate-800/60 border border-slate-700/60 text-cyan-300">
+                  <span className="px-3 py-1 rounded-full text-[11px] font-semibold bg-slate-100 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/60 text-cyan-700 dark:text-cyan-300">
                     {item.tag}
                   </span>
                 </div>
-                <h3 className="text-lg font-bold text-white font-['Outfit'] group-hover:text-cyan-200 transition-colors">
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white font-['Outfit'] group-hover:text-cyan-600 dark:group-hover:text-cyan-200 transition-colors">
                   {item.title}
                 </h3>
-                <h4 className="text-xs font-semibold text-teal-400 mt-1">
+                <h4 className="text-xs font-semibold text-teal-600 dark:text-teal-400 mt-1">
                   {item.subtitle}
                 </h4>
-                <p className="text-xs text-slate-400 mt-3.5 leading-relaxed">
+                <p className="text-xs text-slate-600 dark:text-slate-400 mt-3.5 leading-relaxed">
                   {item.desc}
                 </p>
               </div>
