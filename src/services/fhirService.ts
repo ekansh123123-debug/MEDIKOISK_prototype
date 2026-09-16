@@ -217,6 +217,27 @@ export class FhirService {
       ]
     };
 
+    const entries: Array<{ fullUrl: string; resource: any }> = [
+      { fullUrl: `urn:uuid:${compositionId}`, resource: compositionResource },
+      { fullUrl: `urn:uuid:${patientResourceId}`, resource: patientResource },
+      { fullUrl: `urn:uuid:${encounterResourceId}`, resource: encounterResource },
+      { fullUrl: `urn:uuid:${conditionResourceId}`, resource: conditionResource },
+      { fullUrl: `urn:uuid:${observationVitals.id}`, resource: observationVitals },
+      { fullUrl: `urn:uuid:${medicationRequest.id}`, resource: medicationRequest }
+    ];
+
+    if (soap.doctorDigitalSignature) {
+      const binaryId = `binary-sig-${soap.encounterId}`;
+      const binaryResource = {
+        resourceType: 'Binary',
+        id: binaryId,
+        contentType: 'application/pkcs7-signature',
+        securityContext: { reference: `Composition/${compositionId}` },
+        data: btoa(soap.doctorDigitalSignature)
+      };
+      entries.push({ fullUrl: `urn:uuid:${binaryId}`, resource: binaryResource });
+    }
+
     return {
       resourceType: 'Bundle',
       id: bundleId,
@@ -226,14 +247,7 @@ export class FhirService {
         system: 'https://abdm.gov.in/bundles',
         value: `NRCES-BUNDLE-${bundleId}`
       },
-      entry: [
-        { fullUrl: `urn:uuid:${compositionId}`, resource: compositionResource },
-        { fullUrl: `urn:uuid:${patientResourceId}`, resource: patientResource },
-        { fullUrl: `urn:uuid:${encounterResourceId}`, resource: encounterResource },
-        { fullUrl: `urn:uuid:${conditionResourceId}`, resource: conditionResource },
-        { fullUrl: `urn:uuid:${observationVitals.id}`, resource: observationVitals },
-        { fullUrl: `urn:uuid:${medicationRequest.id}`, resource: medicationRequest }
-      ]
+      entry: entries
     };
   }
 }

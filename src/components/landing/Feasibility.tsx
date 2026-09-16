@@ -46,7 +46,7 @@ export const Feasibility: React.FC = () => {
         <div className="bg-gradient-to-r from-teal-900 via-slate-900 to-slate-850 text-white dark:from-teal-950/60 dark:via-slate-900/80 dark:to-slate-900/90 rounded-3xl p-8 sm:p-12 border border-teal-500/30 backdrop-blur-xl shadow-2xl mb-16 relative overflow-hidden">
           <div className="max-w-3xl space-y-4">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-teal-500/10 border border-teal-500/30 text-teal-300">
-              Technical Feasibility & Integration Thesis
+              Technical Feasibility &amp; Integration Thesis
             </span>
             <h2 className="text-2xl sm:text-4xl font-extrabold font-['Outfit'] leading-tight">
               &ldquo;All core technologies already exist. <br />
@@ -85,7 +85,7 @@ export const Feasibility: React.FC = () => {
             </div>
 
             <div className="p-5 bg-slate-50 dark:bg-slate-950/60 rounded-2xl border border-cyan-200 dark:border-cyan-500/20">
-              <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">OPD Intake & Rx (M2)</span>
+              <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">OPD Intake &amp; Rx (M2)</span>
               <div className="text-2xl font-black text-cyan-600 dark:text-cyan-400 mt-1">₹5.00</div>
               <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">
                 Per digital outpatient consultation or prescription record created.
@@ -96,7 +96,7 @@ export const Feasibility: React.FC = () => {
               <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">Record Exchange (M3)</span>
               <div className="text-2xl font-black text-indigo-600 dark:text-indigo-400 mt-1">₹10.00</div>
               <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">
-                Per consent-based longitudinal health record fetch & decryption.
+                Per consent-based longitudinal health record fetch &amp; decryption.
               </p>
             </div>
 
@@ -117,7 +117,7 @@ export const Feasibility: React.FC = () => {
               Field Realities
             </span>
             <h3 className="text-2xl font-bold text-slate-900 dark:text-white mt-2 font-['Outfit']">
-              Operational Challenges & Architectural Mitigations
+              Operational Challenges &amp; Architectural Mitigations
             </h3>
           </div>
 
