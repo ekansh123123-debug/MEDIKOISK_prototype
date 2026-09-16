@@ -21,27 +21,38 @@ export default {
           900: '#134e4a',
           950: '#042f2e',
         },
+        glacier: {
+          primary: '#0ea5e9',
+          primaryLight: '#38bdf8',
+          primaryDim: '#0369a1',
+          accent: '#14b8a6',
+          surface: '#0d1527',
+          surfaceCard: 'rgba(15, 23, 42, 0.75)',
+          surfaceElevated: 'rgba(30, 41, 59, 0.85)',
+          border: 'rgba(14, 165, 233, 0.15)',
+          borderSubtle: 'rgba(226, 232, 240, 0.12)',
+        },
         clinical: {
-          dark: '#0B132B',
-          navy: '#1C2541',
-          slate: '#3A506B',
-          light: '#F8FAFC',
-          card: '#FFFFFF',
-          border: '#E2E8F0',
+          dark: '#080d1a',
+          navy: '#0f172a',
+          slate: '#1e293b',
+          card: '#0d1527',
+          border: '#1e293b',
+          textMuted: '#94a3b8',
         }
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+        display: ['Outfit', 'Inter', 'sans-serif'],
       },
-      animation: {
-        'pulse-subtle': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'ripple': 'ripple 1.5s ease-out infinite',
+      boxShadow: {
+        'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.37)',
+        'glow-teal': '0 0 25px -5px rgba(20, 184, 166, 0.25)',
+        'glow-cyan': '0 0 25px -5px rgba(14, 165, 233, 0.25)',
       },
-      keyframes: {
-        ripple: {
-          '0%': { transform: 'scale(0.8)', opacity: '1' },
-          '100%': { transform: 'scale(2.2)', opacity: '0' },
-        }
+      backdropBlur: {
+        'xs': '2px',
+        '2xl': '24px',
       }
     },
   },

@@ -10,7 +10,7 @@ export interface SpeechRecognitionResultPayload {
 
 export class VoiceService {
   /**
-   * Quick preset voice simulations for hackathon demonstrations
+   * Quick preset voice simulations for clinical evaluation
    */
   static DEMO_VOICE_PRESETS: Record<string, { en: string; hi: string; mr: string }> = {
     abdominal: {

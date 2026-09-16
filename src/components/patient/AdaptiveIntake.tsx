@@ -11,7 +11,6 @@ import {
   AlertCircle, 
   CheckCircle2, 
   Radio, 
-  CornerDownRight, 
   Layers 
 } from 'lucide-react';
 import { Badge } from '../common/Badge';
@@ -84,7 +83,6 @@ export const AdaptiveIntake: React.FC = () => {
           return;
         }
 
-        // Check if complaint can be categorized
         const lower = result.transcript.toLowerCase();
         if (lower.includes('chest') || lower.includes('chhati') || lower.includes('छाती')) {
           setSelectedCategory('chest_pain');
@@ -99,13 +97,11 @@ export const AdaptiveIntake: React.FC = () => {
     );
   };
 
-  // Speak current question text
   const handleSpeakQuestion = () => {
     const text = currentQuestion.translations[language] || currentQuestion.text;
     VoiceService.speak(text, language);
   };
 
-  // Select complaint preset card
   const handleSelectComplaintCard = (catId: string) => {
     const isEmerg = handleCheckEmergency(catId);
     if (isEmerg) return;
@@ -117,18 +113,15 @@ export const AdaptiveIntake: React.FC = () => {
     setStage('adaptive_dag');
   };
 
-  // Handle DAG answer submission
   const handleAnswerSubmit = () => {
     let finalAnswer = currentAnswer;
     if (currentQuestion.inputType === 'multi-choice') {
       finalAnswer = multiSelectAnswers.length > 0 ? multiSelectAnswers : ['None of these'];
     }
 
-    // Safety check on answer text
     const answerStr = Array.isArray(finalAnswer) ? finalAnswer.join(' ') : String(finalAnswer);
     if (handleCheckEmergency(answerStr)) return;
 
-    // Check if the selected option was marked as a red flag
     if (currentQuestion.options) {
       const selectedOpt = currentQuestion.options.find(o => o.label === finalAnswer || o.id === finalAnswer);
       if (selectedOpt?.isRedFlag) {
@@ -158,7 +151,6 @@ export const AdaptiveIntake: React.FC = () => {
     const updatedResponses = [...responses, newResponse];
     setResponses(updatedResponses);
 
-    // Compute next best question via Entropy Engine
     const nextResult = AdaptiveEngine.getNextQuestion(
       selectedCategory,
       currentQuestion.id,
@@ -174,7 +166,6 @@ export const AdaptiveIntake: React.FC = () => {
         totalEstimated: nextResult.totalEstimated
       });
     } else {
-      // Completed! Generate SOAP summary
       const generatedSoap = AdaptiveEngine.generateSoapSummary(
         currentPatient,
         selectedCategory,
@@ -182,7 +173,7 @@ export const AdaptiveIntake: React.FC = () => {
         updatedResponses
       );
       setCurrentSoap(generatedSoap);
-      showToast('AI Clinical Summary synthesized from adaptive DAG responses.');
+      showToast('Clinical case summary synthesized.');
       setPatientStep('document_upload');
     }
   };
@@ -190,73 +181,68 @@ export const AdaptiveIntake: React.FC = () => {
   const currentQText = currentQuestion.translations[language] || currentQuestion.text;
 
   return (
-    <div className="max-w-2xl mx-auto py-8 px-4 animate-fade-in">
-      <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-xl space-y-6">
+    <div className="max-w-2xl mx-auto py-4 px-2 animate-fade-in">
+      <div className="glass-card-elevated rounded-3xl p-6 sm:p-8 border border-teal-500/20 shadow-2xl space-y-6">
         {/* Step Header */}
-        <div className="flex items-center justify-between">
-          <Badge variant="teal">
-            {stage === 'complaint_selection' ? 'STEP 5 of 8' : 'ADAPTIVE CLINICAL INTAKE'}
-          </Badge>
-          <div className="flex items-center gap-2">
-            <span className="text-[11px] font-mono text-slate-400">
-              {stage === 'adaptive_dag' ? `${progressInfo.progress}% Complete` : 'Initial Complaint'}
-            </span>
-          </div>
+        <div className="flex items-center justify-between pb-3 border-b border-slate-800 text-xs">
+          <span className="font-bold text-teal-400">
+            {stage === 'complaint_selection' ? 'Step: Presenting Chief Complaint' : 'Step: Adaptive Clinical Inquiry'}
+          </span>
+          <span className="text-slate-400 font-mono">
+            {stage === 'adaptive_dag' ? `${progressInfo.progress}% Traversed` : 'Bhashini Voice & Touch'}
+          </span>
         </div>
 
-        {/* ========================================================== */}
-        {/* STAGE 1: INITIAL CHIEF COMPLAINT (VOICE / TEXT / TAP) */}
-        {/* ========================================================== */}
+        {/* STAGE 1: COMPLAINT SELECTION */}
         {stage === 'complaint_selection' && (
           <div className="space-y-6">
             <div className="text-center space-y-1">
-              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white font-['Outfit']">
+              <h2 className="text-2xl sm:text-3xl font-bold text-white font-display">
                 What brings you to the hospital today?
               </h2>
-              <p className="text-xs text-slate-500 dark:text-slate-400">
-                You can speak in your language, type your symptom, or tap one of the common complaints below.
+              <p className="text-xs text-slate-400">
+                You can speak in your preferred Indian language, describe your symptoms, or tap a complaint below.
               </p>
             </div>
 
             {/* Voice Microphone Bar */}
-            <div className="p-4 bg-gradient-to-r from-teal-500/10 via-cyan-500/10 to-blue-500/10 border border-teal-500/30 rounded-2xl flex flex-col items-center justify-center text-center space-y-3">
+            <div className="p-5 bg-gradient-to-r from-teal-500/10 via-cyan-500/10 to-sky-500/10 border border-teal-500/30 rounded-2xl flex flex-col items-center justify-center text-center space-y-3 backdrop-blur-md">
               <button
                 onClick={handleStartVoice}
                 disabled={isListening}
-                className={`w-16 h-16 rounded-full flex items-center justify-center text-white shadow-lg transition-all ${
+                className={`w-16 h-16 rounded-full flex items-center justify-center text-white shadow-xl transition-all ${
                   isListening
-                    ? 'bg-rose-600 animate-pulse scale-110 shadow-rose-500/40'
-                    : 'bg-teal-600 hover:bg-teal-700 active:scale-95 shadow-teal-500/30'
+                    ? 'bg-rose-600 animate-pulse scale-110 shadow-rose-500/50'
+                    : 'bg-gradient-to-tr from-teal-500 to-cyan-400 text-slate-950 hover:scale-105 active:scale-95 shadow-teal-500/30 font-bold'
                 }`}
                 title="Tap to speak your symptoms"
               >
-                <Mic className="w-8 h-8" />
+                <Mic className="w-8 h-8 text-slate-950" />
               </button>
 
               <div>
-                <span className="text-xs font-bold text-slate-800 dark:text-slate-200">
-                  {isListening ? 'Listening via Project Bhashini ASR...' : 'Tap to Speak (Voice AI)'}
+                <span className="text-xs font-bold text-white block">
+                  {isListening ? 'Listening via IndicWav2Vec Sovereign Speech...' : 'Tap to Speak (Voice AI)'}
                 </span>
-                <p className="text-[11px] text-slate-500 dark:text-slate-400">
-                  Supports Hindi, Marathi, English, Tamil, Bengali & Telugu
+                <p className="text-[11px] text-slate-400">
+                  Project Bhashini Multi-dialect Speech Recognition
                 </p>
               </div>
 
-              {/* Live Waveform Indicator if listening */}
               {isListening && (
-                <div className="flex items-center gap-1 h-6">
-                  <span className="w-1.5 bg-teal-600 rounded-full soundwave-bar" style={{ animationDelay: '0.1s' }} />
-                  <span className="w-1.5 bg-teal-600 rounded-full soundwave-bar" style={{ animationDelay: '0.3s' }} />
-                  <span className="w-1.5 bg-teal-600 rounded-full soundwave-bar" style={{ animationDelay: '0.2s' }} />
-                  <span className="w-1.5 bg-teal-600 rounded-full soundwave-bar" style={{ animationDelay: '0.4s' }} />
-                  <span className="w-1.5 bg-teal-600 rounded-full soundwave-bar" style={{ animationDelay: '0.1s' }} />
+                <div className="flex items-center gap-1.5 h-6">
+                  <span className="w-1.5 bg-teal-400 rounded-full soundwave-bar" style={{ animationDelay: '0.1s' }} />
+                  <span className="w-1.5 bg-cyan-400 rounded-full soundwave-bar" style={{ animationDelay: '0.3s' }} />
+                  <span className="w-1.5 bg-sky-400 rounded-full soundwave-bar" style={{ animationDelay: '0.2s' }} />
+                  <span className="w-1.5 bg-teal-400 rounded-full soundwave-bar" style={{ animationDelay: '0.4s' }} />
+                  <span className="w-1.5 bg-cyan-400 rounded-full soundwave-bar" style={{ animationDelay: '0.1s' }} />
                 </div>
               )}
 
               {voiceTranscript && (
-                <div className="p-3 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 text-xs text-slate-800 dark:text-slate-200 w-full animate-fade-in">
-                  <span className="text-[10px] font-bold text-teal-600 block uppercase">
-                    Understood Speech:
+                <div className="p-3 bg-slate-900 rounded-xl border border-slate-700 text-xs text-slate-200 w-full animate-fade-in text-left">
+                  <span className="text-[10px] font-bold text-teal-400 block uppercase">
+                    Transcribed Speech:
                   </span>
                   "{voiceTranscript}"
                   {voiceLatency && (
@@ -282,7 +268,7 @@ export const AdaptiveIntake: React.FC = () => {
                   }
                 }}
                 placeholder="Or describe symptoms here (e.g. stomach pain for 3 days)..."
-                className="flex-1 px-4 py-3 text-xs bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500"
+                className="flex-1 px-4 py-3 text-xs bg-slate-900 border border-slate-700 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-teal-500"
               />
               <button
                 onClick={() => {
@@ -293,33 +279,33 @@ export const AdaptiveIntake: React.FC = () => {
                   }
                 }}
                 disabled={!rawInputText.trim()}
-                className="px-5 py-3 bg-teal-600 hover:bg-teal-700 disabled:opacity-50 text-white rounded-xl text-xs font-bold transition-colors flex items-center gap-1.5"
+                className="px-5 py-3 bg-gradient-to-r from-teal-500 to-cyan-500 hover:from-teal-600 hover:to-cyan-600 disabled:opacity-50 text-slate-950 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 shadow-md"
               >
-                <span>Start</span>
-                <Send className="w-3.5 h-3.5" />
+                <span>Proceed</span>
+                <Send className="w-3.5 h-3.5 text-slate-950" />
               </button>
             </div>
 
-            {/* Quick Symptom Cards Grid */}
+            {/* Symptom Cards Grid */}
             <div>
-              <span className="text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider block mb-3">
-                Common Outpatient Presentations
+              <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block mb-3">
+                Common Presenting Conditions
               </span>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
                 {CHIEF_COMPLAINT_PRESETS.map((preset) => (
                   <button
                     key={preset.id}
                     onClick={() => handleSelectComplaintCard(preset.id)}
-                    className="p-3 bg-slate-50 hover:bg-teal-50 dark:bg-slate-800 dark:hover:bg-teal-950/40 border border-slate-200 dark:border-slate-700 hover:border-teal-500/60 rounded-2xl text-left transition-all group flex flex-col justify-between"
+                    className="p-3.5 bg-slate-900/60 hover:bg-teal-500/10 border border-slate-800 hover:border-teal-500/50 rounded-2xl text-left transition-all group flex flex-col justify-between backdrop-blur-md"
                   >
-                    <div className="w-8 h-8 rounded-xl bg-white dark:bg-slate-700 flex items-center justify-center text-teal-600 shadow-sm mb-2 group-hover:scale-110 transition-transform">
+                    <div className="w-8 h-8 rounded-xl bg-slate-800 flex items-center justify-center text-teal-400 shadow-sm mb-2 group-hover:scale-110 transition-transform border border-slate-700">
                       <Activity className="w-4 h-4" />
                     </div>
                     <div>
-                      <h4 className="text-xs font-bold text-slate-900 dark:text-white leading-tight">
+                      <h4 className="text-xs font-bold text-white leading-tight">
                         {preset.label}
                       </h4>
-                      <p className="text-[10px] text-teal-700 dark:text-teal-400 font-medium mt-0.5">
+                      <p className="text-[10px] text-teal-400 font-medium mt-0.5">
                         {preset.hi}
                       </p>
                     </div>
@@ -330,42 +316,40 @@ export const AdaptiveIntake: React.FC = () => {
           </div>
         )}
 
-        {/* ========================================================== */}
-        {/* STAGE 2: ADAPTIVE DAG QUESTION TRAVERSAL */}
-        {/* ========================================================== */}
+        {/* STAGE 2: ADAPTIVE DAG */}
         {stage === 'adaptive_dag' && (
           <div className="space-y-6 animate-fade-in">
             {/* Progress Bar */}
             <div className="space-y-1.5">
-              <div className="flex justify-between text-xs font-medium text-slate-500 dark:text-slate-400">
-                <span className="flex items-center gap-1 text-teal-600 dark:text-teal-400 font-bold">
+              <div className="flex justify-between text-xs font-medium text-slate-400">
+                <span className="flex items-center gap-1.5 text-teal-400 font-bold">
                   <Sparkles className="w-3.5 h-3.5" />
-                  Adaptive Inquiry Tree
+                  Clinical Dimension Traversal
                 </span>
-                <span>Entropy Optimization Weight: {currentQuestion.entropyWeight}</span>
+                <span>Entropy Score: {currentQuestion.entropyWeight}</span>
               </div>
-              <div className="w-full h-2 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+              <div className="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
                 <div 
-                  className="h-full bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full transition-all duration-500"
+                  className="h-full bg-gradient-to-r from-teal-500 to-cyan-400 rounded-full transition-all duration-500 shadow-sm shadow-teal-500/50"
                   style={{ width: `${progressInfo.progress}%` }}
                 />
               </div>
             </div>
 
-            {/* Current Adaptive Question */}
-            <div className="p-5 bg-slate-50 dark:bg-slate-800/80 rounded-2xl border border-slate-200 dark:border-slate-700 space-y-3">
+            {/* Current Question */}
+            <div className="p-5 bg-slate-900/70 rounded-2xl border border-slate-800 space-y-3 backdrop-blur-md">
               <div className="flex items-start justify-between gap-3">
                 <div className="space-y-1">
-                  <span className="text-[10px] uppercase tracking-wider font-extrabold text-teal-600 dark:text-teal-400">
-                    Clinical Dimension: {currentQuestion.clinicalDimension.toUpperCase()}
+                  <span className="text-[10px] uppercase tracking-wider font-extrabold text-teal-400">
+                    Dimension: {currentQuestion.clinicalDimension.toUpperCase()}
                   </span>
-                  <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white leading-snug">
+                  <h3 className="text-lg sm:text-xl font-bold text-white leading-snug font-display">
                     {currentQText}
                   </h3>
                 </div>
                 <button
                   onClick={handleSpeakQuestion}
-                  className="p-2 text-slate-500 hover:text-teal-600 bg-white dark:bg-slate-700 rounded-xl shadow-sm border border-slate-200 dark:border-slate-600 shrink-0 transition-colors"
+                  className="p-2 text-slate-400 hover:text-teal-400 bg-slate-800 rounded-xl shadow-sm border border-slate-700 shrink-0 transition-colors"
                   title="Read question aloud in chosen language"
                 >
                   <Volume2 className="w-5 h-5" />
@@ -383,14 +367,14 @@ export const AdaptiveIntake: React.FC = () => {
                         onClick={() => setCurrentAnswer(opt.label)}
                         className={`w-full p-3.5 rounded-xl text-left text-xs font-semibold border transition-all flex items-center justify-between ${
                           isSelected
-                            ? 'bg-teal-600 text-white border-teal-600 shadow-md'
-                            : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 hover:border-teal-500/50'
+                            ? 'bg-gradient-to-r from-teal-500 to-cyan-500 text-slate-950 font-bold border-teal-400 shadow-lg shadow-teal-500/20'
+                            : 'bg-slate-900 border-slate-800 text-slate-200 hover:border-teal-500/40'
                         }`}
                       >
                         <span>{opt.label}</span>
                         {opt.isRedFlag && (
-                          <span className="px-2 py-0.5 rounded text-[10px] bg-rose-100 text-rose-700 font-bold">
-                            Safety Flag
+                          <span className="px-2 py-0.5 rounded text-[10px] bg-rose-950/80 text-rose-300 font-bold border border-rose-800">
+                            Safety Red-Flag
                           </span>
                         )}
                       </button>
@@ -416,13 +400,13 @@ export const AdaptiveIntake: React.FC = () => {
                         }}
                         className={`w-full p-3.5 rounded-xl text-left text-xs font-semibold border transition-all flex items-center justify-between ${
                           isSelected
-                            ? 'bg-teal-600 text-white border-teal-600 shadow-md'
-                            : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 hover:border-teal-500/50'
+                            ? 'bg-gradient-to-r from-teal-500 to-cyan-500 text-slate-950 font-bold border-teal-400 shadow-md'
+                            : 'bg-slate-900 border-slate-800 text-slate-200 hover:border-teal-500/40'
                         }`}
                       >
                         <span>{opt.label}</span>
                         <span className={`w-4 h-4 rounded flex items-center justify-center border ${
-                          isSelected ? 'bg-white text-teal-600 border-white' : 'border-slate-400'
+                          isSelected ? 'bg-slate-950 text-teal-400 border-slate-950 font-black' : 'border-slate-600'
                         }`}>
                           {isSelected && '✓'}
                         </span>
@@ -432,12 +416,12 @@ export const AdaptiveIntake: React.FC = () => {
                 </div>
               )}
 
-              {/* Scale Input (e.g. Pain 1 to 10) */}
+              {/* Scale Input */}
               {currentQuestion.inputType === 'scale' && (
                 <div className="space-y-4 pt-2">
-                  <div className="flex items-center justify-between text-xs text-slate-500 font-medium">
+                  <div className="flex items-center justify-between text-xs text-slate-400 font-medium">
                     <span>{currentQuestion.scaleLabels?.min}</span>
-                    <span className="text-xl font-extrabold text-teal-600">
+                    <span className="text-2xl font-black text-teal-400 font-mono">
                       {currentAnswer || 6} / 10
                     </span>
                     <span>{currentQuestion.scaleLabels?.max}</span>
@@ -448,11 +432,11 @@ export const AdaptiveIntake: React.FC = () => {
                     max={currentQuestion.maxScale || 10}
                     value={currentAnswer || 6}
                     onChange={(e) => setCurrentAnswer(Number(e.target.value))}
-                    className="w-full accent-teal-600 h-2 bg-slate-200 rounded-lg cursor-pointer"
+                    className="w-full accent-teal-400 h-2 bg-slate-800 rounded-lg cursor-pointer"
                   />
-                  <div className="flex justify-between px-1 text-[11px] font-mono text-slate-400">
+                  <div className="flex justify-between px-1 text-[11px] font-mono text-slate-500">
                     {[1,2,3,4,5,6,7,8,9,10].map(n => (
-                      <span key={n} className={currentAnswer === n ? 'font-bold text-teal-600' : ''}>
+                      <span key={n} className={currentAnswer === n ? 'font-bold text-teal-400' : ''}>
                         {n}
                       </span>
                     ))}
@@ -461,11 +445,11 @@ export const AdaptiveIntake: React.FC = () => {
               )}
             </div>
 
-            {/* Answer & Advance Button */}
+            {/* Actions */}
             <div className="flex justify-between items-center pt-2">
               <button
                 onClick={() => setStage('complaint_selection')}
-                className="text-xs text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 font-medium"
+                className="text-xs text-slate-400 hover:text-white font-medium"
               >
                 &larr; Re-select Complaint
               </button>
@@ -475,10 +459,10 @@ export const AdaptiveIntake: React.FC = () => {
                 disabled={
                   currentQuestion.inputType === 'single-choice' && !currentAnswer
                 }
-                className="px-6 py-3.5 bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-700 hover:to-cyan-700 disabled:opacity-50 text-white font-bold rounded-2xl shadow-lg shadow-teal-500/25 flex items-center gap-2 text-xs transition-all"
+                className="px-6 py-3.5 bg-gradient-to-r from-teal-500 via-cyan-500 to-sky-500 hover:from-teal-600 hover:to-sky-600 disabled:opacity-50 text-slate-950 font-bold rounded-2xl shadow-xl shadow-teal-500/20 flex items-center gap-2 text-xs transition-all"
               >
                 <span>Confirm & Next Clinical Branch</span>
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-4 h-4 text-slate-950" />
               </button>
             </div>
           </div>

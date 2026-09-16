@@ -6,10 +6,9 @@ import {
   Users, 
   DoorClosed, 
   ArrowRight, 
-  FileText, 
   Stethoscope, 
-  Share2, 
-  BellRing 
+  BellRing,
+  QrCode
 } from 'lucide-react';
 import { Badge } from '../common/Badge';
 import confetti from 'canvas-confetti';
@@ -20,8 +19,8 @@ export const QueueTokenDisplay: React.FC = () => {
   useEffect(() => {
     try {
       confetti({
-        particleCount: 50,
-        spread: 60,
+        particleCount: 40,
+        spread: 50,
         origin: { y: 0.6 }
       });
     } catch (e) {}
@@ -31,100 +30,102 @@ export const QueueTokenDisplay: React.FC = () => {
   const isEmergency = currentToken?.priority === 'EMERGENCY';
 
   return (
-    <div className="max-w-xl mx-auto py-8 px-4 animate-fade-in">
-      <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-xl text-center space-y-6">
+    <div className="max-w-xl mx-auto py-4 px-2 animate-fade-in">
+      <div className="glass-card-elevated rounded-3xl p-6 sm:p-8 border border-teal-500/20 shadow-2xl text-center space-y-6">
         {/* Success Icon */}
-        <div className="w-16 h-16 rounded-full bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mx-auto shadow-md">
+        <div className="w-16 h-16 rounded-full bg-emerald-500/10 text-emerald-400 flex items-center justify-center mx-auto shadow-md border border-emerald-500/20">
           <CheckCircle2 className="w-10 h-10" />
         </div>
 
         {/* Title */}
         <div className="space-y-1">
           <Badge variant={isEmergency ? 'red' : 'green'} pulsing={isEmergency}>
-            {isEmergency ? 'EMERGENCY PRIORITY OVERRIDE' : 'REGISTRATION & INTAKE COMPLETE'}
+            {isEmergency ? 'EMERGENCY PRIORITY OVERRIDE' : 'CASE PREPARED FOR CLINICIAN'}
           </Badge>
-          <h2 className="text-2xl font-bold text-slate-900 dark:text-white font-['Outfit'] mt-2">
-            Your Case is Prepared for the Doctor
+          <h2 className="text-2xl font-bold text-white font-display mt-2">
+            Intake Completed & Token Issued
           </h2>
-          <p className="text-xs text-slate-500 dark:text-slate-400">
-            A structured, verified clinical case has been generated and queued for review.
+          <p className="text-xs text-slate-400">
+            A verified clinical case summary has been transferred to the attending physician.
           </p>
         </div>
 
         {/* Big Token Display Card */}
-        <div className={`p-6 rounded-3xl border-2 text-center relative overflow-hidden ${
+        <div className={`p-6 rounded-3xl border-2 text-center relative overflow-hidden backdrop-blur-xl ${
           isEmergency
-            ? 'bg-rose-50 dark:bg-rose-950/40 border-rose-500'
-            : 'bg-gradient-to-b from-teal-50 to-cyan-50 dark:from-slate-800 dark:to-slate-800/80 border-teal-500/50'
+            ? 'bg-rose-950/40 border-rose-500'
+            : 'bg-gradient-to-b from-teal-500/10 via-cyan-500/5 to-slate-900/60 border-teal-500/40 shadow-xl'
         }`}>
-          <span className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">
-            Your OPD Token Number
+          <span className="text-[11px] font-bold text-teal-400 uppercase tracking-widest">
+            Outpatient Token Number
           </span>
-          <div className={`text-5xl font-black font-mono tracking-tight my-2 ${
-            isEmergency ? 'text-rose-600 animate-pulse' : 'text-teal-700 dark:text-teal-400'
+          <div className={`text-6xl font-black font-mono tracking-tight my-2 ${
+            isEmergency ? 'text-rose-400 animate-pulse' : 'text-white'
           }`}>
             {tokenNum}
           </div>
-          <div className="text-xs font-semibold text-slate-700 dark:text-slate-300">
-            Assigned to: <span className="font-bold text-slate-900 dark:text-white">OPD Room 4 (Dr. A. K. Shukla)</span>
+          <div className="text-xs text-slate-300">
+            Assigned Room: <span className="font-bold text-white">OPD Room 4 (Dr. A. K. Shukla, MD)</span>
           </div>
         </div>
 
         {/* Queue Metrics */}
         <div className="grid grid-cols-3 gap-3">
-          <div className="p-3.5 bg-slate-50 dark:bg-slate-800 rounded-2xl border border-slate-200/80 dark:border-slate-700">
-            <Clock className="w-4 h-4 text-teal-600 mx-auto mb-1" />
-            <span className="text-[10px] text-slate-500 uppercase font-bold">Estimated Wait</span>
-            <div className="text-base font-bold text-slate-900 dark:text-white">
-              {currentToken?.estimatedWaitMinutes || 9} mins
+          <div className="p-3.5 bg-slate-900/60 rounded-2xl border border-slate-800">
+            <Clock className="w-4 h-4 text-teal-400 mx-auto mb-1" />
+            <span className="text-[10px] text-slate-400 uppercase font-bold">Est. Wait</span>
+            <div className="text-base font-bold text-white">
+              {currentToken?.estimatedWaitMinutes || 8} mins
             </div>
           </div>
 
-          <div className="p-3.5 bg-slate-50 dark:bg-slate-800 rounded-2xl border border-slate-200/80 dark:border-slate-700">
-            <Users className="w-4 h-4 text-blue-600 mx-auto mb-1" />
-            <span className="text-[10px] text-slate-500 uppercase font-bold">Patients Ahead</span>
-            <div className="text-base font-bold text-slate-900 dark:text-white">
+          <div className="p-3.5 bg-slate-900/60 rounded-2xl border border-slate-800">
+            <Users className="w-4 h-4 text-sky-400 mx-auto mb-1" />
+            <span className="text-[10px] text-slate-400 uppercase font-bold">Ahead of You</span>
+            <div className="text-base font-bold text-white">
               {currentToken?.positionAhead || 2}
             </div>
           </div>
 
-          <div className="p-3.5 bg-slate-50 dark:bg-slate-800 rounded-2xl border border-slate-200/80 dark:border-slate-700">
-            <DoorClosed className="w-4 h-4 text-purple-600 mx-auto mb-1" />
-            <span className="text-[10px] text-slate-500 uppercase font-bold">Currently Serving</span>
-            <div className="text-base font-bold text-slate-900 dark:text-white">
+          <div className="p-3.5 bg-slate-900/60 rounded-2xl border border-slate-800">
+            <DoorClosed className="w-4 h-4 text-purple-400 mx-auto mb-1" />
+            <span className="text-[10px] text-slate-400 uppercase font-bold">Now Serving</span>
+            <div className="text-base font-bold text-white">
               A-021
             </div>
           </div>
         </div>
 
-        {/* Notification Tracker Card */}
-        <div className="p-3.5 bg-slate-50 dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 flex items-center justify-between text-xs">
+        {/* SMS Notification Banner */}
+        <div className="p-3.5 bg-slate-900/40 rounded-2xl border border-slate-800 flex items-center justify-between text-xs">
           <div className="flex items-center gap-2 text-left">
-            <BellRing className="w-4 h-4 text-teal-600" />
+            <BellRing className="w-4 h-4 text-teal-400" />
             <div>
-              <span className="font-bold text-slate-900 dark:text-white block">SMS & Audio Chime Alerts</span>
-              <span className="text-[11px] text-slate-500">You will be notified when A-026 enters room</span>
+              <span className="font-bold text-white block">SMS & Audio Alerts Active</span>
+              <span className="text-[11px] text-slate-400">Mobile SMS alert sent to {currentPatient.phone}</span>
             </div>
           </div>
-          <Badge variant="teal">Active</Badge>
+          <span className="px-2 py-0.5 rounded text-[10px] bg-emerald-500/10 text-emerald-300 font-bold border border-emerald-500/20">
+            Enqueued
+          </span>
         </div>
 
-        {/* Transition to Doctor Dashboard CTA */}
+        {/* Action CTAs */}
         <div className="pt-2 space-y-2">
           <button
             onClick={() => setRole('doctor')}
-            className="w-full py-4 bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-700 hover:to-cyan-700 text-white font-bold rounded-2xl shadow-lg shadow-teal-500/25 flex items-center justify-center gap-2 text-sm transition-all"
+            className="w-full py-4 bg-gradient-to-r from-teal-500 via-cyan-500 to-sky-500 hover:from-teal-600 hover:to-sky-600 text-slate-950 font-bold rounded-2xl shadow-xl shadow-teal-500/20 flex items-center justify-center gap-2 text-sm transition-all"
           >
-            <Stethoscope className="w-4 h-4" />
-            <span>Switch to Doctor View to Review Case</span>
-            <ArrowRight className="w-4 h-4" />
+            <Stethoscope className="w-4 h-4 text-slate-950" />
+            <span>Open in Clinician Workstation (EHR)</span>
+            <ArrowRight className="w-4 h-4 text-slate-950" />
           </button>
 
           <button
             onClick={() => setRole('admin')}
-            className="w-full py-2.5 text-xs text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 font-semibold"
+            className="w-full py-2.5 text-xs text-slate-400 hover:text-white font-semibold"
           >
-            Or view in Hospital OPD Triage Queue &rarr;
+            Or view Live Triage & OPD Queue Desk &rarr;
           </button>
         </div>
       </div>

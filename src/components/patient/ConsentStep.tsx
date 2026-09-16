@@ -27,7 +27,7 @@ export const ConsentStep: React.FC = () => {
       'patient',
       'CONSENT',
       'CONSENT_GRANTED',
-      `Patient ${currentPatient.name} granted informed consent under DPDP Act 2023 for AI clinical preparation.`,
+      `Patient ${currentPatient.name} granted informed consent under DPDP Act 2023 for clinical case preparation.`,
       currentPatient.id
     );
     showToast('Informed consent digitally recorded.');
@@ -47,44 +47,44 @@ export const ConsentStep: React.FC = () => {
   };
 
   return (
-    <div className="max-w-xl mx-auto py-8 px-4 animate-fade-in">
-      <div className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-xl space-y-6">
-        {/* Step Indicator */}
-        <div className="flex items-center justify-between">
-          <Badge variant="teal">STEP 3 of 8</Badge>
-          <span className="text-xs text-slate-500 font-medium">DPDP Act 2023 Consent Gate</span>
+    <div className="max-w-xl mx-auto py-4 px-2 animate-fade-in">
+      <div className="glass-card-elevated rounded-3xl p-6 sm:p-8 border border-teal-500/20 shadow-2xl space-y-6">
+        {/* Header */}
+        <div className="flex items-center justify-between pb-3 border-b border-slate-800 text-xs">
+          <span className="font-bold text-teal-400">Step: Data Sharing & Consent</span>
+          <span className="text-slate-400">DPDP Act 2023 Statutory Notice</span>
         </div>
 
         {/* Title */}
         <div className="text-center space-y-1">
-          <div className="w-12 h-12 rounded-2xl bg-teal-100 dark:bg-teal-900/40 text-teal-600 dark:text-teal-400 flex items-center justify-center mx-auto mb-3">
+          <div className="w-12 h-12 rounded-2xl bg-teal-500/10 text-teal-400 flex items-center justify-center mx-auto mb-3 border border-teal-500/20">
             <ShieldCheck className="w-6 h-6" />
           </div>
-          <h2 className="text-2xl font-bold text-slate-900 dark:text-white font-['Outfit']">
+          <h2 className="text-2xl font-bold text-white font-display">
             Consent & Data Privacy Notice
           </h2>
-          <p className="text-xs text-slate-500 dark:text-slate-400 max-w-md mx-auto">
-            Under India's Digital Personal Data Protection Act 2023, your informed consent is legally required before collecting clinical symptoms.
+          <p className="text-xs text-slate-400 max-w-md mx-auto">
+            Under India's Digital Personal Data Protection Act 2023, your informed consent is recorded prior to collecting clinical observations.
           </p>
         </div>
 
         {/* Audio Assistance Bar */}
-        <div className="p-3.5 bg-slate-50 dark:bg-slate-800 rounded-2xl border border-slate-200/80 dark:border-slate-700 flex items-center justify-between">
+        <div className="p-3.5 bg-slate-900/60 rounded-2xl border border-slate-800 flex items-center justify-between backdrop-blur-md">
           <div className="flex items-center gap-2.5">
-            <Volume2 className="w-5 h-5 text-teal-600" />
+            <Volume2 className="w-5 h-5 text-teal-400" />
             <div>
-              <span className="text-xs font-bold text-slate-900 dark:text-white block">
-                Listen in your language
+              <span className="text-xs font-bold text-white block">
+                Vernacular Audio Assistance
               </span>
-              <span className="text-[11px] text-slate-500">
-                Audio explanation available
+              <span className="text-[11px] text-slate-400">
+                Spoken read-out in your selected language
               </span>
             </div>
           </div>
           <button
             onClick={handlePlayAudio}
             className={`px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-colors ${
-              isPlayingAudio ? 'bg-teal-700 text-white' : 'bg-teal-600 hover:bg-teal-700 text-white'
+              isPlayingAudio ? 'bg-teal-700 text-white' : 'bg-teal-600 hover:bg-teal-500 text-slate-950 font-bold'
             }`}
           >
             <Volume2 className="w-3.5 h-3.5" />
@@ -93,33 +93,33 @@ export const ConsentStep: React.FC = () => {
         </div>
 
         {/* Itemized Terms Cards */}
-        <div className="space-y-2.5 text-xs text-slate-700 dark:text-slate-300">
-          <div className="p-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl flex items-start gap-3">
-            <Eye className="w-4 h-4 text-teal-600 shrink-0 mt-0.5" />
+        <div className="space-y-2.5 text-xs text-slate-300">
+          <div className="p-3 bg-slate-900/40 rounded-xl flex items-start gap-3 border border-slate-800">
+            <Eye className="w-4 h-4 text-teal-400 shrink-0 mt-0.5" />
             <div>
-              <strong className="text-slate-900 dark:text-white">Why information is collected:</strong>
-              <p className="text-slate-500 dark:text-slate-400 mt-0.5">
-                To streamline your case history so your treating doctor can spend more time examining and consulting you.
+              <strong className="text-white">Why information is collected:</strong>
+              <p className="text-slate-400 mt-0.5">
+                To structure your case history so your treating doctor can dedicate maximum time to examination and consultation.
               </p>
             </div>
           </div>
 
-          <div className="p-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl flex items-start gap-3">
-            <FileText className="w-4 h-4 text-teal-600 shrink-0 mt-0.5" />
+          <div className="p-3 bg-slate-900/40 rounded-xl flex items-start gap-3 border border-slate-800">
+            <FileText className="w-4 h-4 text-sky-400 shrink-0 mt-0.5" />
             <div>
-              <strong className="text-slate-900 dark:text-white">What is collected:</strong>
-              <p className="text-slate-500 dark:text-slate-400 mt-0.5">
-                Presenting symptoms, duration, prior medication slips, and relevant lifestyle or traditional medicine history.
+              <strong className="text-white">What is collected:</strong>
+              <p className="text-slate-400 mt-0.5">
+                Presenting complaints, symptom duration, past prescriptions, and relevant lifestyle or traditional medicine history.
               </p>
             </div>
           </div>
 
-          <div className="p-3 bg-slate-50 dark:bg-slate-800/60 rounded-xl flex items-start gap-3">
-            <Lock className="w-4 h-4 text-teal-600 shrink-0 mt-0.5" />
+          <div className="p-3 bg-slate-900/40 rounded-xl flex items-start gap-3 border border-slate-800">
+            <Lock className="w-4 h-4 text-purple-400 shrink-0 mt-0.5" />
             <div>
-              <strong className="text-slate-900 dark:text-white">Your Control & Revocation:</strong>
-              <p className="text-slate-500 dark:text-slate-400 mt-0.5">
-                Your data is strictly purpose-limited to this OPD visit. You retain the right to review, edit, or delete any record at any time.
+              <strong className="text-white">Your Control & Revocation:</strong>
+              <p className="text-slate-400 mt-0.5">
+                Your data is strictly purpose-limited to this OPD encounter. You maintain full statutory rights to review, edit, or revoke consent at any time.
               </p>
             </div>
           </div>
@@ -129,14 +129,14 @@ export const ConsentStep: React.FC = () => {
         <div className="pt-2 flex flex-col sm:flex-row gap-3">
           <button
             onClick={handleAgree}
-            className="flex-1 py-4 bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-700 hover:to-cyan-700 text-white font-bold rounded-2xl shadow-lg shadow-teal-500/25 flex items-center justify-center gap-2 text-sm transition-all"
+            className="flex-1 py-4 bg-gradient-to-r from-teal-500 via-cyan-500 to-sky-500 hover:from-teal-600 hover:to-sky-600 text-slate-950 font-bold rounded-2xl shadow-xl shadow-teal-500/20 flex items-center justify-center gap-2 text-sm transition-all"
           >
-            <CheckCircle2 className="w-5 h-5" />
+            <CheckCircle2 className="w-5 h-5 text-slate-950" />
             <span>I Agree & Continue</span>
           </button>
           <button
             onClick={handleDecline}
-            className="py-4 px-6 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-medium rounded-2xl text-xs transition-colors flex items-center justify-center gap-1.5"
+            className="py-4 px-6 bg-slate-900 hover:bg-slate-800 text-slate-300 font-medium rounded-2xl text-xs transition-colors flex items-center justify-center gap-1.5 border border-slate-800"
           >
             <XCircle className="w-4 h-4" />
             <span>Decline</span>

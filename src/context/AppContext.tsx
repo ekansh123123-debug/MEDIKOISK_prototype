@@ -15,7 +15,7 @@ import { QueueService } from '../services/queueService';
 import { AuditService } from '../services/auditService';
 import { TriageEngine } from '../services/triageEngine';
 
-export type AppRole = 'landing' | 'patient' | 'doctor' | 'admin' | 'privacy' | 'demo';
+export type AppRole = 'landing' | 'patient' | 'doctor' | 'admin' | 'privacy';
 
 export type PatientStep = 
   | 'hospital_qr'
@@ -273,7 +273,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     clearEmergency();
     setRole('landing');
     setPatientStep('hospital_qr');
-    showToast('Platform reset to fresh hackathon demo state.');
+    showToast('Platform reset to default clinical state.');
   };
 
   return (
