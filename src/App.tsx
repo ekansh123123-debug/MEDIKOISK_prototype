@@ -3,6 +3,7 @@ import { AppProvider, useApp } from './context/AppContext';
 import { Navbar } from './components/common/Navbar';
 import { Footer } from './components/common/Footer';
 import { EmergencyAlertModal } from './components/common/EmergencyAlertModal';
+import { SettingsModal } from './components/common/SettingsModal';
 
 // Landing & Overview Components
 import { Hero } from './components/landing/Hero';
@@ -38,16 +39,23 @@ const MainContent: React.FC = () => {
       {/* Deterministic Emergency Modal (takes over when active) */}
       <EmergencyAlertModal />
 
+      {/* Global Settings & Configuration Panel */}
+      <SettingsModal />
+
       {/* Floating Clinical Toast Notification */}
       {toastMessage && (
-        <div className="fixed bottom-6 right-6 z-50 p-4 bg-white/95 dark:bg-slate-900/90 backdrop-blur-xl text-slate-900 dark:text-white rounded-2xl shadow-2xl border border-slate-200 dark:border-teal-500/30 text-xs font-semibold flex items-center gap-2.5 animate-slide-up max-w-md">
-          <span className="w-2 h-2 rounded-full bg-teal-500 animate-ping" />
+        <div 
+          role="status" 
+          aria-live="polite"
+          className="fixed bottom-6 right-6 z-50 p-4 bg-white/95 dark:bg-slate-900/90 backdrop-blur-xl text-slate-900 dark:text-white rounded-2xl shadow-2xl border border-slate-200 dark:border-teal-500/30 text-xs font-semibold flex items-center gap-2.5 animate-slide-up max-w-md"
+        >
+          <span className="w-2 h-2 rounded-full bg-teal-500 animate-ping" aria-hidden="true" />
           <span>{toastMessage}</span>
         </div>
       )}
 
       {/* Primary Role Views */}
-      <main className="flex-1">
+      <main className="flex-1" id="main-content">
         {role === 'landing' && (
           <div className="space-y-0">
             <Hero />

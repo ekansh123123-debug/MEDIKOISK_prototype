@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
-import { User, Phone, AlertCircle, Pill, HeartHandshake, ArrowRight, Shield } from 'lucide-react';
-import { Badge } from '../common/Badge';
+import { ArrowRight, User } from 'lucide-react';
 
 export const BasicDetails: React.FC = () => {
   const { currentPatient, setCurrentPatient, setPatientStep, showToast, t } = useApp();
@@ -29,17 +28,17 @@ export const BasicDetails: React.FC = () => {
       currentMedications: formData.currentMedications ? formData.currentMedications.split(',').map(s => s.trim()) : []
     };
     setCurrentPatient(updated);
-    showToast('Patient baseline profile updated.');
+    showToast('Patient demographic profile updated.');
     setPatientStep('complaint');
   };
 
   return (
     <div className="max-w-xl mx-auto py-6 px-2 animate-fade-in">
-      <div className="glass-card-elevated rounded-3xl p-6 sm:p-8 border border-slate-200/80 dark:border-teal-500/20 shadow-xl dark:shadow-2xl space-y-6">
+      <div className="glass-card-elevated rounded-2xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-xl space-y-6">
         {/* Process Header */}
         <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800 text-xs">
           <span className="font-bold text-teal-600 dark:text-teal-400">Step: Demographic & Medical Baseline</span>
-          <span className="text-slate-500 dark:text-slate-400">Master Patient Index</span>
+          <span className="text-slate-500 dark:text-slate-400 font-mono">Master Patient Index</span>
         </div>
 
         {/* Title */}
@@ -57,27 +56,33 @@ export const BasicDetails: React.FC = () => {
           {/* Name & Phone */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
+              <label htmlFor="basic-full-name" className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
                 {t.fullNameLabel}
               </label>
               <input
+                id="basic-full-name"
                 type="text"
                 required
+                autoComplete="name"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white focus:ring-2 focus:ring-teal-500 text-xs font-semibold"
+                placeholder="e.g. Rohan Kulkarni…"
+                className="w-full px-3.5 py-2.5 bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 text-xs font-semibold"
               />
             </div>
             <div>
-              <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
+              <label htmlFor="basic-phone" className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
                 {t.phoneLabel}
               </label>
               <input
-                type="text"
+                id="basic-phone"
+                type="tel"
                 required
+                autoComplete="tel"
                 value={formData.phone}
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white focus:ring-2 focus:ring-teal-500 text-xs font-semibold"
+                placeholder="e.g. +91 98230 44192…"
+                className="w-full px-3.5 py-2.5 bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 text-xs font-mono font-semibold"
               />
             </div>
           </div>
@@ -85,27 +90,29 @@ export const BasicDetails: React.FC = () => {
           {/* Age & Gender */}
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
+              <label htmlFor="basic-age" className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
                 {t.ageLabel}
               </label>
               <input
+                id="basic-age"
                 type="number"
                 min={1}
                 max={120}
                 required
                 value={formData.age}
                 onChange={(e) => setFormData({ ...formData, age: Number(e.target.value) })}
-                className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white focus:ring-2 focus:ring-teal-500 text-xs font-semibold"
+                className="w-full px-3.5 py-2.5 bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 text-xs font-mono font-semibold tabular-nums"
               />
             </div>
             <div>
-              <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
+              <label htmlFor="basic-gender" className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
                 {t.genderLabel}
               </label>
               <select
+                id="basic-gender"
                 value={formData.gender}
                 onChange={(e) => setFormData({ ...formData, gender: e.target.value as any })}
-                className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white focus:ring-2 focus:ring-teal-500 text-xs font-semibold cursor-pointer"
+                className="w-full px-3.5 py-2.5 bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 text-xs font-semibold cursor-pointer"
               >
                 <option value="male">{t.genderMale}</option>
                 <option value="female">{t.genderFemale}</option>
@@ -116,43 +123,46 @@ export const BasicDetails: React.FC = () => {
 
           {/* Existing Conditions */}
           <div>
-            <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
+            <label htmlFor="basic-conditions" className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
               {t.existingConditionsLabel}
             </label>
             <input
+              id="basic-conditions"
               type="text"
               value={formData.existingConditions}
               onChange={(e) => setFormData({ ...formData, existingConditions: e.target.value })}
-              placeholder="e.g. Hypertension, Diabetes, Asthma, Acid Peptic Disease"
-              className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white focus:ring-2 focus:ring-teal-500 text-xs"
+              placeholder="e.g. Hypertension, Diabetes, Asthma, Acid Peptic Disease…"
+              className="w-full px-3.5 py-2.5 bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 text-xs"
             />
           </div>
 
           {/* Known Allergies */}
           <div>
-            <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
+            <label htmlFor="basic-allergies" className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
               {t.allergiesLabel}
             </label>
             <input
+              id="basic-allergies"
               type="text"
               value={formData.allergies}
               onChange={(e) => setFormData({ ...formData, allergies: e.target.value })}
-              placeholder="e.g. Penicillin, Sulfa drugs (or NKDA if none)"
-              className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white focus:ring-2 focus:ring-teal-500 text-xs"
+              placeholder="e.g. Penicillin, Sulfa drugs (or NKDA if none)…"
+              className="w-full px-3.5 py-2.5 bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 text-xs"
             />
           </div>
 
           {/* Current Regular Medicines */}
           <div>
-            <label className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
+            <label htmlFor="basic-medications" className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
               Current Regular Medications
             </label>
             <input
+              id="basic-medications"
               type="text"
               value={formData.currentMedications}
               onChange={(e) => setFormData({ ...formData, currentMedications: e.target.value })}
-              placeholder="e.g. Omeprazole 20mg, Metformin 500mg"
-              className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white focus:ring-2 focus:ring-teal-500 text-xs"
+              placeholder="e.g. Omeprazole 20mg, Metformin 500mg…"
+              className="w-full px-3.5 py-2.5 bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 text-xs"
             />
           </div>
 
@@ -160,10 +170,10 @@ export const BasicDetails: React.FC = () => {
           <div className="pt-2">
             <button
               type="submit"
-              className="w-full py-4 bg-gradient-to-r from-teal-500 via-cyan-500 to-sky-500 hover:from-teal-600 hover:to-sky-600 text-slate-950 font-bold rounded-2xl shadow-xl shadow-teal-500/20 flex items-center justify-center gap-2 text-sm transition-all"
+              className="w-full py-3.5 bg-teal-600 hover:bg-teal-700 text-white font-bold rounded-xl shadow-lg shadow-teal-600/20 flex items-center justify-center gap-2 text-sm transition-all tactile-btn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer"
             >
               <span>{t.proceedBtn}</span>
-              <ArrowRight className="w-4 h-4 text-slate-950" />
+              <ArrowRight className="w-4 h-4" aria-hidden="true" />
             </button>
           </div>
         </form>

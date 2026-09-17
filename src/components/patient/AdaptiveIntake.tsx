@@ -7,14 +7,10 @@ import {
   ArrowRight, 
   Activity, 
   Sparkles, 
-  HeartPulse, 
   AlertCircle, 
-  CheckCircle2, 
-  Radio, 
-  Layers 
+  CheckCircle2
 } from 'lucide-react';
-import { Badge } from '../common/Badge';
-import { CHIEF_COMPLAINT_PRESETS, ADAPTIVE_QUESTION_REGISTRY } from '../../data/adaptiveQuestions';
+import { CHIEF_COMPLAINT_PRESETS } from '../../data/adaptiveQuestions';
 import { AdaptiveEngine } from '../../services/adaptiveEngine';
 import { TriageEngine } from '../../services/triageEngine';
 import { VoiceService } from '../../services/voiceService';
@@ -28,6 +24,7 @@ export const AdaptiveIntake: React.FC = () => {
     setCurrentSoap, 
     triggerEmergency, 
     showToast,
+    audioGuidance,
     t 
   } = useApp();
 
@@ -48,7 +45,7 @@ export const AdaptiveIntake: React.FC = () => {
   const [currentAnswer, setCurrentAnswer] = useState<any>('');
   const [multiSelectAnswers, setMultiSelectAnswers] = useState<string[]>([]);
   const [responses, setResponses] = useState<IntakeResponse[]>([]);
-  const [progressInfo, setProgressInfo] = useState({ progress: 10, totalEstimated: 10 });
+  const [progressInfo, setProgressInfo] = useState({ progress: 15, totalEstimated: 5 });
 
   // Evaluate raw input for emergency on every change
   const handleCheckEmergency = (text: string) => {
@@ -70,7 +67,7 @@ export const AdaptiveIntake: React.FC = () => {
     setVoiceTranscript('');
     setVoiceLatency(null);
 
-    const controller = VoiceService.startListening(
+    VoiceService.startListening(
       language,
       (result) => {
         setIsListening(false);
@@ -102,6 +99,14 @@ export const AdaptiveIntake: React.FC = () => {
     const text = currentQuestion.translations[language] || currentQuestion.text;
     VoiceService.speak(text, language);
   };
+
+  // Auto-speak question if audio guidance is enabled
+  useEffect(() => {
+    if (stage === 'adaptive_dag' && audioGuidance) {
+      const text = currentQuestion.translations[language] || currentQuestion.text;
+      VoiceService.speak(text, language);
+    }
+  }, [currentQuestion, stage, audioGuidance, language]);
 
   const handleSelectComplaintCard = (catId: string) => {
     const isEmerg = handleCheckEmergency(catId);
@@ -183,14 +188,14 @@ export const AdaptiveIntake: React.FC = () => {
 
   return (
     <div className="max-w-2xl mx-auto py-6 px-2 animate-fade-in">
-      <div className="glass-card-elevated rounded-3xl p-6 sm:p-8 border border-slate-200/80 dark:border-teal-500/20 shadow-xl dark:shadow-2xl space-y-6">
+      <div className="glass-card-elevated rounded-2xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-xl space-y-6">
         {/* Step Header */}
         <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800 text-xs">
           <span className="font-bold text-teal-600 dark:text-teal-400">
             {stage === 'complaint_selection' ? 'Step: Presenting Chief Complaint' : 'Step: Adaptive Clinical Inquiry'}
           </span>
-          <span className="text-slate-500 dark:text-slate-400 font-mono">
-            {stage === 'adaptive_dag' ? `${progressInfo.progress}% Traversed` : 'Bhashini Voice & Touch'}
+          <span className="text-slate-500 dark:text-slate-400 font-mono tabular-nums">
+            {stage === 'adaptive_dag' ? `${progressInfo.progress}% Traversed` : 'Bhashini Vernacular Speech'}
           </span>
         </div>
 
@@ -207,18 +212,19 @@ export const AdaptiveIntake: React.FC = () => {
             </div>
 
             {/* Voice Microphone Bar */}
-            <div className="p-5 bg-gradient-to-r from-teal-500/5 via-cyan-500/5 to-sky-500/5 dark:from-teal-500/10 dark:via-cyan-500/10 dark:to-sky-500/10 border border-teal-500/20 dark:border-teal-500/30 rounded-2xl flex flex-col items-center justify-center text-center space-y-3 backdrop-blur-md">
+            <div className="p-5 bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-2xl flex flex-col items-center justify-center text-center space-y-3">
               <button
+                type="button"
                 onClick={handleStartVoice}
                 disabled={isListening}
-                className={`w-16 h-16 rounded-full flex items-center justify-center text-slate-950 shadow-xl transition-all ${
+                className={`w-16 h-16 rounded-full flex items-center justify-center text-white shadow-xl transition-all tactile-btn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer ${
                   isListening
-                    ? 'bg-rose-600 animate-pulse scale-110 shadow-rose-500/50 text-white'
-                    : 'bg-gradient-to-tr from-teal-500 to-cyan-400 hover:scale-105 active:scale-95 shadow-teal-500/30 font-bold'
+                    ? 'bg-rose-600 animate-pulse scale-110 shadow-rose-500/50'
+                    : 'bg-teal-600 hover:bg-teal-700 shadow-teal-600/30 font-bold'
                 }`}
-                title="Tap to speak your symptoms"
+                aria-label={isListening ? "Listening to your symptoms" : "Click to speak your symptoms"}
               >
-                <Mic className="w-8 h-8" />
+                <Mic className="w-8 h-8" aria-hidden="true" />
               </button>
 
               <div>
@@ -231,12 +237,12 @@ export const AdaptiveIntake: React.FC = () => {
               </div>
 
               {isListening && (
-                <div className="flex items-center gap-1.5 h-6">
+                <div className="flex items-center gap-1.5 h-6" aria-hidden="true">
                   <span className="w-1.5 bg-teal-500 rounded-full soundwave-bar" style={{ animationDelay: '0.1s' }} />
                   <span className="w-1.5 bg-cyan-500 rounded-full soundwave-bar" style={{ animationDelay: '0.3s' }} />
-                  <span className="w-1.5 bg-sky-500 rounded-full soundwave-bar" style={{ animationDelay: '0.2s' }} />
-                  <span className="w-1.5 bg-teal-500 rounded-full soundwave-bar" style={{ animationDelay: '0.4s' }} />
-                  <span className="w-1.5 bg-cyan-500 rounded-full soundwave-bar" style={{ animationDelay: '0.1s' }} />
+                  <span className="w-1.5 bg-teal-400 rounded-full soundwave-bar" style={{ animationDelay: '0.2s' }} />
+                  <span className="w-1.5 bg-teal-600 rounded-full soundwave-bar" style={{ animationDelay: '0.4s' }} />
+                  <span className="w-1.5 bg-cyan-400 rounded-full soundwave-bar" style={{ animationDelay: '0.1s' }} />
                 </div>
               )}
 
@@ -245,9 +251,9 @@ export const AdaptiveIntake: React.FC = () => {
                   <span className="text-[10px] font-bold text-teal-600 dark:text-teal-400 block uppercase">
                     Transcribed Speech:
                   </span>
-                  "{voiceTranscript}"
+                  &ldquo;{voiceTranscript}&rdquo;
                   {voiceLatency && (
-                    <span className="text-[10px] text-slate-500 dark:text-slate-400 ml-2">
+                    <span className="text-[10px] font-mono tabular-nums text-slate-500 dark:text-slate-400 ml-2">
                       ({(voiceLatency / 1000).toFixed(2)}s latency)
                     </span>
                   )}
@@ -257,7 +263,9 @@ export const AdaptiveIntake: React.FC = () => {
 
             {/* Quick Text Input */}
             <div className="flex gap-2">
+              <label htmlFor="symptom-text-input" className="sr-only">Describe symptoms</label>
               <input
+                id="symptom-text-input"
                 type="text"
                 value={rawInputText}
                 onChange={(e) => setRawInputText(e.target.value)}
@@ -268,10 +276,11 @@ export const AdaptiveIntake: React.FC = () => {
                     }
                   }
                 }}
-                placeholder="Or describe symptoms here (e.g. stomach pain for 3 days)..."
-                className="flex-1 px-4 py-3 text-xs bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500"
+                placeholder="Or describe symptoms here (e.g. stomach pain for 3 days)…"
+                className="flex-1 px-4 py-2.5 text-xs bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
               />
               <button
+                type="button"
                 onClick={() => {
                   if (rawInputText.trim()) {
                     if (!handleCheckEmergency(rawInputText)) {
@@ -280,10 +289,10 @@ export const AdaptiveIntake: React.FC = () => {
                   }
                 }}
                 disabled={!rawInputText.trim()}
-                className="px-5 py-3 bg-gradient-to-r from-teal-500 to-cyan-500 hover:from-teal-600 hover:to-cyan-600 disabled:opacity-50 text-slate-950 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 shadow-md"
+                className="px-5 py-2.5 bg-teal-600 hover:bg-teal-700 disabled:opacity-50 text-white rounded-xl text-xs font-bold transition-all tactile-btn flex items-center gap-1.5 shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer"
               >
                 <span>Proceed</span>
-                <Send className="w-3.5 h-3.5 text-slate-950" />
+                <Send className="w-3.5 h-3.5" aria-hidden="true" />
               </button>
             </div>
 
@@ -296,11 +305,12 @@ export const AdaptiveIntake: React.FC = () => {
                 {CHIEF_COMPLAINT_PRESETS.map((preset) => (
                   <button
                     key={preset.id}
+                    type="button"
                     onClick={() => handleSelectComplaintCard(preset.id)}
-                    className="p-3.5 bg-white dark:bg-slate-900/60 hover:bg-teal-50 dark:hover:bg-teal-500/10 border border-slate-200 dark:border-slate-800 hover:border-teal-500/50 rounded-2xl text-left transition-all group flex flex-col justify-between backdrop-blur-md shadow-sm"
+                    className="p-3.5 bg-white dark:bg-slate-900/60 hover:bg-teal-50/50 dark:hover:bg-slate-800/80 border border-slate-200 dark:border-slate-800 hover:border-teal-500/50 rounded-xl text-left transition-all group flex flex-col justify-between shadow-sm tactile-btn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer"
                   >
-                    <div className="w-8 h-8 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-teal-600 dark:text-teal-400 shadow-sm mb-2 group-hover:scale-110 transition-transform border border-slate-200 dark:border-slate-700">
-                      <Activity className="w-4 h-4" />
+                    <div className="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-teal-600 dark:text-teal-400 shadow-sm mb-2 group-hover:scale-105 transition-transform border border-slate-200 dark:border-slate-700">
+                      <Activity className="w-4 h-4" aria-hidden="true" />
                     </div>
                     <div>
                       <h4 className="text-xs font-bold text-slate-900 dark:text-white leading-tight">
@@ -324,24 +334,24 @@ export const AdaptiveIntake: React.FC = () => {
             <div className="space-y-1.5">
               <div className="flex justify-between text-xs font-medium text-slate-500 dark:text-slate-400">
                 <span className="flex items-center gap-1.5 text-teal-600 dark:text-teal-400 font-bold">
-                  <Sparkles className="w-3.5 h-3.5" />
+                  <Sparkles className="w-3.5 h-3.5" aria-hidden="true" />
                   {t.questionProgress}
                 </span>
-                <span>Entropy Score: {currentQuestion.entropyWeight}</span>
+                <span className="font-mono tabular-nums">Entropy Weight: {currentQuestion.entropyWeight}</span>
               </div>
-              <div className="w-full h-1.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+              <div className="w-full h-2 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
                 <div 
-                  className="h-full bg-gradient-to-r from-teal-500 to-cyan-400 rounded-full transition-all duration-500 shadow-sm shadow-teal-500/50"
+                  className="h-full bg-teal-600 rounded-full transition-all duration-300 shadow-sm"
                   style={{ width: `${progressInfo.progress}%` }}
                 />
               </div>
             </div>
 
             {/* Current Question */}
-            <div className="p-5 bg-slate-50/80 dark:bg-slate-900/70 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-3 backdrop-blur-md">
+            <div className="p-5 bg-slate-50 dark:bg-slate-900/70 rounded-xl border border-slate-200 dark:border-slate-800 space-y-3">
               <div className="flex items-start justify-between gap-3">
                 <div className="space-y-1">
-                  <span className="text-[10px] uppercase tracking-wider font-extrabold text-teal-600 dark:text-teal-400">
+                  <span className="text-[10px] uppercase tracking-wider font-mono font-extrabold text-teal-600 dark:text-teal-400">
                     Dimension: {currentQuestion.clinicalDimension.toUpperCase()}
                   </span>
                   <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white leading-snug font-display">
@@ -349,11 +359,13 @@ export const AdaptiveIntake: React.FC = () => {
                   </h3>
                 </div>
                 <button
+                  type="button"
                   onClick={handleSpeakQuestion}
-                  className="p-2 text-slate-500 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 shrink-0 transition-colors"
+                  className="p-2 text-slate-500 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 shrink-0 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer"
                   title={t.readAloudBtn}
+                  aria-label="Read question aloud"
                 >
-                  <Volume2 className="w-5 h-5" />
+                  <Volume2 className="w-5 h-5" aria-hidden="true" />
                 </button>
               </div>
 
@@ -365,10 +377,11 @@ export const AdaptiveIntake: React.FC = () => {
                     return (
                       <button
                         key={opt.id}
+                        type="button"
                         onClick={() => setCurrentAnswer(opt.label)}
-                        className={`w-full p-3.5 rounded-xl text-left text-xs font-semibold border transition-all flex items-center justify-between shadow-sm ${
+                        className={`w-full p-3 rounded-xl text-left text-xs font-semibold border transition-all flex items-center justify-between shadow-sm tactile-btn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer ${
                           isSelected
-                            ? 'bg-gradient-to-r from-teal-500 to-cyan-500 text-slate-950 font-bold border-teal-400 shadow-lg shadow-teal-500/20'
+                            ? 'bg-teal-600 text-white font-bold border-teal-500 shadow-md shadow-teal-600/20'
                             : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200 hover:border-teal-500/40'
                         }`}
                       >
@@ -392,6 +405,7 @@ export const AdaptiveIntake: React.FC = () => {
                     return (
                       <button
                         key={opt.id}
+                        type="button"
                         onClick={() => {
                           if (isSelected) {
                             setMultiSelectAnswers(multiSelectAnswers.filter(a => a !== opt.label));
@@ -399,15 +413,15 @@ export const AdaptiveIntake: React.FC = () => {
                             setMultiSelectAnswers([...multiSelectAnswers, opt.label]);
                           }
                         }}
-                        className={`w-full p-3.5 rounded-xl text-left text-xs font-semibold border transition-all flex items-center justify-between shadow-sm ${
+                        className={`w-full p-3 rounded-xl text-left text-xs font-semibold border transition-all flex items-center justify-between shadow-sm tactile-btn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer ${
                           isSelected
-                            ? 'bg-gradient-to-r from-teal-500 to-cyan-500 text-slate-950 font-bold border-teal-400 shadow-md'
+                            ? 'bg-teal-600 text-white font-bold border-teal-500 shadow-md shadow-teal-600/20'
                             : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200 hover:border-teal-500/40'
                         }`}
                       >
                         <span>{opt.label}</span>
-                        <span className={`w-4 h-4 rounded flex items-center justify-center border ${
-                          isSelected ? 'bg-slate-950 text-teal-400 border-slate-950 font-black' : 'border-slate-300 dark:border-slate-600'
+                        <span className={`w-4 h-4 rounded flex items-center justify-center border text-[10px] ${
+                          isSelected ? 'bg-white text-teal-700 border-white font-black' : 'border-slate-300 dark:border-slate-600'
                         }`}>
                           {isSelected && '✓'}
                         </span>
@@ -422,7 +436,7 @@ export const AdaptiveIntake: React.FC = () => {
                 <div className="space-y-4 pt-2">
                   <div className="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 font-medium">
                     <span>{currentQuestion.scaleLabels?.min}</span>
-                    <span className="text-2xl font-black text-teal-600 dark:text-teal-400 font-mono">
+                    <span className="text-2xl font-black text-teal-600 dark:text-teal-400 font-mono tabular-nums">
                       {currentAnswer || 6} / 10
                     </span>
                     <span>{currentQuestion.scaleLabels?.max}</span>
@@ -433,9 +447,9 @@ export const AdaptiveIntake: React.FC = () => {
                     max={currentQuestion.maxScale || 10}
                     value={currentAnswer || 6}
                     onChange={(e) => setCurrentAnswer(Number(e.target.value))}
-                    className="w-full accent-teal-500 h-2 bg-slate-200 dark:bg-slate-800 rounded-lg cursor-pointer"
+                    className="w-full accent-teal-600 h-2 bg-slate-200 dark:bg-slate-800 rounded-lg cursor-pointer"
                   />
-                  <div className="flex justify-between px-1 text-[11px] font-mono text-slate-400 dark:text-slate-500">
+                  <div className="flex justify-between px-1 text-[11px] font-mono tabular-nums text-slate-400 dark:text-slate-500">
                     {[1,2,3,4,5,6,7,8,9,10].map(n => (
                       <span key={n} className={currentAnswer === n ? 'font-bold text-teal-600 dark:text-teal-400' : ''}>
                         {n}
@@ -449,21 +463,23 @@ export const AdaptiveIntake: React.FC = () => {
             {/* Actions */}
             <div className="flex justify-between items-center pt-2">
               <button
+                type="button"
                 onClick={() => setStage('complaint_selection')}
-                className="text-xs text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-medium"
+                className="text-xs text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-medium cursor-pointer"
               >
                 &larr; Re-select Complaint
               </button>
 
               <button
+                type="button"
                 onClick={handleAnswerSubmit}
                 disabled={
                   currentQuestion.inputType === 'single-choice' && !currentAnswer
                 }
-                className="px-6 py-3.5 bg-gradient-to-r from-teal-500 via-cyan-500 to-sky-500 hover:from-teal-600 hover:to-sky-600 disabled:opacity-50 text-slate-950 font-bold rounded-2xl shadow-xl shadow-teal-500/20 flex items-center gap-2 text-xs transition-all"
+                className="px-6 py-3 bg-teal-600 hover:bg-teal-700 disabled:opacity-50 text-white font-bold rounded-xl shadow-lg shadow-teal-600/20 flex items-center gap-2 text-xs transition-all tactile-btn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer"
               >
                 <span>Confirm & Next Clinical Branch</span>
-                <ArrowRight className="w-4 h-4 text-slate-950" />
+                <ArrowRight className="w-4 h-4 text-white" aria-hidden="true" />
               </button>
             </div>
           </div>

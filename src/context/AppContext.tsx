@@ -18,6 +18,9 @@ import { getTranslation, TranslationDictionary } from '../data/translations';
 
 export type AppRole = 'landing' | 'patient' | 'doctor' | 'admin' | 'privacy';
 export type AppTheme = 'light' | 'dark';
+export type AccentColor = 'teal' | 'indigo' | 'cyan' | 'emerald';
+export type FontSizeScale = 'compact' | 'normal' | 'large';
+export type GatewayMode = 'mock_sandbox' | 'live_staging' | 'offline_pwa';
 
 export type PatientStep = 
   | 'hospital_qr'
@@ -44,6 +47,30 @@ interface AppContextType {
   toggleTheme: () => void;
   t: TranslationDictionary;
   
+  // Settings Panel State
+  isSettingsOpen: boolean;
+  setIsSettingsOpen: (open: boolean) => void;
+  toggleSettings: () => void;
+  accentColor: AccentColor;
+  setAccentColor: (accent: AccentColor) => void;
+  fontSize: FontSizeScale;
+  setFontSize: (size: FontSizeScale) => void;
+  highContrast: boolean;
+  setHighContrast: (high: boolean) => void;
+  reducedMotion: boolean;
+  setReducedMotion: (reduced: boolean) => void;
+  audioGuidance: boolean;
+  setAudioGuidance: (enabled: boolean) => void;
+  speechSpeed: number;
+  setSpeechSpeed: (speed: number) => void;
+  kioskTimeoutSec: number;
+  setKioskTimeoutSec: (sec: number) => void;
+  gatewayMode: GatewayMode;
+  setGatewayMode: (mode: GatewayMode) => void;
+  soundEffects: boolean;
+  setSoundEffects: (enabled: boolean) => void;
+  resetSettings: () => void;
+
   // Active Entities
   currentPatient: Patient;
   setCurrentPatient: (patient: Patient) => void;
@@ -83,6 +110,7 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [role, setRole] = useState<AppRole>('landing');
   const [patientStep, setPatientStep] = useState<PatientStep>('hospital_qr');
+  
   const [language, setLanguageState] = useState<IndianLanguage>(() => {
     const saved = localStorage.getItem('medikoisk_lang') as IndianLanguage;
     return saved && ['en', 'hi', 'mr', 'ta', 'bn', 'te'].includes(saved) ? saved : 'en';
@@ -90,8 +118,106 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   const [theme, setThemeState] = useState<AppTheme>(() => {
     const saved = localStorage.getItem('medikoisk_theme') as AppTheme;
-    return saved === 'dark' ? 'dark' : 'light'; // Light mode is default!
+    return saved === 'dark' ? 'dark' : 'light';
   });
+
+  // Settings states
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [accentColor, setAccentColorState] = useState<AccentColor>(() => {
+    const saved = localStorage.getItem('medikoisk_accent') as AccentColor;
+    return saved && ['teal', 'indigo', 'cyan', 'emerald'].includes(saved) ? saved : 'teal';
+  });
+  const [fontSize, setFontSizeState] = useState<FontSizeScale>(() => {
+    const saved = localStorage.getItem('medikoisk_fontsize') as FontSizeScale;
+    return saved && ['compact', 'normal', 'large'].includes(saved) ? saved : 'normal';
+  });
+  const [highContrast, setHighContrastState] = useState<boolean>(() => {
+    return localStorage.getItem('medikoisk_contrast') === 'true';
+  });
+  const [reducedMotion, setReducedMotionState] = useState<boolean>(() => {
+    return localStorage.getItem('medikoisk_motion') === 'true';
+  });
+  const [audioGuidance, setAudioGuidanceState] = useState<boolean>(() => {
+    const saved = localStorage.getItem('medikoisk_audioguidance');
+    return saved !== null ? saved === 'true' : true;
+  });
+  const [speechSpeed, setSpeechSpeedState] = useState<number>(() => {
+    const saved = localStorage.getItem('medikoisk_speechspeed');
+    return saved ? parseFloat(saved) : 1.0;
+  });
+  const [kioskTimeoutSec, setKioskTimeoutSecState] = useState<number>(() => {
+    const saved = localStorage.getItem('medikoisk_kiosktimeout');
+    return saved ? parseInt(saved, 10) : 60;
+  });
+  const [gatewayMode, setGatewayModeState] = useState<GatewayMode>(() => {
+    const saved = localStorage.getItem('medikoisk_gateway') as GatewayMode;
+    return saved && ['mock_sandbox', 'live_staging', 'offline_pwa'].includes(saved) ? saved : 'mock_sandbox';
+  });
+  const [soundEffects, setSoundEffectsState] = useState<boolean>(() => {
+    return localStorage.getItem('medikoisk_sfx') !== 'false';
+  });
+
+  const toggleSettings = () => {
+    setIsSettingsOpen(prev => !prev);
+  };
+
+  const setAccentColor = (accent: AccentColor) => {
+    setAccentColorState(accent);
+    localStorage.setItem('medikoisk_accent', accent);
+  };
+
+  const setFontSize = (size: FontSizeScale) => {
+    setFontSizeState(size);
+    localStorage.setItem('medikoisk_fontsize', size);
+  };
+
+  const setHighContrast = (val: boolean) => {
+    setHighContrastState(val);
+    localStorage.setItem('medikoisk_contrast', String(val));
+  };
+
+  const setReducedMotion = (val: boolean) => {
+    setReducedMotionState(val);
+    localStorage.setItem('medikoisk_motion', String(val));
+  };
+
+  const setAudioGuidance = (val: boolean) => {
+    setAudioGuidanceState(val);
+    localStorage.setItem('medikoisk_audioguidance', String(val));
+  };
+
+  const setSpeechSpeed = (speed: number) => {
+    setSpeechSpeedState(speed);
+    localStorage.setItem('medikoisk_speechspeed', String(speed));
+  };
+
+  const setKioskTimeoutSec = (sec: number) => {
+    setKioskTimeoutSecState(sec);
+    localStorage.setItem('medikoisk_kiosktimeout', String(sec));
+  };
+
+  const setGatewayMode = (mode: GatewayMode) => {
+    setGatewayModeState(mode);
+    localStorage.setItem('medikoisk_gateway', mode);
+  };
+
+  const setSoundEffects = (val: boolean) => {
+    setSoundEffectsState(val);
+    localStorage.setItem('medikoisk_sfx', String(val));
+  };
+
+  const resetSettings = () => {
+    setAccentColor('teal');
+    setFontSize('normal');
+    setHighContrast(false);
+    setReducedMotion(false);
+    setAudioGuidance(true);
+    setSpeechSpeed(1.0);
+    setKioskTimeoutSec(60);
+    setGatewayMode('mock_sandbox');
+    setSoundEffects(true);
+    showToast('Settings restored to clinical standards.');
+  };
 
   const setLanguage = (lang: IndianLanguage) => {
     setLanguageState(lang);
@@ -101,25 +227,53 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const setTheme = (newTheme: AppTheme) => {
     setThemeState(newTheme);
     localStorage.setItem('medikoisk_theme', newTheme);
-    if (newTheme === 'dark') {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
   };
 
   const toggleTheme = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark');
   };
 
+  // DOM Effects for theme, font scale, high contrast, reduced motion
   useEffect(() => {
-    // Apply current theme on mount
+    const root = document.documentElement;
+    
+    // Theme
     if (theme === 'dark') {
-      document.documentElement.classList.add('dark');
+      root.classList.add('dark');
     } else {
-      document.documentElement.classList.remove('dark');
+      root.classList.remove('dark');
     }
-  }, [theme]);
+
+    // High contrast
+    if (highContrast) {
+      root.classList.add('high-contrast');
+    } else {
+      root.classList.remove('high-contrast');
+    }
+
+    // Reduced motion
+    if (reducedMotion) {
+      root.classList.add('force-reduced-motion');
+    } else {
+      root.classList.remove('force-reduced-motion');
+    }
+
+    // Font Scale
+    root.classList.remove('font-scale-compact', 'font-scale-normal', 'font-scale-large');
+    root.classList.add(`font-scale-${fontSize}`);
+  }, [theme, highContrast, reducedMotion, fontSize]);
+
+  // Global keyboard shortcut: Cmd+, or Ctrl+, for Settings
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === ',') {
+        e.preventDefault();
+        setIsSettingsOpen(prev => !prev);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   const t = getTranslation(language);
 
@@ -173,7 +327,9 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     );
 
     // Play spoken voice alert in active language
-    TriageEngine.playSpokenGuidance(language);
+    if (audioGuidance) {
+      TriageEngine.playSpokenGuidance(language);
+    }
     showToast(`🚨 CRITICAL EMERGENCY ESCALATION: ${alert.matchedRule}`);
   };
 
@@ -332,6 +488,28 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       setTheme,
       toggleTheme,
       t,
+      isSettingsOpen,
+      setIsSettingsOpen,
+      toggleSettings,
+      accentColor,
+      setAccentColor,
+      fontSize,
+      setFontSize,
+      highContrast,
+      setHighContrast,
+      reducedMotion,
+      setReducedMotion,
+      audioGuidance,
+      setAudioGuidance,
+      speechSpeed,
+      setSpeechSpeed,
+      kioskTimeoutSec,
+      setKioskTimeoutSec,
+      gatewayMode,
+      setGatewayMode,
+      soundEffects,
+      setSoundEffects,
+      resetSettings,
       currentPatient,
       setCurrentPatient,
       patients,

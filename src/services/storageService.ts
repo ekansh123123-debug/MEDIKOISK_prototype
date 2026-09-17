@@ -85,6 +85,20 @@ export class StorageService {
     return raw ? JSON.parse(raw) : [];
   }
 
+  static getConsents() {
+    const raw = typeof window !== 'undefined' ? localStorage.getItem('medikoisk_consents') : null;
+    return raw ? JSON.parse(raw) : [
+      {
+        consentId: 'CONSENT-2026-001',
+        patientId: 'PAT-2026-0891',
+        scope: 'OPD_TELEMETRY_AND_INFERENCE',
+        status: 'GRANTED',
+        grantedAt: new Date().toISOString(),
+        dpdpSection: 'Section 6(1)'
+      }
+    ];
+  }
+
   static saveEmergencyAlert(alert: EmergencyAlert) {
     const alerts = this.getEmergencyAlerts();
     alerts.unshift(alert);

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
 import { 
   Stethoscope, 
-  User, 
   Calendar, 
   CheckCircle2, 
   FileText, 
@@ -14,9 +13,7 @@ import {
   Clock, 
   Check, 
   Share2, 
-  ShieldCheck, 
-  PenTool,
-  Activity
+  PenTool
 } from 'lucide-react';
 import { Badge } from '../common/Badge';
 import { ProvenancePopover } from './ProvenancePopover';
@@ -66,11 +63,11 @@ export const DoctorDashboard: React.FC = () => {
   const isEmergency = currentToken?.priority === 'EMERGENCY';
 
   return (
-    <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 animate-fade-in space-y-6">
+    <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 animate-fade-in space-y-6">
       {/* 1. TOP CLINICAL HEADER BAR */}
-      <div className="glass-card-elevated rounded-3xl p-6 border border-slate-200/80 dark:border-teal-500/20 shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <div className="glass-card-elevated rounded-2xl p-5 sm:p-6 border border-slate-200 dark:border-slate-800 shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div className="flex items-center gap-4">
-          <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-teal-500 to-cyan-400 text-slate-950 flex items-center justify-center font-bold text-xl shadow-lg">
+          <div className="w-12 h-12 rounded-xl bg-teal-600 text-white flex items-center justify-center font-bold text-lg shadow-md font-display">
             {currentPatient.name.charAt(0)}
           </div>
           <div>
@@ -78,10 +75,10 @@ export const DoctorDashboard: React.FC = () => {
               <h2 className="text-xl font-bold text-slate-900 dark:text-white font-display">
                 {currentPatient.name}
               </h2>
-              <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-teal-500/10 text-teal-700 dark:text-teal-300 border border-teal-500/20">
+              <span className="px-2.5 py-0.5 rounded-full text-xs font-bold font-mono tabular-nums bg-teal-500/10 text-teal-800 dark:text-teal-300 border border-teal-500/20">
                 {currentPatient.age} yrs • {currentPatient.gender.toUpperCase()}
               </span>
-              <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-sky-500/10 text-sky-700 dark:text-sky-300 border border-sky-500/20">
+              <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-sky-500/10 text-sky-800 dark:text-sky-300 border border-sky-500/20 font-mono">
                 {currentPatient.abhaAddress || 'Walk-in Guest'}
               </span>
               <Badge variant={isEmergency ? 'red' : 'green'} pulsing={isEmergency}>
@@ -89,9 +86,9 @@ export const DoctorDashboard: React.FC = () => {
               </Badge>
             </div>
             <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-              Token: <span className="font-bold text-teal-700 dark:text-teal-300">{currentToken?.tokenNumber || 'A-027'}</span> • 
+              Token: <span className="font-bold font-mono tabular-nums text-teal-700 dark:text-teal-300">{currentToken?.tokenNumber || 'A-027'}</span> • 
               Encounter: <span className="font-mono text-slate-600 dark:text-slate-300">{currentSoap.encounterId}</span> • 
-              Phone: {currentPatient.phone}
+              Phone: <span className="font-mono tabular-nums">{currentPatient.phone}</span>
             </p>
           </div>
         </div>
@@ -105,7 +102,7 @@ export const DoctorDashboard: React.FC = () => {
             </span>
           </div>
           <div className="p-2.5 bg-teal-500/10 text-teal-700 dark:text-teal-300 rounded-xl border border-teal-500/20">
-            <Stethoscope className="w-5 h-5" />
+            <Stethoscope className="w-5 h-5" aria-hidden="true" />
           </div>
         </div>
       </div>
@@ -121,44 +118,45 @@ export const DoctorDashboard: React.FC = () => {
         ].map((tab) => (
           <button
             key={tab.id}
+            type="button"
             onClick={() => setActiveTab(tab.id as any)}
-            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all ${
+            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all tactile-btn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer ${
               activeTab === tab.id
-                ? 'bg-slate-900 text-white dark:bg-gradient-to-r dark:from-teal-500/20 dark:to-cyan-500/20 dark:text-teal-300 border border-slate-900 dark:border-teal-500/40 shadow-sm'
-                : 'bg-white dark:bg-slate-900/60 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-transparent'
+                ? 'bg-teal-600 text-white shadow-sm'
+                : 'bg-white dark:bg-slate-900/60 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800'
             }`}
           >
             {tab.icon}
-            {tab.label}
+            <span>{tab.label}</span>
           </button>
         ))}
       </div>
 
       {/* 3. TAB CONTENT */}
-      <div className="glass-card-elevated rounded-3xl p-6 sm:p-8 border border-slate-200/80 dark:border-teal-500/20 shadow-xl space-y-6">
+      <div className="glass-card-elevated rounded-2xl p-6 sm:p-7 border border-slate-200 dark:border-slate-800 shadow-xl space-y-6">
         
         {/* TAB 1: SOAP SUMMARY */}
         {activeTab === 'soap' && (
           <div className="space-y-6">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800 gap-2">
               <div>
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2 font-display">
-                  <Sparkles className="w-5 h-5 text-teal-600 dark:text-teal-400" />
+                <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2 font-display">
+                  <Sparkles className="w-5 h-5 text-teal-600 dark:text-teal-400" aria-hidden="true" />
                   Pre-Consultation Clinical Intake Summary
                 </h3>
                 <p className="text-xs text-slate-500 dark:text-slate-400">
                   Synthesized from multimodal adaptive DAG input. Interactive provenance links indicate raw patient inputs.
                 </p>
               </div>
-              <span className="px-2.5 py-1 rounded-full text-[11px] font-bold bg-teal-500/10 text-teal-700 dark:text-teal-300 border border-teal-500/20">
+              <span className="px-2.5 py-1 rounded-full text-[11px] font-bold bg-teal-500/10 text-teal-800 dark:text-teal-300 border border-teal-500/20 self-start sm:self-auto">
                 AI Clinical Preparation • Human Sign-Off Required
               </span>
             </div>
 
             {/* SUBJECTIVE SECTION */}
-            <div className="p-5 bg-slate-50 dark:bg-slate-900/70 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-3">
+            <div className="p-5 bg-slate-50 dark:bg-slate-900/70 rounded-xl border border-slate-200 dark:border-slate-800 space-y-3">
               <div className="flex items-center justify-between">
-                <h4 className="text-xs font-extrabold uppercase tracking-wider text-teal-600 dark:text-teal-400">
+                <h4 className="text-xs font-mono font-extrabold uppercase tracking-wider text-teal-600 dark:text-teal-400">
                   I. SUBJECTIVE NARRATIVE
                 </h4>
                 <span className="text-[11px] text-slate-500">Patient-reported assertions</span>
@@ -202,158 +200,124 @@ export const DoctorDashboard: React.FC = () => {
                     )}
                   </div>
                 </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2 border-t border-slate-200 dark:border-slate-800">
-                  <div>
-                    <strong className="text-slate-900 dark:text-white">Lifestyle & Diet: </strong>
-                    <span className="text-slate-700 dark:text-slate-300">
-                      {currentSoap.subjective.lifestyleDiet}
-                    </span>
-                  </div>
-                  <div>
-                    <strong className="text-slate-900 dark:text-white">Traditional Medicine / AYUSH: </strong>
-                    <span className="text-slate-700 dark:text-slate-300">
-                      {currentSoap.subjective.ayushNarrative}
-                    </span>
-                  </div>
-                </div>
               </div>
             </div>
 
             {/* OBJECTIVE SECTION */}
-            <div className="p-5 bg-slate-50 dark:bg-slate-900/70 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-3">
+            <div className="p-5 bg-slate-50 dark:bg-slate-900/70 rounded-xl border border-slate-200 dark:border-slate-800 space-y-3">
               <div className="flex items-center justify-between">
-                <h4 className="text-xs font-extrabold uppercase tracking-wider text-sky-600 dark:text-sky-400">
-                  II. OBJECTIVE OBSERVATIONS & VITALS
+                <h4 className="text-xs font-mono font-extrabold uppercase tracking-wider text-sky-600 dark:text-sky-400">
+                  II. OBJECTIVE VITALS & OBSERVATIONS
                 </h4>
-                <span className="text-[11px] text-slate-500">Clinical baseline measurements</span>
+                <span className="text-[11px] text-slate-500">Self-reported / Kiosk Sensors</span>
               </div>
 
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
-                <div className="p-2.5 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
-                  <span className="text-[10px] text-slate-500 dark:text-slate-400 font-bold block">Body Temperature</span>
-                  <span className="font-bold text-slate-900 dark:text-white text-sm">
-                    {currentSoap.objective.reportedVitals.temperature || '98.4 °F'}
-                  </span>
-                </div>
-                <div className="p-2.5 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
-                  <span className="text-[10px] text-slate-500 dark:text-slate-400 font-bold block">Pulse Rate</span>
-                  <span className="font-bold text-slate-900 dark:text-white text-sm">
+                <div className="p-3 bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800">
+                  <span className="text-[10px] text-slate-500 uppercase font-bold block">Pulse Rate</span>
+                  <span className="text-sm font-bold font-mono tabular-nums text-slate-900 dark:text-white">
                     {currentSoap.objective.reportedVitals.pulse || '76 bpm'}
                   </span>
                 </div>
-                <div className="p-2.5 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
-                  <span className="text-[10px] text-slate-500 dark:text-slate-400 font-bold block">Blood Pressure</span>
-                  <span className="font-bold text-slate-900 dark:text-white text-sm">
-                    {currentSoap.objective.reportedVitals.bloodPressure || '120/80 mmHg'}
+                <div className="p-3 bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800">
+                  <span className="text-[10px] text-slate-500 uppercase font-bold block">Blood Pressure</span>
+                  <span className="text-sm font-bold font-mono tabular-nums text-slate-900 dark:text-white">
+                    {currentSoap.objective.reportedVitals.bloodPressure || '122/80 mmHg'}
                   </span>
                 </div>
-                <div className="p-2.5 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
-                  <span className="text-[10px] text-slate-500 dark:text-slate-400 font-bold block">SpO2 Oxygen Saturation</span>
-                  <span className="font-bold text-slate-900 dark:text-white text-sm">
-                    {currentSoap.objective.reportedVitals.spO2 || '98%'}
+                <div className="p-3 bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800">
+                  <span className="text-[10px] text-slate-500 uppercase font-bold block">Body Temperature</span>
+                  <span className="text-sm font-bold font-mono tabular-nums text-slate-900 dark:text-white">
+                    {currentSoap.objective.reportedVitals.temperature || '98.4 °F'}
+                  </span>
+                </div>
+                <div className="p-3 bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800">
+                  <span className="text-[10px] text-slate-500 uppercase font-bold block">SpO2 Oxygen</span>
+                  <span className="text-sm font-bold font-mono tabular-nums text-slate-900 dark:text-white">
+                    {currentSoap.objective.reportedVitals.spO2 || '99%'}
                   </span>
                 </div>
               </div>
-
-              <p className="text-xs text-slate-500 dark:text-slate-400 italic">
-                Note: {currentSoap.objective.physicalObservationsNote}
-              </p>
             </div>
 
-            {/* ASSESSMENT SECTION */}
-            <div className="p-5 bg-slate-50 dark:bg-slate-900/70 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-3">
+            {/* ASSESSMENT SECTION WITH DUAL CODES */}
+            <div className="p-5 bg-slate-50 dark:bg-slate-900/70 rounded-xl border border-slate-200 dark:border-slate-800 space-y-3">
               <div className="flex items-center justify-between">
-                <h4 className="text-xs font-extrabold uppercase tracking-wider text-purple-600 dark:text-purple-400">
-                  III. AI CLINICAL PATTERNS & DIFFERENTIAL CONSIDERATIONS
+                <h4 className="text-xs font-mono font-extrabold uppercase tracking-wider text-purple-600 dark:text-purple-400">
+                  III. CLINICAL ASSESSMENT & DUAL CODES
                 </h4>
-                <Badge variant="purple">Assistive Pattern Recognition</Badge>
+                <span className="text-[11px] text-slate-500 font-mono">ICD-11 + NAMASTE + TM2</span>
               </div>
 
-              <ul className="space-y-1.5 text-xs text-slate-700 dark:text-slate-300">
-                {currentSoap.assessment.aiPatterns.map((pat, i) => (
-                  <li key={i} className="flex items-start gap-2">
-                    <span className="text-purple-500 dark:text-purple-400 font-bold">•</span>
-                    <span>{pat}</span>
-                  </li>
-                ))}
-              </ul>
-
-              {/* Dual-Coded Diagnosis Card */}
-              {currentSoap.assessment.dualCodes.length > 0 && (
-                <div className="mt-3 p-3.5 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 space-y-2 shadow-sm">
-                  <span className="text-[10px] font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider block">
-                    Harmonized Dual-Coding Mapping:
+              <div className="space-y-2 text-xs">
+                <div>
+                  <strong className="text-slate-900 dark:text-white">AI Pattern Differential: </strong>
+                  <span className="text-slate-700 dark:text-slate-300">
+                    {currentSoap.assessment.differentialConsiderations.join(', ')}
                   </span>
-                  {currentSoap.assessment.dualCodes.map((dc, i) => (
-                    <div key={i} className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
-                      <div className="p-2 bg-slate-50 dark:bg-slate-800/80 rounded-lg border border-slate-200 dark:border-slate-700">
-                        <span className="text-[10px] font-bold text-sky-600 dark:text-sky-400 block">ICD-11 MMS</span>
-                        <span className="font-mono font-bold text-slate-900 dark:text-white">{dc.icd11Mms.code}</span>
-                        <span className="text-[11px] text-slate-500 dark:text-slate-400 block truncate">{dc.icd11Mms.display}</span>
+                </div>
+
+                {/* Dual Coding Cards */}
+                <div className="pt-2 space-y-2">
+                  {currentSoap.assessment.dualCodes.map((code, idx) => (
+                    <div key={idx} className="p-3 bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                      <div>
+                        <span className="font-bold text-slate-900 dark:text-white">{code.conditionName}</span>
+                        <div className="text-[11px] text-slate-500 font-mono mt-0.5">
+                          ICD-11 MMS: <span className="text-teal-600 dark:text-teal-400 font-bold">{code.icd11Mms.code}</span> ({code.icd11Mms.display})
+                        </div>
                       </div>
-                      <div className="p-2 bg-slate-50 dark:bg-slate-800/80 rounded-lg border border-slate-200 dark:border-slate-700">
-                        <span className="text-[10px] font-bold text-amber-600 dark:text-amber-400 block">NAMASTE Portal</span>
-                        <span className="font-mono font-bold text-slate-900 dark:text-white">{dc.namastePortal.code}</span>
-                        <span className="text-[11px] text-slate-500 dark:text-slate-400 block truncate">{dc.namastePortal.display}</span>
-                      </div>
-                      <div className="p-2 bg-slate-50 dark:bg-slate-800/80 rounded-lg border border-slate-200 dark:border-slate-700">
-                        <span className="text-[10px] font-bold text-teal-600 dark:text-teal-400 block">ICD-11 TM2</span>
-                        <span className="font-mono font-bold text-slate-900 dark:text-white">{dc.icd11Tm2.code}</span>
-                        <span className="text-[11px] text-slate-500 dark:text-slate-400 block truncate">{dc.icd11Tm2.display}</span>
+                      <div className="flex items-center gap-2">
+                        <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-amber-500/10 text-amber-700 dark:text-amber-300 border border-amber-500/20">
+                          NAMASTE: {code.namastePortal.code}
+                        </span>
+                        <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-teal-500/10 text-teal-700 dark:text-teal-300 border border-teal-500/20">
+                          TM2: {code.icd11Tm2.code}
+                        </span>
                       </div>
                     </div>
                   ))}
                 </div>
-              )}
-
-              <p className="text-[11px] text-slate-500 dark:text-slate-400 italic mt-2">
-                Disclaimer: {currentSoap.assessment.clinicalDisclaimer}
-              </p>
+              </div>
             </div>
 
             {/* PLAN SECTION */}
-            <div className="p-5 bg-slate-50 dark:bg-slate-900/70 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-3">
-              <div className="flex items-center justify-between">
-                <h4 className="text-xs font-extrabold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
-                  IV. PRELIMINARY RECOMMENDATIONS (FOR PHYSICIAN VERIFICATION)
-                </h4>
-                <Badge variant="green">Treating Doctor Verification</Badge>
-              </div>
-
-              <ul className="space-y-1.5 text-xs text-slate-700 dark:text-slate-300">
+            <div className="p-5 bg-slate-50 dark:bg-slate-900/70 rounded-xl border border-slate-200 dark:border-slate-800 space-y-3">
+              <h4 className="text-xs font-mono font-extrabold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
+                IV. PRELIMINARY PLAN & ORDERS
+              </h4>
+              <ul className="list-disc list-inside text-xs text-slate-700 dark:text-slate-300 space-y-1">
                 {currentSoap.plan.preliminaryRecommendations.map((rec, i) => (
-                  <li key={i} className="flex items-start gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
-                    <span>{rec}</span>
-                  </li>
+                  <li key={i}>{rec}</li>
                 ))}
               </ul>
             </div>
           </div>
         )}
 
-        {/* TAB 2: LONGITUDINAL TIMELINE */}
+        {/* TAB 2: TIMELINE */}
         {activeTab === 'timeline' && <LongitudinalTimeline />}
 
-        {/* TAB 3: MEDICATIONS */}
+        {/* TAB 3: MEDICATIONS & OCR */}
         {activeTab === 'medications' && (
           <div className="space-y-4">
-            <h3 className="text-base font-bold text-slate-900 dark:text-white font-display">
-              Active & Extracted Prescription Medications
-            </h3>
-            <div className="space-y-2">
-              {documents.flatMap(d => d.extractedMedications).map(med => (
-                <div key={med.id} className="p-3 bg-white dark:bg-slate-900/80 rounded-xl border border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs shadow-sm">
-                  <div>
-                    <span className="font-bold text-slate-900 dark:text-white">{med.name} {med.strength}</span>
-                    <span className="text-slate-500 dark:text-slate-400 ml-2">({med.route} • {med.frequency} • {med.duration})</span>
+            <h4 className="text-sm font-bold text-slate-900 dark:text-white font-display">
+              Prescription Extractions & Past Medications
+            </h4>
+            <div className="space-y-2 text-xs">
+              {documents.map((doc) => (
+                <div key={doc.id} className="p-4 bg-slate-50 dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 space-y-2">
+                  <div className="flex justify-between font-semibold text-slate-900 dark:text-white">
+                    <span>{doc.fileName}</span>
+                    <span className="text-teal-600 dark:text-teal-400 font-mono tabular-nums">Confidence: {(doc.confidenceScore * 100).toFixed(0)}%</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-[11px] font-mono text-slate-500 dark:text-slate-400">{(med.confidence * 100).toFixed(0)}% Conf</span>
-                    <Badge variant={med.verificationStatus === 'verified' ? 'green' : 'amber'}>
-                      {med.verificationStatus.toUpperCase()}
-                    </Badge>
+                  <div className="space-y-1">
+                    {doc.extractedMedications.map(med => (
+                      <div key={med.id} className="flex justify-between text-[11px] text-slate-600 dark:text-slate-400">
+                        <span>• {med.name} {med.strength} ({med.frequency})</span>
+                        <span className="font-mono">{med.verificationStatus.toUpperCase()}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
               ))}
@@ -363,16 +327,16 @@ export const DoctorDashboard: React.FC = () => {
 
         {/* TAB 4: AYUSH */}
         {activeTab === 'ayush' && (
-          <div className="space-y-4">
-            <h3 className="text-base font-bold text-slate-900 dark:text-white font-display">
-              Traditional Medicine (AYUSH) Clinical Baseline
-            </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+          <div className="space-y-4 text-xs">
+            <h4 className="text-sm font-bold text-slate-900 dark:text-white font-display">
+              Traditional Medicine Assessment
+            </h4>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               <div className="p-4 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
-                <span className="font-bold text-amber-600 dark:text-amber-300 block mb-1">Prakriti Constitution</span>
-                <span className="text-sm font-bold text-slate-900 dark:text-white">Pitta Predominant</span>
+                <span className="font-bold text-amber-600 dark:text-amber-300 block mb-1">Prakriti Profile</span>
+                <span className="text-sm font-bold text-slate-900 dark:text-white">Pitta Dominant</span>
                 <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">
-                  Warm metabolic rate; prone to hyperacidity (Vidagdha Jirna) and bile irritation.
+                  Metabolically intense with tendency towards hyperacidity and reflux.
                 </p>
               </div>
 
@@ -400,10 +364,10 @@ export const DoctorDashboard: React.FC = () => {
       </div>
 
       {/* 4. DOCTOR APPROVAL & DIGITAL SIGN-OFF BAR */}
-      <div className="glass-card-elevated rounded-3xl p-6 border border-slate-200/80 dark:border-teal-500/30 shadow-xl space-y-4">
+      <div className="glass-card-elevated rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-xl space-y-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <PenTool className="w-5 h-5 text-teal-600 dark:text-teal-400" />
+            <PenTool className="w-5 h-5 text-teal-600 dark:text-teal-400" aria-hidden="true" />
             <h3 className="font-bold text-slate-900 dark:text-white text-base font-display">
               Physician Final Review & Digital Sign-off
             </h3>
@@ -417,15 +381,16 @@ export const DoctorDashboard: React.FC = () => {
 
         {/* Doctor Clinical Notes */}
         <div>
-          <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+          <label htmlFor="doctor-clinical-notes" className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
             Doctor Physical Findings & Prescription Orders
           </label>
           <textarea
+            id="doctor-clinical-notes"
             rows={2}
             value={doctorNotes}
             onChange={(e) => setDoctorNotes(e.target.value)}
             disabled={currentSoap.approvedByDoctor}
-            className="w-full p-3 text-xs bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white focus:ring-2 focus:ring-teal-500 disabled:opacity-75"
+            className="w-full p-3 text-xs bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 disabled:opacity-75"
           />
         </div>
 
@@ -437,7 +402,7 @@ export const DoctorDashboard: React.FC = () => {
             checked={hasReviewed || currentSoap.approvedByDoctor}
             onChange={(e) => setHasReviewed(e.target.checked)}
             disabled={currentSoap.approvedByDoctor}
-            className="mt-0.5 accent-teal-500 w-4 h-4 cursor-pointer"
+            className="mt-0.5 accent-teal-600 w-4 h-4 cursor-pointer"
           />
           <label htmlFor="doctorReviewCheck" className="text-xs text-slate-700 dark:text-slate-300 cursor-pointer font-medium">
             I have personally examined the patient, reviewed the AI-assisted intake summary, inspected source provenance, and verified all medications.
@@ -447,14 +412,15 @@ export const DoctorDashboard: React.FC = () => {
         {/* Sign Button */}
         {!currentSoap.approvedByDoctor ? (
           <button
+            type="button"
             onClick={handleApproveCase}
-            className="w-full py-4 bg-gradient-to-r from-teal-500 via-cyan-500 to-sky-500 hover:from-teal-600 hover:to-sky-600 text-slate-950 font-bold rounded-2xl shadow-xl shadow-teal-500/20 flex items-center justify-center gap-2 text-sm transition-all"
+            className="w-full py-3.5 bg-teal-600 hover:bg-teal-700 text-white font-bold rounded-xl shadow-lg shadow-teal-600/20 flex items-center justify-center gap-2 text-sm transition-all tactile-btn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer"
           >
-            <CheckCircle2 className="w-5 h-5 text-slate-950" />
+            <CheckCircle2 className="w-4 h-4 text-white" aria-hidden="true" />
             <span>Approve & Sign Clinical Case (Publish to ABDM M2)</span>
           </button>
         ) : (
-          <div className="p-4 bg-emerald-500/10 rounded-2xl border border-emerald-500/30 text-xs text-emerald-800 dark:text-emerald-200 flex items-center justify-between">
+          <div className="p-4 bg-emerald-500/10 rounded-xl border border-emerald-500/30 text-xs text-emerald-800 dark:text-emerald-200 flex items-center justify-between">
             <div>
               <span className="font-bold block">Digitally Signed by Dr. A. K. Shukla, MD</span>
               <span className="text-[11px] text-emerald-700 dark:text-emerald-300 font-mono">
