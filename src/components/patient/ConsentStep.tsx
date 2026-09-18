@@ -23,7 +23,7 @@ export const ConsentStep: React.FC = () => {
       `Patient ${currentPatient.name} granted informed consent under DPDP Act 2023 for clinical case preparation.`,
       currentPatient.id
     );
-    showToast('Informed consent digitally signed and recorded.');
+    showToast('Consent saved securely on this device.');
     setPatientStep('basic_info');
   };
 
@@ -35,7 +35,7 @@ export const ConsentStep: React.FC = () => {
       `Patient ${currentPatient.name} declined digital intake consent. Standard manual paper triage route assigned.`,
       currentPatient.id
     );
-    alert('You have chosen not to proceed with digital intake. Please collect a physical paper token at Counter 1.');
+    alert('No problem! You can get a paper token at Counter 1.');
     setPatientStep('hospital_qr');
   };
 
@@ -44,8 +44,8 @@ export const ConsentStep: React.FC = () => {
       <div className="glass-card-elevated rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-xl space-y-5 sm:space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800 text-xs">
-          <span className="font-bold text-teal-600 dark:text-teal-400">Step: Data Sharing & Consent</span>
-          <span className="text-slate-500 dark:text-slate-400 font-mono">DPDP Act 2023 Statutory Notice</span>
+          <span className="font-bold text-teal-600 dark:text-teal-400">Step 1 of 8: Privacy & Consent</span>
+          <span className="text-slate-500 dark:text-slate-400">Safe & Private</span>
         </div>
 
         {/* Title */}

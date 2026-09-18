@@ -18,8 +18,9 @@ import { getTranslation, TranslationDictionary } from '../data/translations';
 
 export type AppRole = 'landing' | 'patient' | 'doctor' | 'admin' | 'privacy';
 export type AppTheme = 'light' | 'dark';
-export type AccentColor = 'teal' | 'indigo' | 'cyan' | 'emerald';
-export type FontSizeScale = 'compact' | 'normal' | 'large';
+export type AccentColor = 'teal' | 'indigo' | 'cyan' | 'amber' | 'emerald';
+export type FontSizeScale = 'compact' | 'normal' | 'large' | 'xlarge';
+export type ReadingWidth = 'comfortable' | 'expanded';
 export type GatewayMode = 'mock_sandbox' | 'live_staging' | 'offline_pwa';
 
 export type PatientStep = 
@@ -55,6 +56,8 @@ interface AppContextType {
   setAccentColor: (accent: AccentColor) => void;
   fontSize: FontSizeScale;
   setFontSize: (size: FontSizeScale) => void;
+  readingWidth: ReadingWidth;
+  setReadingWidth: (width: ReadingWidth) => void;
   highContrast: boolean;
   setHighContrast: (high: boolean) => void;
   reducedMotion: boolean;
@@ -125,11 +128,15 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [accentColor, setAccentColorState] = useState<AccentColor>(() => {
     const saved = localStorage.getItem('medikoisk_accent') as AccentColor;
-    return saved && ['teal', 'indigo', 'cyan', 'emerald'].includes(saved) ? saved : 'teal';
+    return saved && ['teal', 'indigo', 'cyan', 'amber', 'emerald'].includes(saved) ? saved : 'teal';
   });
   const [fontSize, setFontSizeState] = useState<FontSizeScale>(() => {
     const saved = localStorage.getItem('medikoisk_fontsize') as FontSizeScale;
-    return saved && ['compact', 'normal', 'large'].includes(saved) ? saved : 'normal';
+    return saved && ['compact', 'normal', 'large', 'xlarge'].includes(saved) ? saved : 'normal';
+  });
+  const [readingWidth, setReadingWidthState] = useState<ReadingWidth>(() => {
+    const saved = localStorage.getItem('medikoisk_readingwidth') as ReadingWidth;
+    return saved && ['comfortable', 'expanded'].includes(saved) ? saved : 'comfortable';
   });
   const [highContrast, setHighContrastState] = useState<boolean>(() => {
     return localStorage.getItem('medikoisk_contrast') === 'true';
@@ -171,6 +178,11 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     localStorage.setItem('medikoisk_fontsize', size);
   };
 
+  const setReadingWidth = (width: ReadingWidth) => {
+    setReadingWidthState(width);
+    localStorage.setItem('medikoisk_readingwidth', width);
+  };
+
   const setHighContrast = (val: boolean) => {
     setHighContrastState(val);
     localStorage.setItem('medikoisk_contrast', String(val));
@@ -209,6 +221,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const resetSettings = () => {
     setAccentColor('teal');
     setFontSize('normal');
+    setReadingWidth('comfortable');
     setHighContrast(false);
     setReducedMotion(false);
     setAudioGuidance(true);
@@ -216,7 +229,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     setKioskTimeoutSec(60);
     setGatewayMode('mock_sandbox');
     setSoundEffects(true);
-    showToast('Settings restored to clinical standards.');
+    showToast('Settings restored to defaults.');
   };
 
   const setLanguage = (lang: IndianLanguage) => {
@@ -233,7 +246,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     setTheme(theme === 'dark' ? 'light' : 'dark');
   };
 
-  // DOM Effects for theme, font scale, high contrast, reduced motion
+  // DOM Effects for theme, accent color, reading width, font scale, high contrast, reduced motion
   useEffect(() => {
     const root = document.documentElement;
     
@@ -243,6 +256,9 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     } else {
       root.classList.remove('dark');
     }
+
+    // Accent
+    root.setAttribute('data-accent', accentColor);
 
     // High contrast
     if (highContrast) {
@@ -258,10 +274,14 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       root.classList.remove('force-reduced-motion');
     }
 
+    // Reading width
+    root.classList.remove('reading-comfortable', 'reading-expanded');
+    root.classList.add(`reading-${readingWidth}`);
+
     // Font Scale
-    root.classList.remove('font-scale-compact', 'font-scale-normal', 'font-scale-large');
+    root.classList.remove('font-scale-compact', 'font-scale-normal', 'font-scale-large', 'font-scale-xlarge');
     root.classList.add(`font-scale-${fontSize}`);
-  }, [theme, highContrast, reducedMotion, fontSize]);
+  }, [theme, accentColor, highContrast, reducedMotion, readingWidth, fontSize]);
 
   // Global keyboard shortcut: Cmd+, or Ctrl+, for Settings
   useEffect(() => {
@@ -495,6 +515,8 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       setAccentColor,
       fontSize,
       setFontSize,
+      readingWidth,
+      setReadingWidth,
       highContrast,
       setHighContrast,
       reducedMotion,

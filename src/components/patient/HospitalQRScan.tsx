@@ -129,14 +129,14 @@ export const HospitalQRScan: React.FC = () => {
             onClick={handleGuestCheckIn}
             className="w-full py-2 text-xs text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 font-semibold cursor-pointer underline"
           >
-            Or continue as Unlinked Guest / Anonymous Attendee &rarr;
+            Or continue as Guest without login &rarr;
           </button>
         </div>
 
         {/* Security Note */}
         <div className="flex items-center justify-center gap-1.5 text-[11px] text-slate-500 dark:text-slate-400 pt-1">
           <ShieldCheck className="w-3.5 h-3.5 text-teal-600 dark:text-teal-400" aria-hidden="true" />
-          <span>Synchronous demographic profile exchange via ABDM Milestone 1</span>
+          <span>Safe & Private • Stored securely on this device</span>
         </div>
       </div>
     </div>

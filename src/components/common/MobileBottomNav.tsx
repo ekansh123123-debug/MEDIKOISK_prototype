@@ -23,33 +23,33 @@ export const MobileBottomNav: React.FC = () => {
   }> = [
     { 
       id: 'landing', 
-      label: t.navOverview || 'Overview', 
-      shortLabel: 'Overview',
+      label: t.navOverview || 'Home', 
+      shortLabel: 'Home',
       icon: Activity 
     },
     { 
       id: 'patient', 
-      label: t.navPatientKiosk || 'Patient Kiosk', 
-      shortLabel: 'Kiosk',
+      label: t.navPatientKiosk || 'Check-in', 
+      shortLabel: 'Check-in',
       icon: User 
     },
     { 
       id: 'doctor', 
-      label: t.navClinicianWorkstation || 'Clinician', 
-      shortLabel: 'Clinician',
+      label: t.navClinicianWorkstation || 'Doctor', 
+      shortLabel: 'Doctor',
       icon: Stethoscope 
     },
     { 
       id: 'admin', 
-      label: t.navTriageDesk || 'Triage Desk', 
-      shortLabel: 'Triage',
+      label: t.navTriageDesk || 'Queue', 
+      shortLabel: 'Queue',
       icon: LayoutDashboard,
       badge: emergencyHistory.length > 0 ? emergencyHistory.length : undefined,
       badgeColor: 'bg-rose-600 animate-pulse'
     },
     { 
       id: 'privacy', 
-      label: t.navPrivacyGovernance || 'DPDP Privacy', 
+      label: t.navPrivacyGovernance || 'Privacy', 
       shortLabel: 'Privacy',
       icon: ShieldCheck 
     }

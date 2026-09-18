@@ -43,8 +43,8 @@ export const MedicationVerificationStep: React.FC = () => {
       <div className="glass-card-elevated rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-xl space-y-5 sm:space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800 text-xs">
-          <span className="font-bold text-teal-600 dark:text-teal-400">Step: Extracted Medication Verification</span>
-          <span className="text-slate-500 dark:text-slate-400 font-mono">Human-In-The-Loop Safety Protocol</span>
+          <span className="font-bold text-teal-600 dark:text-teal-400">Step: Check Your Medicines</span>
+          <span className="text-slate-500 dark:text-slate-400">Safe & Verified</span>
         </div>
 
         {/* Title */}
@@ -61,9 +61,9 @@ export const MedicationVerificationStep: React.FC = () => {
         <div className="p-3.5 bg-amber-500/10 border border-amber-500/30 rounded-xl flex items-start gap-2.5 text-xs text-amber-800 dark:text-amber-200">
           <AlertTriangle className="w-5 h-5 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" aria-hidden="true" />
           <div>
-            <strong className="text-slate-900 dark:text-white">Safety Verification Protocol:</strong>
+            <strong className="text-slate-900 dark:text-white">Quick Review:</strong>
             <p className="mt-0.5 text-amber-700 dark:text-amber-200/90">
-              Prescription entries with OCR recognition confidence &lt; 95% require mandatory human confirmation before EHR insertion.
+              Please check that these medicine names and dosages match your doctor notes. Tap &ldquo;Confirm&rdquo; or edit any detail.
             </p>
           </div>
         </div>

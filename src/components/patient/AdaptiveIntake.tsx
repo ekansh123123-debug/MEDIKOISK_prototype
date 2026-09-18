@@ -74,7 +74,7 @@ export const AdaptiveIntake: React.FC = () => {
         setVoiceTranscript(result.transcript);
         setVoiceLatency(result.processingLatencyMs);
         setRawInputText(result.transcript);
-        showToast(`Voice transcribed via ${result.engineUsed} in ${(result.processingLatencyMs / 1000).toFixed(2)}s`);
+        showToast('Voice recorded successfully.');
         
         // Immediate safety check
         if (handleCheckEmergency(result.transcript)) {
@@ -232,7 +232,7 @@ export const AdaptiveIntake: React.FC = () => {
                   {isListening ? t.listeningNow : t.clickToSpeak}
                 </span>
                 <p className="text-[11px] text-slate-500 dark:text-slate-400">
-                  Project Bhashini Multi-dialect Speech Recognition
+                  Speak naturally in your preferred language
                 </p>
               </div>
 
@@ -249,14 +249,9 @@ export const AdaptiveIntake: React.FC = () => {
               {voiceTranscript && (
                 <div className="p-3 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700 text-xs text-slate-800 dark:text-slate-200 w-full animate-fade-in text-left shadow-sm">
                   <span className="text-[10px] font-bold text-teal-600 dark:text-teal-400 block uppercase">
-                    Transcribed Speech:
+                    You said:
                   </span>
                   &ldquo;{voiceTranscript}&rdquo;
-                  {voiceLatency && (
-                    <span className="text-[10px] font-mono tabular-nums text-slate-500 dark:text-slate-400 ml-2">
-                      ({(voiceLatency / 1000).toFixed(2)}s latency)
-                    </span>
-                  )}
                 </div>
               )}
             </div>

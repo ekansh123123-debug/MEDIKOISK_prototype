@@ -17,21 +17,21 @@ export const ProblemSolution: React.FC = () => {
   const { t } = useApp();
 
   const problems = [
-    { text: 'Overcrowded OPD waiting areas with 45–90 min queues', icon: <Clock className="w-4 h-4 text-rose-500" aria-hidden="true" /> },
-    { text: 'Manual clerical registration consuming 60% of visit time', icon: <FileSpreadsheet className="w-4 h-4 text-rose-500" aria-hidden="true" /> },
-    { text: 'Repetitive verbal history-taking at every hospital counter', icon: <Repeat className="w-4 h-4 text-rose-500" aria-hidden="true" /> },
-    { text: 'Physical paper prescriptions lost or damaged across visits', icon: <FileWarning className="w-4 h-4 text-rose-500" aria-hidden="true" /> },
-    { text: 'Severe vernacular language barriers in metropolitan hospitals', icon: <Languages className="w-4 h-4 text-rose-500" aria-hidden="true" /> },
-    { text: 'Physician burnout from manual EHR typing during consultations', icon: <XCircle className="w-4 h-4 text-rose-500" aria-hidden="true" /> }
+    { text: 'Overcrowded waiting halls with 45–90 minute lines', icon: <Clock className="w-4 h-4 text-rose-500" aria-hidden="true" /> },
+    { text: 'Filling out slow paper forms at crowded reception desks', icon: <FileSpreadsheet className="w-4 h-4 text-rose-500" aria-hidden="true" /> },
+    { text: 'Repeating your medical story to multiple different staff members', icon: <Repeat className="w-4 h-4 text-rose-500" aria-hidden="true" /> },
+    { text: 'Old paper prescriptions get lost or torn between doctor visits', icon: <FileWarning className="w-4 h-4 text-rose-500" aria-hidden="true" /> },
+    { text: 'Language barriers when hospital staff don\'t speak your dialect', icon: <Languages className="w-4 h-4 text-rose-500" aria-hidden="true" /> },
+    { text: 'Doctors spend precious visit time typing on computers instead of talking to you', icon: <XCircle className="w-4 h-4 text-rose-500" aria-hidden="true" /> }
   ];
 
   const solutions = [
-    { text: 'Instant QR Scan & Share check-in using ABHA or Guest mode', icon: <Zap className="w-4 h-4 text-teal-600 dark:text-teal-400" aria-hidden="true" /> },
-    { text: 'Entropy-weighted adaptive DAG inquiry via voice or touch', icon: <CheckCircle2 className="w-4 h-4 text-teal-600 dark:text-teal-400" aria-hidden="true" /> },
-    { text: 'TrOCR prescription extraction with human-in-the-loop review', icon: <CheckCircle2 className="w-4 h-4 text-teal-600 dark:text-teal-400" aria-hidden="true" /> },
-    { text: 'Longitudinal timeline linking past laboratory and clinical events', icon: <Network className="w-4 h-4 text-teal-600 dark:text-teal-400" aria-hidden="true" /> },
-    { text: 'Multilingual speech AI (Project Bhashini) in 6 Indian languages', icon: <Languages className="w-4 h-4 text-teal-600 dark:text-teal-400" aria-hidden="true" /> },
-    { text: 'Pre-consultation SOAP summary with clickable source provenance', icon: <Stethoscope className="w-4 h-4 text-teal-600 dark:text-teal-400" aria-hidden="true" /> }
+    { text: 'Scan reception QR or enter your phone number for instant check-in', icon: <Zap className="w-4 h-4 text-teal-600 dark:text-teal-400" aria-hidden="true" /> },
+    { text: 'Quick 4–6 smart questions that adapt to what hurts, via voice or touch', icon: <CheckCircle2 className="w-4 h-4 text-teal-600 dark:text-teal-400" aria-hidden="true" /> },
+    { text: 'Snap a photo of past prescriptions with easy 1-tap medicine confirmation', icon: <CheckCircle2 className="w-4 h-4 text-teal-600 dark:text-teal-400" aria-hidden="true" /> },
+    { text: 'All past clinic visits and medicines remembered in one simple view', icon: <Network className="w-4 h-4 text-teal-600 dark:text-teal-400" aria-hidden="true" /> },
+    { text: 'Speak and listen comfortably in 6 Indian languages with voice read-aloud', icon: <Languages className="w-4 h-4 text-teal-600 dark:text-teal-400" aria-hidden="true" /> },
+    { text: 'Doctor receives an organized summary before you enter the consultation room', icon: <Stethoscope className="w-4 h-4 text-teal-600 dark:text-teal-400" aria-hidden="true" /> }
   ];
 
   return (

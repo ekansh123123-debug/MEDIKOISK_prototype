@@ -28,7 +28,7 @@ export const BasicDetails: React.FC = () => {
       currentMedications: formData.currentMedications ? formData.currentMedications.split(',').map(s => s.trim()) : []
     };
     setCurrentPatient(updated);
-    showToast('Patient demographic profile updated.');
+    showToast('Your details were saved.');
     setPatientStep('complaint');
   };
 

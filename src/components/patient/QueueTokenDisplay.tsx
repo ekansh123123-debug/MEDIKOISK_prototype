@@ -55,7 +55,7 @@ export const QueueTokenDisplay: React.FC = () => {
         {/* Title */}
         <div className="space-y-1">
           <Badge variant={isEmergency ? 'red' : 'green'} pulsing={isEmergency}>
-            {isEmergency ? 'EMERGENCY PRIORITY OVERRIDE' : 'CASE PREPARED FOR CLINICIAN'}
+            {isEmergency ? 'EMERGENCY - PLEASE PROCEED TO ROOM 0' : 'READY FOR YOUR DOCTOR'}
           </Badge>
           <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white font-display mt-2">
             {t.tokenTitle}
@@ -117,7 +117,7 @@ export const QueueTokenDisplay: React.FC = () => {
             <div className="flex items-center gap-2">
               <Printer className="w-4 h-4 text-teal-600 dark:text-teal-400" aria-hidden="true" />
               <span className="text-xs font-bold text-slate-800 dark:text-white uppercase tracking-wider">
-                Kiosk Thermal Ticket Dispenser
+                Paper Token Slip
               </span>
             </div>
             <button

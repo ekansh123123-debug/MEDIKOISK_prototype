@@ -13,13 +13,13 @@ export const AbhaLogin: React.FC = () => {
 
   const handleSendOtp = () => {
     setOtpSent(true);
-    showToast('Authentication OTP dispatched to registered mobile number');
+    showToast('6-digit code sent to your mobile phone.');
   };
 
   const handleVerifyAbha = () => {
     const rohan = patients[0];
     setCurrentPatient(rohan);
-    showToast('ABHA Profile Discovered: Rohan Kulkarni');
+    showToast('Welcome back, Rohan Kulkarni!');
     setPatientStep('consent');
   };
 
@@ -33,7 +33,7 @@ export const AbhaLogin: React.FC = () => {
       abhaAddress: undefined
     };
     setCurrentPatient(guestPatient);
-    showToast('Registered as Guest Walk-in');
+    showToast('Continuing as guest.');
     setPatientStep('consent');
   };
 
@@ -42,8 +42,8 @@ export const AbhaLogin: React.FC = () => {
       <div className="glass-card-elevated rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-xl space-y-5 sm:space-y-6">
         {/* Process Breadcrumb Header */}
         <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800 text-xs">
-          <span className="font-bold text-teal-600 dark:text-teal-400">Step: Identity Verification</span>
-          <span className="text-slate-500 dark:text-slate-400 font-mono">ABDM Registry Connector</span>
+          <span className="font-bold text-teal-600 dark:text-teal-400">Step: Login or Guest</span>
+          <span className="text-slate-500 dark:text-slate-400">Safe & Private</span>
         </div>
 
         {/* Title */}
@@ -77,7 +77,7 @@ export const AbhaLogin: React.FC = () => {
                   </span>
                 </div>
                 <p className="text-xs text-slate-600 dark:text-slate-300 mt-1 leading-relaxed">
-                  Verify using 14-digit ABHA ID or ABHA address handle for seamless health history exchange.
+                  Enter your mobile number or ABHA ID to quickly bring up past hospital records.
                 </p>
               </div>
             </button>
@@ -95,7 +95,7 @@ export const AbhaLogin: React.FC = () => {
                   Continue as Walk-in Guest
                 </h3>
                 <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
-                  Proceed with phone number only. A temporary digital hospital OPD pass will be generated.
+                  No login required. Proceed directly with your name and phone number.
                 </p>
               </div>
             </button>
@@ -107,7 +107,7 @@ export const AbhaLogin: React.FC = () => {
           <div className="space-y-4 pt-2">
             <div className="p-3 bg-teal-500/10 rounded-xl border border-teal-500/20 text-xs text-teal-700 dark:text-teal-300 flex items-center gap-2 font-semibold">
               <CheckCircle2 className="w-4 h-4 shrink-0 text-teal-600 dark:text-teal-400" aria-hidden="true" />
-              <span>NHA ABDM Gateway Connected • HSM Verified</span>
+              <span>Safe & Connected • Official Health Gateway</span>
             </div>
 
             <div>

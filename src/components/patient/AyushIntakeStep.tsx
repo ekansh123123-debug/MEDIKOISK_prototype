@@ -35,8 +35,8 @@ export const AyushIntakeStep: React.FC = () => {
       <div className="glass-card-elevated rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-xl space-y-5 sm:space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800 text-xs">
-          <span className="font-bold text-teal-600 dark:text-teal-400">Step: Traditional Medicine & Dual-Coding</span>
-          <span className="text-slate-500 dark:text-slate-400 font-mono">NAMASTE & WHO TM2 Standard</span>
+          <span className="font-bold text-teal-600 dark:text-teal-400">Step: Traditional Remedies & Habits</span>
+          <span className="text-slate-500 dark:text-slate-400">Holistic Care</span>
         </div>
 
         {/* Title */}
@@ -56,10 +56,10 @@ export const AyushIntakeStep: React.FC = () => {
         <div className="p-4 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-slate-200 dark:border-slate-800 flex items-center justify-between">
           <div>
             <h3 className="text-xs font-bold text-slate-900 dark:text-white">
-              Do you take or consult AYUSH / Traditional medicine?
+              Do you take home remedies or ayurvedic medicines?
             </h3>
             <p className="text-[11px] text-slate-500 dark:text-slate-400">
-              Captures herbal preparations to prevent herb-drug interactions.
+              Helps your doctor ensure home remedies and medicines work safely together.
             </p>
           </div>
           <div className="flex gap-2">

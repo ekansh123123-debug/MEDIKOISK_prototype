@@ -29,7 +29,7 @@ export const DocumentUploadStep: React.FC = () => {
 
     addDocument(result);
     setIsProcessing(false);
-    showToast('Prescription digitized via TrOCR & BioBERT.');
+    showToast('Prescription scanned successfully.');
     setPatientStep('medication_verify');
   };
 
@@ -38,8 +38,8 @@ export const DocumentUploadStep: React.FC = () => {
       <div className="glass-card-elevated rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-xl space-y-5 sm:space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800 text-xs">
-          <span className="font-bold text-teal-600 dark:text-teal-400">Step: Medical Document Intelligence</span>
-          <span className="text-slate-500 dark:text-slate-400 font-mono">TrOCR + BioBERT Extraction</span>
+          <span className="font-bold text-teal-600 dark:text-teal-400">Step: Past Prescriptions & Notes</span>
+          <span className="text-slate-500 dark:text-slate-400">Safe & Private</span>
         </div>
 
         {/* Title */}
@@ -61,10 +61,10 @@ export const DocumentUploadStep: React.FC = () => {
 
             <div className="space-y-1">
               <h3 className="text-base font-bold text-slate-900 dark:text-white font-display">
-                Digitizing Clinical Document…
+                Reading Prescription Photo…
               </h3>
-              <p className="text-xs font-mono text-teal-600 dark:text-teal-400 capitalize">
-                Pipeline Stage: {currentStage.replace('_', ' ')}
+              <p className="text-xs text-teal-600 dark:text-teal-400 capitalize">
+                Checking: {currentStage.replace(/_/g, ' ')}
               </p>
             </div>
 
@@ -72,10 +72,10 @@ export const DocumentUploadStep: React.FC = () => {
             <div className="grid grid-cols-5 gap-1 pt-2 max-w-sm mx-auto">
               {[
                 { stage: 'uploading', label: 'Upload' },
-                { stage: 'preprocessing', label: 'Deskew' },
+                { stage: 'preprocessing', label: 'Enhance' },
                 { stage: 'layout_analysis', label: 'Layout' },
-                { stage: 'trocr_recognition', label: 'TrOCR' },
-                { stage: 'nlp_entity_extraction', label: 'BioBERT' }
+                { stage: 'trocr_recognition', label: 'Reading' },
+                { stage: 'nlp_entity_extraction', label: 'Medicines' }
               ].map((s, idx) => {
                 const stages = ['uploading', 'preprocessing', 'layout_analysis', 'trocr_recognition', 'nlp_entity_extraction', 'completed'];
                 const isPassed = stages.indexOf(currentStage) >= idx;

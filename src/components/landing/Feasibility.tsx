@@ -7,34 +7,34 @@ export const Feasibility: React.FC = () => {
 
   const challenges = [
     {
-      challenge: 'Weak mobile network connectivity in public hospital basements',
-      mitigation: 'Offline-first PWA architecture with local IndexedDB/localStorage queuing. Syncs automatically upon hospital Wi-Fi reconnection.',
-      status: 'Engineered'
+      challenge: 'Weak mobile network or spotty Wi-Fi in hospital basements',
+      mitigation: 'Works offline: Your answers are saved safely on your device (in Local Storage) and sync automatically when reconnected.',
+      status: 'Ready'
     },
     {
-      challenge: 'Heavy ambient OPD noise (65–85 dB) & diverse regional accents',
-      mitigation: 'Multi-stage DSP filtering (Wiener noise suppression + VAD) integrated with Project Bhashini IndicConformer phonetic models.',
-      status: 'Engineered'
+      challenge: 'Noisy hospital waiting rooms and diverse regional accents',
+      mitigation: 'Smart noise filtering so the microphone hears your voice clearly even in crowded hospital halls.',
+      status: 'Ready'
     },
     {
-      challenge: 'Reluctance to share OTPs or medical details due to fraud anxiety',
-      mitigation: "Transparent audio-guided consent in patient's native language under DPDP Act 2023, accompanied by hospital Arogya Mitra assistance.",
-      status: 'Engineered'
+      challenge: 'Hesitation or worry about digital privacy',
+      mitigation: "Clear audio guidance in your own language explaining that your answers are private and never sold or shared.",
+      status: 'Ready'
     },
     {
-      challenge: 'Risk of AI hallucination or premature diagnostic anchoring',
-      mitigation: 'Strict human-in-the-loop: Every assertion displays clickable source provenance. Doctors must verify and digitally sign before EHR commitment.',
-      status: 'Engineered'
+      challenge: 'Making sure doctor summaries are 100% accurate',
+      mitigation: 'Human review first: Doctors review every note and can see exactly what the patient said before prescribing.',
+      status: 'Ready'
     },
     {
-      challenge: 'Illegible handwritten prescription slips with atypical handwriting',
-      mitigation: 'Hybrid TrOCR + BioBERT sequence modeling with mandatory confidence thresholding: Any drug with confidence under 95% triggers patient verification.',
-      status: 'Engineered'
+      challenge: 'Hard-to-read handwritten doctor prescriptions',
+      mitigation: 'Smart photo reader detects medicine names and asks you to tap "Confirm" so nothing is misread.',
+      status: 'Ready'
     },
     {
-      challenge: 'Emergency deterioration during unsupervised digital intake',
-      mitigation: 'Deterministic rule engine (cardio, neuro, respiratory, obstetric) operates in parallel with AI. Bypasses questionnaire to trigger immediate Red alert.',
-      status: 'Engineered'
+      challenge: 'Patient feels worse while answering questions',
+      mitigation: 'Instant emergency safety alert triggers immediately, directing the patient straight to hospital doctors.',
+      status: 'Ready'
     }
   ];
 

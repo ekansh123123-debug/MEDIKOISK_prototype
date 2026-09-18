@@ -97,12 +97,12 @@ export const Hero: React.FC = () => {
 
             <div className="grid grid-cols-2 md:grid-cols-6 gap-3">
               {[
-                { step: '01', title: t.qrTitle.split(' ')[0] + ' QR', desc: t.qrDesc.slice(0, 24) + '…', icon: <Activity className="w-4 h-4 text-teal-600 dark:text-teal-400" /> },
-                { step: '02', title: t.adaptiveTitle.split(' ')[0] + ' Intake', desc: t.voiceInputPrompt.slice(0, 24) + '…', icon: <Mic className="w-4 h-4 text-sky-600 dark:text-sky-400" /> },
-                { step: '03', title: t.docTitle.split(' ')[0] + ' OCR', desc: t.tagTrOcr, icon: <FileText className="w-4 h-4 text-indigo-600 dark:text-indigo-400" /> },
-                { step: '04', title: t.medVerifyTitle.split(' ')[0] + ' Check', desc: t.dosageLabel + ' & ' + t.frequencyLabel, icon: <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" /> },
-                { step: '05', title: t.tokenTitle.split(' ')[0] + ' Slip', desc: t.estimatedWait, icon: <Clock className="w-4 h-4 text-amber-600 dark:text-amber-400" /> },
-                { step: '06', title: t.doctorTitle.split(' ')[0] + ' Review', desc: t.approveSignSummary.slice(0, 24) + '…', icon: <Stethoscope className="w-4 h-4 text-teal-600 dark:text-teal-400" /> }
+                { step: '01', title: t.qrTitle, desc: t.qrDesc.slice(0, 30) + '…', icon: <Activity className="w-4 h-4 text-teal-600 dark:text-teal-400" /> },
+                { step: '02', title: t.adaptiveTitle, desc: t.voiceInputPrompt.slice(0, 30) + '…', icon: <Mic className="w-4 h-4 text-sky-600 dark:text-sky-400" /> },
+                { step: '03', title: t.docTitle, desc: t.tagTrOcr, icon: <FileText className="w-4 h-4 text-indigo-600 dark:text-indigo-400" /> },
+                { step: '04', title: t.medVerifyTitle, desc: t.dosageLabel + ' & ' + t.frequencyLabel, icon: <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" /> },
+                { step: '05', title: t.tokenTitle, desc: t.estimatedWait, icon: <Clock className="w-4 h-4 text-amber-600 dark:text-amber-400" /> },
+                { step: '06', title: t.doctorTitle, desc: t.roomNumber || 'Room 104', icon: <Stethoscope className="w-4 h-4 text-teal-600 dark:text-teal-400" /> }
               ].map((item) => (
                 <div
                   key={item.step}

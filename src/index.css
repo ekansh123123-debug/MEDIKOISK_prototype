@@ -41,6 +41,62 @@
     --text-secondary: #cbd5e1;
   }
 
+  /* Dynamic Accent Color Variations */
+  [data-accent="teal"] {
+    --accent-primary: #0d9488;
+    --accent-hover: #0f766e;
+    --focus-ring: #0d9488;
+  }
+  .dark[data-accent="teal"] {
+    --accent-primary: #14b8a6;
+    --accent-hover: #2dd4bf;
+    --focus-ring: #14b8a6;
+  }
+
+  [data-accent="cyan"] {
+    --accent-primary: #0284c7;
+    --accent-hover: #0369a1;
+    --focus-ring: #0284c7;
+  }
+  .dark[data-accent="cyan"] {
+    --accent-primary: #38bdf8;
+    --accent-hover: #0ea5e9;
+    --focus-ring: #38bdf8;
+  }
+
+  [data-accent="indigo"] {
+    --accent-primary: #4f46e5;
+    --accent-hover: #4338ca;
+    --focus-ring: #4f46e5;
+  }
+  .dark[data-accent="indigo"] {
+    --accent-primary: #818cf8;
+    --accent-hover: #6366f1;
+    --focus-ring: #818cf8;
+  }
+
+  [data-accent="amber"] {
+    --accent-primary: #d97706;
+    --accent-hover: #b45309;
+    --focus-ring: #d97706;
+  }
+  .dark[data-accent="amber"] {
+    --accent-primary: #fbbf24;
+    --accent-hover: #f59e0b;
+    --focus-ring: #fbbf24;
+  }
+
+  [data-accent="emerald"] {
+    --accent-primary: #059669;
+    --accent-hover: #047857;
+    --focus-ring: #059669;
+  }
+  .dark[data-accent="emerald"] {
+    --accent-primary: #34d399;
+    --accent-hover: #10b981;
+    --focus-ring: #34d399;
+  }
+
   body {
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     background-color: var(--bg-canvas);
@@ -60,6 +116,30 @@
 }
 .font-scale-large {
   font-size: 115%;
+}
+.font-scale-xlarge {
+  font-size: 130%;
+}
+
+/* Reading Width Customization */
+.reading-comfortable .content-readable {
+  max-width: 56rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+.reading-expanded .content-readable {
+  max-width: 100%;
+}
+
+/* Dynamic Accent Utilities */
+.accent-bg {
+  background-color: var(--accent-primary) !important;
+}
+.accent-text {
+  color: var(--accent-primary) !important;
+}
+.accent-border {
+  border-color: var(--accent-primary) !important;
 }
 
 /* Accessible visible focus states */

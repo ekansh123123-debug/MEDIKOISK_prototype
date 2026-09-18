@@ -17,11 +17,11 @@ export const Footer: React.FC = () => {
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
             </span>
             <span className="font-semibold text-slate-200">
-              All Clinical & Interoperability Services Operational
+              System Ready & Operational
             </span>
             <span className="text-slate-500 hidden sm:inline">•</span>
             <span className="text-slate-400 hidden sm:inline">
-              NRCeS FHIR R4 Bundle v1.0 • ABDM M1–M4 Active
+              Private, Safe & Available Offline
             </span>
           </div>
           <div className="flex items-center gap-3">
@@ -30,7 +30,7 @@ export const Footer: React.FC = () => {
               className="text-teal-400 hover:text-teal-300 font-semibold flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 rounded px-1.5 py-0.5 cursor-pointer"
             >
               <Sliders className="w-3.5 h-3.5" aria-hidden="true" />
-              <span>Settings (Ctrl+,)</span>
+              <span>Settings</span>
             </button>
           </div>
         </div>
@@ -41,52 +41,51 @@ export const Footer: React.FC = () => {
             <div className="flex items-center gap-2.5">
               <Logo size="md" showSubtitle={true} />
               <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-teal-500/10 text-teal-300 border border-teal-500/20 self-start mt-1">
-                Enterprise Clinical
+                Hospital Edition
               </span>
             </div>
             <p className="text-slate-400 max-w-md leading-relaxed text-xs">
-              AI-Powered Adaptive Patient Case-Taking for Faster, Smarter and Connected Healthcare. 
-              Translating multilingual patient complaints into structured, doctor-ready SOAP summaries with verified source provenance before consultation starts.
+              Fast, friendly, and private patient check-in. Prepares your visit information in your native language so your doctor can spend more time examining and caring for you.
             </p>
             <div className="flex items-center gap-2 pt-2 text-slate-400 text-[11px]">
               <Building2 className="w-3.5 h-3.5 text-teal-400" aria-hidden="true" />
-              <span className="text-slate-300">Hospital-Grade Outpatient & Inpatient Clinical Infrastructure</span>
+              <span className="text-slate-300">Designed for Patient Comfort & Hospital Efficiency</span>
             </div>
           </div>
 
-          {/* Col 2: Interoperability Standards */}
+          {/* Col 2: Key Features */}
           <div className="space-y-2">
-            <h3 className="text-white font-semibold text-xs tracking-wider uppercase">ABDM & Interoperability</h3>
+            <h3 className="text-white font-semibold text-xs tracking-wider uppercase">Features & Safety</h3>
             <ul className="space-y-1.5 text-slate-400">
               <li className="flex items-center gap-1.5">
                 <FileCheck className="w-3.5 h-3.5 text-teal-400" aria-hidden="true" />
-                <span>NRCeS FHIR R4 Document Bundles</span>
+                <span>Paperless Doctor Sharing</span>
               </li>
               <li className="flex items-center gap-1.5">
                 <ShieldCheck className="w-3.5 h-3.5 text-teal-400" aria-hidden="true" />
-                <span>ABDM Milestones M1, M2, M3 & M4</span>
+                <span>ABHA Health Card Integration</span>
               </li>
               <li className="flex items-center gap-1.5">
                 <HeartHandshake className="w-3.5 h-3.5 text-teal-400" aria-hidden="true" />
-                <span>Dual-Coding (ICD-11, NAMASTE, TM2)</span>
+                <span>Ayurvedic & Traditional Remedies</span>
               </li>
               <li className="flex items-center gap-1.5">
                 <Lock className="w-3.5 h-3.5 text-teal-400" aria-hidden="true" />
-                <span>Fidelius ECDH Curve25519 Encryption</span>
+                <span>Strict Device-Level Privacy</span>
               </li>
             </ul>
           </div>
 
           {/* Col 3: Quick Navigation */}
           <div className="space-y-2">
-            <h3 className="text-white font-semibold text-xs tracking-wider uppercase">Clinical Navigation</h3>
+            <h3 className="text-white font-semibold text-xs tracking-wider uppercase">Quick Links</h3>
             <ul className="space-y-1.5 text-slate-400">
               <li>
                 <button 
                   onClick={() => setRole('patient')} 
                   className="hover:text-teal-300 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-teal-400 rounded cursor-pointer"
                 >
-                  Autonomous Patient Kiosk
+                  Patient Check-in (Self-Service)
                 </button>
               </li>
               <li>
@@ -94,7 +93,7 @@ export const Footer: React.FC = () => {
                   onClick={() => setRole('doctor')} 
                   className="hover:text-teal-300 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-teal-400 rounded cursor-pointer"
                 >
-                  Clinician EHR Workstation
+                  Doctor&apos;s Workstation
                 </button>
               </li>
               <li>
@@ -102,7 +101,7 @@ export const Footer: React.FC = () => {
                   onClick={() => setRole('admin')} 
                   className="hover:text-teal-300 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-teal-400 rounded cursor-pointer"
                 >
-                  Emergency Triage & Queue Desk
+                  Hospital Queue & Triage
                 </button>
               </li>
               <li>
@@ -110,7 +109,7 @@ export const Footer: React.FC = () => {
                   onClick={() => setRole('privacy')} 
                   className="hover:text-teal-300 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-teal-400 rounded cursor-pointer"
                 >
-                  DPDP 2023 Privacy & Audit Ledger
+                  Privacy & Data Safety
                 </button>
               </li>
             </ul>

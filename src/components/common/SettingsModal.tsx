@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { useApp, AccentColor, FontSizeScale, GatewayMode } from '../../context/AppContext';
+import { useApp, AccentColor, FontSizeScale, ReadingWidth } from '../../context/AppContext';
 import { IndianLanguage } from '../../types';
 import { 
   X, 
   Palette, 
   Languages, 
   Volume2, 
-  MonitorSmartphone, 
-  ShieldCheck, 
-  FileText, 
   RotateCcw, 
   Download, 
   Check, 
@@ -17,18 +14,14 @@ import {
   Sliders, 
   Eye, 
   Sparkles, 
-  Cpu, 
-  Lock, 
-  Database,
-  Printer,
-  Clock,
-  Radio,
-  Activity
+  HardDrive,
+  Trash2,
+  Maximize2,
+  Minimize2
 } from 'lucide-react';
-import { AuditService } from '../../services/auditService';
 import { StorageService } from '../../services/storageService';
 
-type SettingsTab = 'appearance' | 'language' | 'kiosk' | 'abdm' | 'privacy' | 'diagnostics';
+type SettingsTab = 'appearance' | 'voice' | 'storage';
 
 export const SettingsModal: React.FC = () => {
   const {
@@ -40,6 +33,8 @@ export const SettingsModal: React.FC = () => {
     setAccentColor,
     fontSize,
     setFontSize,
+    readingWidth,
+    setReadingWidth,
     highContrast,
     setHighContrast,
     reducedMotion,
@@ -50,17 +45,11 @@ export const SettingsModal: React.FC = () => {
     setAudioGuidance,
     speechSpeed,
     setSpeechSpeed,
-    kioskTimeoutSec,
-    setKioskTimeoutSec,
-    gatewayMode,
-    setGatewayMode,
     soundEffects,
     setSoundEffects,
     resetSettings,
-    loadDemoScenario,
     resetAll,
-    showToast,
-    t
+    showToast
   } = useApp();
 
   const [activeTab, setActiveTab] = useState<SettingsTab>('appearance');
@@ -78,44 +67,50 @@ export const SettingsModal: React.FC = () => {
 
   if (!isSettingsOpen) return null;
 
-  const languages: Array<{ code: IndianLanguage; label: string; native: string; script: string }> = [
-    { code: 'en', label: 'English', native: 'English', script: 'Latin' },
-    { code: 'hi', label: 'Hindi', native: 'हिन्दी', script: 'Devanagari' },
-    { code: 'mr', label: 'Marathi', native: 'मराठी', script: 'Devanagari' },
-    { code: 'ta', label: 'Tamil', native: 'தமிழ்', script: 'Tamil' },
-    { code: 'bn', label: 'Bengali', native: 'বাংলা', script: 'Bengali' },
-    { code: 'te', label: 'Telugu', native: 'తెలుగు', script: 'Telugu' }
+  const languages: Array<{ code: IndianLanguage; label: string; native: string }> = [
+    { code: 'en', label: 'English', native: 'English' },
+    { code: 'hi', label: 'Hindi', native: 'हिन्दी' },
+    { code: 'mr', label: 'Marathi', native: 'मराठी' },
+    { code: 'ta', label: 'Tamil', native: 'தமிழ்' },
+    { code: 'bn', label: 'Bengali', native: 'বাংলা' },
+    { code: 'te', label: 'Telugu', native: 'తెలుగు' }
   ];
 
   const accentOptions: Array<{ id: AccentColor; label: string; hex: string; desc: string }> = [
-    { id: 'teal', label: 'Clinical Emerald', hex: '#0d9488', desc: 'AIIMS clinical standard (Default)' },
-    { id: 'cyan', label: 'Glacier Cyan', hex: '#0ea5e9', desc: 'High-visibility digital kiosk' },
-    { id: 'indigo', label: 'Linear Indigo', hex: '#5E6AD2', desc: 'Modern clinician workstation' },
-    { id: 'emerald', label: 'Precision Jade', hex: '#10b981', desc: 'High-contrast accessible theme' }
+    { id: 'teal', label: 'Clinical Emerald', hex: '#0d9488', desc: 'Calm, clear hospital green' },
+    { id: 'cyan', label: 'Ocean Cyan', hex: '#0284c7', desc: 'Bright, vibrant digital blue' },
+    { id: 'indigo', label: 'Royal Indigo', hex: '#4f46e5', desc: 'Modern high-focus slate blue' },
+    { id: 'amber', label: 'Warm Amber', hex: '#d97706', desc: 'Soft, welcoming golden tone' }
   ];
 
-  const handleExportAuditLogs = () => {
-    const logs = AuditService.getLogs();
-    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(logs, null, 2));
+  const fontOptions: Array<{ id: FontSizeScale; label: string; percent: string }> = [
+    { id: 'compact', label: 'Small', percent: '90%' },
+    { id: 'normal', label: 'Normal', percent: '100%' },
+    { id: 'large', label: 'Large', percent: '115%' },
+    { id: 'xlarge', label: 'Extra Large', percent: '130%' }
+  ];
+
+  const handleExportBackup = () => {
+    const patients = StorageService.getPatients();
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify({
+      exportedAt: new Date().toISOString(),
+      patients
+    }, null, 2));
     const downloadAnchor = document.createElement('a');
     downloadAnchor.setAttribute("href", dataStr);
-    downloadAnchor.setAttribute("download", `medikoisk-audit-trail-${new Date().toISOString().slice(0, 10)}.json`);
+    downloadAnchor.setAttribute("download", `medikoisk-backup-${new Date().toISOString().slice(0, 10)}.json`);
     document.body.appendChild(downloadAnchor);
     downloadAnchor.click();
     downloadAnchor.remove();
-    showToast('Exported DPDP 2023 Audit Trail JSON');
+    showToast('Saved a backup copy to your downloads.');
   };
 
-  const handleExportConsentLedger = () => {
-    const consents = StorageService.getConsents();
-    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(consents, null, 2));
-    const downloadAnchor = document.createElement('a');
-    downloadAnchor.setAttribute("href", dataStr);
-    downloadAnchor.setAttribute("download", `medikoisk-dpdp-consents-${new Date().toISOString().slice(0, 10)}.json`);
-    document.body.appendChild(downloadAnchor);
-    downloadAnchor.click();
-    downloadAnchor.remove();
-    showToast('Exported DPDP 2023 Consent Ledger JSON');
+  const handleResetAllVisit = () => {
+    if (window.confirm('Clear current visit data and return to the beginning?')) {
+      resetAll();
+      setIsSettingsOpen(false);
+      showToast('Visit cleared. Starting fresh.');
+    }
   };
 
   return (
@@ -129,231 +124,285 @@ export const SettingsModal: React.FC = () => {
       }}
     >
       <div 
-        className="relative w-full max-w-3xl max-h-[92vh] flex flex-col rounded-2xl bg-white dark:bg-[#0d1527] border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden transition-all text-slate-900 dark:text-slate-100"
+        className="relative w-full max-w-2xl max-h-[90vh] flex flex-col rounded-2xl bg-white dark:bg-[#0d1527] border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden transition-all text-slate-900 dark:text-slate-100"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-4 sm:px-6 py-3.5 sm:py-4 border-b border-slate-200 dark:border-slate-800/80 bg-slate-50/70 dark:bg-[#090f1e]/80">
-          <div className="flex items-center gap-2.5 sm:gap-3">
-            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-teal-500/10 text-teal-600 dark:text-teal-400 flex items-center justify-center border border-teal-500/20 shrink-0">
-              <Sliders className="w-4 h-4 sm:w-5 sm:h-5" />
+        <div className="flex items-center justify-between px-5 sm:px-6 py-4 border-b border-slate-200 dark:border-slate-800/80 bg-slate-50/80 dark:bg-[#090f1e]/80">
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-xl bg-teal-500/10 text-teal-600 dark:text-teal-400 flex items-center justify-center border border-teal-500/20 shrink-0">
+              <Sliders className="w-5 h-5" aria-hidden="true" />
             </div>
             <div>
-              <h2 id="settings-dialog-title" className="text-sm sm:text-base font-bold text-slate-900 dark:text-white flex items-center gap-1.5 sm:gap-2">
-                Platform Preferences
-                <span className="text-[9px] sm:text-[10px] font-mono font-semibold uppercase tracking-wider px-1.5 sm:px-2 py-0.5 rounded-full bg-teal-500/10 text-teal-700 dark:text-teal-300 border border-teal-500/20">
-                  Settings
-                </span>
+              <h2 id="settings-dialog-title" className="text-base font-bold text-slate-900 dark:text-white">
+                Customize Your Experience
               </h2>
-              <p className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400">
-                Aesthetics, Bhashini voice, kiosk hardware, and ABDM sandbox.
+              <p className="text-xs text-slate-500 dark:text-slate-400">
+                Adjust text size, colors, sound, and comfort options.
               </p>
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <span className="hidden sm:inline-block text-[11px] font-mono text-slate-400 dark:text-slate-500 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded border border-slate-200 dark:border-slate-700">
-              ESC to close
-            </span>
             <button
               onClick={() => setIsSettingsOpen(false)}
-              className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 transition-colors cursor-pointer"
-              aria-label="Close settings panel"
+              className="p-2 rounded-xl text-slate-400 hover:text-slate-700 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 transition-colors cursor-pointer"
+              aria-label="Close settings"
             >
-              <X className="w-5 h-5" />
+              <X className="w-5 h-5" aria-hidden="true" />
             </button>
           </div>
         </div>
 
-        {/* Tab Navigation */}
-        <div className="flex border-b border-slate-200 dark:border-slate-800 bg-slate-100/50 dark:bg-[#0a1122]/50 px-3 sm:px-4 overflow-x-auto scrollbar-none gap-1">
-          {[
-            { id: 'appearance', label: 'Appearance', icon: <Palette className="w-3.5 h-3.5" /> },
-            { id: 'language', label: 'Language & Voice', icon: <Languages className="w-3.5 h-3.5" /> },
-            { id: 'kiosk', label: 'Kiosk Station', icon: <MonitorSmartphone className="w-3.5 h-3.5" /> },
-            { id: 'abdm', label: 'ABDM Sandbox', icon: <Activity className="w-3.5 h-3.5" /> },
-            { id: 'privacy', label: 'Data & Privacy', icon: <Lock className="w-3.5 h-3.5" /> },
-            { id: 'diagnostics', label: 'Diagnostics', icon: <Cpu className="w-3.5 h-3.5" /> }
-          ].map((tab) => {
-            const active = activeTab === tab.id;
-            return (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id as SettingsTab)}
-                className={`flex items-center gap-1.5 py-2.5 sm:py-3 px-3 text-xs font-semibold whitespace-nowrap border-b-2 transition-all cursor-pointer shrink-0 ${
-                  active
-                    ? 'border-teal-500 text-teal-600 dark:text-teal-400 bg-white/70 dark:bg-slate-900/60'
-                    : 'border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:border-slate-300 dark:hover:border-slate-700'
-                }`}
-              >
-                {tab.icon}
-                <span>{tab.label}</span>
-              </button>
-            );
-          })}
+        {/* 3 Intuitive Tabs */}
+        <div className="flex items-center px-4 sm:px-6 border-b border-slate-200 dark:border-slate-800 bg-slate-100/50 dark:bg-slate-900/40 gap-1 overflow-x-auto">
+          <button
+            onClick={() => setActiveTab('appearance')}
+            className={`flex items-center gap-2 py-3 px-3 text-xs font-bold border-b-2 transition-colors whitespace-nowrap cursor-pointer ${
+              activeTab === 'appearance'
+                ? 'border-teal-600 dark:border-teal-400 text-teal-600 dark:text-teal-400'
+                : 'border-transparent text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+            }`}
+          >
+            <Palette className="w-4 h-4" aria-hidden="true" />
+            <span>Appearance & Size</span>
+          </button>
+
+          <button
+            onClick={() => setActiveTab('voice')}
+            className={`flex items-center gap-2 py-3 px-3 text-xs font-bold border-b-2 transition-colors whitespace-nowrap cursor-pointer ${
+              activeTab === 'voice'
+                ? 'border-teal-600 dark:border-teal-400 text-teal-600 dark:text-teal-400'
+                : 'border-transparent text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+            }`}
+          >
+            <Volume2 className="w-4 h-4" aria-hidden="true" />
+            <span>Language & Sound</span>
+          </button>
+
+          <button
+            onClick={() => setActiveTab('storage')}
+            className={`flex items-center gap-2 py-3 px-3 text-xs font-bold border-b-2 transition-colors whitespace-nowrap cursor-pointer ${
+              activeTab === 'storage'
+                ? 'border-teal-600 dark:border-teal-400 text-teal-600 dark:text-teal-400'
+                : 'border-transparent text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+            }`}
+          >
+            <HardDrive className="w-4 h-4" aria-hidden="true" />
+            <span>Data on This Device</span>
+          </button>
         </div>
 
-        {/* Modal Body */}
-        <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-5 sm:space-y-6">
-          {/* TAB 1: APPEARANCE */}
+        {/* Tab Content */}
+        <div className="flex-1 overflow-y-auto p-5 sm:p-6 space-y-6">
+          {/* TAB 1: APPEARANCE & SIZE */}
           {activeTab === 'appearance' && (
             <div className="space-y-6 animate-fade-in">
               {/* Theme Mode */}
-              <div className="space-y-2">
-                <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                  Interface Theme
+              <div>
+                <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2.5">
+                  Screen Mode (Light or Dark)
                 </label>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 max-w-md">
+                <div className="grid grid-cols-2 gap-3">
                   <button
                     type="button"
                     onClick={() => setTheme('light')}
-                    className={`flex items-center justify-center gap-2.5 p-3 sm:p-3.5 rounded-xl border text-xs font-bold transition-all cursor-pointer ${
+                    className={`p-3.5 rounded-xl border flex items-center gap-3 transition-all cursor-pointer ${
                       theme === 'light'
-                        ? 'border-teal-500 bg-teal-50/50 dark:bg-teal-950/20 text-teal-900 dark:text-teal-200 ring-2 ring-teal-500/20'
-                        : 'border-slate-200 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-900/40 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/60'
+                        ? 'border-teal-500 bg-teal-500/10 text-slate-900 dark:text-white shadow-sm ring-1 ring-teal-500'
+                        : 'border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/50'
                     }`}
                   >
-                    <Sun className="w-4 h-4 text-amber-500" />
-                    <span>Clean Clinical Light</span>
-                    {theme === 'light' && <Check className="w-3.5 h-3.5 ml-auto text-teal-600" />}
+                    <div className="w-8 h-8 rounded-lg bg-amber-500/15 text-amber-600 flex items-center justify-center shrink-0">
+                      <Sun className="w-4 h-4" aria-hidden="true" />
+                    </div>
+                    <div className="text-left">
+                      <div className="text-xs font-bold">Light Mode</div>
+                      <div className="text-[11px] text-slate-500 dark:text-slate-400">Bright daylight display</div>
+                    </div>
                   </button>
 
                   <button
                     type="button"
                     onClick={() => setTheme('dark')}
-                    className={`flex items-center justify-center gap-2.5 p-3.5 rounded-xl border text-xs font-bold transition-all cursor-pointer ${
+                    className={`p-3.5 rounded-xl border flex items-center gap-3 transition-all cursor-pointer ${
                       theme === 'dark'
-                        ? 'border-teal-500 bg-teal-50/50 dark:bg-teal-950/20 text-teal-900 dark:text-teal-200 ring-2 ring-teal-500/20'
-                        : 'border-slate-200 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-900/40 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/60'
+                        ? 'border-teal-500 bg-teal-500/10 text-slate-900 dark:text-white shadow-sm ring-1 ring-teal-500'
+                        : 'border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/50'
                     }`}
                   >
-                    <Moon className="w-4 h-4 text-sky-400" />
-                    <span>Linear Midnight Dark</span>
-                    {theme === 'dark' && <Check className="w-3.5 h-3.5 ml-auto text-teal-400" />}
+                    <div className="w-8 h-8 rounded-lg bg-indigo-500/15 text-indigo-400 flex items-center justify-center shrink-0">
+                      <Moon className="w-4 h-4" aria-hidden="true" />
+                    </div>
+                    <div className="text-left">
+                      <div className="text-xs font-bold">Dark Mode</div>
+                      <div className="text-[11px] text-slate-500 dark:text-slate-400">Gentle on tired eyes</div>
+                    </div>
                   </button>
                 </div>
               </div>
 
-              {/* Accent Color Palette */}
-              <div className="space-y-2">
-                <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                  Primary Clinical Accent
+              {/* Accent Color Picker */}
+              <div>
+                <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2.5">
+                  Color Accent
                 </label>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                  {accentOptions.map((opt) => (
-                    <button
-                      key={opt.id}
-                      type="button"
-                      onClick={() => setAccentColor(opt.id)}
-                      className={`flex items-center gap-3 p-3 rounded-xl border text-left transition-all cursor-pointer ${
-                        accentColor === opt.id
-                          ? 'border-teal-500 bg-slate-100 dark:bg-slate-800/80 ring-2 ring-teal-500/20'
-                          : 'border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/40'
-                      }`}
-                    >
-                      <span className="w-4 h-4 rounded-full flex-shrink-0 shadow-sm" style={{ backgroundColor: opt.hex }} />
-                      <div className="min-w-0">
-                        <div className="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
-                          {opt.label}
-                          {accentColor === opt.id && <span className="text-[10px] text-teal-600 dark:text-teal-400 font-bold">✓ Active</span>}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                  {accentOptions.map((accent) => {
+                    const active = accentColor === accent.id;
+                    return (
+                      <button
+                        key={accent.id}
+                        type="button"
+                        onClick={() => setAccentColor(accent.id)}
+                        className={`p-3 rounded-xl border text-left transition-all cursor-pointer ${
+                          active
+                            ? 'border-teal-500 bg-teal-500/10 ring-1 ring-teal-500'
+                            : 'border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/50'
+                        }`}
+                      >
+                        <div className="flex items-center justify-between mb-2">
+                          <span 
+                            className="w-5 h-5 rounded-full shadow-inner inline-block" 
+                            style={{ backgroundColor: accent.hex }}
+                            aria-hidden="true"
+                          />
+                          {active && <Check className="w-3.5 h-3.5 text-teal-600 dark:text-teal-400" />}
                         </div>
-                        <div className="text-[11px] text-slate-500 dark:text-slate-400 truncate">{opt.desc}</div>
-                      </div>
-                    </button>
-                  ))}
+                        <div className="text-xs font-bold text-slate-900 dark:text-white">{accent.label}</div>
+                        <div className="text-[10px] text-slate-500 dark:text-slate-400 leading-tight mt-0.5">{accent.desc}</div>
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
 
-              {/* Font Size Scaling */}
-              <div className="space-y-2">
-                <div className="flex items-center justify-between">
-                  <label className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                    Typography Scale & OPD Legibility
+              {/* Font Size & Live Preview */}
+              <div>
+                <div className="flex items-center justify-between mb-2.5">
+                  <label className="text-xs font-bold text-slate-700 dark:text-slate-300">
+                    Text Size
                   </label>
-                  <span className="text-[11px] text-teal-600 dark:text-teal-400 font-medium">
-                    {fontSize === 'compact' ? 'Compact 90%' : fontSize === 'large' ? 'Large 115% (Senior Accessible)' : 'Standard 100%'}
+                  <span className="text-[11px] font-semibold text-teal-600 dark:text-teal-400">
+                    {fontOptions.find(f => f.id === fontSize)?.label} ({fontOptions.find(f => f.id === fontSize)?.percent})
                   </span>
                 </div>
-                <div className="grid grid-cols-3 gap-2 max-w-md">
-                  {(['compact', 'normal', 'large'] as FontSizeScale[]).map((sz) => (
-                    <button
-                      key={sz}
-                      type="button"
-                      onClick={() => setFontSize(sz)}
-                      className={`py-2 px-3 rounded-xl border text-xs font-bold text-center transition-all cursor-pointer ${
-                        fontSize === sz
-                          ? 'border-teal-500 bg-teal-500/10 text-teal-700 dark:text-teal-300 font-extrabold ring-1 ring-teal-500'
-                          : 'border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/40 text-slate-700 dark:text-slate-300 hover:bg-slate-100'
-                      }`}
-                    >
-                      {sz === 'compact' ? 'A (Compact)' : sz === 'normal' ? 'A (Standard)' : 'A+ (Large)'}
-                    </button>
-                  ))}
+                <div className="grid grid-cols-4 gap-2 mb-3">
+                  {fontOptions.map((opt) => {
+                    const active = fontSize === opt.id;
+                    return (
+                      <button
+                        key={opt.id}
+                        type="button"
+                        onClick={() => setFontSize(opt.id)}
+                        className={`py-2 px-1 text-center rounded-xl border text-xs font-bold transition-all cursor-pointer ${
+                          active
+                            ? 'border-teal-500 bg-teal-500/10 text-teal-700 dark:text-teal-300 ring-1 ring-teal-500 shadow-sm'
+                            : 'border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/50 text-slate-700 dark:text-slate-300'
+                        }`}
+                      >
+                        {opt.label}
+                      </button>
+                    );
+                  })}
                 </div>
-                <p className="text-[11px] text-slate-500 dark:text-slate-400">
-                  Recommended: Use <strong>Large (115%)</strong> for public hospital touch kiosks where elderly patients read without glasses.
-                </p>
+
+                {/* Live Preview Box */}
+                <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800">
+                  <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">
+                    Live Preview
+                  </div>
+                  <p className="text-slate-800 dark:text-slate-200 leading-relaxed">
+                    &ldquo;Welcome to MEDIKOISK. Your past prescriptions and questions are easy to read.&rdquo;
+                  </p>
+                </div>
               </div>
 
-              {/* Accessibility Toggles */}
-              <div className="space-y-3 pt-3 border-t border-slate-200 dark:border-slate-800">
-                <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                  Accessibility & Visual Guardrails
+              {/* Reading Width */}
+              <div>
+                <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2.5">
+                  Reading Width
                 </label>
+                <div className="grid grid-cols-2 gap-3">
+                  <button
+                    type="button"
+                    onClick={() => setReadingWidth('comfortable')}
+                    className={`p-3 rounded-xl border flex items-center gap-3 transition-all cursor-pointer ${
+                      readingWidth === 'comfortable'
+                        ? 'border-teal-500 bg-teal-500/10 text-slate-900 dark:text-white shadow-sm ring-1 ring-teal-500'
+                        : 'border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/50'
+                    }`}
+                  >
+                    <Minimize2 className="w-4 h-4 text-teal-600 dark:text-teal-400 shrink-0" aria-hidden="true" />
+                    <div className="text-left">
+                      <div className="text-xs font-bold">Comfortable Reading</div>
+                      <div className="text-[10px] text-slate-500 dark:text-slate-400">Centered, optimal line width</div>
+                    </div>
+                  </button>
 
-                {/* High Contrast */}
-                <div className="flex items-center justify-between p-3.5 bg-slate-50 dark:bg-slate-900/40 rounded-xl border border-slate-200 dark:border-slate-800">
-                  <div className="space-y-0.5">
-                    <span className="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
-                      <Eye className="w-3.5 h-3.5 text-teal-600 dark:text-teal-400" />
-                      High-Contrast Clinical Display Mode
-                    </span>
-                    <p className="text-[11px] text-slate-500 dark:text-slate-400">
-                      Increases card border contrast and text differentiation for low-quality OPD monitors.
-                    </p>
+                  <button
+                    type="button"
+                    onClick={() => setReadingWidth('expanded')}
+                    className={`p-3 rounded-xl border flex items-center gap-3 transition-all cursor-pointer ${
+                      readingWidth === 'expanded'
+                        ? 'border-teal-500 bg-teal-500/10 text-slate-900 dark:text-white shadow-sm ring-1 ring-teal-500'
+                        : 'border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/50'
+                    }`}
+                  >
+                    <Maximize2 className="w-4 h-4 text-teal-600 dark:text-teal-400 shrink-0" aria-hidden="true" />
+                    <div className="text-left">
+                      <div className="text-xs font-bold">Expanded Width</div>
+                      <div className="text-[10px] text-slate-500 dark:text-slate-400">Uses full screen width</div>
+                    </div>
+                  </button>
+                </div>
+              </div>
+
+              {/* Extra Comfort Toggles */}
+              <div className="pt-2 border-t border-slate-200 dark:border-slate-800 space-y-3">
+                <div className="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800">
+                  <div>
+                    <div className="text-xs font-bold text-slate-900 dark:text-white">High Contrast Text</div>
+                    <div className="text-[11px] text-slate-500 dark:text-slate-400">Makes text bolder and outlines clearer</div>
                   </div>
-                  <label className="relative inline-flex items-center cursor-pointer">
-                    <input
-                      type="checkbox"
-                      checked={highContrast}
-                      onChange={(e) => setHighContrast(e.target.checked)}
-                      className="sr-only peer"
-                    />
-                    <div className="w-10 h-5 bg-slate-300 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-teal-600"></div>
-                  </label>
+                  <button
+                    type="button"
+                    onClick={() => setHighContrast(!highContrast)}
+                    className={`w-11 h-6 flex items-center rounded-full p-1 transition-colors cursor-pointer ${
+                      highContrast ? 'bg-teal-600 justify-end' : 'bg-slate-300 dark:bg-slate-700 justify-start'
+                    }`}
+                    aria-label="Toggle high contrast"
+                  >
+                    <span className="bg-white w-4 h-4 rounded-full shadow-md" />
+                  </button>
                 </div>
 
-                {/* Reduced Motion */}
-                <div className="flex items-center justify-between p-3.5 bg-slate-50 dark:bg-slate-900/40 rounded-xl border border-slate-200 dark:border-slate-800">
-                  <div className="space-y-0.5">
-                    <span className="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
-                      <Sparkles className="w-3.5 h-3.5 text-teal-600 dark:text-teal-400" />
-                      Force Reduced Motion
-                    </span>
-                    <p className="text-[11px] text-slate-500 dark:text-slate-400">
-                      Disables soundwave animations, particle effects, and transitions (WCAG 2.2 AA compliant).
-                    </p>
+                <div className="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800">
+                  <div>
+                    <div className="text-xs font-bold text-slate-900 dark:text-white">Calm Animations</div>
+                    <div className="text-[11px] text-slate-500 dark:text-slate-400">Reduces moving effects on screen</div>
                   </div>
-                  <label className="relative inline-flex items-center cursor-pointer">
-                    <input
-                      type="checkbox"
-                      checked={reducedMotion}
-                      onChange={(e) => setReducedMotion(e.target.checked)}
-                      className="sr-only peer"
-                    />
-                    <div className="w-10 h-5 bg-slate-300 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-teal-600"></div>
-                  </label>
+                  <button
+                    type="button"
+                    onClick={() => setReducedMotion(!reducedMotion)}
+                    className={`w-11 h-6 flex items-center rounded-full p-1 transition-colors cursor-pointer ${
+                      reducedMotion ? 'bg-teal-600 justify-end' : 'bg-slate-300 dark:bg-slate-700 justify-start'
+                    }`}
+                    aria-label="Toggle calm animations"
+                  >
+                    <span className="bg-white w-4 h-4 rounded-full shadow-md" />
+                  </button>
                 </div>
               </div>
             </div>
           )}
 
-          {/* TAB 2: LANGUAGE & VOICE */}
-          {activeTab === 'language' && (
+          {/* TAB 2: LANGUAGE & SOUND */}
+          {activeTab === 'voice' && (
             <div className="space-y-6 animate-fade-in">
               {/* Language Selection */}
-              <div className="space-y-2">
-                <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                  Primary Patient Intake Language (Bhashini Pipeline)
+              <div>
+                <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-2.5">
+                  Choose Language (भाषा निवडा)
                 </label>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
                   {languages.map((lang) => {
@@ -365,391 +414,171 @@ export const SettingsModal: React.FC = () => {
                         onClick={() => setLanguage(lang.code)}
                         className={`p-3 rounded-xl border text-left transition-all cursor-pointer ${
                           active
-                            ? 'border-teal-500 bg-teal-500/10 text-teal-800 dark:text-teal-300 ring-2 ring-teal-500/20'
-                            : 'border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/40 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/50'
+                            ? 'border-teal-500 bg-teal-500/10 ring-1 ring-teal-500'
+                            : 'border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/50'
                         }`}
                       >
-                        <div className="text-sm font-bold text-slate-900 dark:text-white font-display">
-                          {lang.native}
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm font-bold text-slate-900 dark:text-white">{lang.native}</span>
+                          {active && <Check className="w-3.5 h-3.5 text-teal-600 dark:text-teal-400" />}
                         </div>
-                        <div className="text-[11px] text-slate-500 dark:text-slate-400 flex items-center justify-between mt-0.5">
-                          <span>{lang.label}</span>
-                          <span className="text-[10px] font-mono text-teal-600 dark:text-teal-400 font-bold">{lang.script}</span>
-                        </div>
+                        <div className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">{lang.label}</div>
                       </button>
                     );
                   })}
                 </div>
               </div>
 
-              {/* Speech & Audio Guidance */}
-              <div className="space-y-3 pt-3 border-t border-slate-200 dark:border-slate-800">
-                <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                  Spoken Guidance & Audio Engine
-                </label>
-
-                {/* Audio Guidance Toggle */}
-                <div className="flex items-center justify-between p-3.5 bg-slate-50 dark:bg-slate-900/40 rounded-xl border border-slate-200 dark:border-slate-800">
-                  <div className="space-y-0.5">
-                    <span className="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
-                      <Volume2 className="w-3.5 h-3.5 text-teal-600 dark:text-teal-400" />
-                      Automatic Spoken Prompt Audio (TTS)
-                    </span>
-                    <p className="text-[11px] text-slate-500 dark:text-slate-400">
-                      Reads out questions in vernacular language for illiterate or low-literacy patients.
-                    </p>
-                  </div>
-                  <label className="relative inline-flex items-center cursor-pointer">
-                    <input
-                      type="checkbox"
-                      checked={audioGuidance}
-                      onChange={(e) => setAudioGuidance(e.target.checked)}
-                      className="sr-only peer"
-                    />
-                    <div className="w-10 h-5 bg-slate-300 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-teal-600"></div>
-                  </label>
-                </div>
-
-                {/* Speech Playback Speed */}
-                <div className="p-3.5 bg-slate-50 dark:bg-slate-900/40 rounded-xl border border-slate-200 dark:border-slate-800 space-y-2">
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="font-bold text-slate-900 dark:text-white">Speech Playback Rate</span>
-                    <span className="font-mono text-teal-600 dark:text-teal-400 font-bold">{speechSpeed}x</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    {[0.8, 1.0, 1.2].map((speed) => (
-                      <button
-                        key={speed}
-                        type="button"
-                        onClick={() => setSpeechSpeed(speed)}
-                        className={`flex-1 py-1.5 rounded-lg border text-xs font-bold transition-all ${
-                          speechSpeed === speed
-                            ? 'bg-teal-500 text-slate-950 border-teal-500 font-extrabold'
-                            : 'bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:bg-slate-100'
-                        }`}
-                      >
-                        {speed === 0.8 ? 'Slow (0.8x)' : speed === 1.0 ? 'Normal (1.0x)' : 'Fast (1.2x)'}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Sound Effects */}
-                <div className="flex items-center justify-between p-3.5 bg-slate-50 dark:bg-slate-900/40 rounded-xl border border-slate-200 dark:border-slate-800">
-                  <div className="space-y-0.5">
-                    <span className="text-xs font-bold text-slate-900 dark:text-white">
-                      Tactile Audio Chimes & Confetti
-                    </span>
-                    <p className="text-[11px] text-slate-500 dark:text-slate-400">
-                      Plays subtle confirmation feedback when ticket is issued or OCR finishes.
-                    </p>
-                  </div>
-                  <label className="relative inline-flex items-center cursor-pointer">
-                    <input
-                      type="checkbox"
-                      checked={soundEffects}
-                      onChange={(e) => setSoundEffects(e.target.checked)}
-                      className="sr-only peer"
-                    />
-                    <div className="w-10 h-5 bg-slate-300 peer-focus:outline-none rounded-full peer dark:bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-teal-600"></div>
-                  </label>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* TAB 3: KIOSK & STATION */}
-          {activeTab === 'kiosk' && (
-            <div className="space-y-6 animate-fade-in">
-              <div className="space-y-2">
-                <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                  Kiosk Session Auto-Reset Timer
-                </label>
-                <div className="grid grid-cols-4 gap-2">
-                  {[30, 60, 120, 0].map((sec) => (
-                    <button
-                      key={sec}
-                      type="button"
-                      onClick={() => setKioskTimeoutSec(sec)}
-                      className={`p-3 rounded-xl border text-center transition-all cursor-pointer ${
-                        kioskTimeoutSec === sec
-                          ? 'border-teal-500 bg-teal-500/10 text-teal-800 dark:text-teal-300 font-bold ring-2 ring-teal-500/20'
-                          : 'border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/40 text-slate-700 dark:text-slate-300 hover:bg-slate-100'
-                      }`}
-                    >
-                      <Clock className="w-4 h-4 mx-auto mb-1 text-slate-400" />
-                      <div className="text-xs font-bold">{sec === 0 ? 'Disabled' : `${sec}s`}</div>
-                      <div className="text-[10px] text-slate-500">{sec === 0 ? 'No timeout' : 'Inactivity'}</div>
-                    </button>
-                  ))}
-                </div>
-                <p className="text-[11px] text-slate-500 dark:text-slate-400">
-                  In a public hospital waiting hall, kiosk sessions should reset to the Welcome screen after 60 seconds of inactivity to protect patient privacy.
-                </p>
-              </div>
-
-              {/* Hardware simulation */}
-              <div className="p-4 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-slate-200 dark:border-slate-800 space-y-3">
+              {/* Voice Read-Aloud */}
+              <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 space-y-4">
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <Printer className="w-4 h-4 text-teal-600 dark:text-teal-400" />
-                    <span className="text-xs font-bold text-slate-900 dark:text-white">Thermal Ticket Printer Emulation</span>
-                  </div>
-                  <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border border-emerald-500/20">
-                    ESC/POS Ready
-                  </span>
-                </div>
-                <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-                  Configured for standard 80mm thermal receipt roll with QR code payload, room routing, and offline barcode verification.
-                </p>
-              </div>
-
-              {/* Assigned OPD Room */}
-              <div className="p-4 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-slate-200 dark:border-slate-800 space-y-2">
-                <span className="text-xs font-bold text-slate-900 dark:text-white block">Assigned Doctor / OPD Room</span>
-                <div className="flex items-center justify-between text-xs text-slate-600 dark:text-slate-300">
-                  <span className="font-semibold">Room 4: Dr. A. K. Shukla (General Medicine)</span>
-                  <span className="text-teal-600 dark:text-teal-400 font-bold">OPD Block B</span>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* TAB 4: ABDM SANDBOX */}
-          {activeTab === 'abdm' && (
-            <div className="space-y-6 animate-fade-in">
-              <div className="space-y-2">
-                <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                  Gateway Integration Environment
-                </label>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
-                  {[
-                    { id: 'mock_sandbox', label: 'Local Mock Sandbox', desc: 'Instant responses with simulated NRCeS FHIR R4 validators' },
-                    { id: 'live_staging', label: 'ABDM Staging v0.5', desc: 'Connected to dev.abdm.gov.in sandbox environment' },
-                    { id: 'offline_pwa', label: 'Offline PWA Cache', desc: 'Operates in remote clinics without active internet' }
-                  ].map((env) => (
-                    <button
-                      key={env.id}
-                      type="button"
-                      onClick={() => setGatewayMode(env.id as GatewayMode)}
-                      className={`p-3 rounded-xl border text-left transition-all cursor-pointer ${
-                        gatewayMode === env.id
-                          ? 'border-teal-500 bg-teal-500/10 text-teal-800 dark:text-teal-300 font-bold ring-2 ring-teal-500/20'
-                          : 'border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/40 text-slate-700 dark:text-slate-300 hover:bg-slate-100'
-                      }`}
-                    >
-                      <div className="flex items-center gap-1.5 text-xs font-bold text-slate-900 dark:text-white mb-1">
-                        <Radio className={`w-3 h-3 ${gatewayMode === env.id ? 'text-teal-600 dark:text-teal-400' : 'text-slate-400'}`} />
-                        {env.label}
-                      </div>
-                      <div className="text-[11px] text-slate-500 dark:text-slate-400 leading-tight">
-                        {env.desc}
-                      </div>
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Milestone Status Grid */}
-              <div className="space-y-2">
-                <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                  Active ABDM Milestones
-                </label>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                  {[
-                    { m: 'M1', title: 'ABHA Identity', status: 'Active (v2.0)' },
-                    { m: 'M2', title: 'HIP Provider', status: 'Active (v1.0)' },
-                    { m: 'M3', title: 'HIU User', status: 'Active (v1.0)' },
-                    { m: 'M4', title: 'NHCX Claims', status: 'Ready (FHIR)' }
-                  ].map((item) => (
-                    <div key={item.m} className="p-3 bg-slate-50 dark:bg-slate-900/50 rounded-xl border border-slate-200 dark:border-slate-800 text-center">
-                      <span className="text-[10px] font-extrabold text-teal-600 dark:text-teal-400 uppercase tracking-widest block">{item.m}</span>
-                      <div className="text-xs font-bold text-slate-900 dark:text-white mt-0.5">{item.title}</div>
-                      <span className="inline-block mt-1 text-[10px] font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
-                        {item.status}
-                      </span>
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-teal-500/15 text-teal-600 dark:text-teal-400 flex items-center justify-center">
+                      <Volume2 className="w-4 h-4" aria-hidden="true" />
                     </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Encryption Module */}
-              <div className="p-4 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs">
-                <div className="flex items-center gap-2.5">
-                  <Lock className="w-4 h-4 text-teal-600 dark:text-teal-400" />
-                  <div>
-                    <span className="font-bold text-slate-900 dark:text-white block">Fidelius ECDH Curve25519 Key Module</span>
-                    <span className="text-[11px] text-slate-500 dark:text-slate-400">HKDF-SHA256 with hardware-derived ephemeral keypairs</span>
-                  </div>
-                </div>
-                <span className="text-[10px] font-bold text-teal-700 dark:text-teal-300 bg-teal-500/10 px-2 py-1 rounded-lg border border-teal-500/20">
-                  ONLINE
-                </span>
-              </div>
-            </div>
-          )}
-
-          {/* TAB 5: DATA & PRIVACY */}
-          {activeTab === 'privacy' && (
-            <div className="space-y-6 animate-fade-in">
-              <div className="space-y-2">
-                <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                  DPDP Act 2023 Compliance & Data Portability
-                </label>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <button
-                    type="button"
-                    onClick={handleExportAuditLogs}
-                    className="flex items-center justify-between p-3.5 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-teal-500/40 text-left transition-all cursor-pointer"
-                  >
                     <div>
-                      <span className="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
-                        <Download className="w-3.5 h-3.5 text-teal-600 dark:text-teal-400" />
-                        Export Audit Trail (JSON)
-                      </span>
-                      <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
-                        Download cryptographically signed audit log.
-                      </p>
+                      <div className="text-xs font-bold text-slate-900 dark:text-white">Voice Read-Aloud Assistant</div>
+                      <div className="text-[11px] text-slate-500 dark:text-slate-400">Speaks out health questions automatically</div>
                     </div>
-                  </button>
-
+                  </div>
                   <button
                     type="button"
-                    onClick={handleExportConsentLedger}
-                    className="flex items-center justify-between p-3.5 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-teal-500/40 text-left transition-all cursor-pointer"
+                    onClick={() => setAudioGuidance(!audioGuidance)}
+                    className={`w-11 h-6 flex items-center rounded-full p-1 transition-colors cursor-pointer ${
+                      audioGuidance ? 'bg-teal-600 justify-end' : 'bg-slate-300 dark:bg-slate-700 justify-start'
+                    }`}
+                    aria-label="Toggle voice guidance"
                   >
-                    <div>
-                      <span className="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
-                        <Download className="w-3.5 h-3.5 text-teal-600 dark:text-teal-400" />
-                        Export Consent Ledger (JSON)
-                      </span>
-                      <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
-                        Download active DPDP consent records.
-                      </p>
-                    </div>
+                    <span className="bg-white w-4 h-4 rounded-full shadow-md" />
                   </button>
                 </div>
+
+                {audioGuidance && (
+                  <div className="pt-3 border-t border-slate-200 dark:border-slate-800/80">
+                    <label className="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-2">
+                      Voice Speaking Speed
+                    </label>
+                    <div className="grid grid-cols-3 gap-2">
+                      {[
+                        { speed: 0.8, label: 'Slower (0.8x)' },
+                        { speed: 1.0, label: 'Normal (1.0x)' },
+                        { speed: 1.2, label: 'Faster (1.2x)' }
+                      ].map((item) => (
+                        <button
+                          key={item.speed}
+                          type="button"
+                          onClick={() => setSpeechSpeed(item.speed)}
+                          className={`py-2 px-2 text-center rounded-xl border text-xs font-bold transition-all cursor-pointer ${
+                            speechSpeed === item.speed
+                              ? 'border-teal-500 bg-teal-500/10 text-teal-700 dark:text-teal-300 ring-1 ring-teal-500'
+                              : 'border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/50 text-slate-700 dark:text-slate-300'
+                          }`}
+                        >
+                          {item.label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
 
-              {/* Demo Scenario Selectors */}
-              <div className="space-y-2 pt-3 border-t border-slate-200 dark:border-slate-800">
-                <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                  Instant Clinical Test Scenarios
-                </label>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-                  <button
-                    type="button"
-                    onClick={() => { loadDemoScenario('abdominal'); setIsSettingsOpen(false); }}
-                    className="p-2.5 bg-slate-50 dark:bg-slate-900/50 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-teal-500/40 text-left cursor-pointer"
-                  >
-                    <div className="font-bold text-slate-800 dark:text-slate-200">Scenario A: Abdominal Pain DAG</div>
-                    <div className="text-[11px] text-slate-500">Rohan Kulkarni, 28M • Food relationship</div>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => { loadDemoScenario('ocr'); setIsSettingsOpen(false); }}
-                    className="p-2.5 bg-slate-50 dark:bg-slate-900/50 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-teal-500/40 text-left cursor-pointer"
-                  >
-                    <div className="font-bold text-slate-800 dark:text-slate-200">Scenario B: TrOCR Prescription</div>
-                    <div className="text-[11px] text-slate-500">Sunita Deshmukh, 52F • Verify low-conf items</div>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => { loadDemoScenario('emergency'); setIsSettingsOpen(false); }}
-                    className="p-2.5 bg-rose-50 dark:bg-rose-950/20 rounded-xl border border-rose-200 dark:border-rose-900/40 hover:border-rose-500 text-left cursor-pointer"
-                  >
-                    <div className="font-bold text-rose-700 dark:text-rose-300">🚨 Scenario D: Chest Pain Emergency</div>
-                    <div className="text-[11px] text-rose-600/80 dark:text-rose-400/80">Deterministic red-flag safety escalation</div>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => { loadDemoScenario('doctor_approve'); setIsSettingsOpen(false); }}
-                    className="p-2.5 bg-slate-50 dark:bg-slate-900/50 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-teal-500/40 text-left cursor-pointer"
-                  >
-                    <div className="font-bold text-slate-800 dark:text-slate-200">Scenario E: Clinician Workstation</div>
-                    <div className="text-[11px] text-slate-500">Dr. Shukla review, provenance & sign-off</div>
-                  </button>
+              {/* Sound Effects Toggle */}
+              <div className="flex items-center justify-between p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800">
+                <div>
+                  <div className="text-xs font-bold text-slate-900 dark:text-white">Button Sound Effects</div>
+                  <div className="text-[11px] text-slate-500 dark:text-slate-400">Plays a gentle chime when tapping buttons</div>
                 </div>
-              </div>
-
-              {/* Reset to defaults */}
-              <div className="pt-3 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
-                <span className="text-xs text-slate-500 dark:text-slate-400">
-                  Need to restore all clinical demo data?
-                </span>
                 <button
                   type="button"
-                  onClick={() => { resetAll(); setIsSettingsOpen(false); }}
-                  className="px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-700 hover:bg-rose-500/10 hover:border-rose-500/30 text-rose-600 dark:text-rose-400 text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer"
+                  onClick={() => setSoundEffects(!soundEffects)}
+                  className={`w-11 h-6 flex items-center rounded-full p-1 transition-colors cursor-pointer ${
+                    soundEffects ? 'bg-teal-600 justify-end' : 'bg-slate-300 dark:bg-slate-700 justify-start'
+                  }`}
+                  aria-label="Toggle sound effects"
                 >
-                  <RotateCcw className="w-3.5 h-3.5" />
-                  <span>Reset All to Defaults</span>
+                  <span className="bg-white w-4 h-4 rounded-full shadow-md" />
                 </button>
               </div>
             </div>
           )}
 
-          {/* TAB 6: DIAGNOSTICS */}
-          {activeTab === 'diagnostics' && (
-            <div className="space-y-4 animate-fade-in text-xs">
-              <div className="p-4 bg-slate-50 dark:bg-slate-900/50 rounded-xl border border-slate-200 dark:border-slate-800 space-y-3">
-                <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-2">
-                  <span className="font-bold text-slate-900 dark:text-white">Core Clinical Algorithms</span>
-                  <span className="text-teal-600 dark:text-teal-400 font-mono font-bold">STATUS</span>
-                </div>
-                <div className="space-y-1.5 text-[11px]">
-                  <div className="flex justify-between">
-                    <span className="text-slate-600 dark:text-slate-400">Entropy DAG Clinical Engine:</span>
-                    <span className="font-mono text-slate-900 dark:text-white">v2.4.1 (Shannon Entropy Weighted)</span>
+          {/* TAB 3: DATA ON THIS DEVICE */}
+          {activeTab === 'storage' && (
+            <div className="space-y-5 animate-fade-in">
+              <div className="p-4 rounded-2xl bg-teal-50 dark:bg-teal-950/20 border border-teal-200 dark:border-teal-800/40">
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-teal-500/20 text-teal-700 dark:text-teal-300 flex items-center justify-center shrink-0 mt-0.5">
+                    <HardDrive className="w-4 h-4" aria-hidden="true" />
                   </div>
-                  <div className="flex justify-between">
-                    <span className="text-slate-600 dark:text-slate-400">Deterministic Safety Gate:</span>
-                    <span className="font-mono text-emerald-600 dark:text-emerald-400 font-bold">ACTIVE (0% hallucination risk)</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-slate-600 dark:text-slate-400">TrOCR Prescription OCR Engine:</span>
-                    <span className="font-mono text-slate-900 dark:text-white">Microsoft TrOCR + BioBERT NLP</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-slate-600 dark:text-slate-400">Bhashini Multilingual ASR/TTS:</span>
-                    <span className="font-mono text-slate-900 dark:text-white">Bhashini IndicConformer (6 Languages)</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-slate-600 dark:text-slate-400">Dual-Coding Ontology:</span>
-                    <span className="font-mono text-slate-900 dark:text-white">ICD-11 MMS + NAMASTE + ICD-11 TM2</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-slate-600 dark:text-slate-400">FHIR R4 Bundle Profile:</span>
-                    <span className="font-mono text-teal-600 dark:text-teal-400">NRCeS OPConsultRecord Profile v1.0</span>
+                  <div className="text-xs text-slate-700 dark:text-slate-300 space-y-1">
+                    <div className="font-bold text-slate-900 dark:text-white text-sm">Your Data Stays on This Device</div>
+                    <p className="leading-relaxed">
+                      All your display preferences, answers, and temporary notes are stored privately in your web browser&apos;s Local Storage. Nothing is uploaded to public servers without your clear consent.
+                    </p>
                   </div>
                 </div>
               </div>
 
-              <div className="p-3 bg-teal-50/50 dark:bg-teal-950/20 rounded-xl border border-teal-500/20 text-[11px] text-teal-900 dark:text-teal-200">
-                <strong>Platform Build:</strong> MEDIKOISK Enterprise v1.0.4 • Vite 5 • React 18.3 • TailwindCSS • Knowledge Graph verified at <code className="font-mono">graphify-out/graph.json</code>.
+              {/* Action Buttons */}
+              <div className="space-y-3 pt-2">
+                <button
+                  type="button"
+                  onClick={resetSettings}
+                  className="w-full p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/60 flex items-center justify-between text-left transition-all cursor-pointer"
+                >
+                  <div className="flex items-center gap-3">
+                    <RotateCcw className="w-4 h-4 text-slate-500" aria-hidden="true" />
+                    <div>
+                      <div className="text-xs font-bold text-slate-900 dark:text-white">Reset Appearance & Sound Defaults</div>
+                      <div className="text-[11px] text-slate-500 dark:text-slate-400">Restores standard colors, text size, and audio</div>
+                    </div>
+                  </div>
+                  <span className="text-xs font-semibold text-teal-600 dark:text-teal-400">Reset</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={handleExportBackup}
+                  className="w-full p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/60 flex items-center justify-between text-left transition-all cursor-pointer"
+                >
+                  <div className="flex items-center gap-3">
+                    <Download className="w-4 h-4 text-slate-500" aria-hidden="true" />
+                    <div>
+                      <div className="text-xs font-bold text-slate-900 dark:text-white">Download Backup File</div>
+                      <div className="text-[11px] text-slate-500 dark:text-slate-400">Save a copy of your session to your computer</div>
+                    </div>
+                  </div>
+                  <span className="text-xs font-semibold text-teal-600 dark:text-teal-400">Download</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={handleResetAllVisit}
+                  className="w-full p-3.5 rounded-xl border border-rose-200 dark:border-rose-900/50 hover:bg-rose-50 dark:hover:bg-rose-950/20 flex items-center justify-between text-left transition-all cursor-pointer"
+                >
+                  <div className="flex items-center gap-3">
+                    <Trash2 className="w-4 h-4 text-rose-500" aria-hidden="true" />
+                    <div>
+                      <div className="text-xs font-bold text-rose-600 dark:text-rose-400">Clear Visit & Start Fresh</div>
+                      <div className="text-[11px] text-slate-500 dark:text-slate-400">Erase current intake details and return to Step 1</div>
+                    </div>
+                  </div>
+                  <span className="text-xs font-semibold text-rose-600 dark:text-rose-400">Clear</span>
+                </button>
               </div>
             </div>
           )}
         </div>
 
         {/* Footer */}
-        <div className="flex items-center justify-between px-6 py-3.5 border-t border-slate-200 dark:border-slate-800 bg-slate-50/80 dark:bg-[#090f1e]/90 text-xs">
-          <button
-            type="button"
-            onClick={resetSettings}
-            className="text-slate-500 hover:text-slate-800 dark:hover:text-slate-300 font-medium flex items-center gap-1.5 cursor-pointer"
-          >
-            <RotateCcw className="w-3.5 h-3.5" />
-            <span>Restore Default Settings</span>
-          </button>
-
+        <div className="flex items-center justify-between px-5 sm:px-6 py-3.5 border-t border-slate-200 dark:border-slate-800/80 bg-slate-50/80 dark:bg-[#090f1e]/80">
+          <span className="text-[11px] text-slate-500 dark:text-slate-400">
+            Changes save automatically to Local Storage.
+          </span>
           <button
             type="button"
             onClick={() => setIsSettingsOpen(false)}
-            className="px-5 py-2 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-bold shadow-md shadow-teal-600/20 transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
+            className="px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold rounded-xl shadow-md transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
           >
             Done
           </button>
