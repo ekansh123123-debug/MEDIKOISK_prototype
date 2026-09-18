@@ -1,13 +1,20 @@
-# MEDIKOISK — Autonomous AI-Driven Adaptive Patient Case-Taking Kiosk
+<div align="center">
+  <img src="public/medikoisk-logo.png" alt="MEDIKOISK Logo" width="360" />
 
-[![ABDM M1-M4 Ready](https://img.shields.io/badge/ABDM-Milestones%201--4%20Ready-0d9488?style=for-the-badge)](https://abdm.gov.in)
-[![FHIR R4 NRCeS](https://img.shields.io/badge/FHIR%20R4-NRCeS%20Conformant-0ea5e9?style=for-the-badge)](https://nrces.in)
-[![DPDP Act 2023](https://img.shields.io/badge/DPDP%20Act%202023-Statutory%20Compliant-10b981?style=for-the-badge)](https://www.meity.gov.in)
-[![Bhashini Indic Speech](https://img.shields.io/badge/Bhashini-6%20Indic%20Languages-indigo?style=for-the-badge)](https://bhashini.gov.in)
-[![AYUSH Dual-Coding](https://img.shields.io/badge/Dual--Coding-ICD--11%20%2B%20NAMASTE-amber?style=for-the-badge)](https://namstp.ayush.gov.in)
-[![License](https://img.shields.io/badge/License-MIT-slate?style=for-the-badge)](LICENSE)
+  # MEDIKOISK
+  ### Autonomous AI-Driven Adaptive Patient Case-Taking Kiosk
 
-> **Autonomous outpatient triage, multimodal vernacular case preparation, and automated NRCeS FHIR R4 clinical note generation for high-density hospital OPDs.**
+  [![ABDM M1-M4 Ready](https://img.shields.io/badge/ABDM-Milestones%201--4%20Ready-0d9488?style=for-the-badge)](https://abdm.gov.in)
+  [![FHIR R4 NRCeS](https://img.shields.io/badge/FHIR%20R4-NRCeS%20Conformant-0ea5e9?style=for-the-badge)](https://nrces.in)
+  [![DPDP Act 2023](https://img.shields.io/badge/DPDP%20Act%202023-Statutory%20Compliant-10b981?style=for-the-badge)](https://www.meity.gov.in)
+  [![Bhashini Indic Speech](https://img.shields.io/badge/Bhashini-6%20Indic%20Languages-indigo?style=for-the-badge)](https://bhashini.gov.in)
+  [![AYUSH Dual-Coding](https://img.shields.io/badge/Dual--Coding-ICD--11%20%2B%20NAMASTE-amber?style=for-the-badge)](https://namstp.ayush.gov.in)
+  [![License](https://img.shields.io/badge/License-MIT-slate?style=for-the-badge)](LICENSE)
+
+  <p align="center">
+    <strong>Autonomous outpatient triage, multimodal vernacular case preparation, and automated NRCeS FHIR R4 clinical note generation for high-density hospital OPDs.</strong>
+  </p>
+</div>
 
 ---
 
@@ -107,6 +114,16 @@ flowchart TD
 - **Touch Targets & Typography**: 44px+ minimum touch targets, 16px font inputs to prevent iOS Safari auto-zoom, and responsive layout collapsing without horizontal page scroll.
 - **Accessible Multi-Theme Engine**: Seamless switching between AIIMS Clinical Light and Linear High-Contrast Dark modes with 4 accent color palettes (Clinical Emerald, Glacier Cyan, Linear Indigo, Precision Jade).
 
+### 5. Full Multilingual Localization (6 Indic Languages)
+- **Zero-Barrier Vernacular Ingestion**: Seamless, real-time UI translation across **English (`en`)**, **Hindi (`hi` — हिन्दी)**, **Marathi (`mr` — मराठी)**, **Tamil (`ta` — தமிழ்)**, **Bengali (`bn` — বাংলা)**, and **Telugu (`te` — తెలుగు)**.
+- **Comprehensive Viewport Coverage**: Changing the language instantly translates:
+  - **Landing Page**: Problem/Solution bottleneck breakdown, architectural differentiation bento, impact triad metrics, and national feasibility models.
+  - **Patient Kiosk**: Informed consent notices, demographic profiles, native chief complaint cards, adaptive DAG questions, option selections, and safety red-flag indicators.
+  - **Clinician Workstation**: SOAP summary tabs, subjective narrative, objective vitals, diagnostic assessment clues, and digital sign-off actions.
+  - **Admin Triage Desk**: Real-time operational KPIs, deterministic emergency triage override alert banners, live OPD queue distribution, and room allocation tables.
+  - **Privacy Center**: DPDP statutory rights (revocation, portability export, right to erasure), ABDM Fidelius cryptographic specifications, and immutable clinical audit trails.
+- **Project Bhashini Integration**: Multi-dialect automatic speech recognition (ASR) and text-to-speech (TTS) audio guidance powered by IndicConformer phonetic modeling.
+
 ---
 
 ## National Regulatory & Standards Compliance
@@ -168,8 +185,8 @@ The platform includes built-in realistic clinical personas to test various healt
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/your-org/medikoisk.git
-cd medikoisk
+git clone https://github.com/ekansh123123-debug/MEDIKOISK_prototype.git
+cd MEDIKOISK_prototype
 
 # 2. Install dependencies
 npm install
@@ -203,13 +220,15 @@ npm run preview
 hackthon_prototype/
 ├── .agents/                      # Skills, workflows, and agent guidelines
 ├── graphify-out/                 # Graphify AST knowledge graph & dependency map
-├── public/                       # Static public assets
+├── public/                       # Static public assets (medikoisk-logo.png)
 ├── src/
 │   ├── components/
 │   │   ├── admin/                # Hospital Admin & Live Triage Desk
 │   │   │   └── AdminDashboard.tsx
 │   │   ├── common/               # Design system components
 │   │   │   ├── Badge.tsx
+│   │   │   ├── Footer.tsx            # Hospital-grade footer & operational status
+│   │   │   ├── Logo.tsx              # Official brand logo component
 │   │   │   ├── MobileBottomNav.tsx   # Thumb-friendly mobile navigation bar
 │   │   │   ├── Navbar.tsx            # Desktop header & mobile controls
 │   │   │   └── SettingsModal.tsx     # Preferences, Bhashini voice, ABDM sandbox
