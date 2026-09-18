@@ -1,7 +1,10 @@
 import React from 'react';
 import { Check, Coins } from 'lucide-react';
+import { useApp } from '../../context/AppContext';
 
 export const Feasibility: React.FC = () => {
+  const { t } = useApp();
+
   const challenges = [
     {
       challenge: 'Weak mobile network connectivity in public hospital basements',
@@ -25,7 +28,7 @@ export const Feasibility: React.FC = () => {
     },
     {
       challenge: 'Illegible handwritten prescription slips with atypical handwriting',
-      mitigation: 'Hybrid TrOCR + BioBERT sequence modeling with mandatory confidence thresholding: Any drug with confidence <95% triggers patient verification.',
+      mitigation: 'Hybrid TrOCR + BioBERT sequence modeling with mandatory confidence thresholding: Any drug with confidence under 95% triggers patient verification.',
       status: 'Engineered'
     },
     {
@@ -42,13 +45,13 @@ export const Feasibility: React.FC = () => {
         <div className="bg-gradient-to-r from-teal-950 via-slate-900 to-slate-900 text-white rounded-2xl p-7 sm:p-10 border border-teal-500/30 shadow-xl mb-12 relative overflow-hidden">
           <div className="max-w-3xl space-y-3">
             <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-teal-500/10 border border-teal-500/30 text-teal-300">
-              Technical Feasibility & Integration Thesis
+              {t.feasBadge}
             </span>
             <h2 className="text-xl sm:text-3xl font-extrabold font-display leading-tight">
-              Integrating Proven National Digital Health Infrastructure
+              {t.feasTitle}
             </h2>
             <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
-              India has established sovereign health protocols: <strong>ABDM federated registries</strong>, <strong>Project Bhashini speech models</strong>, <strong>NRCeS FHIR R4 clinical profiles</strong>, and the <strong>Digital Health Incentive Scheme (DHIS)</strong>. MEDIKOISK unites these national assets into a high-speed pre-encounter intake platform.
+              {t.feasDesc}
             </p>
           </div>
         </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useApp, AppRole } from '../../context/AppContext';
 import { IndianLanguage } from '../../types';
+import { Logo } from './Logo';
 import { 
   Stethoscope, 
   User, 
@@ -77,26 +78,12 @@ export const Navbar: React.FC = () => {
           {/* Logo & Product Identity */}
           <button 
             type="button"
-            className="flex items-center gap-2 sm:gap-3 select-none text-left rounded-xl p-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer min-w-0" 
+            className="flex items-center gap-2 select-none text-left rounded-xl p-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer min-w-0" 
             onClick={() => setRole('landing')}
             aria-label="MEDIKOISK Home Overview"
           >
-            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-teal-500 via-cyan-500 to-sky-400 flex items-center justify-center text-slate-950 shadow-md shadow-teal-500/20 shrink-0">
-              <Stethoscope className="w-4 h-4 sm:w-6 sm:h-6 text-slate-950" aria-hidden="true" strokeWidth={2.2} />
-            </div>
-            <div className="min-w-0">
-              <div className="flex items-center gap-1.5 sm:gap-2">
-                <span className="font-extrabold text-base sm:text-xl tracking-tight text-slate-900 dark:text-white font-display">
-                  MEDI<span className="text-teal-600 dark:text-teal-400">KOISK</span>
-                </span>
-                <span className="px-1.5 sm:px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] font-bold bg-teal-500/10 text-teal-700 dark:text-teal-300 border border-teal-500/20 whitespace-nowrap">
-                  FHIR R4
-                </span>
-              </div>
-              <p className="text-[10px] sm:text-[11px] text-slate-500 dark:text-slate-400 font-medium hidden md:block truncate">
-                {t.brandTagline}
-              </p>
-            </div>
+            <Logo size="md" showSubtitle={false} className="hidden sm:flex" />
+            <Logo size="sm" showSubtitle={false} className="flex sm:hidden" />
           </button>
 
           {/* Desktop Navigation Links */}

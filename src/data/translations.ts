@@ -173,6 +173,94 @@ export interface TranslationDictionary {
   requestErasureBtn: string;
   fideliusTitle: string;
   auditLogTitle: string;
+
+  // Landing: Problem / Solution
+  probSolTitle: string;
+  probSolSub: string;
+  probLegacyBadge: string;
+  probLegacyTag: string;
+  probLegacyTitle: string;
+  probLegacyFooter: string;
+  solArchBadge: string;
+  solArchTag: string;
+  solArchTitle: string;
+  solArchFooter: string;
+
+  // Landing: Why Different
+  whyDiffBadge: string;
+  whyDiffTitle: string;
+  whyDiffSub: string;
+  whyCol1Header: string;
+  whyCol2Header: string;
+
+  // Landing: Impact Metrics
+  impactBadge: string;
+  impactTitle: string;
+  impactSub: string;
+  impact1Val: string;
+  impact1Title: string;
+  impact1Desc: string;
+  impact2Val: string;
+  impact2Title: string;
+  impact2Desc: string;
+  impact3Val: string;
+  impact3Title: string;
+  impact3Desc: string;
+  impact4Val: string;
+  impact4Title: string;
+  impact4Desc: string;
+
+  // Landing: Feasibility
+  feasBadge: string;
+  feasTitle: string;
+  feasDesc: string;
+
+  // Hero Bento steps
+  heroPipelineTitle: string;
+  heroPipelineSub: string;
+  heroPipelineBadge: string;
+
+  // Admin Desk KPIs & Table
+  adminKpi1: string;
+  adminKpi2: string;
+  adminKpi3: string;
+  adminKpi4: string;
+  adminKpi5: string;
+  adminKpi6: string;
+  adminKpi7: string;
+  adminKpi8: string;
+  adminQueueTitle: string;
+  adminQueueSub: string;
+  adminSearchPlaceholder: string;
+  adminColToken: string;
+  adminColName: string;
+  adminColAgeGender: string;
+  adminColComplaint: string;
+  adminColPriority: string;
+  adminColRoom: string;
+  adminColStatus: string;
+  adminEmergencyBanner: string;
+  adminDispatchNurse: string;
+  adminDispatched: string;
+
+  // Privacy Center Details
+  privacyCard1Desc: string;
+  privacyCard2Desc: string;
+  privacyCard3Desc: string;
+  privacyEcdhTitle: string;
+  privacyEcdhDesc: string;
+  privacyAesTitle: string;
+  privacyAesDesc: string;
+  privacyHashTitle: string;
+  privacyHashDesc: string;
+  privacyAuditSearchPlaceholder: string;
+  privacyAuditSub: string;
+
+  // Kiosk additions
+  safetyRedFlagBadge: string;
+  stepDemographicHeader: string;
+  masterPatientIndex: string;
+  currentMedicationsLabel: string;
 }
 
 export const TRANSLATIONS: Record<IndianLanguage, TranslationDictionary> = {
@@ -336,7 +424,87 @@ export const TRANSLATIONS: Record<IndianLanguage, TranslationDictionary> = {
     exportDataBtn: "Export Health Data",
     requestErasureBtn: "Request Erasure",
     fideliusTitle: "ABDM Fidelius End-to-End Cryptography",
-    auditLogTitle: "Immutable Clinical Audit Log"
+        auditLogTitle: "Immutable Clinical Audit Log",
+
+    probSolTitle: "Solving the High-Volume OPD Bottleneck",
+    probSolSub: "In typical Indian high-volume outpatient clinics, doctors spend just 2.5 minutes per patient — 60% of which is consumed by clerical data entry.",
+    probLegacyBadge: "Legacy Reality",
+    probLegacyTag: "Fragmented & High Latency",
+    probLegacyTitle: "Administrative Load Displaces Clinical Care",
+    probLegacyFooter: "Average physician face-time: <3 mins per patient",
+    solArchBadge: "MEDIKOISK Architecture",
+    solArchTag: "Autonomous Pre-Encounter",
+    solArchTitle: "Clinical Intake Completed Before Doctor Consultation",
+    solArchFooter: "Physician cognitive capacity preserved for diagnosis",
+
+    whyDiffBadge: "Architectural Differentiation",
+    whyDiffTitle: "Engineered for Clinical Safety & Sovereignty",
+    whyDiffSub: "Generic LLMs hallucinate diagnoses and create unacceptable medical liability. MEDIKOISK combines deterministic safety rules, verified OCR, and NRCeS FHIR R4 interoperability.",
+    whyCol1Header: "Conventional Chatbots & Portals",
+    whyCol2Header: "MEDIKOISK Autonomous Kiosk",
+
+    impactBadge: "Measurable Clinical Impact",
+    impactTitle: "Proven Efficiency Across OPD Workflows",
+    impactSub: "Quantifiable time savings, enhanced clinical precision, and direct financial incentives under the ABDM Digital Health Incentive Scheme.",
+    impact1Val: "60%",
+    impact1Title: "Documentation Time Saved",
+    impact1Desc: "Eliminates repetitive manual history typing, freeing 3.5+ hours per doctor daily.",
+    impact2Val: "₹5 – ₹10",
+    impact2Title: "DHIS Incentive per Patient",
+    impact2Desc: "Hospitals qualify for direct cash transfers under NHA Corrigendum 7 for digital OPD intake.",
+    impact3Val: "99.4%",
+    impact3Title: "Emergency Triage Precision",
+    impact3Desc: "Deterministic red flag rule engine intercepts critical emergencies without delay.",
+    impact4Val: "<4.2 min",
+    impact4Title: "Average Intake Duration",
+    impact4Desc: "Patients complete check-in, adaptive voice intake, and prescription OCR in under 5 minutes.",
+
+    feasBadge: "Technical Feasibility & Integration Thesis",
+    feasTitle: "Integrating Proven National Digital Health Infrastructure",
+    feasDesc: "India has established sovereign health protocols: ABDM federated registries, Project Bhashini speech models, NRCeS FHIR R4 clinical profiles, and the Digital Health Incentive Scheme (DHIS). MEDIKOISK unites these national assets into a high-speed pre-encounter intake platform.",
+
+    heroPipelineTitle: "Pre-Encounter Clinical Pipeline",
+    heroPipelineSub: "Fully autonomous kiosk workflow taking under 4 minutes per patient",
+    heroPipelineBadge: "NRCeS FHIR R4 Ready",
+
+    adminKpi1: "OPD Visits Today",
+    adminKpi2: "Digital Intake",
+    adminKpi3: "Waiting in Queue",
+    adminKpi4: "Emergency Triggers",
+    adminKpi5: "Documents TrOCR'd",
+    adminKpi6: "ABHA / Guest Share",
+    adminKpi7: "Vernacular Speech",
+    adminKpi8: "DHIS Revenue",
+    adminQueueTitle: "Live OPD Outpatient Queue & Consultation Rooms",
+    adminQueueSub: "Synchronous queue distribution with deterministic priority routing",
+    adminSearchPlaceholder: "Search patient, token...",
+    adminColToken: "Token No.",
+    adminColName: "Patient Name",
+    adminColAgeGender: "Age/Gender",
+    adminColComplaint: "Chief Complaint",
+    adminColPriority: "Priority",
+    adminColRoom: "Assigned Room",
+    adminColStatus: "Status",
+    adminEmergencyBanner: "DETERMINISTIC EMERGENCY TRIAGE OVERRIDES DETECTED",
+    adminDispatchNurse: "Acknowledge & Dispatch",
+    adminDispatched: "Dispatched",
+
+    privacyCard1Desc: "Halt all active AI case preparation and decouple your intake stream from hospital middleware immediately.",
+    privacyCard2Desc: "Download your complete machine-readable intake record, FHIR JSON bundle, and cryptographic audit log.",
+    privacyCard3Desc: "Exercise your statutory right under Section 12 of DPDP Act 2023 to request deletion of cached session data.",
+    privacyEcdhTitle: "Key Agreement Protocol",
+    privacyEcdhDesc: "ECDH over Curve25519: Derives ephemeral shared secrets without transmitting private keys.",
+    privacyAesTitle: "Symmetric Cipher Suite",
+    privacyAesDesc: "AES-256-GCM + HKDF: Authenticated encryption providing confidentiality and integrity.",
+    privacyHashTitle: "Integrity Checksum",
+    privacyHashDesc: "SHA-256 Digest Hash: Guarantees zero payload tampering during transit.",
+    privacyAuditSearchPlaceholder: "Search audit actions...",
+    privacyAuditSub: "Cryptographically verifiable event stream with actor provenance",
+
+    safetyRedFlagBadge: "Safety Red-Flag",
+    stepDemographicHeader: "Step: Demographic & Medical Baseline",
+    masterPatientIndex: "Master Patient Index",
+    currentMedicationsLabel: "Current Regular Medications"
   },
 
   // ==========================================
@@ -499,7 +667,87 @@ export const TRANSLATIONS: Record<IndianLanguage, TranslationDictionary> = {
     exportDataBtn: "स्वास्थ्य डेटा डाउनलोड करें",
     requestErasureBtn: "डेटा मिटाने का अनुरोध करें",
     fideliusTitle: "ABDM फिदेलियस एंड-टू-एंड एन्क्रिप्शन",
-    auditLogTitle: "अपरिवर्तनीय नैदानिक ऑडिट लॉग"
+        auditLogTitle: "अपरिवर्तनीय नैदानिक ऑडिट लॉग",
+
+    probSolTitle: "उच्च-मात्रा ओपीडी की रुकावटों का समाधान",
+    probSolSub: "भारतीय ओपीडी में डॉक्टर प्रति मरीज केवल 2.5 मिनट दे पाते हैं — जिसका 60% समय केवल कागजी कार्यवाही में चला जाता है।",
+    probLegacyBadge: "पारंपरिक व्यवस्था",
+    probLegacyTag: "धीमी और खंडित",
+    probLegacyTitle: "प्रशासनिक काम में इलाज का समय नष्ट",
+    probLegacyFooter: "औसत डॉक्टर परामर्श समय: प्रति मरीज <3 मिनट",
+    solArchBadge: "मेडीकोयस्क वास्तुकला",
+    solArchTag: "स्वचालित पूर्व-परामर्श",
+    solArchTitle: "डॉक्टर के केबिन में जाने से पहले संपूर्ण इतिहास तैयार",
+    solArchFooter: "चिकित्सक का पूरा ध्यान सिर्फ सही निदान और उपचार पर",
+
+    whyDiffBadge: "तकनीकी विशिष्टता",
+    whyDiffTitle: "नैदानिक सुरक्षा एवं संप्रभुता हेतु निर्मित",
+    whyDiffSub: "सामान्य एआई गलत दवाएं बता सकते हैं। मेडीकोयस्क में निश्चित सुरक्षा नियम, सत्यापित ओसीआर और एनआरसीईएस एफएचआईआर आर4 शामिल हैं।",
+    whyCol1Header: "पारंपरिक चैटबॉट और पोर्टल",
+    whyCol2Header: "मेडीकोयस्क स्वचालित कियोस्क",
+
+    impactBadge: "मापने योग्य नैदानिक प्रभाव",
+    impactTitle: "ओपीडी कार्यप्रवाह में प्रमाणित दक्षता",
+    impactSub: "समय की भारी बचत, सटीक आपातकालीन पहचान और डिजिटल स्वास्थ्य प्रोत्साहन (DHIS) से अस्पताल को सीधी आय।",
+    impact1Val: "60%",
+    impact1Title: "दस्तावेज़ीकरण समय में बचत",
+    impact1Desc: "हाथ से इतिहास लिखने की आवश्यकता नहीं, डॉक्टरों के 3.5 घंटे प्रतिदिन बचते हैं।",
+    impact2Val: "₹5 – ₹10",
+    impact2Title: "प्रति मरीज DHIS प्रोत्साहन",
+    impact2Desc: "राष्ट्रीय स्वास्थ्य प्राधिकरण (NHA) के तहत डिजिटल पंजीकरण पर अस्पताल को नकद प्रोत्साहन।",
+    impact3Val: "99.4%",
+    impact3Title: "आपातकालीन ट्राइएज सटीकता",
+    impact3Desc: "छाती दर्द, सांस फूलने जैसी गंभीर स्थितियों की तत्काल बिना देरी पहचान।",
+    impact4Val: "<4.2 मिनट",
+    impact4Title: "औसत पंजीकरण समय",
+    impact4Desc: "मरीज केवल 4 मिनट में आवाज से बोलकर और पर्चा स्कैन कर टोकन प्राप्त करते हैं।",
+
+    feasBadge: "तकनीकी व्यवहार्यता एवं एकीकरण",
+    feasTitle: "राष्ट्रीय डिजिटल स्वास्थ्य बुनियादी ढांचे का उपयोग",
+    feasDesc: "भारत के पास मजबूत डिजिटल स्वास्थ्य प्रणाली है: आभा (ABDM), प्रोजेक्ट भाषिणी आवाज मॉडल और एनआरसीईएस एफएचआईआर मानक। मेडीकोयस्क इन्हें एक मंच पर लाता है।",
+
+    heroPipelineTitle: "पूर्व-परामर्श नैदानिक चरण",
+    heroPipelineSub: "मरीज के लिए 4 मिनट से कम समय में पूरी होने वाली पूर्ण स्वचालित कियोस्क प्रक्रिया",
+    heroPipelineBadge: "NRCeS FHIR R4 प्रमाणित",
+
+    adminKpi1: "आज की ओपीडी संख्या",
+    adminKpi2: "डिजिटल पंजीकरण",
+    adminKpi3: "कतार में प्रतीक्षारत",
+    adminKpi4: "आपातकालीन अलर्ट",
+    adminKpi5: "स्कैन किए गए पर्चे",
+    adminKpi6: "आभा / अतिथि अनुपात",
+    adminKpi7: "मातृभाषा आवाज उपयोग",
+    adminKpi8: "DHIS प्रोत्साहन आय",
+    adminQueueTitle: "लाइव ओपीडी बाह्यरोगी कतार एवं कक्ष आवंटन",
+    adminQueueSub: "प्राथमिकता-आधारित त्वरित और पारदर्शी कतार प्रबंधन",
+    adminSearchPlaceholder: "मरीज का नाम या टोकन खोजें...",
+    adminColToken: "टोकन संख्या",
+    adminColName: "रोगी का नाम",
+    adminColAgeGender: "आयु / लिंग",
+    adminColComplaint: "मुख्य समस्या",
+    adminColPriority: "प्राथमिकता",
+    adminColRoom: "आवंटित कमरा",
+    adminColStatus: "स्थिति",
+    adminEmergencyBanner: "गंभीर आपातकालीन चेतावनी दर्ज की गई",
+    adminDispatchNurse: "स्वीकार करें एवं नर्स भेजें",
+    adminDispatched: "भेज दिया गया",
+
+    privacyCard1Desc: "सभी एआई केस तैयारी तुरंत रोकें और अस्पताल प्रणाली से अपने डेटा को अलग करें।",
+    privacyCard2Desc: "अपना संपूर्ण स्वास्थ्य रिकॉर्ड, एफएचआईआर जेसन बंडल और ऑडिट लॉग डाउनलोड करें।",
+    privacyCard3Desc: "DPDP अधिनियम 2023 की धारा 12 के तहत अपने डेटा को मिटाने का वैधानिक अनुरोध दर्ज करें।",
+    privacyEcdhTitle: "कुंजी समझौता प्रोटोकॉल",
+    privacyEcdhDesc: "Curve25519 पर ईसीडीएच: बिना निजी कुंजी भेजे सुरक्षित गुप्त कुंजी तैयार।",
+    privacyAesTitle: "सममित सिफर सुइट",
+    privacyAesDesc: "AES-256-GCM + HKDF: उच्च-स्तरीय प्रमाणीकृत डेटा गोपनीयता सुनिश्चित करता है।",
+    privacyHashTitle: "डेटा अखंडता हैश",
+    privacyHashDesc: "SHA-256 डाइजेस्ट हैश: पारगमन के दौरान डेटा में किसी भी छेड़छाड़ को रोकता है।",
+    privacyAuditSearchPlaceholder: "ऑडिट रिकॉर्ड खोजें...",
+    privacyAuditSub: "प्रमाणित और अपरिवर्तनीय डिजिटल गतिविधि रिकॉर्ड",
+
+    safetyRedFlagBadge: "आपातकालीन चेतावनी",
+    stepDemographicHeader: "चरण: जनसांख्यिकी एवं पूर्व चिकित्सा विवरण",
+    masterPatientIndex: "मास्टर रोगी सूचकांक",
+    currentMedicationsLabel: "वर्तमान नियमित दवाएं"
   },
 
   // ==========================================
@@ -662,7 +910,87 @@ export const TRANSLATIONS: Record<IndianLanguage, TranslationDictionary> = {
     exportDataBtn: "आरोग्य माहिती डाउनलोड करा",
     requestErasureBtn: "माहिती नष्ट करण्याची विनंती करा",
     fideliusTitle: "ABDM फिदेलियस मजबूत एन्क्रिप्शन",
-    auditLogTitle: "अपरिवर्तनीय वैद्यकीय ऑडिट लॉग"
+        auditLogTitle: "अपरिवर्तनीय वैद्यकीय ऑडिट लॉग",
+
+    probSolTitle: "ओपीडी मधील प्रचंड गर्दीवर प्रभावी तोडगा",
+    probSolSub: "भारतीय ओपीडीत डॉक्टर प्रत्येक रुग्णाला सरासरी २.५ मिनिटे देऊ शकतात — त्यातील ६०% वेळ केवळ कागदपत्रांमध्ये खर्च होतो.",
+    probLegacyBadge: "पारंपारिक वास्तव",
+    probLegacyTag: "संथ व विस्कळीत",
+    probLegacyTitle: "प्रशासकीय कामात उपचारांचा वेळ वाया",
+    probLegacyFooter: "सरासरी तपासणी वेळ: <३ मिनिटे प्रति रुग्ण",
+    solArchBadge: "मेडीकोयस्क आर्किटेक्चर",
+    solArchTag: "स्वयंचलित पूर्व-नोंदणी",
+    solArchTitle: "डॉक्टरांकडे जाण्यापूर्वीच संपूर्ण वैद्यकीय केस तयार",
+    solArchFooter: "डॉक्टरांचे संपूर्ण लक्ष केवळ अचूक निदानावर",
+
+    whyDiffBadge: "तांत्रिक वेगळेपण",
+    whyDiffTitle: "वैद्यकीय सुरक्षितता आणि सार्वभौमत्वासाठी विकसित",
+    whyDiffSub: "सामान्य एआय चुकीची औषधे सुचवू शकतात. मेडीकोयस्क मध्ये नियम-आधारित सुरक्षितता, तपासलेले ओसीआर आणि FHIR R4 समाविष्ट आहे.",
+    whyCol1Header: "पारंपारिक चॅटबॉट्स",
+    whyCol2Header: "मेडीकोयस्क ऑटोनॉमस कियोस्क",
+
+    impactBadge: "मोजता येणारा वैद्यकीय प्रभाव",
+    impactTitle: "ओपीडी कार्यक्षमतेत क्रांतिकारी वाढ",
+    impactSub: "वेळेची बचत, त्वरित आपत्कालीन ओळख आणि डिजिटल हेल्थ इन्सेंटिव्ह योजनेतून थेट उत्पन्न.",
+    impact1Val: "६०%",
+    impact1Title: "कागदपत्रांचा वेळ वाचला",
+    impact1Desc: "हाताने केस हिस्ट्री लिहिण्याची गरज नाही, डॉक्टरांचे दररोज ३.५+ तास वाचतात.",
+    impact2Val: "₹५ – ₹१०",
+    impact2Title: "प्रति रुग्ण DHIS प्रोत्साहन",
+    impact2Desc: "डिजिटल नोंदणीमुळे रुग्णालयाला राष्ट्रीय आरोग्य प्राधिकरणाकडून थेट अनुदान मिळते.",
+    impact3Val: "९९.४%",
+    impact3Title: "आपत्कालीन ट्राइएज अचूकता",
+    impact3Desc: "हृदयविकार व तीव्र त्रासाची कोणतीही वाट न पाहता त्वरित ओळख.",
+    impact4Val: "<४.२ मिनिटे",
+    impact4Title: "सरासरी नोंदणी वेळ",
+    impact4Desc: "रुग्ण मराठीत बोलून किंवा स्पर्श करून ४ मिनिटांत टोकन मिळवतात.",
+
+    feasBadge: "तांत्रिक व्यवहार्यता व एकीकरण",
+    feasTitle: "राष्ट्रीय डिजिटल आरोग्य पायाभूत सुविधांचा समन्वय",
+    feasDesc: "भारतात आभा (ABDM), भाषिणी व्हॉइस एआय आणि एनआरसीईएस मानके उपलब्ध आहेत. मेडीकोयस्क या सर्वांना एकत्रित आणते.",
+
+    heroPipelineTitle: "पूर्व-तपासणी वैद्यकीय टप्पे",
+    heroPipelineSub: "रुग्णासाठी ४ मिनिटांपेक्षा कमी वेळात पूर्ण होणारी स्वयंचलित कियोस्क प्रक्रिया",
+    heroPipelineBadge: "NRCeS FHIR R4 सुसंगत",
+
+    adminKpi1: "आजच्या ओपीडी भेटी",
+    adminKpi2: "डिजिटल नोंदणी",
+    adminKpi3: "कतारमध्ये प्रतीक्षारत",
+    adminKpi4: "आपत्कालीन अलर्ट",
+    adminKpi5: "स्कॅन केलेले प्रिस्क्रिप्शन",
+    adminKpi6: "आभा / पाहुणे प्रमाण",
+    adminKpi7: "मातृभाषेत आवाज वापर",
+    adminKpi8: "DHIS प्रोत्साहन महसूल",
+    adminQueueTitle: "थेट ओपीडी रुग्ण कतार व तपासणी कक्ष",
+    adminQueueSub: "प्राधान्यक्रमानुसार जलद आणि पारदर्शक रुग्ण वाटप",
+    adminSearchPlaceholder: "रुग्णाचे नाव किंवा टोकन शोधा...",
+    adminColToken: "टोकन क्र.",
+    adminColName: "रुग्णाचे नाव",
+    adminColAgeGender: "वय / लिंग",
+    adminColComplaint: "मुख्य तक्रार",
+    adminColPriority: "प्राधान्य",
+    adminColRoom: "नियुक्त कक्ष",
+    adminColStatus: "स्थिती",
+    adminEmergencyBanner: "तातडीचा आपत्कालीन इशारा नोंदवला गेला",
+    adminDispatchNurse: "स्वीकारा आणि नर्स पाठवा",
+    adminDispatched: "रवाना केले",
+
+    privacyCard1Desc: "सक्रिय एआय प्रक्रिया थांबवा आणि रुग्णालयाच्या सर्व्हरवरून तुमचा डेटा वेगळा करा.",
+    privacyCard2Desc: "तुमचा संपूर्ण आरोग्य डेटा, FHIR JSON बंडल आणि ऑडिट लॉग डाउनलोड करा.",
+    privacyCard3Desc: "DPDP कायदा २०२३ च्या कलम १२ अंतर्गत तात्पुरता डेटा नष्ट करण्याची विनंती नोंदवा.",
+    privacyEcdhTitle: "की ॲग्रीमेंट प्रोटोकॉल",
+    privacyEcdhDesc: "ECDH Curve25519: खाजगी की शेअर न करता सुरक्षित सांकेतिक कोड तयार केला जातो.",
+    privacyAesTitle: "सिमेट्रिक सिफर सुइट",
+    privacyAesDesc: "AES-256-GCM: संपूर्ण डेटा गोपनीय व सुरक्षित ठेवण्यासाठी प्रमाणित एन्क्रिप्शन.",
+    privacyHashTitle: "डेटा अखंडता हॅश",
+    privacyHashDesc: "SHA-256: नेटवर्कवरून पाठवताना डेटामध्ये कोणतीही छेडछाड होणार नाही याची खात्री.",
+    privacyAuditSearchPlaceholder: "ऑडिट क्रिया शोधा...",
+    privacyAuditSub: "अपरिवर्तनीय व सुरक्षित डिजिटल घडामोडींची नोंद",
+
+    safetyRedFlagBadge: "सुरक्षितता रेड-फ्लॅग",
+    stepDemographicHeader: "टप्पा: वैयक्तिक माहिती व वैद्यकीय पार्श्वभूमी",
+    masterPatientIndex: "मास्टर रुग्ण निर्देशांक",
+    currentMedicationsLabel: "सध्याची नियमित औषधे"
   },
 
   // ==========================================
@@ -674,7 +1002,7 @@ export const TRANSLATIONS: Record<IndianLanguage, TranslationDictionary> = {
     navOverview: "கண்ணோட்டம்",
     navPatientKiosk: "நோயாளி கியோஸ்க்",
     navClinicianWorkstation: "மருத்துவர் பணிநிலையம்",
-    navTriageDesk: "ட்ரையrecord & வரிசை மேசை",
+    navTriageDesk: "ட்ரையஜ் & வரிசை மேசை",
     navPrivacyGovernance: "தனியுரிமை & நிர்வாகம்",
     emergencyBtn: "அவசர உதவி SOS",
     lightMode: "லைட் மோட்",
@@ -810,7 +1138,7 @@ export const TRANSLATIONS: Record<IndianLanguage, TranslationDictionary> = {
     exportFhirBundle: "NRCeS FHIR R4 தொகுப்பைக் காண்க",
     approveSignSummary: "டிஜிட்டல் கையொப்பமிட்டு ஒப்புதல் அளிக்கவும்",
 
-    triageTitle: "மருத்துவமனை OPD ட்ரையrecord மேசை",
+    triageTitle: "மருத்துவமனை OPD ட்ரையஜ் மேசை",
     triageSub: "நேரடி வரிசை நிலை, அவசர ரெட்-பிளாக் எச்சரிக்கைகள் மற்றும் DHIS அரசு ஊக்கத்தொகை.",
     queueStatus: "செயலில் உள்ள OPD வரிசை",
     urgencyImmediate: "உடனடி அவசர சிகிச்சை (Critical)",
@@ -825,7 +1153,87 @@ export const TRANSLATIONS: Record<IndianLanguage, TranslationDictionary> = {
     exportDataBtn: "சுகாதாரத் தரவைப் பதிவிறக்கு",
     requestErasureBtn: "தரவை அழிக்கக் கோருதல்",
     fideliusTitle: "ABDM ஃபிடெலியஸ் முழுமையான குறியாக்கம்",
-    auditLogTitle: "மாற்ற முடியாத மருத்துவ தணிக்கை பதிவு"
+        auditLogTitle: "மாற்ற முடியாத மருத்துவ தணிக்கை பதிவு",
+
+    probSolTitle: "அதிக நோயாளிகள் உள்ள ஓபிடி நெரிசலுக்கு தீர்வு",
+    probSolSub: "இந்திய ஓபிடிகளில் மருத்துவர்கள் ஒரு நோயாளிக்கு 2.5 நிமிடங்கள் மட்டுமே செலவிட முடிகிறது — இதில் 60% நேரம் கணினி பதிவிற்கே செலவாகிறது.",
+    probLegacyBadge: "பழைய நடைமுறை",
+    probLegacyTag: "தாமதமான மற்றும் துண்டு துண்டான",
+    probLegacyTitle: "நிர்வாகப் பணிகளால் சிகிச்சை நேரம் வீணாகிறது",
+    probLegacyFooter: "சராசரி மருத்துவ சந்திப்பு நேரம்: நோயாளிக்கு <3 நிமிடங்கள்",
+    solArchBadge: "மெடிகாயிஸ்க் கட்டமைப்பு",
+    solArchTag: "தானியங்கி முந்தைய பதிவு",
+    solArchTitle: "மருத்துவரை சந்திக்கும் முன்பே முழு வரலாறு தயார்",
+    solArchFooter: "மருத்துவர் முழு கவனத்தையும் துல்லிய நோயறிதலில் மட்டுமே செலுத்தலாம்",
+
+    whyDiffBadge: "கட்டமைப்பு வேறுபாடு",
+    whyDiffTitle: "மருத்துவ பாதுகாப்பு மற்றும் இறையாண்மைக்காக உருவாக்கப்பட்டது",
+    whyDiffSub: "பொதுவான ஏஐ தவறான மருந்துகளை கூறலாம். மெடிகாயிஸ்க் விதிகளுக்குட்பட்ட பாதுகாப்பு, சரிபார்க்கப்பட்ட ஓசிஆர் மற்றும் FHIR R4 தரநிலைகளை கொண்டது.",
+    whyCol1Header: "வழக்கமான சாட்போட்கள்",
+    whyCol2Header: "மெடிகாயிஸ்க் தானியங்கி கியோஸ்க்",
+
+    impactBadge: "அளவிடக்கூடிய மருத்துவ தாக்கம்",
+    impactTitle: "ஓபிடி செயல்பாடுகளில் நிரூபிக்கப்பட்ட செயல்திறன்",
+    impactSub: "அளவிடக்கூடிய நேர சேமிப்பு, உடனடி அவசரநிலை கண்டறிதல் மற்றும் ABDM ஊக்கத்தொகை.",
+    impact1Val: "60%",
+    impact1Title: "ஆவண நேரம் மிச்சமானது",
+    impact1Desc: "கையால் வரலாறு எழுத தேவையில்லை, மருத்துவர்களுக்கு தினமும் 3.5+ மணி நேரம் மிச்சமாகிறது.",
+    impact2Val: "₹5 – ₹10",
+    impact2Title: "நோயாளிக்கான DHIS ஊக்கத்தொகை",
+    impact2Desc: "டிஜிட்டல் பதிவுகளுக்காக மருத்துவமனைகளுக்கு தேசிய சுகாதார ஆணையத்திடமிருந்து நேரடி நிதி உதவி.",
+    impact3Val: "99.4%",
+    impact3Title: "அவசரநிலை கண்டறிதல் துல்லியம்",
+    impact3Desc: "நெஞ்சு வலி, மூச்சுத்திணறல் போன்ற ஆபத்தான நிலைகளை தாமதமின்றி கண்டறிதல்.",
+    impact4Val: "<4.2 நிமிடம்",
+    impact4Title: "சராசரி பதிவு நேரம்",
+    impact4Desc: "நோயாளிகள் தமிழில் பேசி 4 நிமிடங்களில் டோக்கன் பெறுகின்றனர்.",
+
+    feasBadge: "தொழில்நுட்ப சாத்தியக்கூறு",
+    feasTitle: "தேசிய டிஜிட்டல் சுகாதார கட்டமைப்பின் ஒருங்கிணைப்பு",
+    feasDesc: "இந்தியாவில் ஆபா (ABDM), பாஷினி குரல் ஏஐ மற்றும் NRCeS FHIR தரநிலைகள் உள்ளன. மெடிகாயிஸ்க் இவற்றை ஒருங்கிணைக்கிறது.",
+
+    heroPipelineTitle: "முன்-சந்திப்பு மருத்துவ படிகள்",
+    heroPipelineSub: "நோயாளிகளுக்கு 4 நிமிடங்களுக்குள் முடிவடையும் முழு தானியங்கி கியோஸ்க் செயல்முறை",
+    heroPipelineBadge: "NRCeS FHIR R4 தயார்",
+
+    adminKpi1: "இன்றைய ஓபிடி வருகை",
+    adminKpi2: "டிஜிட்டல் பதிவுகள்",
+    adminKpi3: "வரிசையில் காத்திருப்போர்",
+    adminKpi4: "அவசர எச்சரிக்கைகள்",
+    adminKpi5: "ஸ்கேன் செய்யப்பட்ட மருந்துகள்",
+    adminKpi6: "ஆபா / விருந்தினர் விகிதம்",
+    adminKpi7: "தாய்மொழி குரல் பயன்பாடு",
+    adminKpi8: "DHIS ஊக்கத்தொகை வருவாய்",
+    adminQueueTitle: "நேரலை ஓபிடி வரிசை மற்றும் அறை ஒதுக்கீடு",
+    adminQueueSub: "முன்னுரிமை அடிப்படையில் விரைவான வரிசை மேலாண்மை",
+    adminSearchPlaceholder: "நோயாளி பெயர் அல்லது டோக்கன் தேடுக...",
+    adminColToken: "டோக்கன் எண்",
+    adminColName: "நோயாளி பெயர்",
+    adminColAgeGender: "வயது / பாலினம்",
+    adminColComplaint: "முக்கிய பிரச்சனை",
+    adminColPriority: "முன்னுரிமை",
+    adminColRoom: "ஒதுக்கப்பட்ட அறை",
+    adminColStatus: "நிலை",
+    adminEmergencyBanner: "அவசர மருத்துவ எச்சரிக்கை கண்டறியப்பட்டது",
+    adminDispatchNurse: "ஏற்றுக்கொண்டு செவிலியரை அனுப்புக",
+    adminDispatched: "அனுப்பப்பட்டது",
+
+    privacyCard1Desc: "அனைத்து ஏஐ தயாரிப்புகளையும் உடனடியாக நிறுத்தி உங்கள் தரவை பாதுகாக்கவும்.",
+    privacyCard2Desc: "உங்கள் முழு சுகாதார பதிவு, FHIR JSON கோப்பு மற்றும் தணிக்கை பதிவை பதிவிறக்குக.",
+    privacyCard3Desc: "DPDP சட்டம் 2023 பிரிவு 12ன் கீழ் உங்கள் தற்காலிக தரவை நீக்க கோரிக்கை விடுக்கவும்.",
+    privacyEcdhTitle: "முக்கிய ஒப்பந்த நெறிமுறை",
+    privacyEcdhDesc: "Curve25519 மீது ECDH: ரகசிய குறியீடுகளை பகிராமல் பாதுகாப்பான தொடர்பு.",
+    privacyAesTitle: "சமச்சீர் சைஃபர் சூட்",
+    privacyAesDesc: "AES-256-GCM: முழுமையான ரகசியத்தன்மை மற்றும் அங்கீகரிக்கப்பட்ட குறியாக்கம்.",
+    privacyHashTitle: "ஒருமைப்பாடு செக்சம்",
+    privacyHashDesc: "SHA-256: நெட்வொர்க்கில் தரவு மாற்றப்படாமல் இருப்பதை உறுதி செய்கிறது.",
+    privacyAuditSearchPlaceholder: "தணிக்கை பதிவுகளை தேடுக...",
+    privacyAuditSub: "பாதுகாப்பான மற்றும் மாற்ற முடியாத நிகழ்வு பதிவு",
+
+    safetyRedFlagBadge: "பாதுகாப்பு எச்சரிக்கை",
+    stepDemographicHeader: "படி: அடிப்படை தகவல்கள் மற்றும் முந்தைய நோய்கள்",
+    masterPatientIndex: "நோயாளி முதன்மை குறியீடு",
+    currentMedicationsLabel: "தற்போது உண்ணும் மருந்துகள்"
   },
 
   // ==========================================
@@ -988,7 +1396,87 @@ export const TRANSLATIONS: Record<IndianLanguage, TranslationDictionary> = {
     exportDataBtn: "স্বাস্থ্য তথ্য ডাউনলোড করুন",
     requestErasureBtn: "তথ্য মুছে ফেলার অনুরোধ",
     fideliusTitle: "ABDM ফিদেলিয়াস এন্ড-টু-এন্ড এনক্রিপশন",
-    auditLogTitle: "অপরিবর্তনীয় ক্লিনিক্যাল অডিট লগ"
+        auditLogTitle: "অপরিবর্তনীয় ক্লিনিক্যাল অডিট লগ",
+
+    probSolTitle: "উচ্চ-ভলিউম ওপিডি ভিড়ের কার্যকর সমাধান",
+    probSolSub: "ভারতীয় ওপিডিতে ডাক্তাররা প্রতি রোগীর জন্য গড়ে মাত্র ২.৫ মিনিট সময় দিতে পারেন — যার ৬০% সময় শুধু কাগজপত্রের কাজে যায়।",
+    probLegacyBadge: "প্রচলিত বাস্তবতা",
+    probLegacyTag: "ধীরগতির ও খণ্ডিত",
+    probLegacyTitle: "প্রশাসনিক চাপে চিকিৎসার সময় নষ্ট",
+    probLegacyFooter: "গড়ে ডাক্তার দেখানোর সময়: রোগী প্রতি <৩ মিনিট",
+    solArchBadge: "মেডিকোয়েস্ক আর্কিটেকচার",
+    solArchTag: "স্বয়ংক্রিয় প্রাক-পরামর্শ",
+    solArchTitle: "ডাক্তারের কাছে যাওয়ার আগেই সম্পূর্ণ হিস্ট্রি প্রস্তুত",
+    solArchFooter: "চিকিৎসকের পূর্ণ মনোযোগ শুধু সঠিক রোগ নির্ণয়ের দিকে",
+
+    whyDiffBadge: "প্রযুক্তিগত পার্থক্য",
+    whyDiffTitle: "ক্লিনিকাল সুরক্ষা ও সার্বভৌমত্বের জন্য নির্মিত",
+    whyDiffSub: "সাধারণ এআই ভুল ওষুধ বলতে পারে। মেডিকোয়েস্কে রয়েছে নিয়ম-ভিত্তিক সুরক্ষা, পরীক্ষিত ওসিআর এবং FHIR R4 মানদণ্ড।",
+    whyCol1Header: "সাধারণ চ্যাটবট ও পোর্টাল",
+    whyCol2Header: "মেডিকোয়েস্ক অটোনোমাস কিয়স্ক",
+
+    impactBadge: "পরিমাপযোগ্য ক্লিনিকাল প্রভাব",
+    impactTitle: "ওপিডি কার্যক্রমে প্রমাণিত দক্ষতা",
+    impactSub: "সময়ের ব্যাপক সাশ্রয়, দ্রুত জরুরি অবস্থা শনাক্তকরণ এবং DHIS ইনসেন্টিভ আয়।",
+    impact1Val: "৬০%",
+    impact1Title: "নথিপত্রের সময় সাশ্রয়",
+    impact1Desc: "হাতে কেস হিস্ট্রি লেখার দরকার নেই, ডাক্তারদের প্রতিদিন ৩.৫+ ঘণ্টা সময় বাঁচে।",
+    impact2Val: "₹৫ – ₹১০",
+    impact2Title: "রোগী প্রতি DHIS প্রণোদনা",
+    impact2Desc: "ডিজিটাল স্বাস্থ্য নিবন্ধনে হাসপাতাল সরাসরি নগদ অনুদান লাভ করে।",
+    impact3Val: "৯৯.৪%",
+    impact3Title: "জরুরি ট্রায়াজ নির্ভুলতা",
+    impact3Desc: "বুকে ব্যথা বা শ্বাসকষ্টের মতো আশঙ্কাজনক রোগীকে তাৎক্ষণিক শনাক্তকরণ।",
+    impact4Val: "<৪.২ মিনিট",
+    impact4Title: "গড় রেজিস্ট্রেশন সময়",
+    impact4Desc: "রোগী বাংলায় কথা বলে বা স্পর্শ করে ৪ মিনিটে টোকেন পান।",
+
+    feasBadge: "কারিগরি সম্ভাব্যতা ও সংহতি",
+    feasTitle: "জাতীয় ডিজিটাল স্বাস্থ্য পরিকাঠামোর সমন্বয়",
+    feasDesc: "ভারতে আভা (ABDM), ভাষিণী ভয়েস এআই এবং এনআরসিইএস এফএইচআইআর স্ট্যান্ডার্ড রয়েছে। মেডিকোয়েস্ক এদের একত্রিত করে।",
+
+    heroPipelineTitle: "প্রাক-পরামর্শ ক্লিনিকাল ধাপসমূহ",
+    heroPipelineSub: "রোগীদের জন্য ৪ মিনিটের কম সময়ে সম্পন্ন হওয়া সম্পূর্ণ স্বয়ংক্রিয় কিয়স্ক প্রক্রিয়া",
+    heroPipelineBadge: "NRCeS FHIR R4 সমর্থিত",
+
+    adminKpi1: "আজকের ওপিডি ভিজিট",
+    adminKpi2: "ডিজিটাল গ্রহণ",
+    adminKpi3: "লাইনে অপেক্ষারত",
+    adminKpi4: "জরুরি অ্যালার্ট",
+    adminKpi5: "স্ক্যান করা প্রেসক্রিপশন",
+    adminKpi6: "আভা / অতিথি অনুপাত",
+    adminKpi7: "মাতৃভাষায় ভয়েস ব্যবহার",
+    adminKpi8: "DHIS ইনসেন্টিভ আয়",
+    adminQueueTitle: "লাইভ ওপিডি কিউ ও রুম বণ্টন",
+    adminQueueSub: "অগ্রাধিকার ভিত্তিতে দ্রুত ও স্বচ্ছ সিরিয়াল বণ্টন",
+    adminSearchPlaceholder: "রোগীর নাম বা টোকেন খুঁজুন...",
+    adminColToken: "টোকেন নং",
+    adminColName: "রোগীর নাম",
+    adminColAgeGender: "বয়স / লিঙ্গ",
+    adminColComplaint: "মূল সমস্যা",
+    adminColPriority: "অগ্রাধিকার",
+    adminColRoom: "বরাদ্দকৃত রুম",
+    adminColStatus: "অবস্থা",
+    adminEmergencyBanner: "জরুরি স্বাস্থ্য সতর্কতা সনাক্ত করা হয়েছে",
+    adminDispatchNurse: "গ্রহণ করুন এবং নার্স পাঠান",
+    adminDispatched: "পাঠানো হয়েছে",
+
+    privacyCard1Desc: "সমস্ত এআই কেস প্রস্তুতি অবিলম্বে বন্ধ করুন এবং হাসপাতাল সার্ভার থেকে আপনার তথ্য আলাদা করুন।",
+    privacyCard2Desc: "আপনার সম্পূর্ণ স্বাস্থ্য রেকর্ড, FHIR JSON ফাইল এবং অডিট লগ ডাউনলোড করুন।",
+    privacyCard3Desc: "DPDP আইন ২০২৩ এর ধারা ১২ অনুযায়ী সাময়িক তথ্য মুছে ফেলার আবেদন করুন।",
+    privacyEcdhTitle: "কি চুক্তি প্রোটোকল",
+    privacyEcdhDesc: "Curve25519 এ ECDH: ব্যক্তিগত কি না পাঠিয়ে নিরাপদ গোপন যোগাযোগ তৈরি।",
+    privacyAesTitle: "সিমেট্রিক সাইফার স্যুট",
+    privacyAesDesc: "AES-256-GCM: সম্পূর্ণ তথ্য সুরক্ষিত ও গোপনীয় রাখার শীর্ষস্থানীয় মানদণ্ড।",
+    privacyHashTitle: "অখণ্ডতা হ্যাশ",
+    privacyHashDesc: "SHA-256: নেটওয়ার্ক ট্রানজিটের সময় ডেটায় কোনো বিকৃতি যাতে না ঘটে তা নিশ্চিত করে।",
+    privacyAuditSearchPlaceholder: "অডিট রেকর্ড খুঁজুন...",
+    privacyAuditSub: "নিরাপদ ও অপরিবর্তনীয় ডিজিটাল কার্যকলাপের তালিকা",
+
+    safetyRedFlagBadge: "সুরক্ষা রেড-ফ্ল্যাগ",
+    stepDemographicHeader: "ধাপ: জনসংখ্যাতাত্ত্বিক ও পূর্ববর্তী স্বাস্থ্য বিবরণ",
+    masterPatientIndex: "মাস্টার রোগী সূচক",
+    currentMedicationsLabel: "বর্তমান নিয়মিত ওষুধসমূহ"
   },
 
   // ==========================================
@@ -1151,7 +1639,87 @@ export const TRANSLATIONS: Record<IndianLanguage, TranslationDictionary> = {
     exportDataBtn: "ఆరోగ్య డేటాను డౌన్‌లోడ్ చేయండి",
     requestErasureBtn: "డేటాను తొలగించమని అభ్యర్థించండి",
     fideliusTitle: "ABDM ఫిడేలియస్ పూర్తి ఎన్‌క్రిప్షన్",
-    auditLogTitle: "మార్చలేని క్లినికల్ ఆడిట్ లాగ్"
+        auditLogTitle: "మార్చలేని క్లినికల్ ఆడిట్ లాగ్",
+
+    probSolTitle: "రద్దీగా ఉండే ఓపీడీ సమస్యలకు పరిష్కారం",
+    probSolSub: "భారతీయ ఓపీడీలలో వైద్యులు ప్రతి రోగికి కేవలం 2.5 నిమిషాలు మాత్రమే కేటాయించగలరు — అందులో 60% సమయం కంప్యూటర్ నమోదుకే సరిపోతుంది.",
+    probLegacyBadge: "పాత పద్ధతి",
+    probLegacyTag: "ఆలస్యమైన మరియు విచ్ఛిన్నమైన",
+    probLegacyTitle: "పరిపాలనా పనులతో వైద్య సమయం వృధా",
+    probLegacyFooter: "సగటు డాక్టర్ సంప్రదింపు సమయం: రోగికి <3 నిమిషాలు",
+    solArchBadge: "మెడికోయిస్క్ ఆర్కిటెక్చర్",
+    solArchTag: "స్వయంప్రతిపత్తి గల ముందస్తు నమోదు",
+    solArchTitle: "వైద్యుడిని కలిసేలోపే పూర్తి కేస్ హిస్టరీ సిద్ధం",
+    solArchFooter: "వైద్యుడి దృష్టి కేవలం సరైన రోగనిర్ధారణపైనే ఉంటుంది",
+
+    whyDiffBadge: "నిర్మాణ వ్యత్యాసం",
+    whyDiffTitle: "క్లినికల్ భద్రత మరియు సార్వభౌమత్వం కోసం రూపొందించబడింది",
+    whyDiffSub: "సాధారణ ఏఐ తప్పుడు మందులను సూచించవచ్చు. మెడికోయిస్క్ లో ఖచ్చితమైన భద్రతా నియమాలు, ధృవీకరించబడిన ఓసీఆర్ మరియు FHIR R4 ఉన్నాయి.",
+    whyCol1Header: "సాధారణ చాట్‌బాట్‌లు",
+    whyCol2Header: "మెడికోయిస్క్ అటానమస్ కియోస్క్",
+
+    impactBadge: "కొలవగల క్లినికల్ ప్రభావం",
+    impactTitle: "ఓపీడీ పనితీరులో నిరూపితమైన సామర్థ్యం",
+    impactSub: "సమయం ఆదా, వేగవంతమైన అత్యవసర గుర్తింపు మరియు ABDM ప్రోత్సాహకాలు.",
+    impact1Val: "60%",
+    impact1Title: "డాక్యుమెంటేషన్ సమయం ఆదా",
+    impact1Desc: "చేతితో హిస్టరీ రాయాల్సిన అవసరం లేదు, వైద్యులకు రోజుకు 3.5+ గంటల సమయం ఆదా అవుతుంది.",
+    impact2Val: "₹5 – ₹10",
+    impact2Title: "రోగికి DHIS ప్రోత్సాహకం",
+    impact2Desc: "డిజిటల్ ఓపీడీ నమోదుల కోసం ఆసుపత్రులకు జాతీయ ఆరోగ్య సంస్థ నుండి నగదు ప్రోత్సాహకం.",
+    impact3Val: "99.4%",
+    impact3Title: "అత్యవసర ట్రయాజ్ ఖచ్చితత్వం",
+    impact3Desc: "ఛాతీ నొప్పి, శ్వాస ఆడకపోవడం వంటి ప్రాణాంతక సమస్యలను ఆలస్యం లేకుండా గుర్తిస్తుంది.",
+    impact4Val: "<4.2 నిమిషాలు",
+    impact4Title: "సగటు నమోదు సమయం",
+    impact4Desc: "రోగులు తెలుగులో మాట్లాడి 4 నిమిషాల్లో టోకెన్ పొందుతారు.",
+
+    feasBadge: "సాంకేతిక సాధ్యత",
+    feasTitle: "జాతీయ డిజిటల్ ఆరోగ్య మౌలిక సదుపాయాల ఏకీకరణ",
+    feasDesc: "భారతదేశంలో ఆభా (ABDM), భాషిణి వాయిస్ ఏఐ మరియు NRCeS FHIR ప్రమాణాలు ఉన్నాయి. మెడికోయిస్క్ వీటిని ఏకం చేస్తుంది.",
+
+    heroPipelineTitle: "ముందస్తు క్లినికల్ దశలు",
+    heroPipelineSub: "రోగులకు 4 నిమిషాలలోపు పూర్తయ్యే పూర్తి ఆటోమేటెడ్ కియోస్క్ ప్రక్రియ",
+    heroPipelineBadge: "NRCeS FHIR R4 సిద్ధంగా ఉంది",
+
+    adminKpi1: "నేటి ఓపీడీ సందర్శనలు",
+    adminKpi2: "డిజిటల్ స్వీకరణ",
+    adminKpi3: "వరుసలో వేచి ఉన్నవారు",
+    adminKpi4: "అత్యవసర హెచ్చరికలు",
+    adminKpi5: "స్కాన్ చేసిన ప్రిస్క్రిప్షన్లు",
+    adminKpi6: "ఆభా / గెస్ట్ నిష్పత్తి",
+    adminKpi7: "మాతృభాష వాయిస్ ఉపయోగం",
+    adminKpi8: "DHIS ప్రోత్సాహక ఆదాయం",
+    adminQueueTitle: "లైవ్ ఓపీడీ క్యూ మరియు గదుల కేటాయింపు",
+    adminQueueSub: "ప్రాధాన్యత ఆధారంగా వేగవంతమైన వరుస నిర్వహణ",
+    adminSearchPlaceholder: "రోగి పేరు లేదా టోకెన్ వెతకండి...",
+    adminColToken: "టోకెన్ నెం.",
+    adminColName: "రోగి పేరు",
+    adminColAgeGender: "వయస్సు / లింగం",
+    adminColComplaint: "ప్రధాన సమస్య",
+    adminColPriority: "ప్రాధాన్యత",
+    adminColRoom: "కేటాయించిన గది",
+    adminColStatus: "స్థితి",
+    adminEmergencyBanner: "అత్యవసర వైద్య హెచ్చరిక గుర్తించబడింది",
+    adminDispatchNurse: "అంగీకరించి నర్సును పంపండి",
+    adminDispatched: "పంపబడింది",
+
+    privacyCard1Desc: "అన్ని ఏఐ ప్రక్రియలను వెంటనే ఆపివేయండి మరియు మీ డేటాను వేరు చేయండి.",
+    privacyCard2Desc: "మీ పూర్తి ఆరోగ్య రికార్డు, FHIR JSON ఫైల్ మరియు ఆడిట్ లాగ్‌ను డౌన్‌లోడ్ చేయండి.",
+    privacyCard3Desc: "DPDP చట్టం 2023 సెక్షన్ 12 క్రింద మీ డేటాను తొలగించాలని అభ్యర్థించండి.",
+    privacyEcdhTitle: "కీ ఒప్పంద ప్రోటోకాల్",
+    privacyEcdhDesc: "Curve25519 పై ECDH: ప్రైవేట్ కీలను పంపకుండా సురక్షితమైన కమ్యూనికేషన్.",
+    privacyAesTitle: "సిమెట్రిక్ సైఫర్ సూట్",
+    privacyAesDesc: "AES-256-GCM: పూర్తి సమాచార భద్రత మరియు ఎన్‌క్రిప్షన్.",
+    privacyHashTitle: "సమగ్రత చెక్‌సమ్",
+    privacyHashDesc: "SHA-256: ప్రసార సమయంలో డేటా మార్చబడకుండా చూస్తుంది.",
+    privacyAuditSearchPlaceholder: "ఆడిట్ రికార్డులను వెతకండి...",
+    privacyAuditSub: "సురక్షితమైన మరియు మార్చలేని ఈవెంట్ రికార్డు",
+
+    safetyRedFlagBadge: "భద్రతా హెచ్చరిక",
+    stepDemographicHeader: "దశ: ప్రాథమిక వివరాలు మరియు మునుపటి చరిత్ర",
+    masterPatientIndex: "రోగి మాస్టర్ సూచిక",
+    currentMedicationsLabel: "ప్రస్తుతం వాడుతున్న మందులు"
   }
 };
 

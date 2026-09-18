@@ -314,10 +314,10 @@ export const AdaptiveIntake: React.FC = () => {
                     </div>
                     <div>
                       <h4 className="text-xs font-bold text-slate-900 dark:text-white leading-tight">
-                        {preset.label}
+                        {(preset as any)[language] || preset.label}
                       </h4>
                       <p className="text-[10px] text-teal-600 dark:text-teal-400 font-medium mt-0.5">
-                        {preset.hi}
+                        {language === 'en' ? preset.hi : preset.label}
                       </p>
                     </div>
                   </button>
@@ -373,22 +373,23 @@ export const AdaptiveIntake: React.FC = () => {
               {currentQuestion.inputType === 'single-choice' && currentQuestion.options && (
                 <div className="space-y-2 pt-2">
                   {currentQuestion.options.map((opt) => {
-                    const isSelected = currentAnswer === opt.label || currentAnswer === opt.id;
+                    const optLabel = (opt as any)[language] || opt.label;
+                    const isSelected = currentAnswer === opt.label || currentAnswer === opt.id || currentAnswer === optLabel;
                     return (
                       <button
                         key={opt.id}
                         type="button"
-                        onClick={() => setCurrentAnswer(opt.label)}
+                        onClick={() => setCurrentAnswer(optLabel)}
                         className={`w-full p-3 rounded-xl text-left text-xs font-semibold border transition-all flex items-center justify-between shadow-sm tactile-btn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer ${
                           isSelected
                             ? 'bg-teal-600 text-white font-bold border-teal-500 shadow-md shadow-teal-600/20'
                             : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200 hover:border-teal-500/40'
                         }`}
                       >
-                        <span>{opt.label}</span>
+                        <span>{optLabel}</span>
                         {opt.isRedFlag && (
                           <span className="px-2 py-0.5 rounded text-[10px] bg-rose-100 dark:bg-rose-950/80 text-rose-700 dark:text-rose-300 font-bold border border-rose-200 dark:border-rose-800">
-                            Safety Red-Flag
+                            {t.safetyRedFlagBadge}
                           </span>
                         )}
                       </button>
@@ -401,16 +402,17 @@ export const AdaptiveIntake: React.FC = () => {
               {currentQuestion.inputType === 'multi-choice' && currentQuestion.options && (
                 <div className="space-y-2 pt-2">
                   {currentQuestion.options.map((opt) => {
-                    const isSelected = multiSelectAnswers.includes(opt.label);
+                    const optLabel = (opt as any)[language] || opt.label;
+                    const isSelected = multiSelectAnswers.includes(optLabel) || multiSelectAnswers.includes(opt.label);
                     return (
                       <button
                         key={opt.id}
                         type="button"
                         onClick={() => {
                           if (isSelected) {
-                            setMultiSelectAnswers(multiSelectAnswers.filter(a => a !== opt.label));
+                            setMultiSelectAnswers(multiSelectAnswers.filter(a => a !== optLabel && a !== opt.label));
                           } else {
-                            setMultiSelectAnswers([...multiSelectAnswers, opt.label]);
+                            setMultiSelectAnswers([...multiSelectAnswers, optLabel]);
                           }
                         }}
                         className={`w-full p-3 rounded-xl text-left text-xs font-semibold border transition-all flex items-center justify-between shadow-sm tactile-btn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer ${
@@ -419,7 +421,7 @@ export const AdaptiveIntake: React.FC = () => {
                             : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200 hover:border-teal-500/40'
                         }`}
                       >
-                        <span>{opt.label}</span>
+                        <span>{optLabel}</span>
                         <span className={`w-4 h-4 rounded flex items-center justify-center border text-[10px] ${
                           isSelected ? 'bg-white text-teal-700 border-white font-black' : 'border-slate-300 dark:border-slate-600'
                         }`}>

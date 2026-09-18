@@ -110,11 +110,11 @@ export const DoctorDashboard: React.FC = () => {
       {/* 2. NAVIGATION TABS */}
       <div className="flex overflow-x-auto gap-1.5 sm:gap-2 border-b border-slate-200 dark:border-slate-800 pb-2 scroll-smooth" style={{ WebkitOverflowScrolling: 'touch' }}>
         {[
-          { id: 'soap', label: 'SOAP Summary', fullLabel: 'Clinical SOAP Summary', icon: <FileText className="w-4 h-4 shrink-0" /> },
-          { id: 'timeline', label: 'Timeline', fullLabel: 'Longitudinal Timeline', icon: <Clock className="w-4 h-4 shrink-0" /> },
+          { id: 'soap', label: 'SOAP', fullLabel: t.patientSummaryTitle, icon: <FileText className="w-4 h-4 shrink-0" /> },
+          { id: 'timeline', label: 'Timeline', fullLabel: t.longitudinalTimeline, icon: <Clock className="w-4 h-4 shrink-0" /> },
           { id: 'medications', label: 'Medications', fullLabel: 'Medications & OCR', icon: <Pill className="w-4 h-4 shrink-0" /> },
           { id: 'ayush', label: 'AYUSH', fullLabel: 'AYUSH & Dual-Coding', icon: <Leaf className="w-4 h-4 shrink-0" /> },
-          { id: 'fhir', label: 'FHIR R4', fullLabel: 'FHIR R4 Bundle', icon: <Layers className="w-4 h-4 shrink-0" /> }
+          { id: 'fhir', label: 'FHIR R4', fullLabel: t.exportFhirBundle, icon: <Layers className="w-4 h-4 shrink-0" /> }
         ].map((tab) => (
           <button
             key={tab.id}
@@ -143,7 +143,7 @@ export const DoctorDashboard: React.FC = () => {
               <div>
                 <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2 font-display">
                   <Sparkles className="w-5 h-5 text-teal-600 dark:text-teal-400" aria-hidden="true" />
-                  Pre-Consultation Clinical Intake Summary
+                  {t.patientSummaryTitle}
                 </h3>
                 <p className="text-xs text-slate-500 dark:text-slate-400">
                   Synthesized from multimodal adaptive DAG input. Interactive provenance links indicate raw patient inputs.
@@ -158,7 +158,7 @@ export const DoctorDashboard: React.FC = () => {
             <div className="p-5 bg-slate-50 dark:bg-slate-900/70 rounded-xl border border-slate-200 dark:border-slate-800 space-y-3">
               <div className="flex items-center justify-between">
                 <h4 className="text-xs font-mono font-extrabold uppercase tracking-wider text-teal-600 dark:text-teal-400">
-                  I. SUBJECTIVE NARRATIVE
+                  {t.soapSubjective}
                 </h4>
                 <span className="text-[11px] text-slate-500">Patient-reported assertions</span>
               </div>
@@ -208,7 +208,7 @@ export const DoctorDashboard: React.FC = () => {
             <div className="p-5 bg-slate-50 dark:bg-slate-900/70 rounded-xl border border-slate-200 dark:border-slate-800 space-y-3">
               <div className="flex items-center justify-between">
                 <h4 className="text-xs font-mono font-extrabold uppercase tracking-wider text-sky-600 dark:text-sky-400">
-                  II. OBJECTIVE VITALS & OBSERVATIONS
+                  {t.soapObjective}
                 </h4>
                 <span className="text-[11px] text-slate-500">Self-reported / Kiosk Sensors</span>
               </div>
@@ -245,7 +245,7 @@ export const DoctorDashboard: React.FC = () => {
             <div className="p-5 bg-slate-50 dark:bg-slate-900/70 rounded-xl border border-slate-200 dark:border-slate-800 space-y-3">
               <div className="flex items-center justify-between">
                 <h4 className="text-xs font-mono font-extrabold uppercase tracking-wider text-purple-600 dark:text-purple-400">
-                  III. CLINICAL ASSESSMENT & DUAL CODES
+                  {t.soapAssessment}
                 </h4>
                 <span className="text-[11px] text-slate-500 font-mono">ICD-11 + NAMASTE + TM2</span>
               </div>
@@ -285,7 +285,7 @@ export const DoctorDashboard: React.FC = () => {
             {/* PLAN SECTION */}
             <div className="p-5 bg-slate-50 dark:bg-slate-900/70 rounded-xl border border-slate-200 dark:border-slate-800 space-y-3">
               <h4 className="text-xs font-mono font-extrabold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
-                IV. PRELIMINARY PLAN & ORDERS
+                {t.soapPlan}
               </h4>
               <ul className="list-disc list-inside text-xs text-slate-700 dark:text-slate-300 space-y-1">
                 {currentSoap.plan.preliminaryRecommendations.map((rec, i) => (
@@ -418,7 +418,7 @@ export const DoctorDashboard: React.FC = () => {
             className="w-full py-3.5 bg-teal-600 hover:bg-teal-700 text-white font-bold rounded-xl shadow-lg shadow-teal-600/20 flex items-center justify-center gap-2 text-sm transition-all tactile-btn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer"
           >
             <CheckCircle2 className="w-4 h-4 text-white" aria-hidden="true" />
-            <span>Approve & Sign Clinical Case (Publish to ABDM M2)</span>
+            <span>{t.approveSignSummary}</span>
           </button>
         ) : (
           <div className="p-4 bg-emerald-500/10 rounded-xl border border-emerald-500/30 text-xs text-emerald-800 dark:text-emerald-200 flex items-center justify-between">

@@ -37,8 +37,8 @@ export const BasicDetails: React.FC = () => {
       <div className="glass-card-elevated rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-xl space-y-5 sm:space-y-6">
         {/* Process Header */}
         <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800 text-xs">
-          <span className="font-bold text-teal-600 dark:text-teal-400">Step: Demographic & Medical Baseline</span>
-          <span className="text-slate-500 dark:text-slate-400 font-mono">Master Patient Index</span>
+          <span className="font-bold text-teal-600 dark:text-teal-400">{t.stepDemographicHeader}</span>
+          <span className="text-slate-500 dark:text-slate-400 font-mono">{t.masterPatientIndex}</span>
         </div>
 
         {/* Title */}
@@ -154,7 +154,7 @@ export const BasicDetails: React.FC = () => {
           {/* Current Regular Medicines */}
           <div>
             <label htmlFor="basic-medications" className="block font-bold text-slate-700 dark:text-slate-300 mb-1">
-              Current Regular Medications
+              {t.currentMedicationsLabel}
             </label>
             <input
               id="basic-medications"

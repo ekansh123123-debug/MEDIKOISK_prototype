@@ -70,10 +70,10 @@ export const AdminDashboard: React.FC = () => {
             </div>
             <div>
               <h1 className="text-2xl font-bold text-slate-900 dark:text-white font-display tracking-tight">
-                Hospital Administration & Emergency Triage Desk
+                {t.triageTitle}
               </h1>
               <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                Real-time outpatient load, deterministic emergency alerts, and ABDM Digital Health Incentive Scheme (DHIS) telemetry.
+                {t.triageSub}
               </p>
             </div>
           </div>
@@ -103,7 +103,7 @@ export const AdminDashboard: React.FC = () => {
           <div className="flex items-center justify-between flex-wrap gap-2">
             <div className="flex items-center gap-2 text-rose-800 dark:text-rose-200 font-bold text-sm">
               <Siren className="w-5 h-5 text-rose-600 dark:text-rose-400 animate-bounce" />
-              <span>DETERMINISTIC EMERGENCY TRIAGE OVERRIDES DETECTED ({emergencyHistory.length})</span>
+              <span>{t.adminEmergencyBanner} ({emergencyHistory.length})</span>
             </div>
             <Badge variant="red">Immediate Resuscitation Required</Badge>
           </div>
@@ -138,7 +138,7 @@ export const AdminDashboard: React.FC = () => {
                   <div>
                     {isAck ? (
                       <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 font-bold text-xs border border-emerald-500/30">
-                        <Check className="w-3.5 h-3.5" /> Dispatched
+                        <Check className="w-3.5 h-3.5" /> {t.adminDispatched}
                       </span>
                     ) : (
                       <button
@@ -146,7 +146,7 @@ export const AdminDashboard: React.FC = () => {
                         className="tactile-btn focus-ring px-4 py-2 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-xl text-xs transition-colors shadow-md flex items-center gap-1.5"
                       >
                         <Siren className="w-3.5 h-3.5" />
-                        Acknowledge & Dispatch
+                        {t.adminDispatchNurse}
                       </button>
                     )}
                   </div>
@@ -161,7 +161,7 @@ export const AdminDashboard: React.FC = () => {
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         <div className="p-3.5 sm:p-4 rounded-2xl glass-card border border-slate-200/80 dark:border-teal-500/15 flex flex-col justify-between">
           <div className="flex items-center justify-between text-slate-500 dark:text-slate-400 text-xs font-medium">
-            <span>OPD Visits Today</span>
+            <span>{t.adminKpi1}</span>
             <Users className="w-4 h-4 text-teal-600 dark:text-teal-400 shrink-0" />
           </div>
           <div className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mt-1.5 sm:mt-2 tabular-nums">128</div>
@@ -170,7 +170,7 @@ export const AdminDashboard: React.FC = () => {
 
         <div className="p-3.5 sm:p-4 rounded-2xl glass-card border border-slate-200/80 dark:border-teal-500/15 flex flex-col justify-between">
           <div className="flex items-center justify-between text-slate-500 dark:text-slate-400 text-xs font-medium">
-            <span>Digital Intake</span>
+            <span>{t.adminKpi2}</span>
             <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
           </div>
           <div className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mt-1.5 sm:mt-2 tabular-nums">104</div>
@@ -179,7 +179,7 @@ export const AdminDashboard: React.FC = () => {
 
         <div className="p-3.5 sm:p-4 rounded-2xl glass-card border border-slate-200/80 dark:border-teal-500/15 flex flex-col justify-between">
           <div className="flex items-center justify-between text-slate-500 dark:text-slate-400 text-xs font-medium">
-            <span>Waiting in Queue</span>
+            <span>{t.adminKpi3}</span>
             <Clock className="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0" />
           </div>
           <div className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mt-1.5 sm:mt-2 tabular-nums">
@@ -190,7 +190,7 @@ export const AdminDashboard: React.FC = () => {
 
         <div className="p-3.5 sm:p-4 rounded-2xl glass-card border border-slate-200/80 dark:border-teal-500/15 flex flex-col justify-between">
           <div className="flex items-center justify-between text-slate-500 dark:text-slate-400 text-xs font-medium">
-            <span>Emergency Triggers</span>
+            <span>{t.adminKpi4}</span>
             <Siren className="w-4 h-4 text-rose-600 dark:text-rose-400 shrink-0" />
           </div>
           <div className="text-xl sm:text-2xl font-black text-rose-600 dark:text-rose-400 mt-1.5 sm:mt-2 tabular-nums">
@@ -201,7 +201,7 @@ export const AdminDashboard: React.FC = () => {
 
         <div className="p-3.5 sm:p-4 rounded-2xl glass-card border border-slate-200/80 dark:border-teal-500/15 flex flex-col justify-between">
           <div className="flex items-center justify-between text-slate-500 dark:text-slate-400 text-xs font-medium">
-            <span>Documents TrOCR'd</span>
+            <span>{t.adminKpi5}</span>
             <FileText className="w-4 h-4 text-purple-600 dark:text-purple-400 shrink-0" />
           </div>
           <div className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mt-1.5 sm:mt-2 tabular-nums">48</div>
@@ -210,7 +210,7 @@ export const AdminDashboard: React.FC = () => {
 
         <div className="p-3.5 sm:p-4 rounded-2xl glass-card border border-slate-200/80 dark:border-teal-500/15 flex flex-col justify-between">
           <div className="flex items-center justify-between text-slate-500 dark:text-slate-400 text-xs font-medium">
-            <span>ABHA / Guest Share</span>
+            <span>{t.adminKpi6}</span>
             <Share2 className="w-4 h-4 text-sky-600 dark:text-sky-400 shrink-0" />
           </div>
           <div className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mt-1.5 sm:mt-2 tabular-nums">74% / 26%</div>
@@ -219,7 +219,7 @@ export const AdminDashboard: React.FC = () => {
 
         <div className="p-3.5 sm:p-4 rounded-2xl glass-card border border-slate-200/80 dark:border-teal-500/15 flex flex-col justify-between">
           <div className="flex items-center justify-between text-slate-500 dark:text-slate-400 text-xs font-medium">
-            <span>Vernacular Speech</span>
+            <span>{t.adminKpi7}</span>
             <Activity className="w-4 h-4 text-teal-600 dark:text-teal-400 shrink-0" />
           </div>
           <div className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mt-1.5 sm:mt-2 tabular-nums">62%</div>
@@ -228,7 +228,7 @@ export const AdminDashboard: React.FC = () => {
 
         <div className="p-3.5 sm:p-4 rounded-2xl glass-card border border-slate-200/80 dark:border-teal-500/15 flex flex-col justify-between">
           <div className="flex items-center justify-between text-slate-500 dark:text-slate-400 text-xs font-medium">
-            <span>DHIS Revenue</span>
+            <span>{t.adminKpi8}</span>
             <Coins className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
           </div>
           <div className="text-xl sm:text-2xl font-black text-emerald-600 dark:text-emerald-400 mt-1.5 sm:mt-2 tabular-nums">
@@ -243,10 +243,10 @@ export const AdminDashboard: React.FC = () => {
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
           <div>
             <h2 className="text-base font-bold text-slate-900 dark:text-white font-display">
-              Live OPD Outpatient Queue & Consultation Rooms
+              {t.adminQueueTitle}
             </h2>
             <p className="text-xs text-slate-500 dark:text-slate-400">
-              Synchronous queue distribution with deterministic priority routing
+              {t.adminQueueSub}
             </p>
           </div>
 
@@ -258,7 +258,7 @@ export const AdminDashboard: React.FC = () => {
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search patient, token..."
+                placeholder={t.adminSearchPlaceholder}
                 className="w-full sm:w-56 pl-8 pr-3 py-2 sm:py-1.5 rounded-xl text-xs bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200 focus-ring"
               />
             </div>
@@ -286,13 +286,13 @@ export const AdminDashboard: React.FC = () => {
           <table className="w-full min-w-[650px] text-left text-xs" aria-label="OPD Outpatient Queue Table">
             <thead className="bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300 uppercase tracking-wider font-bold border-b border-slate-200 dark:border-slate-800">
               <tr>
-                <th scope="col" className="px-4 py-3">Token No.</th>
-                <th scope="col" className="px-4 py-3">Patient Name</th>
-                <th scope="col" className="px-4 py-3">Age/Gender</th>
-                <th scope="col" className="px-4 py-3">Chief Complaint</th>
-                <th scope="col" className="px-4 py-3">Priority</th>
-                <th scope="col" className="px-4 py-3">Assigned Room</th>
-                <th scope="col" className="px-4 py-3 text-right">Status</th>
+                <th scope="col" className="px-4 py-3">{t.adminColToken}</th>
+                <th scope="col" className="px-4 py-3">{t.adminColName}</th>
+                <th scope="col" className="px-4 py-3">{t.adminColAgeGender}</th>
+                <th scope="col" className="px-4 py-3">{t.adminColComplaint}</th>
+                <th scope="col" className="px-4 py-3">{t.adminColPriority}</th>
+                <th scope="col" className="px-4 py-3">{t.adminColRoom}</th>
+                <th scope="col" className="px-4 py-3 text-right">{t.adminColStatus}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-200 dark:divide-slate-800">

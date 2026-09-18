@@ -11,8 +11,11 @@ import {
   Network, 
   Stethoscope 
 } from 'lucide-react';
+import { useApp } from '../../context/AppContext';
 
 export const ProblemSolution: React.FC = () => {
+  const { t } = useApp();
+
   const problems = [
     { text: 'Overcrowded OPD waiting areas with 45–90 min queues', icon: <Clock className="w-4 h-4 text-rose-500" aria-hidden="true" /> },
     { text: 'Manual clerical registration consuming 60% of visit time', icon: <FileSpreadsheet className="w-4 h-4 text-rose-500" aria-hidden="true" /> },
@@ -36,10 +39,10 @@ export const ProblemSolution: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-12">
           <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white font-display tracking-tight text-balance">
-            Solving the High-Volume OPD Bottleneck
+            {t.probSolTitle}
           </h2>
           <p className="text-sm text-slate-600 dark:text-slate-400 mt-2.5 leading-relaxed">
-            In typical Indian high-volume outpatient clinics, doctors spend just <span className="font-mono tabular-nums font-semibold text-slate-800 dark:text-slate-200">2.5</span> minutes per patient — <span className="font-mono tabular-nums font-semibold text-slate-800 dark:text-slate-200">60%</span> of which is consumed by clerical data entry.
+            {t.probSolSub}
           </p>
         </div>
 
@@ -49,14 +52,14 @@ export const ProblemSolution: React.FC = () => {
             <div>
               <div className="flex items-center justify-between mb-4">
                 <span className="text-xs font-bold text-rose-600 dark:text-rose-400 uppercase tracking-wider font-mono">
-                  Legacy Reality
+                  {t.probLegacyBadge}
                 </span>
                 <span className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-rose-100 dark:bg-rose-500/10 border border-rose-200 dark:border-rose-500/30 text-rose-700 dark:text-rose-300">
-                  Fragmented & High Latency
+                  {t.probLegacyTag}
                 </span>
               </div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4 font-display">
-                Administrative Load Displaces Clinical Care
+                {t.probLegacyTitle}
               </h3>
               <ul className="space-y-3">
                 {problems.map((prob, i) => (
@@ -68,7 +71,7 @@ export const ProblemSolution: React.FC = () => {
               </ul>
             </div>
             <div className="mt-6 pt-4 border-t border-rose-200 dark:border-rose-900/40 text-xs font-medium text-rose-700 dark:text-rose-300 flex items-center justify-between">
-              <span>Impact: Diagnostic fatigue and rushed prescriptions</span>
+              <span>{t.probLegacyFooter}</span>
               <span className="font-bold font-mono">Status Quo</span>
             </div>
           </div>
@@ -78,14 +81,14 @@ export const ProblemSolution: React.FC = () => {
             <div>
               <div className="flex items-center justify-between mb-4">
                 <span className="text-xs font-bold text-teal-700 dark:text-teal-400 uppercase tracking-wider font-mono">
-                  MEDIKOISK Architecture
+                  {t.solArchBadge}
                 </span>
                 <span className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-teal-100 dark:bg-teal-500/10 border border-teal-200 dark:border-teal-500/30 text-teal-700 dark:text-teal-300">
-                  Automated & Clinically Verified
+                  {t.solArchTag}
                 </span>
               </div>
               <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4 font-display">
-                Structured Pre-Encounter Preparation
+                {t.solArchTitle}
               </h3>
               <ul className="space-y-3">
                 {solutions.map((sol, i) => (
@@ -97,7 +100,7 @@ export const ProblemSolution: React.FC = () => {
               </ul>
             </div>
             <div className="mt-6 pt-4 border-t border-teal-200 dark:border-teal-500/30 text-xs font-medium text-teal-700 dark:text-teal-300 flex items-center justify-between">
-              <span>Result: <span className="font-mono tabular-nums font-semibold">35–45%</span> consultation time returned to physical examination</span>
+              <span>{t.solArchFooter}</span>
               <span className="font-bold font-mono">Clinical Standard</span>
             </div>
           </div>

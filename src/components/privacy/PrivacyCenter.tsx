@@ -88,10 +88,10 @@ export const PrivacyCenter: React.FC = () => {
           </div>
           <div>
             <h1 className="text-2xl font-bold text-slate-900 dark:text-white font-display tracking-tight">
-              Patient Privacy Center & Clinical Governance
+              {t.privacyTitle}
             </h1>
             <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-              Statutory compliance with Digital Personal Data Protection (DPDP) Act 2023 & ABDM Fidelius specifications.
+              {t.privacySub}
             </p>
           </div>
         </div>
@@ -112,10 +112,10 @@ export const PrivacyCenter: React.FC = () => {
               <EyeOff className="w-5 h-5" />
             </div>
             <h2 className="font-bold text-base text-slate-900 dark:text-white font-display">
-              Revoke Consent
+              {t.revokeConsentBtn}
             </h2>
             <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
-              Halt all active AI case preparation and decouple your intake stream from hospital middleware immediately.
+              {t.privacyCard1Desc}
             </p>
           </div>
           <button
@@ -144,10 +144,10 @@ export const PrivacyCenter: React.FC = () => {
               <Download className="w-5 h-5" />
             </div>
             <h2 className="font-bold text-base text-slate-900 dark:text-white font-display">
-              Export Health Data
+              {t.exportDataBtn}
             </h2>
             <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
-              Download your complete machine-readable intake record, FHIR JSON bundle, and cryptographic audit log.
+              {t.privacyCard2Desc}
             </p>
           </div>
           <button
@@ -166,10 +166,10 @@ export const PrivacyCenter: React.FC = () => {
               <Trash2 className="w-5 h-5" />
             </div>
             <h2 className="font-bold text-base text-slate-900 dark:text-white font-display">
-              Request Erasure
+              {t.requestErasureBtn}
             </h2>
             <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
-              Exercise your statutory right under Section 12 of DPDP Act 2023 to request deletion of cached session data.
+              {t.privacyCard3Desc}
             </p>
           </div>
           <button
@@ -198,7 +198,7 @@ export const PrivacyCenter: React.FC = () => {
           <div>
             <h2 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2.5 font-display">
               <Lock className="w-5 h-5 text-teal-600 dark:text-teal-400" />
-              ABDM Fidelius Cryptographic Architecture
+              {t.fideliusTitle}
             </h2>
             <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
               Zero cleartext clinical health records exposed across public networks or the central ABDM gateway.
@@ -212,29 +212,29 @@ export const PrivacyCenter: React.FC = () => {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
           <div className="p-4 bg-white dark:bg-slate-950/70 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
             <span className="text-teal-700 dark:text-teal-400 font-bold block mb-1 text-[11px] uppercase tracking-wider">
-              Key Agreement Protocol
+              {t.privacyEcdhTitle}
             </span>
             <span className="font-mono text-xs text-slate-900 dark:text-white">ECDH over Curve25519</span>
             <p className="text-[10px] text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
-              Sender and recipient derive ephemeral shared secrets without ever transmitting private keys.
+              {t.privacyEcdhDesc}
             </p>
           </div>
           <div className="p-4 bg-white dark:bg-slate-950/70 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
             <span className="text-teal-700 dark:text-teal-400 font-bold block mb-1 text-[11px] uppercase tracking-wider">
-              Symmetric Cipher Suite
+              {t.privacyAesTitle}
             </span>
             <span className="font-mono text-xs text-slate-900 dark:text-white">AES-256-GCM + HKDF</span>
             <p className="text-[10px] text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
-              Galois/Counter Mode provides both authenticated encryption and high-performance confidentiality.
+              {t.privacyAesDesc}
             </p>
           </div>
           <div className="p-4 bg-white dark:bg-slate-950/70 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm">
             <span className="text-teal-700 dark:text-teal-400 font-bold block mb-1 text-[11px] uppercase tracking-wider">
-              Integrity Checksum
+              {t.privacyHashTitle}
             </span>
             <span className="font-mono text-xs text-slate-900 dark:text-white">SHA-256 Digest Hash</span>
             <p className="text-[10px] text-slate-500 dark:text-slate-400 mt-1.5 leading-relaxed">
-              Guarantees zero payload tampering or corruption during intermediate gateway transit.
+              {t.privacyHashDesc}
             </p>
           </div>
         </div>
@@ -247,10 +247,10 @@ export const PrivacyCenter: React.FC = () => {
             <History className="w-5 h-5 text-teal-600 dark:text-teal-400" />
             <div>
               <h2 className="text-lg font-bold text-slate-900 dark:text-white font-display">
-                Immutable Clinical Audit Log
+                {t.auditLogTitle}
               </h2>
               <p className="text-xs text-slate-500 dark:text-slate-400">
-                Cryptographically verifiable event stream with actor provenance
+                {t.privacyAuditSub}
               </p>
             </div>
           </div>
@@ -263,7 +263,7 @@ export const PrivacyCenter: React.FC = () => {
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search audit actions..."
+                placeholder={t.privacyAuditSearchPlaceholder}
                 className="w-full sm:w-56 pl-8 pr-3 py-2 sm:py-1.5 rounded-xl text-xs bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200 focus-ring"
               />
             </div>

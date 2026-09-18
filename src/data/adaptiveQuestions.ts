@@ -1,14 +1,14 @@
 import { QuestionNode, ComplaintCategory } from '../types';
 
 export const CHIEF_COMPLAINT_PRESETS = [
-  { id: 'abdominal_pain', label: 'Stomach / Abdominal Pain', hi: 'पेट में दर्द', mr: 'पोटदुखी', icon: 'Activity', desc: 'Epigastric, cramping, lower belly or bloating' },
-  { id: 'chest_pain', label: 'Chest Pain / Discomfort', hi: 'छाती में दर्द या भारीपन', mr: 'छातीत दुखणे', icon: 'HeartPulse', desc: 'Tightness, burning, retrosternal ache' },
-  { id: 'fever', label: 'Fever & Chills', hi: 'बुखार और कंपकंपी', mr: 'ताप आणि थंडी वाजणे', icon: 'Thermometer', desc: 'Elevated temperature, weakness, bodyache' },
-  { id: 'cough_breathing', label: 'Cough / Breathlessness', hi: 'खांसी या सांस लेने में परेशानी', mr: 'खोकला / दम लागणे', icon: 'Wind', desc: 'Dry/wet cough, wheezing, throat ache' },
-  { id: 'headache', label: 'Severe Headache', hi: 'सिरदर्द', mr: 'डोकेदुखी', icon: 'Brain', desc: 'Throbbing, tension, migraine-like pain' },
-  { id: 'vomiting_diarrhea', label: 'Vomiting / Loose Motions', hi: 'उल्टी या दस्त', mr: 'उलटी आणि जुलाब', icon: 'AlertCircle', desc: 'Dehydration risk, acute gastrointestinal distress' },
-  { id: 'skin_rash', label: 'Skin Rash / Allergy', hi: 'त्वचा पर चकत्ते या खुजली', mr: 'त्वचेवर खाज किंवा पुरळ', icon: 'Sparkles', desc: 'Itching, lesions, urticaria' },
-  { id: 'injury_trauma', label: 'Injury / Sprain / Trauma', hi: 'चोट या मोच', mr: 'जखम / मुका मार', icon: 'Bandage', desc: 'Physical fall, blunt impact, swelling' }
+  { id: 'abdominal_pain', label: 'Stomach / Abdominal Pain', hi: 'पेट में दर्द', mr: 'पोटदुखी', ta: 'வயிற்று வலி', bn: 'পেটে ব্যথা', te: 'కడుపు నొప్పి', icon: 'Activity', desc: 'Epigastric, cramping, lower belly or bloating' },
+  { id: 'chest_pain', label: 'Chest Pain / Discomfort', hi: 'छाती में दर्द या भारीपन', mr: 'छातीत दुखणे', ta: 'மார்பு வலி / அசௌகரியம்', bn: 'বুকে ব্যথা বা অস্বস্তি', te: 'ఛాతీ నొప్పి / అసౌకర్యం', icon: 'HeartPulse', desc: 'Tightness, burning, retrosternal ache' },
+  { id: 'fever', label: 'Fever & Chills', hi: 'बुखार और कंपकंपी', mr: 'ताप आणि थंडी वाजणे', ta: 'காய்ச்சல் மற்றும் நடுக்கம்', bn: 'জ্বর ও কাঁপুনি', te: 'జ్వరం & వణుకు', icon: 'Thermometer', desc: 'Elevated temperature, weakness, bodyache' },
+  { id: 'cough_breathing', label: 'Cough / Breathlessness', hi: 'खांसी या सांस लेने में परेशानी', mr: 'खोकला / दम लागणे', ta: 'இருமல் / மூச்சுத்திணறல்', bn: 'কাশি / শ্বাসকষ্ট', te: 'దగ్గు / శ్వాస ఆడకపోవడం', icon: 'Wind', desc: 'Dry/wet cough, wheezing, throat ache' },
+  { id: 'headache', label: 'Severe Headache', hi: 'सिरदर्द', mr: 'डोकेदुखी', ta: 'கடுமையான தலைவலி', bn: 'তীব্র মাথাব্যথা', te: 'తీవ్రమైన తలనొప్పి', icon: 'Brain', desc: 'Throbbing, tension, migraine-like pain' },
+  { id: 'vomiting_diarrhea', label: 'Vomiting / Loose Motions', hi: 'उल्टी या दस्त', mr: 'उलटी आणि जुलाब', ta: 'வாந்தி / வயிற்றுப்போக்கு', bn: 'বমি / পাতলা পায়খানা', te: 'వాంతులు / విరేచనాలు', icon: 'AlertCircle', desc: 'Dehydration risk, acute gastrointestinal distress' },
+  { id: 'skin_rash', label: 'Skin Rash / Allergy', hi: 'त्वचा पर चकत्ते या खुजली', mr: 'त्वचेवर खाज किंवा पुरळ', ta: 'தோல் தடிப்புகள் / அரிப்பு', bn: 'চামড়ায় ফুসকুড়ি বা চুলকানি', te: 'చర్మ దద్దుర్లు / దురద', icon: 'Sparkles', desc: 'Itching, lesions, urticaria' },
+  { id: 'injury_trauma', label: 'Injury / Sprain / Trauma', hi: 'चोट या मोच', mr: 'जखम / मुका मार', ta: 'காயம் / சுளுக்கு', bn: 'আঘাত / মচকানো', te: 'గాయం / బెణుకు', icon: 'Bandage', desc: 'Physical fall, blunt impact, swelling' }
 ];
 
 export const ADAPTIVE_QUESTION_REGISTRY: Record<string, QuestionNode> = {

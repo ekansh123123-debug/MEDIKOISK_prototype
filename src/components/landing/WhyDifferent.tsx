@@ -14,17 +14,17 @@ import {
 import { useApp } from '../../context/AppContext';
 
 export const WhyDifferent: React.FC = () => {
-  const { loadDemoScenario, setRole } = useApp();
+  const { loadDemoScenario, setRole, t } = useApp();
 
   return (
     <section className="py-16 bg-slate-50 dark:bg-[#080d1a] border-b border-slate-200 dark:border-slate-800/80 relative overflow-hidden transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-12">
           <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white font-display tracking-tight text-balance">
-            Engineered for Clinical Governance, Not Generic Chat
+            {t.whyDiffTitle}
           </h2>
           <p className="text-slate-600 dark:text-slate-400 text-sm mt-2 leading-relaxed">
-            Generic LLMs hallucinate diagnoses and create unacceptable medical malpractice liability. MEDIKOISK combines deterministic safety rules, verified OCR, and NRCeS FHIR R4 interoperability.
+            {t.whyDiffSub}
           </p>
         </div>
 

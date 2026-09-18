@@ -1,16 +1,19 @@
 import React from 'react';
 import { User, Stethoscope, Building2 } from 'lucide-react';
+import { useApp } from '../../context/AppContext';
 
 export const ImpactMetrics: React.FC = () => {
+  const { t } = useApp();
+
   return (
     <section className="py-16 bg-white dark:bg-[#080d1a] border-t border-slate-200 dark:border-slate-800/80 relative overflow-hidden transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-12">
           <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white font-display tracking-tight text-balance">
-            Clinical & Economic Impact Across the Triad
+            {t.impactTitle}
           </h2>
           <p className="text-slate-600 dark:text-slate-400 text-sm mt-2 leading-relaxed">
-            Quantifiable returns measured across patients, clinical staff, and hospital administration in public OPD trials.
+            {t.impactSub}
           </p>
         </div>
 

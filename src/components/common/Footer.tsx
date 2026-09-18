@@ -1,6 +1,7 @@
 import React from 'react';
 import { Stethoscope, ShieldCheck, HeartHandshake, FileCheck, Building2, Lock, Sliders, CheckCircle2 } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
+import { Logo } from './Logo';
 
 export const Footer: React.FC = () => {
   const { setRole, toggleSettings } = useApp();
@@ -38,14 +39,9 @@ export const Footer: React.FC = () => {
           {/* Col 1: Project Identity */}
           <div className="space-y-3 md:col-span-2">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-teal-500 to-cyan-400 text-slate-950 flex items-center justify-center font-bold shadow-md shadow-teal-500/20">
-                <Stethoscope className="w-5 h-5 text-slate-950" aria-hidden="true" />
-              </div>
-              <span className="text-lg font-bold text-white tracking-tight font-display">
-                MEDIKOISK
-              </span>
-              <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-teal-500/10 text-teal-300 border border-teal-500/20">
-                Enterprise Clinical Edition
+              <Logo size="md" showSubtitle={true} />
+              <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-teal-500/10 text-teal-300 border border-teal-500/20 self-start mt-1">
+                Enterprise Clinical
               </span>
             </div>
             <p className="text-slate-400 max-w-md leading-relaxed text-xs">
