@@ -187,23 +187,23 @@ export const AdaptiveIntake: React.FC = () => {
   const currentQText = currentQuestion.translations[language] || currentQuestion.text;
 
   return (
-    <div className="max-w-2xl mx-auto py-6 px-2 animate-fade-in">
-      <div className="glass-card-elevated rounded-2xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-xl space-y-6">
+    <div className="max-w-2xl mx-auto py-2 sm:py-6 px-1 sm:px-2 animate-fade-in">
+      <div className="glass-card-elevated rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-xl space-y-5 sm:space-y-6">
         {/* Step Header */}
         <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800 text-xs">
           <span className="font-bold text-teal-600 dark:text-teal-400">
             {stage === 'complaint_selection' ? 'Step: Presenting Chief Complaint' : 'Step: Adaptive Clinical Inquiry'}
           </span>
-          <span className="text-slate-500 dark:text-slate-400 font-mono tabular-nums">
+          <span className="text-slate-500 dark:text-slate-400 font-mono tabular-nums text-[11px] sm:text-xs">
             {stage === 'adaptive_dag' ? `${progressInfo.progress}% Traversed` : 'Bhashini Vernacular Speech'}
           </span>
         </div>
 
         {/* STAGE 1: COMPLAINT SELECTION */}
         {stage === 'complaint_selection' && (
-          <div className="space-y-6">
+          <div className="space-y-5 sm:space-y-6">
             <div className="text-center space-y-1">
-              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white font-display">
+              <h2 className="text-xl sm:text-3xl font-bold text-slate-900 dark:text-white font-display">
                 {t.adaptiveTitle}
               </h2>
               <p className="text-xs text-slate-500 dark:text-slate-400">
@@ -262,7 +262,7 @@ export const AdaptiveIntake: React.FC = () => {
             </div>
 
             {/* Quick Text Input */}
-            <div className="flex gap-2">
+            <div className="flex flex-col sm:flex-row gap-2">
               <label htmlFor="symptom-text-input" className="sr-only">Describe symptoms</label>
               <input
                 id="symptom-text-input"
@@ -277,7 +277,7 @@ export const AdaptiveIntake: React.FC = () => {
                   }
                 }}
                 placeholder="Or describe symptoms here (e.g. stomach pain for 3 days)…"
-                className="flex-1 px-4 py-2.5 text-xs bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
+                className="flex-1 px-4 py-3 sm:py-2.5 text-sm sm:text-xs bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
               />
               <button
                 type="button"
@@ -289,7 +289,7 @@ export const AdaptiveIntake: React.FC = () => {
                   }
                 }}
                 disabled={!rawInputText.trim()}
-                className="px-5 py-2.5 bg-teal-600 hover:bg-teal-700 disabled:opacity-50 text-white rounded-xl text-xs font-bold transition-all tactile-btn flex items-center gap-1.5 shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer"
+                className="w-full sm:w-auto px-5 py-3 sm:py-2.5 bg-teal-600 hover:bg-teal-700 disabled:opacity-50 text-white rounded-xl text-xs font-bold transition-all tactile-btn flex items-center justify-center gap-1.5 shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer min-h-[44px]"
               >
                 <span>Proceed</span>
                 <Send className="w-3.5 h-3.5" aria-hidden="true" />
@@ -461,11 +461,11 @@ export const AdaptiveIntake: React.FC = () => {
             </div>
 
             {/* Actions */}
-            <div className="flex justify-between items-center pt-2">
+            <div className="flex flex-col-reverse sm:flex-row justify-between items-stretch sm:items-center gap-3 pt-3 border-t border-slate-200/80 dark:border-slate-800">
               <button
                 type="button"
                 onClick={() => setStage('complaint_selection')}
-                className="text-xs text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-medium cursor-pointer"
+                className="py-2.5 sm:py-1 px-3 text-xs text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-semibold cursor-pointer text-center sm:text-left"
               >
                 &larr; Re-select Complaint
               </button>
@@ -476,7 +476,7 @@ export const AdaptiveIntake: React.FC = () => {
                 disabled={
                   currentQuestion.inputType === 'single-choice' && !currentAnswer
                 }
-                className="px-6 py-3 bg-teal-600 hover:bg-teal-700 disabled:opacity-50 text-white font-bold rounded-xl shadow-lg shadow-teal-600/20 flex items-center gap-2 text-xs transition-all tactile-btn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer"
+                className="w-full sm:w-auto px-6 py-3.5 bg-teal-600 hover:bg-teal-700 disabled:opacity-50 text-white font-bold rounded-xl shadow-lg shadow-teal-600/20 flex items-center justify-center gap-2 text-sm sm:text-xs transition-all tactile-btn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer min-h-[48px]"
               >
                 <span>Confirm & Next Clinical Branch</span>
                 <ArrowRight className="w-4 h-4 text-white" aria-hidden="true" />

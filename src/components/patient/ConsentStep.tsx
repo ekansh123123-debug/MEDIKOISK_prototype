@@ -40,8 +40,8 @@ export const ConsentStep: React.FC = () => {
   };
 
   return (
-    <div className="max-w-xl mx-auto py-6 px-2 animate-fade-in">
-      <div className="glass-card-elevated rounded-2xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-xl space-y-6">
+    <div className="max-w-xl mx-auto py-2 sm:py-6 px-1 sm:px-2 animate-fade-in">
+      <div className="glass-card-elevated rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-xl space-y-5 sm:space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800 text-xs">
           <span className="font-bold text-teal-600 dark:text-teal-400">Step: Data Sharing & Consent</span>

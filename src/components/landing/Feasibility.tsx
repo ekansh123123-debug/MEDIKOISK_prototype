@@ -15,7 +15,7 @@ export const Feasibility: React.FC = () => {
     },
     {
       challenge: 'Reluctance to share OTPs or medical details due to fraud anxiety',
-      mitigation: 'Transparent audio-guided consent in patient’s native language under DPDP Act 2023, accompanied by hospital Arogya Mitra assistance.',
+      mitigation: "Transparent audio-guided consent in patient's native language under DPDP Act 2023, accompanied by hospital Arogya Mitra assistance.",
       status: 'Engineered'
     },
     {

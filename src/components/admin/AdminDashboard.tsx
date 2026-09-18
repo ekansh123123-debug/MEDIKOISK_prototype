@@ -158,80 +158,80 @@ export const AdminDashboard: React.FC = () => {
       )}
 
       {/* 8 Metric KPI Cards with Tabular Numbers */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3.5">
-        <div className="p-4 rounded-2xl glass-card border border-slate-200/80 dark:border-teal-500/15 flex flex-col justify-between">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <div className="p-3.5 sm:p-4 rounded-2xl glass-card border border-slate-200/80 dark:border-teal-500/15 flex flex-col justify-between">
           <div className="flex items-center justify-between text-slate-500 dark:text-slate-400 text-xs font-medium">
             <span>OPD Visits Today</span>
-            <Users className="w-4 h-4 text-teal-600 dark:text-teal-400" />
+            <Users className="w-4 h-4 text-teal-600 dark:text-teal-400 shrink-0" />
           </div>
-          <div className="text-2xl font-black text-slate-900 dark:text-white mt-2 tabular-nums">128</div>
+          <div className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mt-1.5 sm:mt-2 tabular-nums">128</div>
           <span className="text-[10px] text-teal-600 dark:text-teal-400 font-semibold mt-1 tabular-nums">+18% vs yesterday</span>
         </div>
 
-        <div className="p-4 rounded-2xl glass-card border border-slate-200/80 dark:border-teal-500/15 flex flex-col justify-between">
+        <div className="p-3.5 sm:p-4 rounded-2xl glass-card border border-slate-200/80 dark:border-teal-500/15 flex flex-col justify-between">
           <div className="flex items-center justify-between text-slate-500 dark:text-slate-400 text-xs font-medium">
-            <span>Digital Intake Completed</span>
-            <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+            <span>Digital Intake</span>
+            <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
           </div>
-          <div className="text-2xl font-black text-slate-900 dark:text-white mt-2 tabular-nums">104</div>
-          <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold mt-1 tabular-nums">81.2% digital adoption</span>
+          <div className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mt-1.5 sm:mt-2 tabular-nums">104</div>
+          <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold mt-1 tabular-nums">81.2% digital</span>
         </div>
 
-        <div className="p-4 rounded-2xl glass-card border border-slate-200/80 dark:border-teal-500/15 flex flex-col justify-between">
+        <div className="p-3.5 sm:p-4 rounded-2xl glass-card border border-slate-200/80 dark:border-teal-500/15 flex flex-col justify-between">
           <div className="flex items-center justify-between text-slate-500 dark:text-slate-400 text-xs font-medium">
             <span>Waiting in Queue</span>
-            <Clock className="w-4 h-4 text-amber-600 dark:text-amber-400" />
+            <Clock className="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0" />
           </div>
-          <div className="text-2xl font-black text-slate-900 dark:text-white mt-2 tabular-nums">
+          <div className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mt-1.5 sm:mt-2 tabular-nums">
             {tokens.filter(t => t.status === 'WAITING').length}
           </div>
           <span className="text-[10px] text-slate-500 dark:text-slate-400 mt-1 tabular-nums">Avg wait: 8.4 mins</span>
         </div>
 
-        <div className="p-4 rounded-2xl glass-card border border-slate-200/80 dark:border-teal-500/15 flex flex-col justify-between">
+        <div className="p-3.5 sm:p-4 rounded-2xl glass-card border border-slate-200/80 dark:border-teal-500/15 flex flex-col justify-between">
           <div className="flex items-center justify-between text-slate-500 dark:text-slate-400 text-xs font-medium">
             <span>Emergency Triggers</span>
-            <Siren className="w-4 h-4 text-rose-600 dark:text-rose-400" />
+            <Siren className="w-4 h-4 text-rose-600 dark:text-rose-400 shrink-0" />
           </div>
-          <div className="text-2xl font-black text-rose-600 dark:text-rose-400 mt-2 tabular-nums">
+          <div className="text-xl sm:text-2xl font-black text-rose-600 dark:text-rose-400 mt-1.5 sm:mt-2 tabular-nums">
             {emergencyHistory.length || 1}
           </div>
           <span className="text-[10px] text-rose-600 dark:text-rose-400 font-semibold mt-1">Deterministic override</span>
         </div>
 
-        <div className="p-4 rounded-2xl glass-card border border-slate-200/80 dark:border-teal-500/15 flex flex-col justify-between">
+        <div className="p-3.5 sm:p-4 rounded-2xl glass-card border border-slate-200/80 dark:border-teal-500/15 flex flex-col justify-between">
           <div className="flex items-center justify-between text-slate-500 dark:text-slate-400 text-xs font-medium">
             <span>Documents TrOCR'd</span>
-            <FileText className="w-4 h-4 text-purple-600 dark:text-purple-400" />
+            <FileText className="w-4 h-4 text-purple-600 dark:text-purple-400 shrink-0" />
           </div>
-          <div className="text-2xl font-black text-slate-900 dark:text-white mt-2 tabular-nums">48</div>
+          <div className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mt-1.5 sm:mt-2 tabular-nums">48</div>
           <span className="text-[10px] text-purple-600 dark:text-purple-400 font-semibold mt-1 tabular-nums">96.4% confidence</span>
         </div>
 
-        <div className="p-4 rounded-2xl glass-card border border-slate-200/80 dark:border-teal-500/15 flex flex-col justify-between">
+        <div className="p-3.5 sm:p-4 rounded-2xl glass-card border border-slate-200/80 dark:border-teal-500/15 flex flex-col justify-between">
           <div className="flex items-center justify-between text-slate-500 dark:text-slate-400 text-xs font-medium">
             <span>ABHA / Guest Share</span>
-            <Share2 className="w-4 h-4 text-sky-600 dark:text-sky-400" />
+            <Share2 className="w-4 h-4 text-sky-600 dark:text-sky-400 shrink-0" />
           </div>
-          <div className="text-2xl font-black text-slate-900 dark:text-white mt-2 tabular-nums">74% / 26%</div>
+          <div className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mt-1.5 sm:mt-2 tabular-nums">74% / 26%</div>
           <span className="text-[10px] text-sky-600 dark:text-sky-400 font-semibold mt-1">ABDM M1 compliant</span>
         </div>
 
-        <div className="p-4 rounded-2xl glass-card border border-slate-200/80 dark:border-teal-500/15 flex flex-col justify-between">
+        <div className="p-3.5 sm:p-4 rounded-2xl glass-card border border-slate-200/80 dark:border-teal-500/15 flex flex-col justify-between">
           <div className="flex items-center justify-between text-slate-500 dark:text-slate-400 text-xs font-medium">
             <span>Vernacular Speech</span>
-            <Activity className="w-4 h-4 text-teal-600 dark:text-teal-400" />
+            <Activity className="w-4 h-4 text-teal-600 dark:text-teal-400 shrink-0" />
           </div>
-          <div className="text-2xl font-black text-slate-900 dark:text-white mt-2 tabular-nums">62%</div>
-          <span className="text-[10px] text-teal-600 dark:text-teal-400 font-semibold mt-1">Hindi & Marathi AI voice</span>
+          <div className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mt-1.5 sm:mt-2 tabular-nums">62%</div>
+          <span className="text-[10px] text-teal-600 dark:text-teal-400 font-semibold mt-1">Bhashini AI voice</span>
         </div>
 
-        <div className="p-4 rounded-2xl glass-card border border-slate-200/80 dark:border-teal-500/15 flex flex-col justify-between">
+        <div className="p-3.5 sm:p-4 rounded-2xl glass-card border border-slate-200/80 dark:border-teal-500/15 flex flex-col justify-between">
           <div className="flex items-center justify-between text-slate-500 dark:text-slate-400 text-xs font-medium">
-            <span>DHIS Revenue Earned</span>
-            <Coins className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+            <span>DHIS Revenue</span>
+            <Coins className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
           </div>
-          <div className="text-2xl font-black text-emerald-600 dark:text-emerald-400 mt-2 tabular-nums">
+          <div className="text-xl sm:text-2xl font-black text-emerald-600 dark:text-emerald-400 mt-1.5 sm:mt-2 tabular-nums">
             ₹{abdmStatus.dhisIncentives.totalIncentiveInr.toLocaleString()}
           </div>
           <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold mt-1">NHA Corrigendum 7</span>
@@ -239,8 +239,8 @@ export const AdminDashboard: React.FC = () => {
       </div>
 
       {/* Live Queue Table with Search and Filtering */}
-      <div className="glass-card rounded-3xl p-6 border border-slate-200/80 dark:border-teal-500/20 shadow-xl space-y-4">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+      <div className="glass-card rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-slate-200/80 dark:border-teal-500/20 shadow-xl space-y-4">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
           <div>
             <h2 className="text-base font-bold text-slate-900 dark:text-white font-display">
               Live OPD Outpatient Queue & Consultation Rooms
@@ -250,7 +250,7 @@ export const AdminDashboard: React.FC = () => {
             </p>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
             {/* Search Input */}
             <div className="relative">
               <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
@@ -259,17 +259,17 @@ export const AdminDashboard: React.FC = () => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search patient, token..."
-                className="pl-8 pr-3 py-1.5 rounded-xl text-xs bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200 focus-ring"
+                className="w-full sm:w-56 pl-8 pr-3 py-2 sm:py-1.5 rounded-xl text-xs bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200 focus-ring"
               />
             </div>
 
             {/* Filter Buttons */}
-            <div className="flex items-center gap-1 bg-slate-100 dark:bg-slate-900 p-1 rounded-xl border border-slate-200 dark:border-slate-800">
+            <div className="flex items-center gap-1 bg-slate-100 dark:bg-slate-900 p-1 rounded-xl border border-slate-200 dark:border-slate-800 overflow-x-auto scrollbar-none">
               {(['ALL', 'EMERGENCY', 'FAST_TRACK', 'STANDARD'] as const).map(p => (
                 <button
                   key={p}
                   onClick={() => setFilterPriority(p)}
-                  className={`px-2.5 py-1 rounded-lg text-[11px] font-semibold transition-colors ${
+                  className={`px-2.5 py-1 rounded-lg text-[11px] font-semibold transition-colors whitespace-nowrap shrink-0 ${
                     filterPriority === p 
                       ? 'bg-white dark:bg-slate-800 text-teal-600 dark:text-teal-300 shadow-sm' 
                       : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
@@ -282,8 +282,8 @@ export const AdminDashboard: React.FC = () => {
           </div>
         </div>
 
-        <div className="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800">
-          <table className="w-full text-left text-xs" aria-label="OPD Outpatient Queue Table">
+        <div className="overflow-x-auto rounded-xl sm:rounded-2xl border border-slate-200 dark:border-slate-800">
+          <table className="w-full min-w-[650px] text-left text-xs" aria-label="OPD Outpatient Queue Table">
             <thead className="bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300 uppercase tracking-wider font-bold border-b border-slate-200 dark:border-slate-800">
               <tr>
                 <th scope="col" className="px-4 py-3">Token No.</th>

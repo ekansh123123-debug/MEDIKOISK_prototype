@@ -63,10 +63,10 @@ export const DoctorDashboard: React.FC = () => {
   const isEmergency = currentToken?.priority === 'EMERGENCY';
 
   return (
-    <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 animate-fade-in space-y-6">
+    <div className="max-w-7xl mx-auto py-3 sm:py-6 px-3 sm:px-6 lg:px-8 animate-fade-in space-y-4 sm:space-y-6">
       {/* 1. TOP CLINICAL HEADER BAR */}
-      <div className="glass-card-elevated rounded-2xl p-5 sm:p-6 border border-slate-200 dark:border-slate-800 shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-        <div className="flex items-center gap-4">
+      <div className="glass-card-elevated rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-slate-200 dark:border-slate-800 shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-3 sm:gap-4">
+        <div className="flex items-center gap-3 sm:gap-4 min-w-0">
           <div className="w-12 h-12 rounded-xl bg-teal-600 text-white flex items-center justify-center font-bold text-lg shadow-md font-display">
             {currentPatient.name.charAt(0)}
           </div>
@@ -108,32 +108,33 @@ export const DoctorDashboard: React.FC = () => {
       </div>
 
       {/* 2. NAVIGATION TABS */}
-      <div className="flex overflow-x-auto gap-2 border-b border-slate-200 dark:border-slate-800 pb-2">
+      <div className="flex overflow-x-auto gap-1.5 sm:gap-2 border-b border-slate-200 dark:border-slate-800 pb-2 scroll-smooth" style={{ WebkitOverflowScrolling: 'touch' }}>
         {[
-          { id: 'soap', label: 'Clinical SOAP Summary', icon: <FileText className="w-4 h-4" /> },
-          { id: 'timeline', label: 'Longitudinal Timeline', icon: <Clock className="w-4 h-4" /> },
-          { id: 'medications', label: 'Medications & OCR', icon: <Pill className="w-4 h-4" /> },
-          { id: 'ayush', label: 'AYUSH & Dual-Coding', icon: <Leaf className="w-4 h-4" /> },
-          { id: 'fhir', label: 'FHIR R4 Bundle', icon: <Layers className="w-4 h-4" /> }
+          { id: 'soap', label: 'SOAP Summary', fullLabel: 'Clinical SOAP Summary', icon: <FileText className="w-4 h-4 shrink-0" /> },
+          { id: 'timeline', label: 'Timeline', fullLabel: 'Longitudinal Timeline', icon: <Clock className="w-4 h-4 shrink-0" /> },
+          { id: 'medications', label: 'Medications', fullLabel: 'Medications & OCR', icon: <Pill className="w-4 h-4 shrink-0" /> },
+          { id: 'ayush', label: 'AYUSH', fullLabel: 'AYUSH & Dual-Coding', icon: <Leaf className="w-4 h-4 shrink-0" /> },
+          { id: 'fhir', label: 'FHIR R4', fullLabel: 'FHIR R4 Bundle', icon: <Layers className="w-4 h-4 shrink-0" /> }
         ].map((tab) => (
           <button
             key={tab.id}
             type="button"
             onClick={() => setActiveTab(tab.id as any)}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all tactile-btn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer ${
+            className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all tactile-btn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer shrink-0 ${
               activeTab === tab.id
                 ? 'bg-teal-600 text-white shadow-sm'
                 : 'bg-white dark:bg-slate-900/60 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-800'
             }`}
           >
             {tab.icon}
-            <span>{tab.label}</span>
+            <span className="sm:hidden">{tab.label}</span>
+            <span className="hidden sm:inline">{tab.fullLabel}</span>
           </button>
         ))}
       </div>
 
       {/* 3. TAB CONTENT */}
-      <div className="glass-card-elevated rounded-2xl p-6 sm:p-7 border border-slate-200 dark:border-slate-800 shadow-xl space-y-6">
+      <div className="glass-card-elevated rounded-2xl sm:rounded-3xl p-4 sm:p-7 border border-slate-200 dark:border-slate-800 shadow-xl space-y-5 sm:space-y-6">
         
         {/* TAB 1: SOAP SUMMARY */}
         {activeTab === 'soap' && (
@@ -364,10 +365,10 @@ export const DoctorDashboard: React.FC = () => {
       </div>
 
       {/* 4. DOCTOR APPROVAL & DIGITAL SIGN-OFF BAR */}
-      <div className="glass-card-elevated rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-xl space-y-4">
-        <div className="flex items-center justify-between">
+      <div className="glass-card-elevated rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-slate-200 dark:border-slate-800 shadow-xl space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <div className="flex items-center gap-2">
-            <PenTool className="w-5 h-5 text-teal-600 dark:text-teal-400" aria-hidden="true" />
+            <PenTool className="w-5 h-5 text-teal-600 dark:text-teal-400 shrink-0" aria-hidden="true" />
             <h3 className="font-bold text-slate-900 dark:text-white text-base font-display">
               Physician Final Review & Digital Sign-off
             </h3>

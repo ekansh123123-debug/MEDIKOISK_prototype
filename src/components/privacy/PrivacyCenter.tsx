@@ -104,11 +104,11 @@ export const PrivacyCenter: React.FC = () => {
       </div>
 
       {/* Patient Statutory Rights Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
         {/* Card 1: Revocation */}
-        <div className="p-6 glass-card rounded-3xl border border-slate-200/80 dark:border-teal-500/15 shadow-sm space-y-4 hover:border-rose-500/40 transition-all flex flex-col justify-between">
+        <div className="p-4 sm:p-6 glass-card rounded-2xl sm:rounded-3xl border border-slate-200/80 dark:border-teal-500/15 shadow-sm space-y-4 hover:border-rose-500/40 transition-all flex flex-col justify-between">
           <div>
-            <div className="w-11 h-11 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-600 dark:text-rose-400 flex items-center justify-center font-bold mb-3">
+            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-600 dark:text-rose-400 flex items-center justify-center font-bold mb-3">
               <EyeOff className="w-5 h-5" />
             </div>
             <h2 className="font-bold text-base text-slate-900 dark:text-white font-display">
@@ -138,9 +138,9 @@ export const PrivacyCenter: React.FC = () => {
         </div>
 
         {/* Card 2: Export Data */}
-        <div className="p-6 glass-card rounded-3xl border border-slate-200/80 dark:border-teal-500/15 shadow-sm space-y-4 hover:border-teal-500/40 transition-all flex flex-col justify-between">
+        <div className="p-4 sm:p-6 glass-card rounded-2xl sm:rounded-3xl border border-slate-200/80 dark:border-teal-500/15 shadow-sm space-y-4 hover:border-teal-500/40 transition-all flex flex-col justify-between">
           <div>
-            <div className="w-11 h-11 rounded-2xl bg-teal-500/10 border border-teal-500/20 text-teal-600 dark:text-teal-400 flex items-center justify-center font-bold mb-3">
+            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-teal-500/10 border border-teal-500/20 text-teal-600 dark:text-teal-400 flex items-center justify-center font-bold mb-3">
               <Download className="w-5 h-5" />
             </div>
             <h2 className="font-bold text-base text-slate-900 dark:text-white font-display">
@@ -160,9 +160,9 @@ export const PrivacyCenter: React.FC = () => {
         </div>
 
         {/* Card 3: Right to Erasure */}
-        <div className="p-6 glass-card rounded-3xl border border-slate-200/80 dark:border-teal-500/15 shadow-sm space-y-4 hover:border-slate-400 dark:hover:border-slate-700 transition-all flex flex-col justify-between">
+        <div className="p-4 sm:p-6 glass-card rounded-2xl sm:rounded-3xl border border-slate-200/80 dark:border-teal-500/15 shadow-sm space-y-4 hover:border-slate-400 dark:hover:border-slate-700 transition-all flex flex-col justify-between">
           <div>
-            <div className="w-11 h-11 rounded-2xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 flex items-center justify-center font-bold mb-3">
+            <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 flex items-center justify-center font-bold mb-3">
               <Trash2 className="w-5 h-5" />
             </div>
             <h2 className="font-bold text-base text-slate-900 dark:text-white font-display">
@@ -193,7 +193,7 @@ export const PrivacyCenter: React.FC = () => {
       </div>
 
       {/* Fidelius Cryptographic Suite Display */}
-      <div className="p-6 sm:p-8 bg-gradient-to-r from-teal-50/80 via-sky-50/40 to-slate-100/90 dark:from-slate-900/90 dark:via-teal-950/30 dark:to-slate-900/90 backdrop-blur-xl rounded-3xl border border-teal-500/20 dark:border-teal-500/30 space-y-5 shadow-sm">
+      <div className="p-5 sm:p-8 bg-gradient-to-r from-teal-50/80 via-sky-50/40 to-slate-100/90 dark:from-slate-900/90 dark:via-teal-950/30 dark:to-slate-900/90 backdrop-blur-xl rounded-2xl sm:rounded-3xl border border-teal-500/20 dark:border-teal-500/30 space-y-5 shadow-sm">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
             <h2 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2.5 font-display">
@@ -241,8 +241,8 @@ export const PrivacyCenter: React.FC = () => {
       </div>
 
       {/* Immutable Audit Log Table */}
-      <div className="glass-card rounded-3xl p-6 sm:p-8 border border-slate-200/80 dark:border-teal-500/20 shadow-sm space-y-4">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+      <div className="glass-card rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200/80 dark:border-teal-500/20 shadow-sm space-y-4">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
           <div className="flex items-center gap-2.5">
             <History className="w-5 h-5 text-teal-600 dark:text-teal-400" />
             <div>
@@ -255,7 +255,7 @@ export const PrivacyCenter: React.FC = () => {
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
             {/* Search Input */}
             <div className="relative">
               <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
@@ -264,17 +264,17 @@ export const PrivacyCenter: React.FC = () => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search audit actions..."
-                className="pl-8 pr-3 py-1.5 rounded-xl text-xs bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200 focus-ring"
+                className="w-full sm:w-56 pl-8 pr-3 py-2 sm:py-1.5 rounded-xl text-xs bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200 focus-ring"
               />
             </div>
 
             {/* Category Filter */}
-            <div className="flex items-center gap-1 bg-slate-100 dark:bg-slate-900 p-1 rounded-xl border border-slate-200 dark:border-slate-800">
+            <div className="flex items-center gap-1 bg-slate-100 dark:bg-slate-900 p-1 rounded-xl border border-slate-200 dark:border-slate-800 overflow-x-auto scrollbar-none">
               {(['ALL', 'CONSENT', 'TRIAGE', 'FHIR', 'AUTH'] as const).map(cat => (
                 <button
                   key={cat}
                   onClick={() => setAuditFilter(cat)}
-                  className={`px-2.5 py-1 rounded-lg text-[11px] font-semibold transition-colors ${
+                  className={`px-2.5 py-1 rounded-lg text-[11px] font-semibold transition-colors whitespace-nowrap shrink-0 ${
                     auditFilter === cat 
                       ? 'bg-white dark:bg-slate-800 text-teal-600 dark:text-teal-300 shadow-sm' 
                       : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
@@ -287,8 +287,8 @@ export const PrivacyCenter: React.FC = () => {
           </div>
         </div>
 
-        <div className="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800">
-          <table className="w-full text-left text-xs" aria-label="Clinical Audit Log Table">
+        <div className="overflow-x-auto rounded-xl sm:rounded-2xl border border-slate-200 dark:border-slate-800">
+          <table className="w-full min-w-[600px] text-left text-xs" aria-label="Clinical Audit Log Table">
             <thead className="bg-slate-100 dark:bg-slate-950 text-slate-700 dark:text-slate-300 uppercase tracking-wider font-semibold border-b border-slate-200 dark:border-slate-800">
               <tr>
                 <th scope="col" className="px-5 py-3.5">Timestamp</th>

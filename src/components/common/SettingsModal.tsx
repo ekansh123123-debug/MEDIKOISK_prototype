@@ -133,20 +133,20 @@ export const SettingsModal: React.FC = () => {
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-slate-800/80 bg-slate-50/70 dark:bg-[#090f1e]/80">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-teal-500/10 text-teal-600 dark:text-teal-400 flex items-center justify-center border border-teal-500/20">
-              <Sliders className="w-5 h-5" />
+        <div className="flex items-center justify-between px-4 sm:px-6 py-3.5 sm:py-4 border-b border-slate-200 dark:border-slate-800/80 bg-slate-50/70 dark:bg-[#090f1e]/80">
+          <div className="flex items-center gap-2.5 sm:gap-3">
+            <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-teal-500/10 text-teal-600 dark:text-teal-400 flex items-center justify-center border border-teal-500/20 shrink-0">
+              <Sliders className="w-4 h-4 sm:w-5 sm:h-5" />
             </div>
             <div>
-              <h2 id="settings-dialog-title" className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                Platform Preferences & Controls
-                <span className="text-[10px] font-mono font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-teal-500/10 text-teal-700 dark:text-teal-300 border border-teal-500/20">
+              <h2 id="settings-dialog-title" className="text-sm sm:text-base font-bold text-slate-900 dark:text-white flex items-center gap-1.5 sm:gap-2">
+                Platform Preferences
+                <span className="text-[9px] sm:text-[10px] font-mono font-semibold uppercase tracking-wider px-1.5 sm:px-2 py-0.5 rounded-full bg-teal-500/10 text-teal-700 dark:text-teal-300 border border-teal-500/20">
                   Settings
                 </span>
               </h2>
-              <p className="text-xs text-slate-500 dark:text-slate-400">
-                Configure display aesthetics, multilingual Bhashini voice, kiosk hardware, and ABDM sandbox.
+              <p className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400">
+                Aesthetics, Bhashini voice, kiosk hardware, and ABDM sandbox.
               </p>
             </div>
           </div>
@@ -165,7 +165,7 @@ export const SettingsModal: React.FC = () => {
         </div>
 
         {/* Tab Navigation */}
-        <div className="flex border-b border-slate-200 dark:border-slate-800 bg-slate-100/50 dark:bg-[#0a1122]/50 px-4 overflow-x-auto gap-1">
+        <div className="flex border-b border-slate-200 dark:border-slate-800 bg-slate-100/50 dark:bg-[#0a1122]/50 px-3 sm:px-4 overflow-x-auto scrollbar-none gap-1">
           {[
             { id: 'appearance', label: 'Appearance', icon: <Palette className="w-3.5 h-3.5" /> },
             { id: 'language', label: 'Language & Voice', icon: <Languages className="w-3.5 h-3.5" /> },
@@ -179,7 +179,7 @@ export const SettingsModal: React.FC = () => {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id as SettingsTab)}
-                className={`flex items-center gap-1.5 py-3 px-3 text-xs font-semibold whitespace-nowrap border-b-2 transition-all cursor-pointer ${
+                className={`flex items-center gap-1.5 py-2.5 sm:py-3 px-3 text-xs font-semibold whitespace-nowrap border-b-2 transition-all cursor-pointer shrink-0 ${
                   active
                     ? 'border-teal-500 text-teal-600 dark:text-teal-400 bg-white/70 dark:bg-slate-900/60'
                     : 'border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:border-slate-300 dark:hover:border-slate-700'
@@ -193,7 +193,7 @@ export const SettingsModal: React.FC = () => {
         </div>
 
         {/* Modal Body */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-6">
+        <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-5 sm:space-y-6">
           {/* TAB 1: APPEARANCE */}
           {activeTab === 'appearance' && (
             <div className="space-y-6 animate-fade-in">
@@ -202,11 +202,11 @@ export const SettingsModal: React.FC = () => {
                 <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
                   Interface Theme
                 </label>
-                <div className="grid grid-cols-2 gap-3 max-w-md">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 max-w-md">
                   <button
                     type="button"
                     onClick={() => setTheme('light')}
-                    className={`flex items-center justify-center gap-2.5 p-3.5 rounded-xl border text-xs font-bold transition-all cursor-pointer ${
+                    className={`flex items-center justify-center gap-2.5 p-3 sm:p-3.5 rounded-xl border text-xs font-bold transition-all cursor-pointer ${
                       theme === 'light'
                         ? 'border-teal-500 bg-teal-50/50 dark:bg-teal-950/20 text-teal-900 dark:text-teal-200 ring-2 ring-teal-500/20'
                         : 'border-slate-200 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-900/40 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/60'

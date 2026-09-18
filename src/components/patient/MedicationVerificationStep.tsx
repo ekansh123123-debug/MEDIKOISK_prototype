@@ -39,8 +39,8 @@ export const MedicationVerificationStep: React.FC = () => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto py-6 px-2 animate-fade-in">
-      <div className="glass-card-elevated rounded-2xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-xl space-y-6">
+    <div className="max-w-2xl mx-auto py-2 sm:py-6 px-1 sm:px-2 animate-fade-in">
+      <div className="glass-card-elevated rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-xl space-y-5 sm:space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800 text-xs">
           <span className="font-bold text-teal-600 dark:text-teal-400">Step: Extracted Medication Verification</span>
@@ -49,7 +49,7 @@ export const MedicationVerificationStep: React.FC = () => {
 
         {/* Title */}
         <div className="text-center space-y-1">
-          <h2 className="text-2xl font-bold text-slate-900 dark:text-white font-display">
+          <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white font-display">
             {t.medVerifyTitle}
           </h2>
           <p className="text-xs text-slate-500 dark:text-slate-400 max-w-md mx-auto">
@@ -232,11 +232,11 @@ export const MedicationVerificationStep: React.FC = () => {
         </div>
 
         {/* Action Controls */}
-        <div className="pt-2 flex justify-between items-center">
+        <div className="pt-3 flex flex-col-reverse sm:flex-row justify-between items-stretch sm:items-center gap-3 border-t border-slate-200/80 dark:border-slate-800">
           <button
             type="button"
             onClick={() => setPatientStep('document_upload')}
-            className="text-xs text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-medium cursor-pointer"
+            className="py-2.5 sm:py-1 px-3 text-xs text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-semibold cursor-pointer text-center sm:text-left"
           >
             &larr; Upload Another Document
           </button>
@@ -244,7 +244,7 @@ export const MedicationVerificationStep: React.FC = () => {
           <button
             type="button"
             onClick={() => setPatientStep('ayush_intake')}
-            className="px-6 py-3.5 bg-teal-600 hover:bg-teal-700 text-white font-bold rounded-xl shadow-lg shadow-teal-600/20 flex items-center gap-2 text-xs transition-all tactile-btn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer"
+            className="w-full sm:w-auto px-6 py-3.5 bg-teal-600 hover:bg-teal-700 text-white font-bold rounded-xl shadow-lg shadow-teal-600/20 flex items-center justify-center gap-2 text-sm sm:text-xs transition-all tactile-btn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer min-h-[48px]"
           >
             <span>Proceed to AYUSH Dual-Coding</span>
             <ArrowRight className="w-4 h-4 text-white" aria-hidden="true" />

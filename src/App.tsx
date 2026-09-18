@@ -4,6 +4,7 @@ import { Navbar } from './components/common/Navbar';
 import { Footer } from './components/common/Footer';
 import { EmergencyAlertModal } from './components/common/EmergencyAlertModal';
 import { SettingsModal } from './components/common/SettingsModal';
+import { MobileBottomNav } from './components/common/MobileBottomNav';
 
 // Landing & Overview Components
 import { Hero } from './components/landing/Hero';
@@ -22,6 +23,7 @@ import { DocumentUploadStep } from './components/patient/DocumentUploadStep';
 import { MedicationVerificationStep } from './components/patient/MedicationVerificationStep';
 import { AyushIntakeStep } from './components/patient/AyushIntakeStep';
 import { QueueTokenDisplay } from './components/patient/QueueTokenDisplay';
+import { PatientMobileHeader } from './components/patient/PatientMobileHeader';
 
 // Doctor & Admin & Privacy
 import { DoctorDashboard } from './components/doctor/DoctorDashboard';
@@ -42,20 +44,20 @@ const MainContent: React.FC = () => {
       {/* Global Settings & Configuration Panel */}
       <SettingsModal />
 
-      {/* Floating Clinical Toast Notification */}
+      {/* Floating Clinical Toast Notification (Mobile-safe positioning) */}
       {toastMessage && (
         <div 
           role="status" 
           aria-live="polite"
-          className="fixed bottom-6 right-6 z-50 p-4 bg-white/95 dark:bg-slate-900/90 backdrop-blur-xl text-slate-900 dark:text-white rounded-2xl shadow-2xl border border-slate-200 dark:border-teal-500/30 text-xs font-semibold flex items-center gap-2.5 animate-slide-up max-w-md"
+          className="fixed bottom-20 sm:bottom-6 right-4 sm:right-6 left-4 sm:left-auto z-50 p-3.5 sm:p-4 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl text-slate-900 dark:text-white rounded-2xl shadow-2xl border border-slate-200 dark:border-teal-500/30 text-xs font-semibold flex items-center gap-2.5 animate-slide-up max-w-md"
         >
-          <span className="w-2 h-2 rounded-full bg-teal-500 animate-ping" aria-hidden="true" />
-          <span>{toastMessage}</span>
+          <span className="w-2 h-2 rounded-full bg-teal-500 animate-ping shrink-0" aria-hidden="true" />
+          <span className="truncate">{toastMessage}</span>
         </div>
       )}
 
-      {/* Primary Role Views */}
-      <main className="flex-1" id="main-content">
+      {/* Primary Role Views with Mobile Bottom Clearance */}
+      <main className="flex-1 pb-24 md:pb-12" id="main-content">
         {role === 'landing' && (
           <div className="space-y-0">
             <Hero />
@@ -67,7 +69,10 @@ const MainContent: React.FC = () => {
         )}
 
         {role === 'patient' && (
-          <div className="py-8 px-4 max-w-7xl mx-auto">
+          <div className="py-4 sm:py-8 px-3 sm:px-4 max-w-7xl mx-auto">
+            {/* Mobile-only Step Progress Indicator */}
+            <PatientMobileHeader />
+
             {patientStep === 'hospital_qr' && <HospitalQRScan />}
             {patientStep === 'abha_login' && <AbhaLogin />}
             {patientStep === 'consent' && <ConsentStep />}
@@ -89,6 +94,9 @@ const MainContent: React.FC = () => {
 
       {/* Enterprise Footer */}
       <Footer />
+
+      {/* Fixed Mobile Bottom App Bar */}
+      <MobileBottomNav />
     </div>
   );
 };

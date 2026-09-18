@@ -31,8 +31,8 @@ export const AyushIntakeStep: React.FC = () => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto py-6 px-2 animate-fade-in">
-      <div className="glass-card-elevated rounded-2xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-xl space-y-6">
+    <div className="max-w-2xl mx-auto py-2 sm:py-6 px-1 sm:px-2 animate-fade-in">
+      <div className="glass-card-elevated rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-xl space-y-5 sm:space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800 text-xs">
           <span className="font-bold text-teal-600 dark:text-teal-400">Step: Traditional Medicine & Dual-Coding</span>
@@ -44,7 +44,7 @@ export const AyushIntakeStep: React.FC = () => {
           <div className="w-11 h-11 rounded-xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center mx-auto mb-2 border border-amber-500/20">
             <Leaf className="w-5 h-5" aria-hidden="true" />
           </div>
-          <h2 className="text-2xl font-bold text-slate-900 dark:text-white font-display">
+          <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white font-display">
             {t.ayushTitle}
           </h2>
           <p className="text-xs text-slate-500 dark:text-slate-400 max-w-md mx-auto">

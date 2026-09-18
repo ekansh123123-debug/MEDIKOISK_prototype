@@ -34,8 +34,8 @@ export const DocumentUploadStep: React.FC = () => {
   };
 
   return (
-    <div className="max-w-xl mx-auto py-6 px-2 animate-fade-in">
-      <div className="glass-card-elevated rounded-2xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-xl space-y-6">
+    <div className="max-w-xl mx-auto py-2 sm:py-6 px-1 sm:px-2 animate-fade-in">
+      <div className="glass-card-elevated rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-xl space-y-5 sm:space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800 text-xs">
           <span className="font-bold text-teal-600 dark:text-teal-400">Step: Medical Document Intelligence</span>
@@ -44,7 +44,7 @@ export const DocumentUploadStep: React.FC = () => {
 
         {/* Title */}
         <div className="text-center space-y-1">
-          <h2 className="text-2xl font-bold text-slate-900 dark:text-white font-display">
+          <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white font-display">
             {t.docTitle}
           </h2>
           <p className="text-xs text-slate-500 dark:text-slate-400 max-w-sm mx-auto">
@@ -123,20 +123,20 @@ export const DocumentUploadStep: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => handleProcessSampleDoc(0)}
-                  className="w-full p-3 bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700/80 flex items-center justify-between text-xs text-left transition-colors shadow-sm tactile-btn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer"
+                  className="w-full p-3 bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700/80 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-left transition-colors shadow-sm tactile-btn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer"
                 >
-                  <div className="flex items-center gap-2.5">
-                    <FileText className="w-4 h-4 text-teal-600 dark:text-teal-400" aria-hidden="true" />
-                    <div>
-                      <span className="font-bold text-slate-900 dark:text-slate-200 block">
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    <FileText className="w-4 h-4 text-teal-600 dark:text-teal-400 shrink-0" aria-hidden="true" />
+                    <div className="min-w-0">
+                      <span className="font-bold text-slate-900 dark:text-slate-200 block truncate">
                         Prescription Slip: Dr. Shukla (KEM Hospital)
                       </span>
-                      <span className="text-[10px] text-slate-500 dark:text-slate-400">
+                      <span className="text-[10px] text-slate-500 dark:text-slate-400 block truncate">
                         Pantoprazole (98%) + Sucralfate (89% flagged for review)
                       </span>
                     </div>
                   </div>
-                  <span className="px-2 py-0.5 rounded text-[10px] font-mono tabular-nums bg-amber-500/10 text-amber-700 dark:text-amber-300 border border-amber-500/20 font-bold">
+                  <span className="self-start sm:self-auto px-2 py-0.5 rounded text-[10px] font-mono tabular-nums bg-amber-500/10 text-amber-700 dark:text-amber-300 border border-amber-500/20 font-bold shrink-0 whitespace-nowrap">
                     &lt;95% Conf Flagged
                   </span>
                 </button>
@@ -144,20 +144,20 @@ export const DocumentUploadStep: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => handleProcessSampleDoc(1)}
-                  className="w-full p-3 bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700/80 flex items-center justify-between text-xs text-left transition-colors shadow-sm tactile-btn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer"
+                  className="w-full p-3 bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700/80 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-left transition-colors shadow-sm tactile-btn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer"
                 >
-                  <div className="flex items-center gap-2.5">
-                    <FileText className="w-4 h-4 text-sky-600 dark:text-sky-400" aria-hidden="true" />
-                    <div>
-                      <span className="font-bold text-slate-900 dark:text-slate-200 block">
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    <FileText className="w-4 h-4 text-sky-600 dark:text-sky-400 shrink-0" aria-hidden="true" />
+                    <div className="min-w-0">
+                      <span className="font-bold text-slate-900 dark:text-slate-200 block truncate">
                         Laboratory Panel: Dr. Lal PathLabs
                       </span>
-                      <span className="text-[10px] text-slate-500 dark:text-slate-400">
+                      <span className="text-[10px] text-slate-500 dark:text-slate-400 block truncate">
                         HbA1c 7.8% and Fasting Blood Sugar 148 mg/dL
                       </span>
                     </div>
                   </div>
-                  <span className="px-2 py-0.5 rounded text-[10px] bg-sky-500/10 text-sky-700 dark:text-sky-300 border border-sky-500/20 font-bold">
+                  <span className="self-start sm:self-auto px-2 py-0.5 rounded text-[10px] bg-sky-500/10 text-sky-700 dark:text-sky-300 border border-sky-500/20 font-bold shrink-0 whitespace-nowrap">
                     Biochemistry
                   </span>
                 </button>

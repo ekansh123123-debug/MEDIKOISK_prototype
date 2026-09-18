@@ -45,11 +45,11 @@ export const QueueTokenDisplay: React.FC = () => {
   const isEmergency = currentToken?.priority === 'EMERGENCY';
 
   return (
-    <div className="max-w-xl mx-auto py-6 px-2 animate-fade-in space-y-6">
-      <div className="glass-card-elevated rounded-2xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-xl text-center space-y-6">
+    <div className="max-w-xl mx-auto py-2 sm:py-6 px-1 sm:px-2 animate-fade-in space-y-4 sm:space-y-6">
+      <div className="glass-card-elevated rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-xl text-center space-y-5 sm:space-y-6">
         {/* Success Icon */}
-        <div className="w-14 h-14 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mx-auto shadow-md border border-emerald-500/20">
-          <CheckCircle2 className="w-8 h-8" aria-hidden="true" />
+        <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mx-auto shadow-md border border-emerald-500/20">
+          <CheckCircle2 className="w-7 h-7 sm:w-8 sm:h-8" aria-hidden="true" />
         </div>
 
         {/* Title */}
@@ -57,7 +57,7 @@ export const QueueTokenDisplay: React.FC = () => {
           <Badge variant={isEmergency ? 'red' : 'green'} pulsing={isEmergency}>
             {isEmergency ? 'EMERGENCY PRIORITY OVERRIDE' : 'CASE PREPARED FOR CLINICIAN'}
           </Badge>
-          <h2 className="text-2xl font-bold text-slate-900 dark:text-white font-display mt-2">
+          <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white font-display mt-2">
             {t.tokenTitle}
           </h2>
           <p className="text-xs text-slate-500 dark:text-slate-400">

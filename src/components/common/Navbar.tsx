@@ -53,49 +53,53 @@ export const Navbar: React.FC = () => {
         <div 
           role="alert"
           aria-live="assertive"
-          className="bg-rose-600 text-white px-4 py-1.5 text-xs font-bold flex items-center justify-between border-b border-rose-700 animate-pulse"
+          className="bg-rose-600 text-white px-3 sm:px-4 py-1.5 text-xs font-bold border-b border-rose-700 animate-pulse"
         >
-          <div className="flex items-center gap-2 max-w-7xl mx-auto w-full">
-            <Siren className="w-4 h-4 text-amber-200 animate-bounce" aria-hidden="true" />
-            <span>CRITICAL TRIAGE ALERT: Patient {emergencyHistory[0].patientName} flagged for immediate Casualty care (Token: {emergencyHistory[0].tokenNumber})</span>
+          <div className="flex items-center justify-between gap-2 max-w-7xl mx-auto w-full flex-wrap sm:flex-nowrap">
+            <div className="flex items-center gap-2 min-w-0">
+              <Siren className="w-4 h-4 text-amber-200 animate-bounce shrink-0" aria-hidden="true" />
+              <span className="truncate text-[11px] sm:text-xs">
+                CRITICAL TRIAGE: {emergencyHistory[0].patientName} (Token: {emergencyHistory[0].tokenNumber})
+              </span>
+            </div>
             <button 
               onClick={() => setRole('admin')}
-              className="ml-auto underline hover:text-amber-200 text-xs font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded cursor-pointer"
+              className="ml-auto underline hover:text-amber-200 text-[11px] sm:text-xs font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white rounded cursor-pointer whitespace-nowrap"
             >
-              View Triage Feed &rarr;
+              View Triage &rarr;
             </button>
           </div>
         </div>
       )}
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-14 sm:h-16">
           {/* Logo & Product Identity */}
           <button 
             type="button"
-            className="flex items-center gap-3 select-none text-left rounded-xl p-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer" 
+            className="flex items-center gap-2 sm:gap-3 select-none text-left rounded-xl p-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer min-w-0" 
             onClick={() => setRole('landing')}
             aria-label="MEDIKOISK Home Overview"
           >
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-teal-500 via-cyan-500 to-sky-400 flex items-center justify-center text-slate-950 shadow-md shadow-teal-500/20">
-              <Stethoscope className="w-6 h-6 text-slate-950" aria-hidden="true" strokeWidth={2} />
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-teal-500 via-cyan-500 to-sky-400 flex items-center justify-center text-slate-950 shadow-md shadow-teal-500/20 shrink-0">
+              <Stethoscope className="w-4 h-4 sm:w-6 sm:h-6 text-slate-950" aria-hidden="true" strokeWidth={2.2} />
             </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="font-extrabold text-xl tracking-tight text-slate-900 dark:text-white font-display">
+            <div className="min-w-0">
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                <span className="font-extrabold text-base sm:text-xl tracking-tight text-slate-900 dark:text-white font-display">
                   MEDI<span className="text-teal-600 dark:text-teal-400">KOISK</span>
                 </span>
-                <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-teal-500/10 text-teal-700 dark:text-teal-300 border border-teal-500/20">
-                  NRCeS FHIR R4
+                <span className="px-1.5 sm:px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] font-bold bg-teal-500/10 text-teal-700 dark:text-teal-300 border border-teal-500/20 whitespace-nowrap">
+                  FHIR R4
                 </span>
               </div>
-              <p className="text-[11px] text-slate-500 dark:text-slate-400 font-medium hidden sm:block">
+              <p className="text-[10px] sm:text-[11px] text-slate-500 dark:text-slate-400 font-medium hidden md:block truncate">
                 {t.brandTagline}
               </p>
             </div>
           </button>
 
-          {/* Navigation Links */}
+          {/* Desktop Navigation Links */}
           <nav aria-label="Main Navigation" className="hidden md:flex items-center gap-1 bg-slate-100/80 dark:bg-slate-900/60 p-1.5 rounded-xl border border-slate-200 dark:border-slate-800 backdrop-blur-md">
             {navItems.map((item) => {
               const active = role === item.id;
@@ -118,21 +122,21 @@ export const Navbar: React.FC = () => {
           </nav>
 
           {/* Controls: Language Selector, Theme Switcher, Settings Panel & Reset */}
-          <div className="flex items-center gap-1.5 sm:gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
             {/* Language Selector */}
-            <div className="relative flex items-center">
-              <Languages className="w-4 h-4 text-teal-600 dark:text-teal-400 absolute left-2.5 pointer-events-none" aria-hidden="true" />
+            <div className="relative flex items-center shrink-0">
+              <Languages className="w-3.5 h-3.5 text-teal-600 dark:text-teal-400 absolute left-2 pointer-events-none z-10" aria-hidden="true" />
               <label htmlFor="navbar-lang-select" className="sr-only">Select language</label>
               <select
                 id="navbar-lang-select"
                 value={language}
                 onChange={(e) => setLanguage(e.target.value as IndianLanguage)}
-                className="pl-8 pr-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-700/80 text-slate-800 dark:text-slate-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer shadow-sm"
+                className="pl-6 sm:pl-8 pr-2 sm:pr-3 py-1.5 text-[11px] sm:text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-700/80 text-slate-800 dark:text-slate-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer shadow-sm"
                 title={t.selectLanguage}
               >
                 {languages.map((lang) => (
                   <option key={lang.code} value={lang.code} className="bg-white dark:bg-slate-900 text-slate-900 dark:text-white">
-                    {lang.native} ({lang.label})
+                    {lang.code.toUpperCase()} ({lang.native})
                   </option>
                 ))}
               </select>
@@ -142,7 +146,7 @@ export const Navbar: React.FC = () => {
             <button
               onClick={toggleTheme}
               title={theme === 'dark' ? t.lightMode : t.darkMode}
-              className="p-2 text-slate-600 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 bg-slate-100 dark:bg-slate-800/80 hover:bg-slate-200 dark:hover:bg-slate-700/80 rounded-lg transition-colors border border-slate-200 dark:border-slate-700 shadow-sm flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer"
+              className="p-1.5 sm:p-2 text-slate-600 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 bg-slate-100 dark:bg-slate-800/80 hover:bg-slate-200 dark:hover:bg-slate-700/80 rounded-lg transition-colors border border-slate-200 dark:border-slate-700 shadow-sm flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer shrink-0"
               aria-label={theme === 'dark' ? "Switch to light theme" : "Switch to dark theme"}
             >
               {theme === 'dark' ? (
@@ -156,7 +160,7 @@ export const Navbar: React.FC = () => {
             <button
               onClick={toggleSettings}
               title="Platform Settings & Preferences (Ctrl+, / ⌘,)"
-              className="p-2 text-slate-600 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 bg-slate-100 dark:bg-slate-800/80 hover:bg-slate-200 dark:hover:bg-slate-700/80 rounded-lg transition-colors border border-slate-200 dark:border-slate-700 shadow-sm flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer group"
+              className="p-1.5 sm:p-2 text-slate-600 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 bg-slate-100 dark:bg-slate-800/80 hover:bg-slate-200 dark:hover:bg-slate-700/80 rounded-lg transition-colors border border-slate-200 dark:border-slate-700 shadow-sm flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer group shrink-0"
               aria-label="Open settings panel (Shortcut: Ctrl+, or Cmd+,)"
             >
               <Settings className="w-4 h-4 group-hover:rotate-45 transition-transform duration-300" aria-hidden="true" />
@@ -166,32 +170,13 @@ export const Navbar: React.FC = () => {
             <button
               onClick={resetAll}
               title="Reset system to default clinical state"
-              className="p-2 text-slate-500 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 bg-slate-100 dark:bg-slate-900/60 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg transition-colors border border-slate-200 dark:border-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer"
+              className="p-1.5 sm:p-2 text-slate-500 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 bg-slate-100 dark:bg-slate-900/60 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg transition-colors border border-slate-200 dark:border-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer shrink-0"
               aria-label="Reset platform to defaults"
             >
               <RotateCcw className="w-4 h-4" aria-hidden="true" />
             </button>
           </div>
         </div>
-      </div>
-
-      {/* Mobile Navigation bar */}
-      <div className="md:hidden flex overflow-x-auto gap-1 px-4 py-2 border-t border-slate-200 dark:border-slate-800 bg-slate-50/95 dark:bg-slate-950/90">
-        {navItems.map((item) => (
-          <button
-            key={item.id}
-            onClick={() => setRole(item.id)}
-            aria-current={role === item.id ? 'page' : undefined}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs whitespace-nowrap font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 ${
-              role === item.id 
-                ? 'bg-teal-600 text-white font-bold' 
-                : 'text-slate-700 dark:text-slate-400 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800'
-            }`}
-          >
-            {item.icon}
-            <span>{item.label}</span>
-          </button>
-        ))}
       </div>
     </header>
   );
