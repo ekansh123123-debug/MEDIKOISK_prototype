@@ -41,7 +41,7 @@ export const ProvenancePopover: React.FC<ProvenancePopoverProps> = ({ assertion 
 
       {/* Popover Card */}
       {isOpen && (
-        <div className="absolute left-0 bottom-full mb-2 z-50 w-80 sm:w-96 p-4 bg-white dark:bg-[#16171b] rounded-2xl border border-slate-200 dark:border-white/[0.08] shadow-2xl space-y-3 text-xs animate-scale-up">
+        <div className="absolute left-0 bottom-full mb-2 z-50 w-80 sm:w-96 p-4 bg-white dark:bg-[#161d2b] rounded-2xl border border-slate-200 dark:border-white/[0.08] shadow-2xl space-y-3 text-xs animate-scale-up">
           <div className="flex items-center justify-between pb-2 border-b border-slate-100 dark:border-white/[0.07]">
             <div className="flex items-center gap-1.5">
               <Sparkles className="w-4 h-4 text-teal-600 dark:text-teal-400" />
@@ -67,7 +67,7 @@ export const ProvenancePopover: React.FC<ProvenancePopoverProps> = ({ assertion 
                 type="text"
                 value={editText}
                 onChange={(e) => setEditText(e.target.value)}
-                className="w-full mt-1 p-2 bg-slate-50 dark:bg-[#121317] border border-slate-200 dark:border-white/[0.08] rounded-lg text-xs text-slate-900 dark:text-white"
+                className="w-full mt-1 p-2 bg-slate-50 dark:bg-[#131926] border border-slate-200 dark:border-white/[0.08] rounded-lg text-xs text-slate-900 dark:text-white"
               />
             ) : (
               <p className="font-semibold text-slate-800 dark:text-slate-100 mt-0.5">
@@ -77,7 +77,7 @@ export const ProvenancePopover: React.FC<ProvenancePopoverProps> = ({ assertion 
           </div>
 
           {/* Raw Source Snippet */}
-          <div className="p-2.5 bg-slate-50 dark:bg-[#121317] rounded-xl border border-slate-200/80 dark:border-white/[0.07]">
+          <div className="p-2.5 bg-slate-50 dark:bg-[#131926] rounded-xl border border-slate-200/80 dark:border-white/[0.07]">
             <div className="flex items-center justify-between text-[10px] text-slate-500 dark:text-slate-400 font-semibold mb-1">
               <span>Raw Patient Input:</span>
               <span className="capitalize">{assertion.sourceType.replace('_', ' ')}</span>

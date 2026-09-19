@@ -7,10 +7,10 @@ export const Footer: React.FC = () => {
   const { setRole, toggleSettings } = useApp();
 
   return (
-    <footer className="bg-[#08090a] text-slate-400 border-t border-white/[0.07] text-xs mt-auto">
+    <footer className="bg-[#0c1017] text-slate-400 border-t border-white/[0.07] text-xs mt-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         {/* System Health Status Ribbon */}
-        <div className="mb-8 p-3.5 rounded-xl bg-[#101114] border border-white/[0.07] flex flex-wrap items-center justify-between gap-3 text-xs">
+        <div className="mb-8 p-3.5 rounded-xl bg-[#111622] border border-white/[0.07] flex flex-wrap items-center justify-between gap-3 text-xs">
           <div className="flex items-center gap-2.5">
             <span className="relative flex h-2.5 w-2.5">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />

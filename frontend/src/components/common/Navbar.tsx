@@ -48,7 +48,7 @@ export const Navbar: React.FC = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-40 bg-white/85 dark:bg-[#08090a]/85 backdrop-blur-xl border-b border-slate-200/80 dark:border-white/[0.07] shadow-sm dark:shadow-black/40 transition-colors duration-200">
+    <header className="sticky top-0 z-40 bg-white/85 dark:bg-[#0c1017]/85 backdrop-blur-xl border-b border-slate-200/80 dark:border-white/[0.07] shadow-sm dark:shadow-black/40 transition-colors duration-200">
       {/* Emergency Global Ticker if emergency triggered */}
       {emergencyHistory.length > 0 && (
         <div 
@@ -87,7 +87,7 @@ export const Navbar: React.FC = () => {
           </button>
 
           {/* Desktop Navigation Links */}
-          <nav aria-label="Main Navigation" className="hidden md:flex items-center gap-1 bg-slate-100/80 dark:bg-[#101114] p-1.5 rounded-xl border border-slate-200 dark:border-white/[0.07] backdrop-blur-md">
+          <nav aria-label="Main Navigation" className="hidden md:flex items-center gap-1 bg-slate-100/80 dark:bg-[#111622] p-1.5 rounded-xl border border-slate-200 dark:border-white/[0.07] backdrop-blur-md">
             {navItems.map((item) => {
               const active = role === item.id;
               return (
@@ -97,8 +97,8 @@ export const Navbar: React.FC = () => {
                   aria-current={active ? 'page' : undefined}
                   className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer ${
                     active 
-                      ? 'bg-white dark:bg-[#16171b] text-teal-700 dark:text-teal-300 border border-slate-200 dark:border-white/[0.1] shadow-sm' 
-                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-white/60 dark:hover:bg-[#16171b]/60'
+                      ? 'bg-white dark:bg-[#161d2b] text-teal-700 dark:text-teal-300 border border-slate-200 dark:border-white/[0.1] shadow-sm' 
+                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-white/60 dark:hover:bg-[#161d2b]/60'
                   }`}
                 >
                   {item.icon}
@@ -118,11 +118,11 @@ export const Navbar: React.FC = () => {
                 id="navbar-lang-select"
                 value={language}
                 onChange={(e) => setLanguage(e.target.value as IndianLanguage)}
-                className="pl-6 sm:pl-8 pr-2 sm:pr-3 py-1.5 text-[11px] sm:text-xs font-semibold rounded-lg bg-slate-100 dark:bg-[#101114] border border-slate-200 dark:border-white/[0.08] text-slate-800 dark:text-slate-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer shadow-sm"
+                className="pl-6 sm:pl-8 pr-2 sm:pr-3 py-1.5 text-[11px] sm:text-xs font-semibold rounded-lg bg-slate-100 dark:bg-[#111622] border border-slate-200 dark:border-white/[0.08] text-slate-800 dark:text-slate-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer shadow-sm"
                 title={t.selectLanguage}
               >
                 {languages.map((lang) => (
-                  <option key={lang.code} value={lang.code} className="bg-white dark:bg-[#16171b] text-slate-900 dark:text-white">
+                  <option key={lang.code} value={lang.code} className="bg-white dark:bg-[#161d2b] text-slate-900 dark:text-white">
                     {lang.code.toUpperCase()} ({lang.native})
                   </option>
                 ))}
@@ -133,7 +133,7 @@ export const Navbar: React.FC = () => {
             <button
               onClick={toggleTheme}
               title={theme === 'dark' ? t.lightMode : t.darkMode}
-              className="p-1.5 sm:p-2 text-slate-600 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 bg-slate-100 dark:bg-[#16171b] hover:bg-slate-200 dark:hover:bg-[#202227] rounded-lg transition-colors border border-slate-200 dark:border-white/[0.08] shadow-sm flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer shrink-0"
+              className="p-1.5 sm:p-2 text-slate-600 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 bg-slate-100 dark:bg-[#161d2b] hover:bg-slate-200 dark:hover:bg-[#202227] rounded-lg transition-colors border border-slate-200 dark:border-white/[0.08] shadow-sm flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer shrink-0"
               aria-label={theme === 'dark' ? "Switch to light theme" : "Switch to dark theme"}
             >
               {theme === 'dark' ? (
@@ -147,7 +147,7 @@ export const Navbar: React.FC = () => {
             <button
               onClick={toggleSettings}
               title="Platform Settings & Preferences (Ctrl+, / ⌘,)"
-              className="p-1.5 sm:p-2 text-slate-600 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 bg-slate-100 dark:bg-[#16171b] hover:bg-slate-200 dark:hover:bg-[#202227] rounded-lg transition-colors border border-slate-200 dark:border-white/[0.08] shadow-sm flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer group shrink-0"
+              className="p-1.5 sm:p-2 text-slate-600 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 bg-slate-100 dark:bg-[#161d2b] hover:bg-slate-200 dark:hover:bg-[#202227] rounded-lg transition-colors border border-slate-200 dark:border-white/[0.08] shadow-sm flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer group shrink-0"
               aria-label="Open settings panel (Shortcut: Ctrl+, or Cmd+,)"
             >
               <Settings className="w-4 h-4 group-hover:rotate-45 transition-transform duration-300" aria-hidden="true" />
@@ -157,7 +157,7 @@ export const Navbar: React.FC = () => {
             <button
               onClick={resetAll}
               title="Reset system to default clinical state"
-              className="p-1.5 sm:p-2 text-slate-500 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 bg-slate-100 dark:bg-[#16171b] hover:bg-slate-200 dark:hover:bg-[#202227] rounded-lg transition-colors border border-slate-200 dark:border-white/[0.08] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer shrink-0"
+              className="p-1.5 sm:p-2 text-slate-500 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 bg-slate-100 dark:bg-[#161d2b] hover:bg-slate-200 dark:hover:bg-[#202227] rounded-lg transition-colors border border-slate-200 dark:border-white/[0.08] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer shrink-0"
               aria-label="Reset platform to defaults"
             >
               <RotateCcw className="w-4 h-4" aria-hidden="true" />

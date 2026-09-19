@@ -71,7 +71,7 @@ export const FhirBundleViewer: React.FC = () => {
             className={`px-3 py-1 rounded-lg font-semibold transition-all cursor-pointer ${
               activeResourceFilter === tab
                 ? 'bg-slate-900 text-white dark:bg-teal-600 shadow-sm'
-                : 'bg-slate-100 text-slate-600 dark:bg-[#16171b] dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-[#202227] border border-transparent dark:border-white/[0.06]'
+                : 'bg-slate-100 text-slate-600 dark:bg-[#161d2b] dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-[#202227] border border-transparent dark:border-white/[0.06]'
             }`}
           >
             {tab}
@@ -88,15 +88,15 @@ export const FhirBundleViewer: React.FC = () => {
 
       {/* Technical Conformance Explanations */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-        <div className="p-3 bg-slate-50 dark:bg-[#16171b] rounded-xl border border-slate-200 dark:border-white/[0.06] text-slate-600 dark:text-slate-400">
+        <div className="p-3 bg-slate-50 dark:bg-[#161d2b] rounded-xl border border-slate-200 dark:border-white/[0.06] text-slate-600 dark:text-slate-400">
           <span className="font-bold text-slate-900 dark:text-white block mb-1">Mandatory entry[0]</span>
           Strict NRCeS hierarchy requires Composition resource at index 0 referencing Patient, HPR author & HFR custodian.
         </div>
-        <div className="p-3 bg-slate-50 dark:bg-[#16171b] rounded-xl border border-slate-200 dark:border-white/[0.06] text-slate-600 dark:text-slate-400">
+        <div className="p-3 bg-slate-50 dark:bg-[#161d2b] rounded-xl border border-slate-200 dark:border-white/[0.06] text-slate-600 dark:text-slate-400">
           <span className="font-bold text-slate-900 dark:text-white block mb-1">Dual-Coded Condition</span>
           Includes ICD-11 core diagnosis alongside AYUSH NAMASTE portal & WHO ICD-11 TM2 traditional medicine codes.
         </div>
-        <div className="p-3 bg-slate-50 dark:bg-[#16171b] rounded-xl border border-slate-200 dark:border-white/[0.06] text-slate-600 dark:text-slate-400">
+        <div className="p-3 bg-slate-50 dark:bg-[#161d2b] rounded-xl border border-slate-200 dark:border-white/[0.06] text-slate-600 dark:text-slate-400">
           <span className="font-bold text-slate-900 dark:text-white block mb-1">Cryptographic Delivery</span>
           Ready for Fidelius ECDH Curve25519 key exchange & AES-256-GCM symmetric transport across ABDM gateway.
         </div>

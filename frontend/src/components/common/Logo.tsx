@@ -1,4 +1,5 @@
 import React from 'react';
+import { useApp } from '../../context/AppContext';
 
 interface LogoProps {
   variant?: 'full' | 'icon' | 'image';
@@ -13,6 +14,8 @@ export const Logo: React.FC<LogoProps> = ({
   className = '',
   showSubtitle = true
 }) => {
+  const { theme } = useApp();
+
   // Size metrics
   const iconSizes = {
     sm: 'w-7 h-7',
@@ -34,16 +37,17 @@ export const Logo: React.FC<LogoProps> = ({
 
   // If user requests direct image render (default)
   if (variant === 'image') {
+    const logoSrc = theme === 'dark' ? '/medikoisk-logo-dark.png' : '/medikoisk-logo.png';
     return (
       <div className={`flex items-center ${className}`}>
         <img
-          src="/medikoisk-logo.png"
+          src={logoSrc}
           alt="MEDIKOISK Logo"
           width={size === 'sm' ? 140 : size === 'lg' ? 240 : 180}
           height={size === 'sm' ? 32 : size === 'lg' ? 48 : 36}
           // @ts-expect-error fetchpriority attribute
           fetchpriority="high"
-          className={`h-auto object-contain rounded-lg shadow-sm ${
+          className={`h-auto object-contain rounded-lg transition-opacity duration-200 ${
             size === 'sm' ? 'max-h-7 sm:max-h-8' : size === 'lg' ? 'max-h-12' : 'max-h-8 sm:max-h-9'
           }`}
         />
@@ -54,12 +58,12 @@ export const Logo: React.FC<LogoProps> = ({
   // The official vector Icon Mark matching user's image
   const IconMark = (
     <div
-      className={`relative ${iconSizes[size]} rounded-xl sm:rounded-2xl p-[1.5px] bg-gradient-to-tr from-sky-600 via-cyan-400 to-teal-300 shadow-md shadow-sky-500/25 shrink-0 flex items-center justify-center overflow-hidden`}
+      className={`relative ${iconSizes[size]} rounded-xl sm:rounded-2xl p-[1.5px] bg-gradient-to-b from-[#2a3444] via-[#1a2230] to-[#0f141d] shadow-[0_4px_16px_rgba(0,0,0,0.6)] shrink-0 flex items-center justify-center overflow-hidden border border-white/10`}
     >
       {/* Dark Squircle Background */}
-      <div className="w-full h-full rounded-[10px] sm:rounded-[14px] bg-[#070e1e] flex items-center justify-center relative overflow-hidden">
+      <div className="w-full h-full rounded-[10px] sm:rounded-[14px] bg-[#111622] flex items-center justify-center relative overflow-hidden shadow-[inset_0_1px_1px_rgba(255,255,255,0.15)]">
         {/* Soft cyan center glow */}
-        <div className="absolute inset-0 bg-radial from-cyan-500/20 via-transparent to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-radial from-cyan-400/25 via-transparent to-transparent pointer-events-none" />
 
         {/* SVG Medical Cross with Pulse Waveform */}
         <svg
@@ -70,22 +74,22 @@ export const Logo: React.FC<LogoProps> = ({
         >
           <defs>
             {/* Glow filter */}
-            <filter id="cyanGlow" x="-20%" y="-20%" width="140%" height="140%">
-              <feGaussianBlur stdDeviation="1.5" result="blur" />
+            <filter id="cyanGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="2" result="blur" />
               <feComposite in="SourceGraphic" in2="blur" operator="over" />
             </filter>
             <linearGradient id="crossGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#00B4D8" />
-              <stop offset="100%" stopColor="#0077B6" />
+              <stop offset="0%" stopColor="#0284C7" />
+              <stop offset="100%" stopColor="#0369A1" />
             </linearGradient>
             <linearGradient id="pulseGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#67E8F9" />
-              <stop offset="50%" stopColor="#A7F3D0" />
-              <stop offset="100%" stopColor="#67E8F9" />
+              <stop offset="0%" stopColor="#22D3EE" />
+              <stop offset="50%" stopColor="#38BDF8" />
+              <stop offset="100%" stopColor="#00F0FF" />
             </linearGradient>
           </defs>
 
-          {/* Medical Cross Base with Rounded Ends */}
+          {/* Medical Cross Base with Rounded Capsule Ends */}
           <g filter="url(#cyanGlow)">
             {/* Horizontal Bar */}
             <rect
@@ -95,6 +99,9 @@ export const Logo: React.FC<LogoProps> = ({
               height="8"
               rx="4"
               fill="url(#crossGrad)"
+              stroke="#00F0FF"
+              strokeWidth="1"
+              strokeOpacity="0.8"
             />
             {/* Vertical Bar */}
             <rect
@@ -104,18 +111,21 @@ export const Logo: React.FC<LogoProps> = ({
               height="36"
               rx="4"
               fill="url(#crossGrad)"
+              stroke="#00F0FF"
+              strokeWidth="1"
+              strokeOpacity="0.8"
             />
           </g>
 
           {/* Central Circular Node */}
-          <circle cx="24" cy="24" r="5" fill="#0096C7" />
-          <circle cx="24" cy="24" r="2.5" fill="#38BDF8" />
+          <circle cx="24" cy="24" r="5" fill="#0284C7" />
+          <circle cx="24" cy="24" r="2.5" fill="#00F0FF" />
 
           {/* Heartbeat / Pulse Waveform passing through center */}
           <path
-            d="M8 24H18L21 17L24 30L27 20L29 24H40"
+            d="M7 24H17L21 16L24 31L27 19L29 24H41"
             stroke="url(#pulseGrad)"
-            strokeWidth="2.2"
+            strokeWidth="2.4"
             strokeLinecap="round"
             strokeLinejoin="round"
           />
@@ -137,14 +147,19 @@ export const Logo: React.FC<LogoProps> = ({
       <div className="flex flex-col justify-center min-w-0">
         <div className="flex items-center leading-none">
           <span
-            className={`font-black ${titleSizes[size]} tracking-tight font-display text-slate-900 dark:text-white`}
+            className={`font-black ${titleSizes[size]} tracking-tight font-display text-slate-900 dark:text-white flex items-center`}
           >
-            MEDI<span className="text-[#0284C7] dark:text-[#38BDF8]">KOISK</span>
+            <span className="bg-gradient-to-b from-slate-900 to-slate-700 dark:from-white dark:via-slate-200 dark:to-slate-400 bg-clip-text text-transparent drop-shadow-sm">
+              MEDI
+            </span>
+            <span className="bg-gradient-to-b from-sky-500 via-sky-600 to-blue-600 dark:from-sky-400 dark:via-sky-500 dark:to-blue-600 bg-clip-text text-transparent drop-shadow-sm">
+              KOISK
+            </span>
           </span>
         </div>
         {showSubtitle && (
           <span
-            className={`${subtitleSizes[size]} font-bold tracking-[0.18em] uppercase text-slate-500 dark:text-slate-400 mt-0.5 whitespace-nowrap`}
+            className={`${subtitleSizes[size]} font-bold tracking-[0.22em] uppercase text-slate-500 dark:text-slate-400 mt-0.5 whitespace-nowrap`}
           >
             Smart Clinical Intake
           </span>

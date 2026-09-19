@@ -32,7 +32,7 @@ export const AyushIntakeStep: React.FC = () => {
 
   return (
     <div className="max-w-2xl mx-auto py-2 sm:py-6 px-1 sm:px-2 animate-fade-in">
-      <div className="glass-card-elevated rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-white/[0.07] dark:bg-[#101114] shadow-xl space-y-5 sm:space-y-6">
+      <div className="glass-card-elevated rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-white/[0.07] dark:bg-[#111622] shadow-xl space-y-5 sm:space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-white/[0.07] text-xs">
           <span className="font-bold text-teal-600 dark:text-teal-400">Step: Traditional Remedies & Habits</span>
@@ -53,7 +53,7 @@ export const AyushIntakeStep: React.FC = () => {
         </div>
 
         {/* Toggle Question */}
-        <div className="p-4 bg-slate-50 dark:bg-[#16171b] rounded-xl border border-slate-200 dark:border-white/[0.07] flex items-center justify-between">
+        <div className="p-4 bg-slate-50 dark:bg-[#161d2b] rounded-xl border border-slate-200 dark:border-white/[0.07] flex items-center justify-between">
           <div>
             <h3 className="text-xs font-bold text-slate-900 dark:text-white">
               Do you take home remedies or ayurvedic medicines?
@@ -67,7 +67,7 @@ export const AyushIntakeStep: React.FC = () => {
               type="button"
               onClick={() => setHasAyush(true)}
               className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all tactile-btn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer ${
-                hasAyush ? 'bg-teal-600 text-white shadow-md' : 'bg-slate-200 dark:bg-[#121317] text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-white/[0.07]'
+                hasAyush ? 'bg-teal-600 text-white shadow-md' : 'bg-slate-200 dark:bg-[#131926] text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-white/[0.07]'
               }`}
             >
               Yes
@@ -76,7 +76,7 @@ export const AyushIntakeStep: React.FC = () => {
               type="button"
               onClick={() => setHasAyush(false)}
               className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all tactile-btn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer ${
-                !hasAyush ? 'bg-teal-600 text-white shadow-md' : 'bg-slate-200 dark:bg-[#121317] text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-white/[0.07]'
+                !hasAyush ? 'bg-teal-600 text-white shadow-md' : 'bg-slate-200 dark:bg-[#131926] text-slate-700 dark:text-slate-300 border border-slate-300 dark:border-white/[0.07]'
               }`}
             >
               No
@@ -102,7 +102,7 @@ export const AyushIntakeStep: React.FC = () => {
                       className={`p-2.5 rounded-xl text-left border transition-all shadow-sm tactile-btn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer ${
                         isSel
                           ? 'border-teal-500 bg-teal-50 dark:bg-teal-950/30 text-teal-800 dark:text-teal-200 font-bold ring-1 ring-teal-500'
-                          : 'border-slate-200 dark:border-white/[0.07] bg-white dark:bg-[#121317] hover:border-teal-500/40 text-slate-800 dark:text-slate-300'
+                          : 'border-slate-200 dark:border-white/[0.07] bg-white dark:bg-[#131926] hover:border-teal-500/40 text-slate-800 dark:text-slate-300'
                       }`}
                     >
                       <span className="block">{p.label}</span>
@@ -123,7 +123,7 @@ export const AyushIntakeStep: React.FC = () => {
                   id="ayush-agni-select"
                   value={selectedAgni}
                   onChange={(e) => setSelectedAgni(e.target.value)}
-                  className="w-full px-3 py-2 bg-slate-50 dark:bg-[#121317] border border-slate-300 dark:border-white/[0.07] rounded-xl font-semibold text-xs text-slate-900 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer"
+                  className="w-full px-3 py-2 bg-slate-50 dark:bg-[#131926] border border-slate-300 dark:border-white/[0.07] rounded-xl font-semibold text-xs text-slate-900 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer"
                 >
                   {AGNI_PROFILES.map(a => (
                     <option key={a.id} value={a.id}>{a.label}</option>
@@ -139,7 +139,7 @@ export const AyushIntakeStep: React.FC = () => {
                   id="ayush-ama-select"
                   value={selectedAma}
                   onChange={(e) => setSelectedAma(e.target.value)}
-                  className="w-full px-3 py-2 bg-slate-50 dark:bg-[#121317] border border-slate-300 dark:border-white/[0.07] rounded-xl font-semibold text-xs text-slate-900 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer"
+                  className="w-full px-3 py-2 bg-slate-50 dark:bg-[#131926] border border-slate-300 dark:border-white/[0.07] rounded-xl font-semibold text-xs text-slate-900 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer"
                 >
                   {AMA_PROFILES.map(a => (
                     <option key={a.id} value={a.id}>{a.label}</option>
@@ -159,7 +159,7 @@ export const AyushIntakeStep: React.FC = () => {
                 value={traditionalMeds}
                 onChange={(e) => setTraditionalMeds(e.target.value)}
                 placeholder="e.g. Ashwagandha, Triphala, Avipattikar Churna, Siddha decoctions…"
-                className="w-full px-3.5 py-2.5 bg-slate-50 dark:bg-[#121317] border border-slate-300 dark:border-white/[0.07] rounded-xl text-xs text-slate-900 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
+                className="w-full px-3.5 py-2.5 bg-slate-50 dark:bg-[#131926] border border-slate-300 dark:border-white/[0.07] rounded-xl text-xs text-slate-900 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
               />
             </div>
 

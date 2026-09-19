@@ -124,11 +124,11 @@ export const SettingsModal: React.FC = () => {
       }}
     >
       <div 
-        className="relative w-full max-w-2xl max-h-[90vh] flex flex-col rounded-2xl bg-white dark:bg-[#101114] border border-slate-200 dark:border-white/[0.08] shadow-2xl overflow-hidden transition-all text-slate-900 dark:text-slate-100"
+        className="relative w-full max-w-2xl max-h-[90vh] flex flex-col rounded-2xl bg-white dark:bg-[#111622] border border-slate-200 dark:border-white/[0.08] shadow-2xl overflow-hidden transition-all text-slate-900 dark:text-slate-100"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-5 sm:px-6 py-4 border-b border-slate-200 dark:border-white/[0.07] bg-slate-50/80 dark:bg-[#16171b]/80">
+        <div className="flex items-center justify-between px-5 sm:px-6 py-4 border-b border-slate-200 dark:border-white/[0.07] bg-slate-50/80 dark:bg-[#161d2b]/80">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-xl bg-teal-500/10 text-teal-600 dark:text-teal-400 flex items-center justify-center border border-teal-500/20 shrink-0">
               <Sliders className="w-5 h-5" aria-hidden="true" />
@@ -145,7 +145,7 @@ export const SettingsModal: React.FC = () => {
           <div className="flex items-center gap-2">
             <button
               onClick={() => setIsSettingsOpen(false)}
-              className="p-2 rounded-xl text-slate-400 hover:text-slate-700 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-[#16171b] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 transition-colors cursor-pointer"
+              className="p-2 rounded-xl text-slate-400 hover:text-slate-700 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-[#161d2b] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 transition-colors cursor-pointer"
               aria-label="Close settings"
             >
               <X className="w-5 h-5" aria-hidden="true" />
@@ -154,7 +154,7 @@ export const SettingsModal: React.FC = () => {
         </div>
 
         {/* 3 Intuitive Tabs */}
-        <div className="flex items-center px-4 sm:px-6 border-b border-slate-200 dark:border-white/[0.07] bg-slate-100/50 dark:bg-[#121317] gap-1 overflow-x-auto">
+        <div className="flex items-center px-4 sm:px-6 border-b border-slate-200 dark:border-white/[0.07] bg-slate-100/50 dark:bg-[#131926] gap-1 overflow-x-auto">
           <button
             onClick={() => setActiveTab('appearance')}
             className={`flex items-center gap-2 py-3 px-3 text-xs font-bold border-b-2 transition-colors whitespace-nowrap cursor-pointer ${
@@ -209,7 +209,7 @@ export const SettingsModal: React.FC = () => {
                     className={`p-3.5 rounded-xl border flex items-center gap-3 transition-all cursor-pointer ${
                       theme === 'light'
                         ? 'border-teal-500 bg-teal-500/10 text-slate-900 dark:text-white shadow-sm ring-1 ring-teal-500'
-                        : 'border-slate-200 dark:border-white/[0.07] hover:bg-slate-50 dark:hover:bg-[#16171b]'
+                        : 'border-slate-200 dark:border-white/[0.07] hover:bg-slate-50 dark:hover:bg-[#161d2b]'
                     }`}
                   >
                     <div className="w-8 h-8 rounded-lg bg-amber-500/15 text-amber-600 flex items-center justify-center shrink-0">
@@ -227,7 +227,7 @@ export const SettingsModal: React.FC = () => {
                     className={`p-3.5 rounded-xl border flex items-center gap-3 transition-all cursor-pointer ${
                       theme === 'dark'
                         ? 'border-teal-500 bg-teal-500/10 text-slate-900 dark:text-white shadow-sm ring-1 ring-teal-500'
-                        : 'border-slate-200 dark:border-white/[0.07] hover:bg-slate-50 dark:hover:bg-[#16171b]'
+                        : 'border-slate-200 dark:border-white/[0.07] hover:bg-slate-50 dark:hover:bg-[#161d2b]'
                     }`}
                   >
                     <div className="w-8 h-8 rounded-lg bg-indigo-500/15 text-indigo-400 flex items-center justify-center shrink-0">
@@ -257,7 +257,7 @@ export const SettingsModal: React.FC = () => {
                         className={`p-3 rounded-xl border text-left transition-all cursor-pointer ${
                           active
                             ? 'border-teal-500 bg-teal-500/10 ring-1 ring-teal-500'
-                            : 'border-slate-200 dark:border-white/[0.07] hover:bg-slate-50 dark:hover:bg-[#16171b]'
+                            : 'border-slate-200 dark:border-white/[0.07] hover:bg-slate-50 dark:hover:bg-[#161d2b]'
                         }`}
                       >
                         <div className="flex items-center justify-between mb-2">
@@ -297,7 +297,7 @@ export const SettingsModal: React.FC = () => {
                         className={`py-2 px-1 text-center rounded-xl border text-xs font-bold transition-all cursor-pointer ${
                           active
                             ? 'border-teal-500 bg-teal-500/10 text-teal-700 dark:text-teal-300 ring-1 ring-teal-500 shadow-sm'
-                            : 'border-slate-200 dark:border-white/[0.07] hover:bg-slate-50 dark:hover:bg-[#16171b] text-slate-700 dark:text-slate-300'
+                            : 'border-slate-200 dark:border-white/[0.07] hover:bg-slate-50 dark:hover:bg-[#161d2b] text-slate-700 dark:text-slate-300'
                         }`}
                       >
                         {opt.label}
@@ -307,7 +307,7 @@ export const SettingsModal: React.FC = () => {
                 </div>
 
                 {/* Live Preview Box */}
-                <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-[#121317] border border-slate-200 dark:border-white/[0.07]">
+                <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-[#131926] border border-slate-200 dark:border-white/[0.07]">
                   <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">
                     Live Preview
                   </div>
@@ -329,7 +329,7 @@ export const SettingsModal: React.FC = () => {
                     className={`p-3 rounded-xl border flex items-center gap-3 transition-all cursor-pointer ${
                       readingWidth === 'comfortable'
                         ? 'border-teal-500 bg-teal-500/10 text-slate-900 dark:text-white shadow-sm ring-1 ring-teal-500'
-                        : 'border-slate-200 dark:border-white/[0.07] hover:bg-slate-50 dark:hover:bg-[#16171b]'
+                        : 'border-slate-200 dark:border-white/[0.07] hover:bg-slate-50 dark:hover:bg-[#161d2b]'
                     }`}
                   >
                     <Minimize2 className="w-4 h-4 text-teal-600 dark:text-teal-400 shrink-0" aria-hidden="true" />
@@ -345,7 +345,7 @@ export const SettingsModal: React.FC = () => {
                     className={`p-3 rounded-xl border flex items-center gap-3 transition-all cursor-pointer ${
                       readingWidth === 'expanded'
                         ? 'border-teal-500 bg-teal-500/10 text-slate-900 dark:text-white shadow-sm ring-1 ring-teal-500'
-                        : 'border-slate-200 dark:border-white/[0.07] hover:bg-slate-50 dark:hover:bg-[#16171b]'
+                        : 'border-slate-200 dark:border-white/[0.07] hover:bg-slate-50 dark:hover:bg-[#161d2b]'
                     }`}
                   >
                     <Maximize2 className="w-4 h-4 text-teal-600 dark:text-teal-400 shrink-0" aria-hidden="true" />
@@ -359,7 +359,7 @@ export const SettingsModal: React.FC = () => {
 
               {/* Extra Comfort Toggles */}
               <div className="pt-2 border-t border-slate-200 dark:border-white/[0.07] space-y-3">
-                <div className="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-[#121317] border border-slate-200 dark:border-white/[0.07]">
+                <div className="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-[#131926] border border-slate-200 dark:border-white/[0.07]">
                   <div>
                     <div className="text-xs font-bold text-slate-900 dark:text-white">High Contrast Text</div>
                     <div className="text-[11px] text-slate-500 dark:text-slate-400">Makes text bolder and outlines clearer</div>
@@ -368,7 +368,7 @@ export const SettingsModal: React.FC = () => {
                     type="button"
                     onClick={() => setHighContrast(!highContrast)}
                     className={`w-11 h-6 flex items-center rounded-full p-1 transition-colors cursor-pointer ${
-                      highContrast ? 'bg-teal-600 justify-end' : 'bg-slate-300 dark:bg-[#16171b] justify-start'
+                      highContrast ? 'bg-teal-600 justify-end' : 'bg-slate-300 dark:bg-[#161d2b] justify-start'
                     }`}
                     aria-label="Toggle high contrast"
                   >
@@ -376,7 +376,7 @@ export const SettingsModal: React.FC = () => {
                   </button>
                 </div>
 
-                <div className="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-[#121317] border border-slate-200 dark:border-white/[0.07]">
+                <div className="flex items-center justify-between p-3 rounded-xl bg-slate-50 dark:bg-[#131926] border border-slate-200 dark:border-white/[0.07]">
                   <div>
                     <div className="text-xs font-bold text-slate-900 dark:text-white">Calm Animations</div>
                     <div className="text-[11px] text-slate-500 dark:text-slate-400">Reduces moving effects on screen</div>
@@ -385,7 +385,7 @@ export const SettingsModal: React.FC = () => {
                     type="button"
                     onClick={() => setReducedMotion(!reducedMotion)}
                     className={`w-11 h-6 flex items-center rounded-full p-1 transition-colors cursor-pointer ${
-                      reducedMotion ? 'bg-teal-600 justify-end' : 'bg-slate-300 dark:bg-[#16171b] justify-start'
+                      reducedMotion ? 'bg-teal-600 justify-end' : 'bg-slate-300 dark:bg-[#161d2b] justify-start'
                     }`}
                     aria-label="Toggle calm animations"
                   >
@@ -415,7 +415,7 @@ export const SettingsModal: React.FC = () => {
                         className={`p-3 rounded-xl border text-left transition-all cursor-pointer ${
                           active
                             ? 'border-teal-500 bg-teal-500/10 ring-1 ring-teal-500'
-                            : 'border-slate-200 dark:border-white/[0.07] hover:bg-slate-50 dark:hover:bg-[#16171b]'
+                            : 'border-slate-200 dark:border-white/[0.07] hover:bg-slate-50 dark:hover:bg-[#161d2b]'
                         }`}
                       >
                         <div className="flex items-center justify-between">
@@ -430,7 +430,7 @@ export const SettingsModal: React.FC = () => {
               </div>
 
               {/* Voice Read-Aloud */}
-              <div className="p-4 rounded-2xl bg-slate-50 dark:bg-[#121317] border border-slate-200 dark:border-white/[0.07] space-y-4">
+              <div className="p-4 rounded-2xl bg-slate-50 dark:bg-[#131926] border border-slate-200 dark:border-white/[0.07] space-y-4">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <div className="w-8 h-8 rounded-lg bg-teal-500/15 text-teal-600 dark:text-teal-400 flex items-center justify-center">
@@ -445,7 +445,7 @@ export const SettingsModal: React.FC = () => {
                     type="button"
                     onClick={() => setAudioGuidance(!audioGuidance)}
                     className={`w-11 h-6 flex items-center rounded-full p-1 transition-colors cursor-pointer ${
-                      audioGuidance ? 'bg-teal-600 justify-end' : 'bg-slate-300 dark:bg-[#16171b] justify-start'
+                      audioGuidance ? 'bg-teal-600 justify-end' : 'bg-slate-300 dark:bg-[#161d2b] justify-start'
                     }`}
                     aria-label="Toggle voice guidance"
                   >
@@ -471,7 +471,7 @@ export const SettingsModal: React.FC = () => {
                           className={`py-2 px-2 text-center rounded-xl border text-xs font-bold transition-all cursor-pointer ${
                             speechSpeed === item.speed
                               ? 'border-teal-500 bg-teal-500/10 text-teal-700 dark:text-teal-300 ring-1 ring-teal-500'
-                              : 'border-slate-200 dark:border-white/[0.07] hover:bg-slate-50 dark:hover:bg-[#16171b] text-slate-700 dark:text-slate-300'
+                              : 'border-slate-200 dark:border-white/[0.07] hover:bg-slate-50 dark:hover:bg-[#161d2b] text-slate-700 dark:text-slate-300'
                           }`}
                         >
                           {item.label}
@@ -483,7 +483,7 @@ export const SettingsModal: React.FC = () => {
               </div>
 
               {/* Sound Effects Toggle */}
-              <div className="flex items-center justify-between p-3.5 rounded-xl bg-slate-50 dark:bg-[#121317] border border-slate-200 dark:border-white/[0.07]">
+              <div className="flex items-center justify-between p-3.5 rounded-xl bg-slate-50 dark:bg-[#131926] border border-slate-200 dark:border-white/[0.07]">
                 <div>
                   <div className="text-xs font-bold text-slate-900 dark:text-white">Button Sound Effects</div>
                   <div className="text-[11px] text-slate-500 dark:text-slate-400">Plays a gentle chime when tapping buttons</div>
@@ -492,7 +492,7 @@ export const SettingsModal: React.FC = () => {
                   type="button"
                   onClick={() => setSoundEffects(!soundEffects)}
                   className={`w-11 h-6 flex items-center rounded-full p-1 transition-colors cursor-pointer ${
-                    soundEffects ? 'bg-teal-600 justify-end' : 'bg-slate-300 dark:bg-[#16171b] justify-start'
+                    soundEffects ? 'bg-teal-600 justify-end' : 'bg-slate-300 dark:bg-[#161d2b] justify-start'
                   }`}
                   aria-label="Toggle sound effects"
                 >
@@ -505,7 +505,7 @@ export const SettingsModal: React.FC = () => {
           {/* TAB 3: DATA ON THIS DEVICE */}
           {activeTab === 'storage' && (
             <div className="space-y-5 animate-fade-in">
-              <div className="p-4 rounded-2xl bg-teal-50 dark:bg-[#121317] border border-teal-200 dark:border-white/[0.07]">
+              <div className="p-4 rounded-2xl bg-teal-50 dark:bg-[#131926] border border-teal-200 dark:border-white/[0.07]">
                 <div className="flex items-start gap-3">
                   <div className="w-8 h-8 rounded-lg bg-teal-500/20 text-teal-700 dark:text-teal-300 flex items-center justify-center shrink-0 mt-0.5">
                     <HardDrive className="w-4 h-4" aria-hidden="true" />
@@ -524,7 +524,7 @@ export const SettingsModal: React.FC = () => {
                 <button
                   type="button"
                   onClick={resetSettings}
-                  className="w-full p-3.5 rounded-xl border border-slate-200 dark:border-white/[0.07] hover:bg-slate-50 dark:hover:bg-[#16171b] flex items-center justify-between text-left transition-all cursor-pointer"
+                  className="w-full p-3.5 rounded-xl border border-slate-200 dark:border-white/[0.07] hover:bg-slate-50 dark:hover:bg-[#161d2b] flex items-center justify-between text-left transition-all cursor-pointer"
                 >
                   <div className="flex items-center gap-3">
                     <RotateCcw className="w-4 h-4 text-slate-500" aria-hidden="true" />
@@ -539,7 +539,7 @@ export const SettingsModal: React.FC = () => {
                 <button
                   type="button"
                   onClick={handleExportBackup}
-                  className="w-full p-3.5 rounded-xl border border-slate-200 dark:border-white/[0.07] hover:bg-slate-50 dark:hover:bg-[#16171b] flex items-center justify-between text-left transition-all cursor-pointer"
+                  className="w-full p-3.5 rounded-xl border border-slate-200 dark:border-white/[0.07] hover:bg-slate-50 dark:hover:bg-[#161d2b] flex items-center justify-between text-left transition-all cursor-pointer"
                 >
                   <div className="flex items-center gap-3">
                     <Download className="w-4 h-4 text-slate-500" aria-hidden="true" />
@@ -571,7 +571,7 @@ export const SettingsModal: React.FC = () => {
         </div>
 
         {/* Footer */}
-        <div className="flex items-center justify-between px-5 sm:px-6 py-3.5 border-t border-slate-200 dark:border-white/[0.07] bg-slate-50/80 dark:bg-[#16171b]/80">
+        <div className="flex items-center justify-between px-5 sm:px-6 py-3.5 border-t border-slate-200 dark:border-white/[0.07] bg-slate-50/80 dark:bg-[#161d2b]/80">
           <span className="text-[11px] text-slate-500 dark:text-slate-400">
             Changes save automatically to Local Storage.
           </span>

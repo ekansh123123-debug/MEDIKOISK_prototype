@@ -59,7 +59,7 @@ export const PatientMobileHeader: React.FC = () => {
   };
 
   return (
-    <div className="md:hidden mb-4 p-3 bg-white/90 dark:bg-[#101114]/95 backdrop-blur-md rounded-2xl border border-slate-200 dark:border-white/[0.07] shadow-sm animate-fade-in">
+    <div className="md:hidden mb-4 p-3 bg-white/90 dark:bg-[#111622]/95 backdrop-blur-md rounded-2xl border border-slate-200 dark:border-white/[0.07] shadow-sm animate-fade-in">
       <div className="flex items-center justify-between gap-2">
         {patientStep !== 'hospital_qr' ? (
           <button
@@ -94,7 +94,7 @@ export const PatientMobileHeader: React.FC = () => {
               setPatientStep('hospital_qr');
             }
           }}
-          className="p-1.5 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 rounded-lg hover:bg-slate-100 dark:hover:bg-[#16171b] transition-colors"
+          className="p-1.5 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 rounded-lg hover:bg-slate-100 dark:hover:bg-[#161d2b] transition-colors"
           title="Restart Kiosk Session"
           aria-label="Restart patient intake"
         >
@@ -103,7 +103,7 @@ export const PatientMobileHeader: React.FC = () => {
       </div>
 
       {/* Progress Bar Track */}
-      <div className="w-full h-1.5 bg-slate-100 dark:bg-[#16171b] rounded-full mt-2.5 overflow-hidden">
+      <div className="w-full h-1.5 bg-slate-100 dark:bg-[#161d2b] rounded-full mt-2.5 overflow-hidden">
         <div 
           className="h-full bg-gradient-to-r from-teal-500 to-cyan-400 rounded-full transition-all duration-300 shadow-sm"
           style={{ width: `${progressPercent}%` }}

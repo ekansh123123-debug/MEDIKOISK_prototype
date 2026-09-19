@@ -35,7 +35,7 @@ export const ProblemSolution: React.FC = () => {
   ];
 
   return (
-    <section className="py-16 bg-white dark:bg-[#08090a] border-y border-slate-200 dark:border-white/[0.07] relative overflow-hidden transition-colors">
+    <section className="py-16 bg-white dark:bg-[#0c1017] border-y border-slate-200 dark:border-white/[0.07] relative overflow-hidden transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-12">
           <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white font-display tracking-tight text-balance">
@@ -48,7 +48,7 @@ export const ProblemSolution: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
           {/* THE PROBLEM CARD */}
-          <div className="p-6 sm:p-7 bg-slate-50 dark:bg-[#101114] border border-rose-200 dark:border-rose-500/20 rounded-2xl flex flex-col justify-between shadow-sm">
+          <div className="p-6 sm:p-7 bg-slate-50 dark:bg-[#111622] border border-rose-200 dark:border-rose-500/20 rounded-2xl flex flex-col justify-between shadow-sm">
             <div>
               <div className="flex items-center justify-between mb-4">
                 <span className="text-xs font-bold text-rose-600 dark:text-rose-400 uppercase tracking-wider font-mono">
@@ -77,7 +77,7 @@ export const ProblemSolution: React.FC = () => {
           </div>
 
           {/* THE SOLUTION CARD */}
-          <div className="p-6 sm:p-7 bg-slate-50 dark:bg-[#101114] border border-teal-200 dark:border-teal-500/25 rounded-2xl flex flex-col justify-between shadow-sm">
+          <div className="p-6 sm:p-7 bg-slate-50 dark:bg-[#111622] border border-teal-200 dark:border-teal-500/25 rounded-2xl flex flex-col justify-between shadow-sm">
             <div>
               <div className="flex items-center justify-between mb-4">
                 <span className="text-xs font-bold text-teal-700 dark:text-teal-400 uppercase tracking-wider font-mono">

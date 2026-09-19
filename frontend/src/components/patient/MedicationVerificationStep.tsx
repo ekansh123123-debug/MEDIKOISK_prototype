@@ -40,7 +40,7 @@ export const MedicationVerificationStep: React.FC = () => {
 
   return (
     <div className="max-w-2xl mx-auto py-2 sm:py-6 px-1 sm:px-2 animate-fade-in">
-      <div className="glass-card-elevated rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-white/[0.07] dark:bg-[#101114] shadow-xl space-y-5 sm:space-y-6">
+      <div className="glass-card-elevated rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-white/[0.07] dark:bg-[#111622] shadow-xl space-y-5 sm:space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-white/[0.07] text-xs">
           <span className="font-bold text-teal-600 dark:text-teal-400">Step: Check Your Medicines</span>
@@ -83,8 +83,8 @@ export const MedicationVerificationStep: React.FC = () => {
                     : med.verificationStatus === 'verified'
                     ? 'border-emerald-500/40 bg-emerald-50/50 dark:bg-emerald-500/5 shadow-sm'
                     : med.verificationStatus === 'rejected'
-                    ? 'border-slate-200 dark:border-white/[0.07] bg-slate-100/60 dark:bg-[#121317]/50 opacity-60'
-                    : 'border-slate-200 dark:border-white/[0.07] bg-white dark:bg-[#16171b] shadow-sm'
+                    ? 'border-slate-200 dark:border-white/[0.07] bg-slate-100/60 dark:bg-[#131926]/50 opacity-60'
+                    : 'border-slate-200 dark:border-white/[0.07] bg-white dark:bg-[#161d2b] shadow-sm'
                 }`}
               >
                 {isEditing ? (
@@ -99,7 +99,7 @@ export const MedicationVerificationStep: React.FC = () => {
                           type="text"
                           value={editForm.name}
                           onChange={(e) => setEditForm({ ...editForm, name: e.target.value })}
-                          className="w-full px-3 py-2 bg-slate-50 dark:bg-[#121317] border border-slate-300 dark:border-white/[0.07] rounded-lg text-xs text-slate-900 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
+                          className="w-full px-3 py-2 bg-slate-50 dark:bg-[#131926] border border-slate-300 dark:border-white/[0.07] rounded-lg text-xs text-slate-900 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
                         />
                       </div>
                       <div>
@@ -111,7 +111,7 @@ export const MedicationVerificationStep: React.FC = () => {
                           type="text"
                           value={editForm.strength}
                           onChange={(e) => setEditForm({ ...editForm, strength: e.target.value })}
-                          className="w-full px-3 py-2 bg-slate-50 dark:bg-[#121317] border border-slate-300 dark:border-white/[0.07] rounded-lg text-xs text-slate-900 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
+                          className="w-full px-3 py-2 bg-slate-50 dark:bg-[#131926] border border-slate-300 dark:border-white/[0.07] rounded-lg text-xs text-slate-900 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
                         />
                       </div>
                       <div>
@@ -123,7 +123,7 @@ export const MedicationVerificationStep: React.FC = () => {
                           type="text"
                           value={editForm.frequency}
                           onChange={(e) => setEditForm({ ...editForm, frequency: e.target.value })}
-                          className="w-full px-3 py-2 bg-slate-50 dark:bg-[#121317] border border-slate-300 dark:border-white/[0.07] rounded-lg text-xs text-slate-900 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
+                          className="w-full px-3 py-2 bg-slate-50 dark:bg-[#131926] border border-slate-300 dark:border-white/[0.07] rounded-lg text-xs text-slate-900 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
                         />
                       </div>
                     </div>
@@ -131,7 +131,7 @@ export const MedicationVerificationStep: React.FC = () => {
                       <button
                         type="button"
                         onClick={() => setEditingMedId(null)}
-                        className="px-3 py-1.5 bg-slate-100 dark:bg-[#121317] text-slate-700 dark:text-slate-300 rounded-lg text-xs font-semibold hover:bg-slate-200 dark:hover:bg-[#1a1b20] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer border border-slate-200 dark:border-white/[0.07]"
+                        className="px-3 py-1.5 bg-slate-100 dark:bg-[#131926] text-slate-700 dark:text-slate-300 rounded-lg text-xs font-semibold hover:bg-slate-200 dark:hover:bg-[#1c2436] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer border border-slate-200 dark:border-white/[0.07]"
                       >
                         {t.cancelBtn}
                       </button>
@@ -205,7 +205,7 @@ export const MedicationVerificationStep: React.FC = () => {
                       <button
                         type="button"
                         onClick={() => handleStartEdit(med)}
-                        className="px-3 py-1.5 bg-slate-100 dark:bg-[#121317] hover:bg-slate-200 dark:hover:bg-[#1a1b20] text-slate-700 dark:text-slate-200 rounded-lg text-xs font-semibold flex items-center gap-1 transition-colors border border-slate-200 dark:border-white/[0.07] tactile-btn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer"
+                        className="px-3 py-1.5 bg-slate-100 dark:bg-[#131926] hover:bg-slate-200 dark:hover:bg-[#1c2436] text-slate-700 dark:text-slate-200 rounded-lg text-xs font-semibold flex items-center gap-1 transition-colors border border-slate-200 dark:border-white/[0.07] tactile-btn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer"
                       >
                         <Edit3 className="w-3.5 h-3.5" aria-hidden="true" />
                         <span>{t.editBtn}</span>

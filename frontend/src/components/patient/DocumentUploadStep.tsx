@@ -35,7 +35,7 @@ export const DocumentUploadStep: React.FC = () => {
 
   return (
     <div className="max-w-xl mx-auto py-2 sm:py-6 px-1 sm:px-2 animate-fade-in">
-      <div className="glass-card-elevated rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-white/[0.07] dark:bg-[#101114] shadow-xl space-y-5 sm:space-y-6">
+      <div className="glass-card-elevated rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-white/[0.07] dark:bg-[#111622] shadow-xl space-y-5 sm:space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-white/[0.07] text-xs">
           <span className="font-bold text-teal-600 dark:text-teal-400">Step: Past Prescriptions & Notes</span>
@@ -54,7 +54,7 @@ export const DocumentUploadStep: React.FC = () => {
 
         {/* Processing Animation */}
         {isProcessing ? (
-          <div className="p-8 bg-slate-50 dark:bg-[#16171b] rounded-2xl border border-teal-500/40 text-center space-y-4 animate-fade-in">
+          <div className="p-8 bg-slate-50 dark:bg-[#161d2b] rounded-2xl border border-teal-500/40 text-center space-y-4 animate-fade-in">
             <div className="w-14 h-14 rounded-xl bg-teal-500/10 flex items-center justify-center text-teal-600 dark:text-teal-400 mx-auto border border-teal-500/20">
               <ScanLine className="w-7 h-7 animate-pulse" aria-hidden="true" />
             </div>
@@ -81,7 +81,7 @@ export const DocumentUploadStep: React.FC = () => {
                 const isPassed = stages.indexOf(currentStage) >= idx;
                 return (
                   <div key={idx} className="flex flex-col items-center gap-1">
-                    <div className={`w-full h-1.5 rounded-full ${isPassed ? 'bg-teal-600' : 'bg-slate-200 dark:bg-[#121317]'}`} />
+                    <div className={`w-full h-1.5 rounded-full ${isPassed ? 'bg-teal-600' : 'bg-slate-200 dark:bg-[#131926]'}`} />
                     <span className={`text-[9px] font-bold ${isPassed ? 'text-teal-600 dark:text-teal-400' : 'text-slate-400 dark:text-slate-500'}`}>
                       {s.label}
                     </span>
@@ -115,7 +115,7 @@ export const DocumentUploadStep: React.FC = () => {
             </button>
 
             {/* Test Document Presets */}
-            <div className="p-4 bg-slate-50 dark:bg-[#16171b] rounded-xl border border-slate-200 dark:border-white/[0.07] space-y-2">
+            <div className="p-4 bg-slate-50 dark:bg-[#161d2b] rounded-xl border border-slate-200 dark:border-white/[0.07] space-y-2">
               <span className="text-[11px] font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider block">
                 {t.selectSamplePrescription}:
               </span>
@@ -123,7 +123,7 @@ export const DocumentUploadStep: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => handleProcessSampleDoc(0)}
-                  className="w-full p-3 bg-white dark:bg-[#121317] hover:bg-slate-100 dark:hover:bg-[#1a1b20] rounded-xl border border-slate-200 dark:border-white/[0.07] flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-left transition-colors shadow-sm tactile-btn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer"
+                  className="w-full p-3 bg-white dark:bg-[#131926] hover:bg-slate-100 dark:hover:bg-[#1c2436] rounded-xl border border-slate-200 dark:border-white/[0.07] flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-left transition-colors shadow-sm tactile-btn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer"
                 >
                   <div className="flex items-center gap-2.5 min-w-0">
                     <FileText className="w-4 h-4 text-teal-600 dark:text-teal-400 shrink-0" aria-hidden="true" />
@@ -144,7 +144,7 @@ export const DocumentUploadStep: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => handleProcessSampleDoc(1)}
-                  className="w-full p-3 bg-white dark:bg-[#121317] hover:bg-slate-100 dark:hover:bg-[#1a1b20] rounded-xl border border-slate-200 dark:border-white/[0.07] flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-left transition-colors shadow-sm tactile-btn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer"
+                  className="w-full p-3 bg-white dark:bg-[#131926] hover:bg-slate-100 dark:hover:bg-[#1c2436] rounded-xl border border-slate-200 dark:border-white/[0.07] flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-left transition-colors shadow-sm tactile-btn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer"
                 >
                   <div className="flex items-center gap-2.5 min-w-0">
                     <FileText className="w-4 h-4 text-sky-600 dark:text-sky-400 shrink-0" aria-hidden="true" />

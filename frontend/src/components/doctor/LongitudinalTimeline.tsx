@@ -77,14 +77,14 @@ export const LongitudinalTimeline: React.FC = () => {
         {timelineEvents.map((evt) => (
           <div key={evt.id} className="relative group">
             {/* Timeline Dot */}
-            <div className="absolute -left-6 top-1.5 w-5 h-5 rounded-full bg-white dark:bg-[#101114] border-2 border-teal-600 flex items-center justify-center shadow-sm">
+            <div className="absolute -left-6 top-1.5 w-5 h-5 rounded-full bg-white dark:bg-[#111622] border-2 border-teal-600 flex items-center justify-center shadow-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-teal-600" />
             </div>
 
             {/* Event Card */}
             <div 
               onClick={() => setSelectedEvent(evt)}
-              className="p-4 bg-slate-50 dark:bg-[#16171b] hover:bg-teal-50/50 dark:hover:bg-[#202227] border border-slate-200 dark:border-white/[0.07] hover:border-teal-500/50 dark:hover:border-teal-500/40 rounded-2xl cursor-pointer transition-all shadow-sm"
+              className="p-4 bg-slate-50 dark:bg-[#161d2b] hover:bg-teal-50/50 dark:hover:bg-[#202227] border border-slate-200 dark:border-white/[0.07] hover:border-teal-500/50 dark:hover:border-teal-500/40 rounded-2xl cursor-pointer transition-all shadow-sm"
             >
               <div className="flex items-center justify-between gap-2 mb-1">
                 <span className="text-xs font-bold text-teal-700 dark:text-teal-400">
@@ -120,7 +120,7 @@ export const LongitudinalTimeline: React.FC = () => {
       {/* Selected Event Details Modal / Drawer */}
       {selectedEvent && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-fade-in">
-          <div className="w-full max-w-lg bg-white dark:bg-[#16171b] rounded-3xl p-6 border border-slate-200 dark:border-white/[0.08] shadow-2xl space-y-4 animate-scale-up">
+          <div className="w-full max-w-lg bg-white dark:bg-[#161d2b] rounded-3xl p-6 border border-slate-200 dark:border-white/[0.08] shadow-2xl space-y-4 animate-scale-up">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-white/[0.07]">
               <div className="flex items-center gap-2">
                 <FileText className="w-5 h-5 text-teal-600" />
@@ -137,7 +137,7 @@ export const LongitudinalTimeline: React.FC = () => {
             </div>
 
             {/* Content Breakdown */}
-            <div className="p-4 bg-slate-50 dark:bg-[#121317] rounded-2xl space-y-2 text-xs border border-slate-200/60 dark:border-white/[0.06]">
+            <div className="p-4 bg-slate-50 dark:bg-[#131926] rounded-2xl space-y-2 text-xs border border-slate-200/60 dark:border-white/[0.06]">
               <span className="font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider text-[10px]">
                 Longitudinal Data Attributes:
               </span>

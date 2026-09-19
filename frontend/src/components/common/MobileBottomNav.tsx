@@ -58,7 +58,7 @@ export const MobileBottomNav: React.FC = () => {
   return (
     <nav 
       aria-label="Mobile Bottom Navigation"
-      className="md:hidden fixed bottom-0 inset-x-0 z-40 bg-white/95 dark:bg-[#101114]/95 backdrop-blur-xl border-t border-slate-200/90 dark:border-white/[0.07] shadow-[0_-4px_20px_rgba(0,0,0,0.08)] dark:shadow-black/40 px-2 py-1.5 transition-colors duration-200"
+      className="md:hidden fixed bottom-0 inset-x-0 z-40 bg-white/95 dark:bg-[#111622]/95 backdrop-blur-xl border-t border-slate-200/90 dark:border-white/[0.07] shadow-[0_-4px_20px_rgba(0,0,0,0.08)] dark:shadow-black/40 px-2 py-1.5 transition-colors duration-200"
       style={{ paddingBottom: 'max(0.375rem, env(safe-area-inset-bottom, 0.375rem))' }}
     >
       <div className="flex items-center justify-around max-w-lg mx-auto">

@@ -34,7 +34,7 @@ const MainContent: React.FC = () => {
   const { role, patientStep, toastMessage } = useApp();
 
   return (
-    <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-[#08090a] text-slate-900 dark:text-slate-100 font-sans selection:bg-teal-500 selection:text-white transition-colors duration-200">
+    <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-[#0c1017] text-slate-900 dark:text-slate-100 font-sans selection:bg-teal-500 selection:text-white transition-colors duration-200">
       {/* Enterprise Hospital Navbar */}
       <Navbar />
 
@@ -49,7 +49,7 @@ const MainContent: React.FC = () => {
         <div 
           role="status" 
           aria-live="polite"
-          className="fixed bottom-20 sm:bottom-6 right-4 sm:right-6 left-4 sm:left-auto z-50 p-3.5 sm:p-4 bg-white/95 dark:bg-[#16171b]/95 backdrop-blur-xl text-slate-900 dark:text-white rounded-2xl shadow-2xl border border-slate-200 dark:border-white/[0.08] text-xs font-semibold flex items-center gap-2.5 animate-slide-up max-w-md"
+          className="fixed bottom-20 sm:bottom-6 right-4 sm:right-6 left-4 sm:left-auto z-50 p-3.5 sm:p-4 bg-white/95 dark:bg-[#161d2b]/95 backdrop-blur-xl text-slate-900 dark:text-white rounded-2xl shadow-2xl border border-slate-200 dark:border-white/[0.08] text-xs font-semibold flex items-center gap-2.5 animate-slide-up max-w-md"
         >
           <span className="w-2 h-2 rounded-full bg-teal-500 animate-ping shrink-0" aria-hidden="true" />
           <span className="truncate">{toastMessage}</span>

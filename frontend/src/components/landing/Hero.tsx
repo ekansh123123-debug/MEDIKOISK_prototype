@@ -27,7 +27,7 @@ export const Hero: React.FC = () => {
   };
 
   return (
-    <section className="relative overflow-hidden pt-10 pb-16 bg-gradient-to-b from-slate-50 via-teal-50/20 to-white dark:from-[#08090a] dark:via-[#0c0d10] dark:to-[#08090a] border-b border-slate-200/80 dark:border-white/[0.07] transition-colors">
+    <section className="relative overflow-hidden pt-10 pb-16 bg-gradient-to-b from-slate-50 via-teal-50/20 to-white dark:from-[#0c1017] dark:via-[#111622] dark:to-[#0c1017] border-b border-slate-200/80 dark:border-white/[0.07] transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Single Eyebrow Badge (Eyebrow restraint: 1 per hero) */}
         <div className="flex justify-center mb-5">
@@ -64,7 +64,7 @@ export const Hero: React.FC = () => {
           <button
             type="button"
             onClick={handleViewDoctor}
-            className="w-full sm:w-auto px-6 py-3.5 bg-white hover:bg-slate-50 text-slate-800 dark:bg-[#16171b] dark:hover:bg-[#202227] dark:text-slate-100 font-semibold rounded-xl border border-slate-300 dark:border-white/[0.1] shadow-sm flex items-center justify-center gap-2 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer"
+            className="w-full sm:w-auto px-6 py-3.5 bg-white hover:bg-slate-50 text-slate-800 dark:bg-[#161d2b] dark:hover:bg-[#1f283b] dark:text-slate-100 font-semibold rounded-xl border border-slate-300 dark:border-white/[0.1] shadow-sm flex items-center justify-center gap-2 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer"
           >
             <Stethoscope className="w-4 h-4 text-teal-600 dark:text-teal-400" aria-hidden="true" />
             <span>{t.accessClinicianBtn}</span>
@@ -100,9 +100,9 @@ export const Hero: React.FC = () => {
               ].map((item) => (
                 <div
                   key={item.step}
-                  className="p-3 bg-slate-50/80 dark:bg-[#121317] rounded-xl border border-slate-200 dark:border-white/[0.06] hover:border-teal-500/40 dark:hover:border-teal-500/40 flex flex-col items-center text-center group transition-all tactile-btn"
+                  className="p-3 bg-slate-50/80 dark:bg-[#131926] rounded-xl border border-slate-200 dark:border-white/[0.06] hover:border-teal-500/40 dark:hover:border-teal-500/40 flex flex-col items-center text-center group transition-all tactile-btn"
                 >
-                  <div className="w-8 h-8 rounded-lg bg-white dark:bg-[#1a1c23] flex items-center justify-center shadow-sm mb-2 group-hover:scale-105 transition-transform border border-slate-200 dark:border-white/[0.08]">
+                  <div className="w-8 h-8 rounded-lg bg-white dark:bg-[#161d2b] flex items-center justify-center shadow-sm mb-2 group-hover:scale-105 transition-transform border border-slate-200 dark:border-white/[0.08]">
                     {item.icon}
                   </div>
                   <span className="text-[10px] font-mono font-bold text-teal-600 dark:text-teal-400">

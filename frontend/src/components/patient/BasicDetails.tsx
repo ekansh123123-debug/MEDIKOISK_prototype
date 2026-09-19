@@ -34,7 +34,7 @@ export const BasicDetails: React.FC = () => {
 
   return (
     <div className="max-w-xl mx-auto py-2 sm:py-6 px-1 sm:px-2 animate-fade-in">
-      <div className="glass-card-elevated rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-white/[0.07] dark:bg-[#101114] shadow-xl space-y-5 sm:space-y-6">
+      <div className="glass-card-elevated rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-white/[0.07] dark:bg-[#111622] shadow-xl space-y-5 sm:space-y-6">
         {/* Process Header */}
         <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-white/[0.07] text-xs">
           <span className="font-bold text-teal-600 dark:text-teal-400">{t.stepDemographicHeader}</span>
@@ -67,7 +67,7 @@ export const BasicDetails: React.FC = () => {
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 placeholder="e.g. Rohan Kulkarni…"
-                className="w-full px-3.5 py-2.5 bg-slate-50 dark:bg-[#121317] border border-slate-300 dark:border-white/[0.07] rounded-xl text-slate-900 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 text-xs font-semibold"
+                className="w-full px-3.5 py-2.5 bg-slate-50 dark:bg-[#131926] border border-slate-300 dark:border-white/[0.07] rounded-xl text-slate-900 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 text-xs font-semibold"
               />
             </div>
             <div>
@@ -82,7 +82,7 @@ export const BasicDetails: React.FC = () => {
                 value={formData.phone}
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                 placeholder="e.g. +91 98230 44192…"
-                className="w-full px-3.5 py-2.5 bg-slate-50 dark:bg-[#121317] border border-slate-300 dark:border-white/[0.07] rounded-xl text-slate-900 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 text-xs font-mono font-semibold"
+                className="w-full px-3.5 py-2.5 bg-slate-50 dark:bg-[#131926] border border-slate-300 dark:border-white/[0.07] rounded-xl text-slate-900 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 text-xs font-mono font-semibold"
               />
             </div>
           </div>
@@ -101,7 +101,7 @@ export const BasicDetails: React.FC = () => {
                 required
                 value={formData.age}
                 onChange={(e) => setFormData({ ...formData, age: Number(e.target.value) })}
-                className="w-full px-3.5 py-2.5 bg-slate-50 dark:bg-[#121317] border border-slate-300 dark:border-white/[0.07] rounded-xl text-slate-900 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 text-xs font-mono font-semibold tabular-nums"
+                className="w-full px-3.5 py-2.5 bg-slate-50 dark:bg-[#131926] border border-slate-300 dark:border-white/[0.07] rounded-xl text-slate-900 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 text-xs font-mono font-semibold tabular-nums"
               />
             </div>
             <div>
@@ -112,7 +112,7 @@ export const BasicDetails: React.FC = () => {
                 id="basic-gender"
                 value={formData.gender}
                 onChange={(e) => setFormData({ ...formData, gender: e.target.value as any })}
-                className="w-full px-3.5 py-2.5 bg-slate-50 dark:bg-[#121317] border border-slate-300 dark:border-white/[0.07] rounded-xl text-slate-900 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 text-xs font-semibold cursor-pointer"
+                className="w-full px-3.5 py-2.5 bg-slate-50 dark:bg-[#131926] border border-slate-300 dark:border-white/[0.07] rounded-xl text-slate-900 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 text-xs font-semibold cursor-pointer"
               >
                 <option value="male">{t.genderMale}</option>
                 <option value="female">{t.genderFemale}</option>
@@ -132,7 +132,7 @@ export const BasicDetails: React.FC = () => {
               value={formData.existingConditions}
               onChange={(e) => setFormData({ ...formData, existingConditions: e.target.value })}
               placeholder="e.g. Hypertension, Diabetes, Asthma, Acid Peptic Disease…"
-              className="w-full px-3.5 py-2.5 bg-slate-50 dark:bg-[#121317] border border-slate-300 dark:border-white/[0.07] rounded-xl text-slate-900 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 text-xs"
+              className="w-full px-3.5 py-2.5 bg-slate-50 dark:bg-[#131926] border border-slate-300 dark:border-white/[0.07] rounded-xl text-slate-900 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 text-xs"
             />
           </div>
 
@@ -147,7 +147,7 @@ export const BasicDetails: React.FC = () => {
               value={formData.allergies}
               onChange={(e) => setFormData({ ...formData, allergies: e.target.value })}
               placeholder="e.g. Penicillin, Sulfa drugs (or NKDA if none)…"
-              className="w-full px-3.5 py-2.5 bg-slate-50 dark:bg-[#121317] border border-slate-300 dark:border-white/[0.07] rounded-xl text-slate-900 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 text-xs"
+              className="w-full px-3.5 py-2.5 bg-slate-50 dark:bg-[#131926] border border-slate-300 dark:border-white/[0.07] rounded-xl text-slate-900 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 text-xs"
             />
           </div>
 
@@ -162,7 +162,7 @@ export const BasicDetails: React.FC = () => {
               value={formData.currentMedications}
               onChange={(e) => setFormData({ ...formData, currentMedications: e.target.value })}
               placeholder="e.g. Omeprazole 20mg, Metformin 500mg…"
-              className="w-full px-3.5 py-2.5 bg-slate-50 dark:bg-[#121317] border border-slate-300 dark:border-white/[0.07] rounded-xl text-slate-900 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 text-xs"
+              className="w-full px-3.5 py-2.5 bg-slate-50 dark:bg-[#131926] border border-slate-300 dark:border-white/[0.07] rounded-xl text-slate-900 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 text-xs"
             />
           </div>
 
