@@ -70,7 +70,8 @@ export const MobileBottomNav: React.FC = () => {
               key={item.id}
               onClick={() => setRole(item.id)}
               aria-current={active ? 'page' : undefined}
-              className={`relative flex flex-col items-center justify-center flex-1 py-1 px-1 rounded-xl transition-all duration-150 tactile-btn cursor-pointer select-none min-h-[48px] ${
+              aria-label={item.label}
+              className={`relative flex flex-col items-center justify-center flex-1 py-1 px-1 rounded-xl transition-all duration-150 tactile-btn cursor-pointer select-none min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 ${
                 active 
                   ? 'text-teal-600 dark:text-teal-400 font-bold' 
                   : 'text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 font-medium'
@@ -89,6 +90,7 @@ export const MobileBottomNav: React.FC = () => {
                 <Icon 
                   className={`w-5 h-5 transition-transform duration-150 ${active ? 'scale-110 text-teal-600 dark:text-teal-400' : 'text-slate-500 dark:text-slate-400'}`} 
                   strokeWidth={active ? 2.2 : 1.8}
+                  aria-hidden="true"
                 />
                 {item.badge !== undefined && (
                   <span 

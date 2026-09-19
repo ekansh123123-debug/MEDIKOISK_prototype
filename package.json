@@ -10,10 +10,10 @@
   "scripts": {
     "dev": "npm --prefix frontend run dev",
     "dev:frontend": "npm --prefix frontend run dev",
-    "dev:backend": "npm --prefix backend run dev",
+    "dev:backend": "node -e \"if (require('fs').existsSync('./backend/package.json')) { require('child_process').spawn('npm', ['--prefix', 'backend', 'run', 'dev'], { stdio: 'inherit', shell: true }); } else { console.log('Backend not yet initialized. See backend/README.md to set up Node.js or Python.'); }\"",
     "build": "npm --prefix frontend run build",
     "build:frontend": "npm --prefix frontend run build",
-    "build:backend": "npm --prefix backend run build",
+    "build:backend": "node -e \"if (require('fs').existsSync('./backend/package.json')) { require('child_process').spawn('npm', ['--prefix', 'backend', 'run', 'build'], { stdio: 'inherit', shell: true }); } else { console.log('Backend build skipped (not yet initialized). See backend/README.md'); }\"",
     "preview": "npm --prefix frontend run preview"
   }
 }

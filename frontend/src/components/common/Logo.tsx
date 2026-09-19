@@ -38,7 +38,11 @@ export const Logo: React.FC<LogoProps> = ({
       <div className={`flex items-center ${className}`}>
         <img
           src="/medikoisk-logo.png"
-          alt="MEDIKOISK"
+          alt="MEDIKOISK Logo"
+          width={size === 'sm' ? 140 : size === 'lg' ? 240 : 180}
+          height={size === 'sm' ? 32 : size === 'lg' ? 48 : 36}
+          // @ts-expect-error fetchpriority attribute
+          fetchpriority="high"
           className={`h-auto object-contain rounded-lg shadow-sm ${
             size === 'sm' ? 'max-h-7 sm:max-h-8' : size === 'lg' ? 'max-h-12' : 'max-h-8 sm:max-h-9'
           }`}
