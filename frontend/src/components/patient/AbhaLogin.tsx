@@ -39,9 +39,9 @@ export const AbhaLogin: React.FC = () => {
 
   return (
     <div className="max-w-xl mx-auto py-2 sm:py-6 px-1 sm:px-2 animate-fade-in">
-      <div className="glass-card-elevated rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-xl space-y-5 sm:space-y-6">
+      <div className="glass-card-elevated rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-white/[0.07] dark:bg-[#101114] shadow-xl space-y-5 sm:space-y-6">
         {/* Process Breadcrumb Header */}
-        <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800 text-xs">
+        <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-white/[0.07] text-xs">
           <span className="font-bold text-teal-600 dark:text-teal-400">Step: Login or Guest</span>
           <span className="text-slate-500 dark:text-slate-400">Safe & Private</span>
         </div>
@@ -62,7 +62,7 @@ export const AbhaLogin: React.FC = () => {
             <button
               type="button"
               onClick={() => setAuthMode('abha')}
-              className="w-full p-4 sm:p-5 bg-teal-50/60 dark:bg-slate-900/60 hover:bg-teal-100/50 dark:hover:bg-slate-800/80 border-2 border-teal-500/30 dark:border-teal-500/40 rounded-xl flex items-center gap-4 text-left transition-all group shadow-sm tactile-btn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer"
+              className="w-full p-4 sm:p-5 bg-teal-50/60 dark:bg-[#16171b] hover:bg-teal-100/50 dark:hover:bg-[#1c1d22] border-2 border-teal-500/30 dark:border-teal-500/40 rounded-xl flex items-center gap-4 text-left transition-all group shadow-sm tactile-btn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer"
             >
               <div className="w-11 h-11 rounded-xl bg-teal-600 text-white flex items-center justify-center shrink-0 shadow-md group-hover:scale-105 transition-transform">
                 <Shield className="w-5 h-5 text-white" aria-hidden="true" />
@@ -85,9 +85,9 @@ export const AbhaLogin: React.FC = () => {
             <button
               type="button"
               onClick={() => setAuthMode('guest')}
-              className="w-full p-4 sm:p-5 bg-slate-50 dark:bg-slate-900/40 hover:bg-slate-100 dark:hover:bg-slate-850 border border-slate-200 dark:border-slate-800 rounded-xl flex items-center gap-4 text-left transition-all group shadow-sm tactile-btn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer"
+              className="w-full p-4 sm:p-5 bg-slate-50 dark:bg-[#16171b] hover:bg-slate-100 dark:hover:bg-[#1c1d22] border border-slate-200 dark:border-white/[0.07] rounded-xl flex items-center gap-4 text-left transition-all group shadow-sm tactile-btn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer"
             >
-              <div className="w-11 h-11 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform border border-slate-300 dark:border-slate-700">
+              <div className="w-11 h-11 rounded-xl bg-slate-200 dark:bg-[#121317] text-slate-700 dark:text-slate-300 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform border border-slate-300 dark:border-white/[0.08]">
                 <User className="w-5 h-5" aria-hidden="true" />
               </div>
               <div className="flex-1 min-w-0">
@@ -121,7 +121,7 @@ export const AbhaLogin: React.FC = () => {
                 value={abhaInput}
                 onChange={(e) => setAbhaInput(e.target.value)}
                 placeholder="e.g. rohan.kulkarni@abdm…"
-                className="w-full px-4 py-3 text-sm bg-slate-50 dark:bg-slate-900/80 border border-slate-300 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 font-mono"
+                className="w-full px-4 py-3 text-sm bg-slate-50 dark:bg-[#121317] border border-slate-300 dark:border-white/[0.07] rounded-xl text-slate-900 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 font-mono"
               />
             </div>
 
@@ -157,7 +157,7 @@ export const AbhaLogin: React.FC = () => {
                     value={otp}
                     onChange={(e) => setOtp(e.target.value)}
                     placeholder="Enter 6-digit OTP…"
-                    className="w-full px-4 py-3 text-center tracking-widest text-lg font-mono font-bold bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
+                    className="w-full px-4 py-3 text-center tracking-widest text-lg font-mono font-bold bg-slate-50 dark:bg-[#121317] border border-slate-300 dark:border-white/[0.07] rounded-xl text-slate-900 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
                   />
                 </div>
 
@@ -195,7 +195,7 @@ export const AbhaLogin: React.FC = () => {
                 value={guestName}
                 onChange={(e) => setGuestName(e.target.value)}
                 placeholder="e.g. Vikram Singh…"
-                className="w-full px-4 py-3 text-sm bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
+                className="w-full px-4 py-3 text-sm bg-slate-50 dark:bg-[#121317] border border-slate-300 dark:border-white/[0.07] rounded-xl text-slate-900 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
               />
             </div>
 
@@ -209,14 +209,14 @@ export const AbhaLogin: React.FC = () => {
                 value={guestPhone}
                 onChange={(e) => setGuestPhone(e.target.value)}
                 placeholder="e.g. +91 98230 44192…"
-                className="w-full px-4 py-3 text-sm bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 font-mono"
+                className="w-full px-4 py-3 text-sm bg-slate-50 dark:bg-[#121317] border border-slate-300 dark:border-white/[0.07] rounded-xl text-slate-900 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 font-mono"
               />
             </div>
 
             <button
               type="button"
               onClick={handleGuestContinue}
-              className="w-full py-3.5 bg-slate-800 hover:bg-slate-700 text-white text-sm font-bold rounded-xl shadow-md transition-colors flex items-center justify-center gap-2 tactile-btn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer"
+              className="w-full py-3.5 bg-slate-800 hover:bg-slate-700 dark:bg-[#1c1d22] dark:hover:bg-[#22242a] dark:border dark:border-white/[0.08] text-white text-sm font-bold rounded-xl shadow-md transition-colors flex items-center justify-center gap-2 tactile-btn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer"
             >
               <span>{t.guestModeBtn}</span>
               <ArrowRight className="w-4 h-4" aria-hidden="true" />

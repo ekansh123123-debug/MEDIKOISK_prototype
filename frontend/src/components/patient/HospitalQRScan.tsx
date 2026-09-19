@@ -25,9 +25,9 @@ export const HospitalQRScan: React.FC = () => {
 
   return (
     <div className="max-w-xl mx-auto py-2 sm:py-6 px-1 sm:px-2 animate-fade-in">
-      <div className="glass-card-elevated rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-xl text-center space-y-5 sm:space-y-6">
+      <div className="glass-card-elevated rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-white/[0.07] dark:bg-[#101114] shadow-xl text-center space-y-5 sm:space-y-6">
         {/* Hospital Kiosk Header */}
-        <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800 gap-2">
+        <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-white/[0.07] gap-2">
           <div className="flex items-center gap-2.5 text-left min-w-0">
             <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-teal-500/10 flex items-center justify-center text-teal-600 dark:text-teal-400 border border-teal-500/20 shrink-0">
               <Building2 className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" />
@@ -53,7 +53,7 @@ export const HospitalQRScan: React.FC = () => {
         </div>
 
         {/* QR Code Frame with laser scan simulation */}
-        <div className="p-4 sm:p-6 bg-slate-100/70 dark:bg-slate-950/60 rounded-2xl border-2 border-dashed border-teal-500/30 inline-block relative group max-w-full">
+        <div className="p-4 sm:p-6 bg-slate-100/70 dark:bg-[#121317] rounded-2xl border-2 border-dashed border-teal-500/30 inline-block relative group max-w-full">
           <div className="w-40 h-40 sm:w-52 sm:h-52 mx-auto bg-white rounded-xl p-3 sm:p-4 shadow-md flex flex-col items-center justify-center relative overflow-hidden">
             <QrCode className="w-32 h-32 sm:w-44 sm:h-44 text-slate-900" aria-hidden="true" />
             
@@ -85,7 +85,7 @@ export const HospitalQRScan: React.FC = () => {
             <button
               type="button"
               onClick={() => handleSelectDemoPatient(0)}
-              className="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/40 hover:border-teal-500 text-left transition-all tactile-btn cursor-pointer"
+              className="p-2.5 rounded-xl border border-slate-200 dark:border-white/[0.07] bg-slate-50 dark:bg-[#16171b] hover:border-teal-500 text-left transition-all tactile-btn cursor-pointer"
             >
               <div className="text-xs font-bold text-slate-900 dark:text-white">Rohan Kulkarni (28M)</div>
               <div className="text-[10px] text-slate-500 dark:text-slate-400">ABHA Linked • Abdominal Pain</div>
@@ -93,7 +93,7 @@ export const HospitalQRScan: React.FC = () => {
             <button
               type="button"
               onClick={() => handleSelectDemoPatient(1)}
-              className="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/40 hover:border-teal-500 text-left transition-all tactile-btn cursor-pointer"
+              className="p-2.5 rounded-xl border border-slate-200 dark:border-white/[0.07] bg-slate-50 dark:bg-[#16171b] hover:border-teal-500 text-left transition-all tactile-btn cursor-pointer"
             >
               <div className="text-xs font-bold text-slate-900 dark:text-white">Sunita Deshmukh (52F)</div>
               <div className="text-[10px] text-slate-500 dark:text-slate-400">ABHA Linked • Hypertension</div>
@@ -110,7 +110,7 @@ export const HospitalQRScan: React.FC = () => {
               type="text"
               value={hospitalCode}
               onChange={(e) => setHospitalCode(e.target.value)}
-              className="w-full px-4 py-2.5 text-xs font-mono font-bold text-center uppercase tracking-wider bg-slate-50 dark:bg-slate-900/80 border border-slate-300 dark:border-slate-700/80 rounded-xl text-slate-900 dark:text-slate-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
+              className="w-full px-4 py-2.5 text-xs font-mono font-bold text-center uppercase tracking-wider bg-slate-50 dark:bg-[#121317] border border-slate-300 dark:border-white/[0.07] rounded-xl text-slate-900 dark:text-slate-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
               placeholder={t.manualCodePlaceholder}
             />
           </div>

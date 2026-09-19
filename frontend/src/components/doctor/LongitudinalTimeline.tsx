@@ -73,18 +73,18 @@ export const LongitudinalTimeline: React.FC = () => {
       </div>
 
       {/* Vertical Timeline */}
-      <div className="relative pl-6 space-y-6 before:absolute before:left-2.5 before:top-2 before:bottom-2 before:w-0.5 before:bg-slate-200 dark:before:bg-slate-700">
-        {timelineEvents.map((evt, idx) => (
+      <div className="relative pl-6 space-y-6 before:absolute before:left-2.5 before:top-2 before:bottom-2 before:w-0.5 before:bg-slate-200 dark:before:bg-white/[0.1]">
+        {timelineEvents.map((evt) => (
           <div key={evt.id} className="relative group">
             {/* Timeline Dot */}
-            <div className="absolute -left-6 top-1.5 w-5 h-5 rounded-full bg-white dark:bg-slate-900 border-2 border-teal-600 flex items-center justify-center shadow-sm">
+            <div className="absolute -left-6 top-1.5 w-5 h-5 rounded-full bg-white dark:bg-[#101114] border-2 border-teal-600 flex items-center justify-center shadow-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-teal-600" />
             </div>
 
             {/* Event Card */}
             <div 
               onClick={() => setSelectedEvent(evt)}
-              className="p-4 bg-slate-50 dark:bg-slate-800/80 hover:bg-teal-50/50 dark:hover:bg-teal-950/20 border border-slate-200 dark:border-slate-700 hover:border-teal-500/50 rounded-2xl cursor-pointer transition-all shadow-sm"
+              className="p-4 bg-slate-50 dark:bg-[#16171b] hover:bg-teal-50/50 dark:hover:bg-[#202227] border border-slate-200 dark:border-white/[0.07] hover:border-teal-500/50 dark:hover:border-teal-500/40 rounded-2xl cursor-pointer transition-all shadow-sm"
             >
               <div className="flex items-center justify-between gap-2 mb-1">
                 <span className="text-xs font-bold text-teal-700 dark:text-teal-400">
@@ -100,7 +100,7 @@ export const LongitudinalTimeline: React.FC = () => {
                 <span>{evt.title}</span>
               </h4>
 
-              <span className="text-[11px] text-slate-500 block mt-0.5">
+              <span className="text-[11px] text-slate-500 dark:text-slate-400 block mt-0.5">
                 {evt.facility}
               </span>
 
@@ -120,24 +120,24 @@ export const LongitudinalTimeline: React.FC = () => {
       {/* Selected Event Details Modal / Drawer */}
       {selectedEvent && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-fade-in">
-          <div className="w-full max-w-lg bg-white dark:bg-slate-900 rounded-3xl p-6 border border-slate-200 dark:border-slate-800 shadow-2xl space-y-4 animate-scale-up">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
+          <div className="w-full max-w-lg bg-white dark:bg-[#16171b] rounded-3xl p-6 border border-slate-200 dark:border-white/[0.08] shadow-2xl space-y-4 animate-scale-up">
+            <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-white/[0.07]">
               <div className="flex items-center gap-2">
                 <FileText className="w-5 h-5 text-teal-600" />
                 <div>
                   <h4 className="font-bold text-sm text-slate-900 dark:text-white">
                     {selectedEvent.title}
                   </h4>
-                  <span className="text-[11px] text-slate-500">{selectedEvent.date} • {selectedEvent.facility}</span>
+                  <span className="text-[11px] text-slate-500 dark:text-slate-400">{selectedEvent.date} • {selectedEvent.facility}</span>
                 </div>
               </div>
-              <button onClick={() => setSelectedEvent(null)} className="text-slate-400 hover:text-slate-600">
+              <button onClick={() => setSelectedEvent(null)} className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
                 <X className="w-5 h-5" />
               </button>
             </div>
 
             {/* Content Breakdown */}
-            <div className="p-4 bg-slate-50 dark:bg-slate-800 rounded-2xl space-y-2 text-xs">
+            <div className="p-4 bg-slate-50 dark:bg-[#121317] rounded-2xl space-y-2 text-xs border border-slate-200/60 dark:border-white/[0.06]">
               <span className="font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider text-[10px]">
                 Longitudinal Data Attributes:
               </span>
@@ -149,7 +149,7 @@ export const LongitudinalTimeline: React.FC = () => {
             <div className="flex justify-end pt-2">
               <button
                 onClick={() => setSelectedEvent(null)}
-                className="px-4 py-2 bg-slate-200 dark:bg-slate-700 text-slate-800 dark:text-slate-200 rounded-xl text-xs font-bold"
+                className="px-4 py-2 bg-slate-200 dark:bg-[#202227] text-slate-800 dark:text-slate-200 hover:bg-slate-300 dark:hover:bg-[#2a2d33] rounded-xl text-xs font-bold transition-colors"
               >
                 Close Record
               </button>

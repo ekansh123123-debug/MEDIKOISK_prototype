@@ -15,7 +15,7 @@ export const EmergencyAlertModal: React.FC = () => {
       aria-labelledby="emergency-modal-title"
       className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-red-950/80 backdrop-blur-md animate-fade-in"
     >
-      <div className="relative w-full max-w-2xl bg-white dark:bg-slate-900 border-4 border-red-600 rounded-3xl shadow-2xl overflow-hidden animate-scale-up">
+      <div className="relative w-full max-w-2xl bg-white dark:bg-[#101114] border-4 border-red-600 rounded-3xl shadow-2xl overflow-hidden animate-scale-up">
         {/* Flashing Top Alert Banner */}
         <div className="bg-red-600 text-white px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -54,19 +54,19 @@ export const EmergencyAlertModal: React.FC = () => {
 
           {/* Trigger Details */}
           <div className="space-y-2 text-sm text-slate-700 dark:text-slate-300">
-            <div className="flex justify-between py-2 border-b border-slate-200 dark:border-slate-800">
+            <div className="flex justify-between py-2 border-b border-slate-200 dark:border-white/[0.07]">
               <span className="text-slate-500">Patient:</span>
               <span className="font-bold">{emergencyAlert.patientName}</span>
             </div>
-            <div className="flex justify-between py-2 border-b border-slate-200 dark:border-slate-800">
+            <div className="flex justify-between py-2 border-b border-slate-200 dark:border-white/[0.07]">
               <span className="text-slate-500">Emergency Token Assigned:</span>
               <span className="font-black text-red-600 text-base tabular-nums">{emergencyAlert.tokenNumber}</span>
             </div>
-            <div className="flex justify-between py-2 border-b border-slate-200 dark:border-slate-800">
+            <div className="flex justify-between py-2 border-b border-slate-200 dark:border-white/[0.07]">
               <span className="text-slate-500">Trigger Category:</span>
               <span className="font-semibold uppercase text-red-600">{emergencyAlert.category}</span>
             </div>
-            <div className="flex justify-between py-2 border-b border-slate-200 dark:border-slate-800">
+            <div className="flex justify-between py-2 border-b border-slate-200 dark:border-white/[0.07]">
               <span className="text-slate-500">Symptom Detected:</span>
               <span className="font-medium italic text-slate-800 dark:text-slate-200">"{emergencyAlert.rawSymptom}"</span>
             </div>
@@ -77,7 +77,7 @@ export const EmergencyAlertModal: React.FC = () => {
           </div>
 
           {/* Audio Guidance Button */}
-          <div className="flex items-center justify-between p-3.5 bg-slate-100 dark:bg-slate-800 rounded-xl">
+          <div className="flex items-center justify-between p-3.5 bg-slate-100 dark:bg-[#16171b] rounded-xl border border-slate-200 dark:border-white/[0.07]">
             <div className="flex items-center gap-2">
               <Volume2 className="w-5 h-5 text-teal-600" aria-hidden="true" />
               <span className="text-xs font-medium text-slate-700 dark:text-slate-300">
@@ -107,7 +107,7 @@ export const EmergencyAlertModal: React.FC = () => {
             </button>
             <button
               onClick={clearEmergency}
-              className="px-4 py-3 bg-slate-200 hover:bg-slate-300 text-slate-700 dark:bg-slate-800 dark:text-slate-300 font-medium rounded-2xl text-xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-500 cursor-pointer"
+              className="px-4 py-3 bg-slate-200 hover:bg-slate-300 text-slate-700 dark:bg-[#16171b] dark:text-slate-300 font-medium rounded-2xl text-xs border border-slate-300 dark:border-white/[0.07] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-500 cursor-pointer"
             >
               Dismiss (Demo Testing)
             </button>

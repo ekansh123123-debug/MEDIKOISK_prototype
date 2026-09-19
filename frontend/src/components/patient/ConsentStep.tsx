@@ -41,9 +41,9 @@ export const ConsentStep: React.FC = () => {
 
   return (
     <div className="max-w-xl mx-auto py-2 sm:py-6 px-1 sm:px-2 animate-fade-in">
-      <div className="glass-card-elevated rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-xl space-y-5 sm:space-y-6">
+      <div className="glass-card-elevated rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-white/[0.07] dark:bg-[#101114] shadow-xl space-y-5 sm:space-y-6">
         {/* Header */}
-        <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800 text-xs">
+        <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-white/[0.07] text-xs">
           <span className="font-bold text-teal-600 dark:text-teal-400">Step 1 of 8: Privacy & Consent</span>
           <span className="text-slate-500 dark:text-slate-400">Safe & Private</span>
         </div>
@@ -62,7 +62,7 @@ export const ConsentStep: React.FC = () => {
         </div>
 
         {/* Audio Assistance Bar */}
-        <div className="p-3.5 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-slate-200 dark:border-slate-800 flex items-center justify-between">
+        <div className="p-3.5 bg-slate-50 dark:bg-[#16171b] rounded-xl border border-slate-200 dark:border-white/[0.07] flex items-center justify-between">
           <div className="flex items-center gap-2.5">
             <Volume2 className="w-5 h-5 text-teal-600 dark:text-teal-400" aria-hidden="true" />
             <div>
@@ -88,7 +88,7 @@ export const ConsentStep: React.FC = () => {
 
         {/* Itemized Terms Cards */}
         <div className="space-y-2.5 text-xs text-slate-700 dark:text-slate-300">
-          <div className="p-3.5 bg-slate-50 dark:bg-slate-900/40 rounded-xl flex items-start gap-3 border border-slate-200 dark:border-slate-800">
+          <div className="p-3.5 bg-slate-50 dark:bg-[#16171b] rounded-xl flex items-start gap-3 border border-slate-200 dark:border-white/[0.07]">
             <Eye className="w-4 h-4 text-teal-600 dark:text-teal-400 shrink-0 mt-0.5" aria-hidden="true" />
             <div>
               <strong className="text-slate-900 dark:text-white">Why information is collected:</strong>
@@ -98,7 +98,7 @@ export const ConsentStep: React.FC = () => {
             </div>
           </div>
 
-          <div className="p-3.5 bg-slate-50 dark:bg-slate-900/40 rounded-xl flex items-start gap-3 border border-slate-200 dark:border-slate-800">
+          <div className="p-3.5 bg-slate-50 dark:bg-[#16171b] rounded-xl flex items-start gap-3 border border-slate-200 dark:border-white/[0.07]">
             <FileText className="w-4 h-4 text-sky-600 dark:text-sky-400 shrink-0 mt-0.5" aria-hidden="true" />
             <div>
               <strong className="text-slate-900 dark:text-white">What is collected:</strong>
@@ -108,7 +108,7 @@ export const ConsentStep: React.FC = () => {
             </div>
           </div>
 
-          <div className="p-3.5 bg-slate-50 dark:bg-slate-900/40 rounded-xl flex items-start gap-3 border border-slate-200 dark:border-slate-800">
+          <div className="p-3.5 bg-slate-50 dark:bg-[#16171b] rounded-xl flex items-start gap-3 border border-slate-200 dark:border-white/[0.07]">
             <Lock className="w-4 h-4 text-indigo-600 dark:text-indigo-400 shrink-0 mt-0.5" aria-hidden="true" />
             <div>
               <strong className="text-slate-900 dark:text-white">Your Control & Revocation:</strong>
@@ -146,7 +146,7 @@ export const ConsentStep: React.FC = () => {
           <button
             type="button"
             onClick={handleDecline}
-            className="py-3.5 px-5 bg-slate-100 dark:bg-slate-900 hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium rounded-xl text-xs transition-colors flex items-center justify-center gap-1.5 border border-slate-200 dark:border-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer"
+            className="py-3.5 px-5 bg-slate-100 dark:bg-[#16171b] hover:bg-slate-200 dark:hover:bg-[#1c1d22] text-slate-700 dark:text-slate-300 font-medium rounded-xl text-xs transition-colors flex items-center justify-center gap-1.5 border border-slate-200 dark:border-white/[0.07] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer"
           >
             <XCircle className="w-4 h-4" aria-hidden="true" />
             <span>{t.consentDeclineBtn}</span>

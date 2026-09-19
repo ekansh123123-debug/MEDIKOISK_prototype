@@ -46,7 +46,7 @@ export const QueueTokenDisplay: React.FC = () => {
 
   return (
     <div className="max-w-xl mx-auto py-2 sm:py-6 px-1 sm:px-2 animate-fade-in space-y-4 sm:space-y-6">
-      <div className="glass-card-elevated rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-xl text-center space-y-5 sm:space-y-6">
+      <div className="glass-card-elevated rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-white/[0.07] dark:bg-[#101114] shadow-xl text-center space-y-5 sm:space-y-6">
         {/* Success Icon */}
         <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center mx-auto shadow-md border border-emerald-500/20">
           <CheckCircle2 className="w-7 h-7 sm:w-8 sm:h-8" aria-hidden="true" />
@@ -69,7 +69,7 @@ export const QueueTokenDisplay: React.FC = () => {
         <div className={`p-6 rounded-2xl border-2 text-center relative overflow-hidden ${
           isEmergency
             ? 'bg-rose-950/40 border-rose-500'
-            : 'bg-slate-50 dark:bg-slate-900/70 border-teal-500/40 shadow-lg'
+            : 'bg-slate-50 dark:bg-[#16171b] border-teal-500/40 shadow-lg'
         }`}>
           <span className="text-[11px] font-bold text-teal-700 dark:text-teal-400 uppercase tracking-widest font-mono">
             {t.tokenNumber}
@@ -86,7 +86,7 @@ export const QueueTokenDisplay: React.FC = () => {
 
         {/* Queue Metrics */}
         <div className="grid grid-cols-3 gap-3">
-          <div className="p-3 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div className="p-3 bg-slate-50 dark:bg-[#16171b] rounded-xl border border-slate-200 dark:border-white/[0.07] shadow-sm">
             <Clock className="w-4 h-4 text-teal-600 dark:text-teal-400 mx-auto mb-1" aria-hidden="true" />
             <span className="text-[10px] text-slate-500 dark:text-slate-400 uppercase font-bold">{t.estimatedWait}</span>
             <div className="text-sm font-bold font-mono tabular-nums text-slate-900 dark:text-white mt-0.5">
@@ -94,7 +94,7 @@ export const QueueTokenDisplay: React.FC = () => {
             </div>
           </div>
 
-          <div className="p-3 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div className="p-3 bg-slate-50 dark:bg-[#16171b] rounded-xl border border-slate-200 dark:border-white/[0.07] shadow-sm">
             <Users className="w-4 h-4 text-sky-600 dark:text-sky-400 mx-auto mb-1" aria-hidden="true" />
             <span className="text-[10px] text-slate-500 dark:text-slate-400 uppercase font-bold">Ahead of You</span>
             <div className="text-sm font-bold font-mono tabular-nums text-slate-900 dark:text-white mt-0.5">
@@ -102,7 +102,7 @@ export const QueueTokenDisplay: React.FC = () => {
             </div>
           </div>
 
-          <div className="p-3 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div className="p-3 bg-slate-50 dark:bg-[#16171b] rounded-xl border border-slate-200 dark:border-white/[0.07] shadow-sm">
             <DoorClosed className="w-4 h-4 text-indigo-600 dark:text-indigo-400 mx-auto mb-1" aria-hidden="true" />
             <span className="text-[10px] text-slate-500 dark:text-slate-400 uppercase font-bold">Now Serving</span>
             <div className="text-sm font-bold font-mono tabular-nums text-slate-900 dark:text-white mt-0.5">
@@ -112,7 +112,7 @@ export const QueueTokenDisplay: React.FC = () => {
         </div>
 
         {/* Thermal Receipt Dispenser Simulator */}
-        <div className="bg-slate-50 dark:bg-slate-900/80 rounded-xl p-4 border border-slate-200 dark:border-slate-800 text-left relative overflow-hidden">
+        <div className="bg-slate-50 dark:bg-[#16171b] rounded-xl p-4 border border-slate-200 dark:border-white/[0.07] text-left relative overflow-hidden">
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-2">
               <Printer className="w-4 h-4 text-teal-600 dark:text-teal-400" aria-hidden="true" />
@@ -162,7 +162,7 @@ export const QueueTokenDisplay: React.FC = () => {
         </div>
 
         {/* SMS Notification Banner & Offline Cache Status */}
-        <div className="p-3 bg-slate-50/80 dark:bg-slate-900/40 rounded-xl border border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs">
+        <div className="p-3 bg-slate-50/80 dark:bg-[#121317] rounded-xl border border-slate-200 dark:border-white/[0.07] flex items-center justify-between text-xs">
           <div className="flex items-center gap-2 text-left">
             <BellRing className="w-4 h-4 text-teal-600 dark:text-teal-400" aria-hidden="true" />
             <div>

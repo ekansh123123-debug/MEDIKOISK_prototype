@@ -32,7 +32,7 @@ export const ProvenancePopover: React.FC<ProvenancePopoverProps> = ({ assertion 
       {/* Trigger Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-bold bg-teal-50 hover:bg-teal-100 dark:bg-teal-950/50 dark:hover:bg-teal-900 text-teal-700 dark:text-teal-300 border border-teal-200 dark:border-teal-800 transition-colors"
+        className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-bold bg-teal-50 hover:bg-teal-100 dark:bg-teal-950/40 dark:hover:bg-teal-900/50 text-teal-700 dark:text-teal-300 border border-teal-200 dark:border-teal-700/40 transition-colors"
         title="Click to view raw patient voice/text source provenance"
       >
         {getSourceIcon()}
@@ -41,10 +41,10 @@ export const ProvenancePopover: React.FC<ProvenancePopoverProps> = ({ assertion 
 
       {/* Popover Card */}
       {isOpen && (
-        <div className="absolute left-0 bottom-full mb-2 z-50 w-80 sm:w-96 p-4 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-2xl space-y-3 text-xs animate-scale-up">
-          <div className="flex items-center justify-between pb-2 border-b border-slate-100 dark:border-slate-800">
+        <div className="absolute left-0 bottom-full mb-2 z-50 w-80 sm:w-96 p-4 bg-white dark:bg-[#16171b] rounded-2xl border border-slate-200 dark:border-white/[0.08] shadow-2xl space-y-3 text-xs animate-scale-up">
+          <div className="flex items-center justify-between pb-2 border-b border-slate-100 dark:border-white/[0.07]">
             <div className="flex items-center gap-1.5">
-              <Sparkles className="w-4 h-4 text-teal-600" />
+              <Sparkles className="w-4 h-4 text-teal-600 dark:text-teal-400" />
               <span className="font-bold text-slate-900 dark:text-white uppercase tracking-wider text-[10px]">
                 Clinical Provenance Audit
               </span>
@@ -67,7 +67,7 @@ export const ProvenancePopover: React.FC<ProvenancePopoverProps> = ({ assertion 
                 type="text"
                 value={editText}
                 onChange={(e) => setEditText(e.target.value)}
-                className="w-full mt-1 p-2 bg-slate-50 dark:bg-slate-800 border rounded-lg text-xs"
+                className="w-full mt-1 p-2 bg-slate-50 dark:bg-[#121317] border border-slate-200 dark:border-white/[0.08] rounded-lg text-xs text-slate-900 dark:text-white"
               />
             ) : (
               <p className="font-semibold text-slate-800 dark:text-slate-100 mt-0.5">
@@ -77,8 +77,8 @@ export const ProvenancePopover: React.FC<ProvenancePopoverProps> = ({ assertion 
           </div>
 
           {/* Raw Source Snippet */}
-          <div className="p-2.5 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-200/80 dark:border-slate-700">
-            <div className="flex items-center justify-between text-[10px] text-slate-500 font-semibold mb-1">
+          <div className="p-2.5 bg-slate-50 dark:bg-[#121317] rounded-xl border border-slate-200/80 dark:border-white/[0.07]">
+            <div className="flex items-center justify-between text-[10px] text-slate-500 dark:text-slate-400 font-semibold mb-1">
               <span>Raw Patient Input:</span>
               <span className="capitalize">{assertion.sourceType.replace('_', ' ')}</span>
             </div>
@@ -118,7 +118,7 @@ export const ProvenancePopover: React.FC<ProvenancePopoverProps> = ({ assertion 
               ) : (
                 <button
                   onClick={() => setIsEditing(true)}
-                  className="p-1.5 text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 hover:bg-slate-100 rounded-lg"
+                  className="p-1.5 text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/[0.06] rounded-lg"
                   title="Edit Assertion"
                 >
                   <Edit3 className="w-3.5 h-3.5" />

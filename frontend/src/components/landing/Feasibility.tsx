@@ -39,10 +39,10 @@ export const Feasibility: React.FC = () => {
   ];
 
   return (
-    <section className="py-16 bg-slate-50 dark:bg-[#080d1a] border-t border-slate-200 dark:border-slate-800/80 relative overflow-hidden transition-colors">
+    <section className="py-16 bg-slate-50 dark:bg-[#08090a] border-t border-slate-200 dark:border-white/[0.07] relative overflow-hidden transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Core Feasibility Statement */}
-        <div className="bg-gradient-to-r from-teal-950 via-slate-900 to-slate-900 text-white rounded-2xl p-7 sm:p-10 border border-teal-500/30 shadow-xl mb-12 relative overflow-hidden">
+        <div className="bg-[#101114] text-white rounded-2xl p-7 sm:p-10 border border-white/[0.08] shadow-xl mb-12 relative overflow-hidden">
           <div className="max-w-3xl space-y-3">
             <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-teal-500/10 border border-teal-500/30 text-teal-300">
               {t.feasBadge}
@@ -57,7 +57,7 @@ export const Feasibility: React.FC = () => {
         </div>
 
         {/* DHIS Corrigendum 7 Economic Model */}
-        <div className="mb-12 bg-white dark:bg-[#0d1527] rounded-2xl p-6 sm:p-7 border border-slate-200 dark:border-slate-800 shadow-sm">
+        <div className="mb-12 bg-white dark:bg-[#101114] rounded-2xl p-6 sm:p-7 border border-slate-200 dark:border-white/[0.07] shadow-sm">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-6">
             <div>
               <h3 className="text-lg font-bold text-slate-900 dark:text-white font-display">
@@ -74,7 +74,7 @@ export const Feasibility: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3.5">
-            <div className="p-4 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-slate-200 dark:border-slate-800">
+            <div className="p-4 bg-slate-50 dark:bg-[#16171b] rounded-xl border border-slate-200 dark:border-white/[0.06]">
               <span className="text-[11px] text-slate-500 dark:text-slate-400 font-medium">Base Eligibility</span>
               <div className="text-xl font-mono tabular-nums font-black text-teal-600 dark:text-teal-400 mt-1">100 / mo</div>
               <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">
@@ -82,7 +82,7 @@ export const Feasibility: React.FC = () => {
               </p>
             </div>
 
-            <div className="p-4 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-slate-200 dark:border-slate-800">
+            <div className="p-4 bg-slate-50 dark:bg-[#16171b] rounded-xl border border-slate-200 dark:border-white/[0.06]">
               <span className="text-[11px] text-slate-500 dark:text-slate-400 font-medium">OPD Intake & Rx (M2)</span>
               <div className="text-xl font-mono tabular-nums font-black text-cyan-600 dark:text-cyan-400 mt-1">₹5.00</div>
               <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">
@@ -90,7 +90,7 @@ export const Feasibility: React.FC = () => {
               </p>
             </div>
 
-            <div className="p-4 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-slate-200 dark:border-slate-800">
+            <div className="p-4 bg-slate-50 dark:bg-[#16171b] rounded-xl border border-slate-200 dark:border-white/[0.06]">
               <span className="text-[11px] text-slate-500 dark:text-slate-400 font-medium">Record Exchange (M3)</span>
               <div className="text-xl font-mono tabular-nums font-black text-indigo-600 dark:text-indigo-400 mt-1">₹10.00</div>
               <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">
@@ -98,7 +98,7 @@ export const Feasibility: React.FC = () => {
               </p>
             </div>
 
-            <div className="p-4 bg-slate-50 dark:bg-slate-900/60 rounded-xl border border-slate-200 dark:border-slate-800">
+            <div className="p-4 bg-slate-50 dark:bg-[#16171b] rounded-xl border border-slate-200 dark:border-white/[0.06]">
               <span className="text-[11px] text-slate-500 dark:text-slate-400 font-medium">Vendor Tranche</span>
               <div className="text-xl font-mono tabular-nums font-black text-emerald-600 dark:text-emerald-400 mt-1">₹250+</div>
               <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">
@@ -109,8 +109,8 @@ export const Feasibility: React.FC = () => {
         </div>
 
         {/* Operational Challenges Table */}
-        <div className="bg-white dark:bg-[#0d1527] rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm">
-          <div className="p-5 border-b border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/40">
+        <div className="bg-white dark:bg-[#101114] rounded-2xl border border-slate-200 dark:border-white/[0.07] overflow-hidden shadow-sm">
+          <div className="p-5 border-b border-slate-200 dark:border-white/[0.07] bg-slate-50/70 dark:bg-[#16171b]">
             <h3 className="text-sm font-bold text-slate-900 dark:text-white font-display">
               Field Realities & Architectural Safeguards
             </h3>
@@ -121,16 +121,16 @@ export const Feasibility: React.FC = () => {
 
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
-              <thead className="bg-slate-50 dark:bg-slate-950/80 text-slate-600 dark:text-slate-400 font-bold uppercase tracking-wider border-b border-slate-200 dark:border-slate-800">
+              <thead className="bg-slate-50 dark:bg-[#121317] text-slate-600 dark:text-slate-400 font-bold uppercase tracking-wider border-b border-slate-200 dark:border-white/[0.07]">
                 <tr>
                   <th className="px-5 py-3">Field Barrier</th>
                   <th className="px-5 py-3">Architectural Mitigation</th>
                   <th className="px-5 py-3 text-right">Status</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-200 dark:divide-slate-800 font-normal">
+              <tbody className="divide-y divide-slate-200 dark:divide-white/[0.06] font-normal">
                 {challenges.map((c, i) => (
-                  <tr key={i} className="hover:bg-slate-50 dark:hover:bg-slate-850/40 transition-colors">
+                  <tr key={i} className="hover:bg-slate-50 dark:hover:bg-white/[0.03] transition-colors">
                     <td className="px-5 py-3.5 font-semibold text-slate-900 dark:text-white max-w-xs">
                       {c.challenge}
                     </td>

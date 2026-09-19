@@ -27,13 +27,7 @@ export const Hero: React.FC = () => {
   };
 
   return (
-    <section className="relative overflow-hidden pt-10 pb-16 bg-gradient-to-b from-slate-50 via-teal-50/20 to-white dark:from-[#080d1a] dark:via-[#0c1426] dark:to-[#080d1a] border-b border-slate-200/80 dark:border-slate-800/80 transition-colors">
-      {/* Precision Clinical Cyan / Emerald Ambient Glow (No generic purple slop) */}
-      <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-6xl h-80 bg-gradient-to-r from-teal-500/10 via-cyan-500/10 to-teal-500/5 blur-3xl -z-10 pointer-events-none"
-        aria-hidden="true"
-      />
-
+    <section className="relative overflow-hidden pt-10 pb-16 bg-gradient-to-b from-slate-50 via-teal-50/20 to-white dark:from-[#08090a] dark:via-[#0c0d10] dark:to-[#08090a] border-b border-slate-200/80 dark:border-white/[0.07] transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Single Eyebrow Badge (Eyebrow restraint: 1 per hero) */}
         <div className="flex justify-center mb-5">
@@ -47,7 +41,7 @@ export const Hero: React.FC = () => {
         <div className="text-center max-w-3xl mx-auto space-y-3">
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-[1.12] font-display text-balance">
             {t.heroTitle1} <br className="hidden sm:inline" />
-            <span className="bg-gradient-to-r from-teal-600 via-cyan-600 to-teal-500 dark:from-teal-400 dark:via-cyan-300 dark:to-teal-300 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-teal-600 to-cyan-600 dark:from-teal-300 dark:to-teal-400 bg-clip-text text-transparent">
               {t.heroTitle2}
             </span>
           </h1>
@@ -70,7 +64,7 @@ export const Hero: React.FC = () => {
           <button
             type="button"
             onClick={handleViewDoctor}
-            className="w-full sm:w-auto px-6 py-3.5 bg-white hover:bg-slate-50 text-slate-800 dark:bg-slate-900/80 dark:hover:bg-slate-800 dark:text-slate-100 font-semibold rounded-xl border border-slate-300 dark:border-slate-700 shadow-sm flex items-center justify-center gap-2 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer"
+            className="w-full sm:w-auto px-6 py-3.5 bg-white hover:bg-slate-50 text-slate-800 dark:bg-[#16171b] dark:hover:bg-[#202227] dark:text-slate-100 font-semibold rounded-xl border border-slate-300 dark:border-white/[0.1] shadow-sm flex items-center justify-center gap-2 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer"
           >
             <Stethoscope className="w-4 h-4 text-teal-600 dark:text-teal-400" aria-hidden="true" />
             <span>{t.accessClinicianBtn}</span>
@@ -79,8 +73,8 @@ export const Hero: React.FC = () => {
 
         {/* 6-Step Clinical Pipeline Bento Grid */}
         <div className="mt-14 max-w-5xl mx-auto">
-          <div className="glass-card-elevated rounded-2xl p-5 sm:p-7 border border-slate-200 dark:border-slate-800/90 shadow-xl">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-5 pb-3 border-b border-slate-200 dark:border-slate-800">
+          <div className="glass-card-elevated rounded-2xl p-5 sm:p-7 border border-slate-200 dark:border-white/[0.07] shadow-xl">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-5 pb-3 border-b border-slate-200 dark:border-white/[0.07]">
               <div>
                 <h2 className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
                   <Activity className="w-4 h-4 text-teal-600 dark:text-teal-400" aria-hidden="true" />
@@ -106,9 +100,9 @@ export const Hero: React.FC = () => {
               ].map((item) => (
                 <div
                   key={item.step}
-                  className="p-3 bg-slate-50/80 dark:bg-slate-900/50 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-teal-500/40 flex flex-col items-center text-center group transition-all tactile-btn"
+                  className="p-3 bg-slate-50/80 dark:bg-[#121317] rounded-xl border border-slate-200 dark:border-white/[0.06] hover:border-teal-500/40 dark:hover:border-teal-500/40 flex flex-col items-center text-center group transition-all tactile-btn"
                 >
-                  <div className="w-8 h-8 rounded-lg bg-white dark:bg-slate-800 flex items-center justify-center shadow-sm mb-2 group-hover:scale-105 transition-transform border border-slate-200 dark:border-slate-700/60">
+                  <div className="w-8 h-8 rounded-lg bg-white dark:bg-[#1a1c23] flex items-center justify-center shadow-sm mb-2 group-hover:scale-105 transition-transform border border-slate-200 dark:border-white/[0.08]">
                     {item.icon}
                   </div>
                   <span className="text-[10px] font-mono font-bold text-teal-600 dark:text-teal-400">

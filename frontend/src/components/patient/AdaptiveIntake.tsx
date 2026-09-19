@@ -188,9 +188,9 @@ export const AdaptiveIntake: React.FC = () => {
 
   return (
     <div className="max-w-2xl mx-auto py-2 sm:py-6 px-1 sm:px-2 animate-fade-in">
-      <div className="glass-card-elevated rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-xl space-y-5 sm:space-y-6">
+      <div className="glass-card-elevated rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-slate-200 dark:border-white/[0.07] dark:bg-[#101114] shadow-xl space-y-5 sm:space-y-6">
         {/* Step Header */}
-        <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800 text-xs">
+        <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-white/[0.07] text-xs">
           <span className="font-bold text-teal-600 dark:text-teal-400">
             {stage === 'complaint_selection' ? 'Step: Presenting Chief Complaint' : 'Step: Adaptive Clinical Inquiry'}
           </span>
@@ -212,7 +212,7 @@ export const AdaptiveIntake: React.FC = () => {
             </div>
 
             {/* Voice Microphone Bar */}
-            <div className="p-5 bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800 rounded-2xl flex flex-col items-center justify-center text-center space-y-3">
+            <div className="p-5 bg-slate-50 dark:bg-[#16171b] border border-slate-200 dark:border-white/[0.07] rounded-2xl flex flex-col items-center justify-center text-center space-y-3">
               <button
                 type="button"
                 onClick={handleStartVoice}
@@ -247,7 +247,7 @@ export const AdaptiveIntake: React.FC = () => {
               )}
 
               {voiceTranscript && (
-                <div className="p-3 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-700 text-xs text-slate-800 dark:text-slate-200 w-full animate-fade-in text-left shadow-sm">
+                <div className="p-3 bg-white dark:bg-[#121317] rounded-xl border border-slate-200 dark:border-white/[0.07] text-xs text-slate-800 dark:text-slate-200 w-full animate-fade-in text-left shadow-sm">
                   <span className="text-[10px] font-bold text-teal-600 dark:text-teal-400 block uppercase">
                     You said:
                   </span>
@@ -272,7 +272,7 @@ export const AdaptiveIntake: React.FC = () => {
                   }
                 }}
                 placeholder="Or describe symptoms here (e.g. stomach pain for 3 days)…"
-                className="flex-1 px-4 py-3 sm:py-2.5 text-sm sm:text-xs bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl text-slate-900 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
+                className="flex-1 px-4 py-3 sm:py-2.5 text-sm sm:text-xs bg-slate-50 dark:bg-[#121317] border border-slate-300 dark:border-white/[0.07] rounded-xl text-slate-900 dark:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
               />
               <button
                 type="button"
@@ -302,9 +302,9 @@ export const AdaptiveIntake: React.FC = () => {
                     key={preset.id}
                     type="button"
                     onClick={() => handleSelectComplaintCard(preset.id)}
-                    className="p-3.5 bg-white dark:bg-slate-900/60 hover:bg-teal-50/50 dark:hover:bg-slate-800/80 border border-slate-200 dark:border-slate-800 hover:border-teal-500/50 rounded-xl text-left transition-all group flex flex-col justify-between shadow-sm tactile-btn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer"
+                    className="p-3.5 bg-white dark:bg-[#16171b] hover:bg-teal-50/50 dark:hover:bg-[#1c1d22] border border-slate-200 dark:border-white/[0.07] hover:border-teal-500/50 rounded-xl text-left transition-all group flex flex-col justify-between shadow-sm tactile-btn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer"
                   >
-                    <div className="w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-teal-600 dark:text-teal-400 shadow-sm mb-2 group-hover:scale-105 transition-transform border border-slate-200 dark:border-slate-700">
+                    <div className="w-8 h-8 rounded-lg bg-slate-100 dark:bg-[#121317] flex items-center justify-center text-teal-600 dark:text-teal-400 shadow-sm mb-2 group-hover:scale-105 transition-transform border border-slate-200 dark:border-white/[0.07]">
                       <Activity className="w-4 h-4" aria-hidden="true" />
                     </div>
                     <div>
@@ -334,7 +334,7 @@ export const AdaptiveIntake: React.FC = () => {
                 </span>
                 <span className="font-mono tabular-nums">Entropy Weight: {currentQuestion.entropyWeight}</span>
               </div>
-              <div className="w-full h-2 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+              <div className="w-full h-2 bg-slate-200 dark:bg-[#16171b] rounded-full overflow-hidden">
                 <div 
                   className="h-full bg-teal-600 rounded-full transition-all duration-300 shadow-sm"
                   style={{ width: `${progressInfo.progress}%` }}
@@ -343,7 +343,7 @@ export const AdaptiveIntake: React.FC = () => {
             </div>
 
             {/* Current Question */}
-            <div className="p-5 bg-slate-50 dark:bg-slate-900/70 rounded-xl border border-slate-200 dark:border-slate-800 space-y-3">
+            <div className="p-5 bg-slate-50 dark:bg-[#16171b] rounded-xl border border-slate-200 dark:border-white/[0.07] space-y-3">
               <div className="flex items-start justify-between gap-3">
                 <div className="space-y-1">
                   <span className="text-[10px] uppercase tracking-wider font-mono font-extrabold text-teal-600 dark:text-teal-400">
@@ -356,7 +356,7 @@ export const AdaptiveIntake: React.FC = () => {
                 <button
                   type="button"
                   onClick={handleSpeakQuestion}
-                  className="p-2 text-slate-500 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 shrink-0 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer"
+                  className="p-2 text-slate-500 dark:text-slate-400 hover:text-teal-600 dark:hover:text-teal-400 bg-white dark:bg-[#121317] rounded-xl shadow-sm border border-slate-200 dark:border-white/[0.08] shrink-0 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer"
                   title={t.readAloudBtn}
                   aria-label="Read question aloud"
                 >
@@ -378,7 +378,7 @@ export const AdaptiveIntake: React.FC = () => {
                         className={`w-full p-3 rounded-xl text-left text-xs font-semibold border transition-all flex items-center justify-between shadow-sm tactile-btn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer ${
                           isSelected
                             ? 'bg-teal-600 text-white font-bold border-teal-500 shadow-md shadow-teal-600/20'
-                            : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200 hover:border-teal-500/40'
+                            : 'bg-white dark:bg-[#121317] border-slate-200 dark:border-white/[0.07] text-slate-800 dark:text-slate-200 hover:border-teal-500/40'
                         }`}
                       >
                         <span>{optLabel}</span>
@@ -413,12 +413,12 @@ export const AdaptiveIntake: React.FC = () => {
                         className={`w-full p-3 rounded-xl text-left text-xs font-semibold border transition-all flex items-center justify-between shadow-sm tactile-btn focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 cursor-pointer ${
                           isSelected
                             ? 'bg-teal-600 text-white font-bold border-teal-500 shadow-md shadow-teal-600/20'
-                            : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200 hover:border-teal-500/40'
+                            : 'bg-white dark:bg-[#121317] border-slate-200 dark:border-white/[0.07] text-slate-800 dark:text-slate-200 hover:border-teal-500/40'
                         }`}
                       >
                         <span>{optLabel}</span>
                         <span className={`w-4 h-4 rounded flex items-center justify-center border text-[10px] ${
-                          isSelected ? 'bg-white text-teal-700 border-white font-black' : 'border-slate-300 dark:border-slate-600'
+                          isSelected ? 'bg-white text-teal-700 border-white font-black' : 'border-slate-300 dark:border-slate-700'
                         }`}>
                           {isSelected && '✓'}
                         </span>
@@ -444,7 +444,7 @@ export const AdaptiveIntake: React.FC = () => {
                     max={currentQuestion.maxScale || 10}
                     value={currentAnswer || 6}
                     onChange={(e) => setCurrentAnswer(Number(e.target.value))}
-                    className="w-full accent-teal-600 h-2 bg-slate-200 dark:bg-slate-800 rounded-lg cursor-pointer"
+                    className="w-full accent-teal-600 h-2 bg-slate-200 dark:bg-[#121317] rounded-lg cursor-pointer"
                   />
                   <div className="flex justify-between px-1 text-[11px] font-mono tabular-nums text-slate-400 dark:text-slate-500">
                     {[1,2,3,4,5,6,7,8,9,10].map(n => (
@@ -458,7 +458,7 @@ export const AdaptiveIntake: React.FC = () => {
             </div>
 
             {/* Actions */}
-            <div className="flex flex-col-reverse sm:flex-row justify-between items-stretch sm:items-center gap-3 pt-3 border-t border-slate-200/80 dark:border-slate-800">
+            <div className="flex flex-col-reverse sm:flex-row justify-between items-stretch sm:items-center gap-3 pt-3 border-t border-slate-200/80 dark:border-white/[0.07]">
               <button
                 type="button"
                 onClick={() => setStage('complaint_selection')}
