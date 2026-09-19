@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="public/medikoisk-logo.png" alt="MEDIKOISK Logo" width="360" />
+  <img src="frontend/public/medikoisk-logo.png" alt="MEDIKOISK Logo" width="360" />
 
   # MEDIKOISK
   ### Autonomous AI-Driven Adaptive Patient Case-Taking Kiosk
@@ -175,112 +175,99 @@ The platform includes built-in realistic clinical personas to test various healt
 
 ---
 
-## Installation & Local Development
+## Monorepo Architecture & Local Development
+
+This repository is organized as a unified monorepo containing both the user-facing web kiosk application and backend API services.
+
+### Repository Layout
+
+```
+MEDIKOISK_prototype/
+├── frontend/                     # Patient Kiosk & Clinician Web Application (React + Vite)
+│   ├── public/                   # Static public assets (medikoisk-logo.png)
+│   ├── src/                      # Application source code
+│   │   ├── components/           # UI components (Patient, Doctor, Admin, Common)
+│   │   ├── context/              # Global state, theme, language, and clinical store
+│   │   ├── data/                 # Diagnostic DAGs, Ayush ontology, and dictionaries
+│   │   ├── services/             # ABDM, FHIR, TrOCR, Queue, and Voice services
+│   │   └── types/                # Strongly-typed clinical definitions
+│   ├── package.json              # Frontend dependencies and Vite configuration
+│   ├── tailwind.config.js        # Design system tokens and styling rules
+│   ├── tsconfig.json             # TypeScript compiler settings
+│   └── vite.config.ts            # Vite bundler configuration
+├── backend/                      # Server-side API & Gateway Services
+│   ├── src/                      # API controllers, routes, models, and connectors
+│   └── README.md                 # Backend onboarding, Node.js & Python starter templates
+├── package.json                  # Monorepo workspaces configuration & delegation scripts
+└── README.md                     # Comprehensive project documentation
+```
+
+---
 
 ### Prerequisites
-- Node.js 18.0.0 or higher
-- npm 9.0.0 or higher
+- **Node.js**: `v18.0.0` or higher
+- **npm**: `v9.0.0` or higher
 
 ### Quickstart Setup
+
+You can run the application directly from the root using npm workspace delegation scripts, or by navigating into the `frontend/` directory.
+
+#### Method 1: From Repository Root (Recommended)
 
 ```bash
 # 1. Clone the repository
 git clone https://github.com/ekansh123123-debug/MEDIKOISK_prototype.git
 cd MEDIKOISK_prototype
 
-# 2. Install dependencies
-npm install
+# 2. Install frontend dependencies
+npm --prefix frontend install
 
-# 3. Start local development server
+# 3. Start frontend dev server
 npm run dev
+# Or explicitly:
+npm run dev:frontend
 ```
 
 The application will launch on `http://localhost:5173`.
 
-### Production Build & Verification
+#### Method 2: Inside `frontend/`
 
 ```bash
-# Type check and build production bundle
-npm run build
-
-# Preview production build locally
-npm run preview
+cd frontend
+npm install
+npm run dev
 ```
+
+---
+
+### Monorepo Scripts Reference
+
+| Command | Working Directory | Description |
+|:---|:---:|:---|
+| `npm run dev` / `npm run dev:frontend` | Root | Starts the Vite development server for `frontend/` |
+| `npm run dev:backend` | Root | Starts the backend development server (once backend is configured) |
+| `npm run build` / `npm run build:frontend` | Root | Runs TypeScript check (`tsc`) and generates production bundle in `frontend/dist` |
+| `npm run preview` | Root | Previews the production build locally on Vite preview server |
+
+---
+
+### Vercel Deployment Guide
+
+Since this repository is a monorepo with `frontend/` and `backend/`:
+
+1. In your **Vercel Dashboard**, go to your project **Settings** &rarr; **General**.
+2. Locate the **Root Directory** setting and set it to:
+   ```
+   frontend
+   ```
+3. Vercel will automatically detect Vite, install dependencies from `frontend/package.json`, and deploy the build from `frontend/dist`.
+
+---
 
 ### Keyboard Shortcuts & Accessibility
 - `Ctrl + ,` or `Cmd + ,`: Open Platform Settings & Preferences modal
 - `ESC`: Dismiss open modal dialogs / drawers
 - `Tab` / `Shift + Tab`: Full accessible keyboard navigation through all form elements, steps, and dashboards.
-
----
-
-## Project Structure
-
-```
-hackthon_prototype/
-├── .agents/                      # Skills, workflows, and agent guidelines
-├── graphify-out/                 # Graphify AST knowledge graph & dependency map
-├── public/                       # Static public assets (medikoisk-logo.png)
-├── src/
-│   ├── components/
-│   │   ├── admin/                # Hospital Admin & Live Triage Desk
-│   │   │   └── AdminDashboard.tsx
-│   │   ├── common/               # Design system components
-│   │   │   ├── Badge.tsx
-│   │   │   ├── Footer.tsx            # Hospital-grade footer & operational status
-│   │   │   ├── Logo.tsx              # Official brand logo component
-│   │   │   ├── MobileBottomNav.tsx   # Thumb-friendly mobile navigation bar
-│   │   │   ├── Navbar.tsx            # Desktop header & mobile controls
-│   │   │   └── SettingsModal.tsx     # Preferences, Bhashini voice, ABDM sandbox
-│   │   ├── doctor/               # Clinician Workstation
-│   │   │   └── DoctorDashboard.tsx   # SOAP summary, FHIR bundle exporter
-│   │   ├── landing/              # High-impact landing page components
-│   │   │   ├── Feasibility.tsx
-│   │   │   ├── Hero.tsx
-│   │   │   ├── ImpactMetrics.tsx
-│   │   │   ├── ProblemSolution.tsx
-│   │   │   └── WhyDifferent.tsx
-│   │   ├── patient/              # 9-Step Patient Kiosk Intake
-│   │   │   ├── AdaptiveIntake.tsx
-│   │   │   ├── AyushIntakeStep.tsx
-│   │   │   ├── BasicDetails.tsx
-│   │   │   ├── ConsentStep.tsx
-│   │   │   ├── DocumentUploadStep.tsx
-│   │   │   ├── HospitalQRScan.tsx
-│   │   │   ├── MedicationVerificationStep.tsx
-│   │   │   ├── PatientMobileHeader.tsx  # Mobile-only step progress indicator
-│   │   │   └── QueueTokenDisplay.tsx
-│   │   └── privacy/              # DPDP 2023 & Fidelius Governance
-│   │       └── PrivacyCenter.tsx
-│   ├── context/
-│   │   └── AppContext.tsx        # Global state, theme, language, and clinical store
-│   ├── data/
-│   │   ├── adaptiveQuestions.ts  # Shannon entropy diagnostic question registry
-│   │   ├── ayushOntology.ts      # NAMASTE & ICD-11 TM2 dual-coding mappings
-│   │   ├── demoPatients.ts       # Realistic patient personas & baseline histories
-│   │   ├── emergencyRules.ts     # Deterministic red flag triage rules
-│   │   ├── samplePrescriptions.ts# Sample prescriptions for TrOCR demo
-│   │   └── translations.ts       # Vernacular dictionaries for 6 Indic languages
-│   ├── services/
-│   │   ├── abdmService.ts        # ABDM Gateway M1-M4 & DHIS incentive simulator
-│   │   ├── adaptiveEngine.ts     # Shannon entropy DAG evaluation engine
-│   │   ├── auditService.ts       # Immutable DPDP cryptographic event logger
-│   │   ├── fhirService.ts        # NRCeS FHIR R4 Document Bundle assembler
-│   │   ├── ocrService.ts         # Microsoft TrOCR + BioBERT extraction simulator
-│   │   ├── queueService.ts       # Outpatient queue distribution engine
-│   │   ├── storageService.ts     # Local persistence & session ledger
-│   │   ├── triageEngine.ts       # Red-flag clinical rule matcher
-│   │   └── voiceService.ts       # Bhashini ASR/TTS voice synthesizer
-│   ├── types/
-│   │   └── index.ts              # Strongly-typed clinical and domain definitions
-│   ├── App.tsx                   # Root layout, role routing, and mobile viewport clearance
-│   ├── index.css                 # Custom CSS variables, glassmorphism, and animations
-│   └── main.tsx                  # Application entry point
-├── package.json
-├── tailwind.config.js
-├── tsconfig.json
-└── vite.config.ts
-```
 
 ---
 
