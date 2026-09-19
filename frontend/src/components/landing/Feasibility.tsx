@@ -40,7 +40,7 @@ export const Feasibility: React.FC = () => {
 
   return (
     <section className="py-14 sm:py-18 lg:py-24 bg-slate-50 dark:bg-[#0c1017] border-t border-slate-200 dark:border-white/[0.07] relative overflow-hidden transition-colors duration-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 relative z-10">
         {/* Core Feasibility Statement */}
         <div className="bg-[#111622] text-white rounded-2xl p-7 sm:p-10 border border-white/[0.08] shadow-xl mb-12 sm:mb-16 relative overflow-hidden">
           <div className="max-w-3xl space-y-3.5">

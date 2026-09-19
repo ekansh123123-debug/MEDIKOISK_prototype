@@ -28,7 +28,7 @@ export const Hero: React.FC = () => {
 
   return (
     <section className="relative overflow-hidden py-12 sm:py-16 lg:py-20 bg-gradient-to-b from-slate-50 via-teal-50/20 to-white dark:from-[#0c1017] dark:via-[#111622] dark:to-[#0c1017] border-b border-slate-200/80 dark:border-white/[0.07] transition-colors duration-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16">
         {/* Single Eyebrow Badge (Eyebrow restraint: 1 per hero) */}
         <div className="flex justify-center mb-6">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold bg-teal-500/10 text-teal-800 dark:text-teal-300 border border-teal-500/25 shadow-sm">
@@ -72,7 +72,7 @@ export const Hero: React.FC = () => {
         </div>
 
         {/* 6-Step Clinical Pipeline Bento Grid */}
-        <div className="mt-16 max-w-5xl mx-auto">
+        <div className="mt-16 max-w-[1440px] mx-auto">
           <div className="glass-card-elevated rounded-2xl p-6 sm:p-8 border border-slate-200 dark:border-white/[0.08] shadow-xl">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-4 border-b border-slate-200 dark:border-white/[0.08]">
               <div>

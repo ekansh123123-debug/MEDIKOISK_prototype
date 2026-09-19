@@ -63,7 +63,7 @@ export const DoctorDashboard: React.FC = () => {
   const isEmergency = currentToken?.priority === 'EMERGENCY';
 
   return (
-    <div className="max-w-7xl mx-auto py-4 sm:py-8 px-4 sm:px-6 lg:px-8 animate-fade-in space-y-6">
+    <div className="max-w-[1680px] mx-auto py-4 sm:py-8 px-4 sm:px-8 lg:px-12 xl:px-16 animate-fade-in space-y-6">
       {/* 1. TOP CLINICAL HEADER BAR */}
       <div className="glass-card-elevated rounded-2xl p-5 sm:p-6 border border-slate-200 dark:border-white/[0.08] shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div className="flex items-center gap-4 min-w-0">
@@ -138,7 +138,7 @@ export const DoctorDashboard: React.FC = () => {
       {/* 3. TAB CONTENT */}
       <div className="glass-card-elevated rounded-2xl p-6 sm:p-8 border border-slate-200 dark:border-white/[0.08] shadow-xl space-y-6">
         
-        {/* TAB 1: SOAP SUMMARY */}
+        {/* TAB 1: SOAP SUMMARY (Widescreen 2-Column Cockpit) */}
         {activeTab === 'soap' && (
           <div className="space-y-6">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-200 dark:border-white/[0.08] gap-2">
@@ -156,45 +156,50 @@ export const DoctorDashboard: React.FC = () => {
               </span>
             </div>
 
-            {/* SUBJECTIVE SECTION */}
-            <div className="p-5 sm:p-6 bg-slate-50/90 dark:bg-[#131926] rounded-xl border border-slate-200/90 dark:border-white/[0.07] space-y-3.5">
-              <div className="flex items-center justify-between">
-                <h4 className="text-xs font-mono font-extrabold uppercase tracking-wider text-teal-600 dark:text-teal-400">
-                  {t.soapSubjective}
-                </h4>
-                <span className="text-[11px] text-slate-500 dark:text-slate-400">Patient-reported assertions</span>
-              </div>
-
-              <div className="space-y-2 text-xs">
+            {/* Widescreen Row 1: Subjective & Objective Side-by-Side on xl screens */}
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 items-stretch">
+              {/* SUBJECTIVE SECTION */}
+              <div className="p-5 sm:p-6 bg-slate-50/90 dark:bg-[#131926] rounded-xl border border-slate-200/90 dark:border-white/[0.07] space-y-3.5 flex flex-col justify-between">
                 <div>
-                  <strong className="text-slate-900 dark:text-white">Chief Complaint: </strong>
-                  <span className="text-slate-700 dark:text-slate-300">
-                    {currentSoap.subjective.chiefComplaint}
-                  </span>
-                  {currentSoap.provenanceList[0] && (
-                    <ProvenancePopover assertion={currentSoap.provenanceList[0]} />
-                  )}
+                  <div className="flex items-center justify-between mb-3">
+                    <h4 className="text-xs font-mono font-extrabold uppercase tracking-wider text-teal-600 dark:text-teal-400">
+                      {t.soapSubjective}
+                    </h4>
+                    <span className="text-[11px] text-slate-500 dark:text-slate-400">Patient-reported assertions</span>
+                  </div>
+
+                  <div className="space-y-3 text-xs">
+                    <div>
+                      <strong className="text-slate-900 dark:text-white">Chief Complaint: </strong>
+                      <span className="text-slate-700 dark:text-slate-300">
+                        {currentSoap.subjective.chiefComplaint}
+                      </span>
+                      {currentSoap.provenanceList[0] && (
+                        <ProvenancePopover assertion={currentSoap.provenanceList[0]} />
+                      )}
+                    </div>
+
+                    <div>
+                      <strong className="text-slate-900 dark:text-white">History of Present Illness: </strong>
+                      <p className="text-slate-700 dark:text-slate-300 mt-1 leading-relaxed inline">
+                        {currentSoap.subjective.historyOfPresentIllness}
+                      </p>
+                      {currentSoap.provenanceList[1] && (
+                        <ProvenancePopover assertion={currentSoap.provenanceList[1]} />
+                      )}
+                    </div>
+                  </div>
                 </div>
 
-                <div>
-                  <strong className="text-slate-900 dark:text-white">History of Present Illness: </strong>
-                  <p className="text-slate-700 dark:text-slate-300 mt-1 leading-relaxed inline">
-                    {currentSoap.subjective.historyOfPresentIllness}
-                  </p>
-                  {currentSoap.provenanceList[1] && (
-                    <ProvenancePopover assertion={currentSoap.provenanceList[1]} />
-                  )}
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2 border-t border-slate-200 dark:border-white/[0.06]">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-3 border-t border-slate-200 dark:border-white/[0.06] text-xs mt-3">
                   <div>
-                    <strong className="text-slate-900 dark:text-white">Associated Symptoms: </strong>
+                    <strong className="text-slate-900 dark:text-white block mb-0.5">Associated Symptoms: </strong>
                     <span className="text-slate-700 dark:text-slate-300">
                       {currentSoap.subjective.associatedSymptoms.join(', ')}
                     </span>
                   </div>
                   <div>
-                    <strong className="text-slate-900 dark:text-white">Prior Interventions: </strong>
+                    <strong className="text-slate-900 dark:text-white block mb-0.5">Prior Interventions: </strong>
                     <span className="text-slate-700 dark:text-slate-300">
                       {currentSoap.subjective.medicationHistory.join(', ')}
                     </span>
@@ -204,96 +209,112 @@ export const DoctorDashboard: React.FC = () => {
                   </div>
                 </div>
               </div>
-            </div>
 
-            {/* OBJECTIVE SECTION */}
-            <div className="p-5 sm:p-6 bg-slate-50/90 dark:bg-[#131926] rounded-xl border border-slate-200/90 dark:border-white/[0.07] space-y-3.5">
-              <div className="flex items-center justify-between">
-                <h4 className="text-xs font-mono font-extrabold uppercase tracking-wider text-sky-600 dark:text-sky-400">
-                  {t.soapObjective}
-                </h4>
-                <span className="text-[11px] text-slate-500 dark:text-slate-400">Self-reported / Kiosk Sensors</span>
-              </div>
-
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3.5 text-xs">
-                <div className="p-3.5 bg-white dark:bg-[#161d2b] rounded-xl border border-slate-200/90 dark:border-white/[0.06] shadow-2xs">
-                  <span className="text-[10px] text-slate-500 dark:text-slate-400 uppercase font-bold block font-mono">Pulse Rate</span>
-                  <span className="text-base font-bold font-mono tabular-nums text-slate-900 dark:text-white mt-0.5 block">
-                    {currentSoap.objective.reportedVitals.pulse || '76 bpm'}
-                  </span>
-                </div>
-                <div className="p-3.5 bg-white dark:bg-[#161d2b] rounded-xl border border-slate-200/90 dark:border-white/[0.06] shadow-2xs">
-                  <span className="text-[10px] text-slate-500 dark:text-slate-400 uppercase font-bold block font-mono">Blood Pressure</span>
-                  <span className="text-base font-bold font-mono tabular-nums text-slate-900 dark:text-white mt-0.5 block">
-                    {currentSoap.objective.reportedVitals.bloodPressure || '122/80 mmHg'}
-                  </span>
-                </div>
-                <div className="p-3.5 bg-white dark:bg-[#161d2b] rounded-xl border border-slate-200/90 dark:border-white/[0.06] shadow-2xs">
-                  <span className="text-[10px] text-slate-500 dark:text-slate-400 uppercase font-bold block font-mono">Body Temperature</span>
-                  <span className="text-base font-bold font-mono tabular-nums text-slate-900 dark:text-white mt-0.5 block">
-                    {currentSoap.objective.reportedVitals.temperature || '98.4 °F'}
-                  </span>
-                </div>
-                <div className="p-3.5 bg-white dark:bg-[#161d2b] rounded-xl border border-slate-200/90 dark:border-white/[0.06] shadow-2xs">
-                  <span className="text-[10px] text-slate-500 dark:text-slate-400 uppercase font-bold block font-mono">SpO2 Oxygen</span>
-                  <span className="text-base font-bold font-mono tabular-nums text-slate-900 dark:text-white mt-0.5 block">
-                    {currentSoap.objective.reportedVitals.spO2 || '99%'}
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* ASSESSMENT SECTION WITH DUAL CODES */}
-            <div className="p-5 sm:p-6 bg-slate-50/90 dark:bg-[#131926] rounded-xl border border-slate-200/90 dark:border-white/[0.07] space-y-3.5">
-              <div className="flex items-center justify-between">
-                <h4 className="text-xs font-mono font-extrabold uppercase tracking-wider text-purple-600 dark:text-purple-400">
-                  {t.soapAssessment}
-                </h4>
-                <span className="text-[11px] text-slate-500 dark:text-slate-400 font-mono">ICD-11 + NAMASTE + TM2</span>
-              </div>
-
-              <div className="space-y-3 text-xs">
+              {/* OBJECTIVE SECTION */}
+              <div className="p-5 sm:p-6 bg-slate-50/90 dark:bg-[#131926] rounded-xl border border-slate-200/90 dark:border-white/[0.07] space-y-3.5 flex flex-col justify-between">
                 <div>
-                  <strong className="text-slate-900 dark:text-white">AI Pattern Differential: </strong>
-                  <span className="text-slate-700 dark:text-slate-300">
-                    {currentSoap.assessment.differentialConsiderations.join(', ')}
-                  </span>
+                  <div className="flex items-center justify-between mb-3">
+                    <h4 className="text-xs font-mono font-extrabold uppercase tracking-wider text-sky-600 dark:text-sky-400">
+                      {t.soapObjective}
+                    </h4>
+                    <span className="text-[11px] text-slate-500 dark:text-slate-400">Self-reported / Kiosk Sensors</span>
+                  </div>
+
+                  <div className="grid grid-cols-2 sm:grid-cols-2 gap-3.5 text-xs">
+                    <div className="p-3.5 bg-white dark:bg-[#161d2b] rounded-xl border border-slate-200/90 dark:border-white/[0.06] shadow-2xs">
+                      <span className="text-[10px] text-slate-500 dark:text-slate-400 uppercase font-bold block font-mono">Pulse Rate</span>
+                      <span className="text-base font-bold font-mono tabular-nums text-slate-900 dark:text-white mt-0.5 block">
+                        {currentSoap.objective.reportedVitals.pulse || '76 bpm'}
+                      </span>
+                    </div>
+                    <div className="p-3.5 bg-white dark:bg-[#161d2b] rounded-xl border border-slate-200/90 dark:border-white/[0.06] shadow-2xs">
+                      <span className="text-[10px] text-slate-500 dark:text-slate-400 uppercase font-bold block font-mono">Blood Pressure</span>
+                      <span className="text-base font-bold font-mono tabular-nums text-slate-900 dark:text-white mt-0.5 block">
+                        {currentSoap.objective.reportedVitals.bloodPressure || '122/80 mmHg'}
+                      </span>
+                    </div>
+                    <div className="p-3.5 bg-white dark:bg-[#161d2b] rounded-xl border border-slate-200/90 dark:border-white/[0.06] shadow-2xs">
+                      <span className="text-[10px] text-slate-500 dark:text-slate-400 uppercase font-bold block font-mono">Body Temperature</span>
+                      <span className="text-base font-bold font-mono tabular-nums text-slate-900 dark:text-white mt-0.5 block">
+                        {currentSoap.objective.reportedVitals.temperature || '98.4 °F'}
+                      </span>
+                    </div>
+                    <div className="p-3.5 bg-white dark:bg-[#161d2b] rounded-xl border border-slate-200/90 dark:border-white/[0.06] shadow-2xs">
+                      <span className="text-[10px] text-slate-500 dark:text-slate-400 uppercase font-bold block font-mono">SpO2 Oxygen</span>
+                      <span className="text-base font-bold font-mono tabular-nums text-slate-900 dark:text-white mt-0.5 block">
+                        {currentSoap.objective.reportedVitals.spO2 || '99%'}
+                      </span>
+                    </div>
+                  </div>
                 </div>
 
-                {/* Dual Coding Cards */}
-                <div className="pt-2 space-y-2.5">
-                  {currentSoap.assessment.dualCodes.map((code, idx) => (
-                    <div key={idx} className="p-3.5 bg-white dark:bg-[#161d2b] rounded-xl border border-slate-200/90 dark:border-white/[0.06] shadow-2xs flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
-                      <div>
-                        <span className="font-bold text-slate-900 dark:text-white">{code.conditionName}</span>
-                        <div className="text-[11px] text-slate-500 dark:text-slate-400 font-mono mt-0.5">
-                          ICD-11 MMS: <span className="text-teal-600 dark:text-teal-400 font-bold">{code.icd11Mms.code}</span> ({code.icd11Mms.display})
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-2 flex-wrap">
-                        <span className="px-2.5 py-1 rounded-lg text-[10px] font-mono font-bold bg-amber-500/10 text-amber-700 dark:text-amber-300 border border-amber-500/20">
-                          NAMASTE: {code.namastePortal.code}
-                        </span>
-                        <span className="px-2.5 py-1 rounded-lg text-[10px] font-mono font-bold bg-teal-500/10 text-teal-700 dark:text-teal-300 border border-teal-500/20">
-                          TM2: {code.icd11Tm2.code}
-                        </span>
-                      </div>
-                    </div>
-                  ))}
+                <div className="pt-3 border-t border-slate-200 dark:border-white/[0.06] text-xs text-slate-500 dark:text-slate-400 font-mono">
+                  Telemetry verified by automated intake sensors
                 </div>
               </div>
             </div>
 
-            {/* PLAN SECTION */}
-            <div className="p-5 sm:p-6 bg-slate-50/90 dark:bg-[#131926] rounded-xl border border-slate-200/90 dark:border-white/[0.07] space-y-3.5">
-              <h4 className="text-xs font-mono font-extrabold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
-                {t.soapPlan}
-              </h4>
-              <ul className="list-disc list-inside text-xs text-slate-700 dark:text-slate-300 space-y-1.5 leading-relaxed">
-                {currentSoap.plan.preliminaryRecommendations.map((rec, i) => (
-                  <li key={i}>{rec}</li>
-                ))}
-              </ul>
+            {/* Widescreen Row 2: Assessment & Plan Side-by-Side on xl screens */}
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 items-stretch">
+              {/* ASSESSMENT SECTION WITH DUAL CODES */}
+              <div className="p-5 sm:p-6 bg-slate-50/90 dark:bg-[#131926] rounded-xl border border-slate-200/90 dark:border-white/[0.07] space-y-3.5 flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between mb-3">
+                    <h4 className="text-xs font-mono font-extrabold uppercase tracking-wider text-purple-600 dark:text-purple-400">
+                      {t.soapAssessment}
+                    </h4>
+                    <span className="text-[11px] text-slate-500 dark:text-slate-400 font-mono">ICD-11 + NAMASTE + TM2</span>
+                  </div>
+
+                  <div className="space-y-3 text-xs">
+                    <div>
+                      <strong className="text-slate-900 dark:text-white">AI Pattern Differential: </strong>
+                      <span className="text-slate-700 dark:text-slate-300">
+                        {currentSoap.assessment.differentialConsiderations.join(', ')}
+                      </span>
+                    </div>
+
+                    {/* Dual Coding Cards */}
+                    <div className="pt-2 space-y-2.5">
+                      {currentSoap.assessment.dualCodes.map((code, idx) => (
+                        <div key={idx} className="p-3.5 bg-white dark:bg-[#161d2b] rounded-xl border border-slate-200/90 dark:border-white/[0.06] shadow-2xs flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+                          <div>
+                            <span className="font-bold text-slate-900 dark:text-white">{code.conditionName}</span>
+                            <div className="text-[11px] text-slate-500 dark:text-slate-400 font-mono mt-0.5">
+                              ICD-11 MMS: <span className="text-teal-600 dark:text-teal-400 font-bold">{code.icd11Mms.code}</span> ({code.icd11Mms.display})
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <span className="px-2.5 py-1 rounded-lg text-[10px] font-mono font-bold bg-amber-500/10 text-amber-700 dark:text-amber-300 border border-amber-500/20">
+                              NAMASTE: {code.namastePortal.code}
+                            </span>
+                            <span className="px-2.5 py-1 rounded-lg text-[10px] font-mono font-bold bg-teal-500/10 text-teal-700 dark:text-teal-300 border border-teal-500/20">
+                              TM2: {code.icd11Tm2.code}
+                            </span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* PLAN SECTION */}
+              <div className="p-5 sm:p-6 bg-slate-50/90 dark:bg-[#131926] rounded-xl border border-slate-200/90 dark:border-white/[0.07] space-y-3.5 flex flex-col justify-between">
+                <div>
+                  <h4 className="text-xs font-mono font-extrabold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 mb-3">
+                    {t.soapPlan}
+                  </h4>
+                  <ul className="list-disc list-inside text-xs text-slate-700 dark:text-slate-300 space-y-2 leading-relaxed">
+                    {currentSoap.plan.preliminaryRecommendations.map((rec, i) => (
+                      <li key={i}>{rec}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="pt-3 border-t border-slate-200 dark:border-white/[0.06] text-xs text-slate-500 dark:text-slate-400">
+                  Preliminary clinical guidelines prepared for physician approval
+                </div>
+              </div>
             </div>
           </div>
         )}

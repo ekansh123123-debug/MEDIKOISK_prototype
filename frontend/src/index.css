@@ -281,7 +281,7 @@
 }
 
 .clinical-container {
-  max-width: 80rem;
+  max-width: 105rem;
   margin-left: auto;
   margin-right: auto;
   padding-left: 1rem;
@@ -289,18 +289,40 @@
 }
 @media (min-width: 640px) {
   .clinical-container {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 }
 @media (min-width: 1024px) {
   .clinical-container {
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+@media (min-width: 1280px) {
+  .clinical-container {
+    padding-left: 4rem;
+    padding-right: 4rem;
   }
 }
 
 .tabular-nums {
   font-variant-numeric: tabular-nums;
+}
+
+/* Subtle Clinical Blueprint & Telemetry Ambient Grid */
+.bg-clinical-grid {
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(14, 165, 233, 0.05) 0%, transparent 70%),
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 100% 100%, 56px 56px, 56px 56px;
+}
+:root:not(.dark) .bg-clinical-grid {
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(13, 148, 136, 0.04) 0%, transparent 70%),
+    linear-gradient(to right, rgba(15, 23, 42, 0.025) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.025) 1px, transparent 1px);
+  background-size: 100% 100%, 56px 56px, 56px 56px;
 }
 

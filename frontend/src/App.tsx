@@ -34,7 +34,7 @@ const MainContent: React.FC = () => {
   const { role, patientStep, toastMessage } = useApp();
 
   return (
-    <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-[#0c1017] text-slate-900 dark:text-slate-100 font-sans selection:bg-teal-500 selection:text-white transition-colors duration-200">
+    <div className="flex flex-col min-h-screen bg-slate-50 dark:bg-[#0c1017] bg-clinical-grid text-slate-900 dark:text-slate-100 font-sans selection:bg-teal-500 selection:text-white transition-colors duration-200">
       {/* Enterprise Hospital Navbar */}
       <Navbar />
 
@@ -69,7 +69,7 @@ const MainContent: React.FC = () => {
         )}
 
         {role === 'patient' && (
-          <div className="py-4 sm:py-8 px-3 sm:px-4 max-w-7xl mx-auto">
+          <div className="py-4 sm:py-8 px-4 sm:px-6 lg:px-8 max-w-5xl xl:max-w-6xl mx-auto">
             {/* Mobile-only Step Progress Indicator */}
             <PatientMobileHeader />
 

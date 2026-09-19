@@ -60,7 +60,7 @@ export const AdminDashboard: React.FC = () => {
   });
 
   return (
-    <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 animate-fade-in space-y-6">
+    <div className="max-w-[1680px] mx-auto py-8 px-4 sm:px-8 lg:px-12 xl:px-16 animate-fade-in space-y-6">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200 dark:border-white/[0.07]">
         <div>
@@ -81,7 +81,7 @@ export const AdminDashboard: React.FC = () => {
         <div className="flex items-center gap-2.5 self-start sm:self-auto">
           <button
             onClick={handleExportOPD}
-            className="tactile-btn focus-ring px-3.5 py-1.5 rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#161d2b] text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-[#202227] flex items-center gap-1.5 shadow-sm cursor-pointer"
+            className="tactile-btn focus-ring px-3.5 py-1.5 rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-[#161d2b] text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-[#1c2436] flex items-center gap-1.5 shadow-sm cursor-pointer"
           >
             <Download className="w-3.5 h-3.5" />
             Export Telemetry

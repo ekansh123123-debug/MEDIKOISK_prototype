@@ -8,7 +8,7 @@ export const Footer: React.FC = () => {
 
   return (
     <footer className="bg-[#0c1017] text-slate-400 border-t border-white/[0.07] text-xs mt-auto">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+      <div className="max-w-[1680px] mx-auto px-4 sm:px-8 lg:px-12 py-12 sm:py-16">
         {/* System Health Status Ribbon */}
         <div className="mb-10 p-4 rounded-2xl bg-[#111622] border border-white/[0.08] flex flex-wrap items-center justify-between gap-3 text-xs shadow-sm">
           <div className="flex items-center gap-2.5">

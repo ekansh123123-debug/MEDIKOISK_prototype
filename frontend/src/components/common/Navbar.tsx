@@ -56,7 +56,7 @@ export const Navbar: React.FC = () => {
           aria-live="assertive"
           className="bg-rose-600 text-white px-3 sm:px-4 py-1.5 text-xs font-bold border-b border-rose-700 animate-pulse"
         >
-          <div className="flex items-center justify-between gap-2 max-w-7xl mx-auto w-full flex-wrap sm:flex-nowrap">
+          <div className="flex items-center justify-between gap-2 max-w-[1680px] mx-auto w-full flex-wrap sm:flex-nowrap px-4 sm:px-8 lg:px-12">
             <div className="flex items-center gap-2 min-w-0">
               <Siren className="w-4 h-4 text-amber-200 animate-bounce shrink-0" aria-hidden="true" />
               <span className="truncate text-[11px] sm:text-xs">
@@ -73,7 +73,7 @@ export const Navbar: React.FC = () => {
         </div>
       )}
 
-      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+      <div className="max-w-[1680px] mx-auto px-4 sm:px-8 lg:px-12">
         <div className="flex items-center justify-between h-14 sm:h-16">
           {/* Logo & Product Identity */}
           <button 

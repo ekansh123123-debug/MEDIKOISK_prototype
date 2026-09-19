@@ -7,7 +7,7 @@ export const ImpactMetrics: React.FC = () => {
 
   return (
     <section className="py-14 sm:py-18 lg:py-24 bg-white dark:bg-[#0c1017] border-t border-slate-200 dark:border-white/[0.07] relative overflow-hidden transition-colors duration-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
           <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white font-display tracking-tight text-balance">
             {t.impactTitle}

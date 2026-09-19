@@ -79,7 +79,7 @@ export const PrivacyCenter: React.FC = () => {
   });
 
   return (
-    <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 animate-fade-in space-y-8">
+    <div className="max-w-[1600px] mx-auto py-8 px-4 sm:px-8 lg:px-12 xl:px-16 animate-fade-in space-y-8">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-200 dark:border-white/[0.07]">
         <div className="flex items-center gap-3">
